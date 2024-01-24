@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "Rz4ojT0zRL2gcn+t1LU4txq5dM3Vyr7+d4PGUsih+Mydb/NWjNact9Hk49FtvOsVpwEC3V5gZ7TslkrywZK4kA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\jdsta\\OneDrive\\Desktop\\NBDProject\\NBDProject\\NBDProject\\NBDProject.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\jdsta\\.nuget\\packages\\bootstrap\\5.3.2\\bootstrap.5.3.2.nupkg.sha512",
+    "C:\\Users\\jdsta\\.nuget\\packages\\jquery\\3.7.1\\jquery.3.7.1.nupkg.sha512",
+    "C:\\Users\\jdsta\\.nuget\\packages\\popper.js\\1.16.1\\popper.js.1.16.1.nupkg.sha512"
+  ],
+  "logs": []
+}
