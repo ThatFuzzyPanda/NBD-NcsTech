@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "E:\\NBDProjectNcstech\\NBDProjectNcstech\\NBDProjectNcstech.csproj": {}
+    "C:\\Users\\Owner\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\NBDProjectNcstech.csproj": {}
   },
   "projects": {
-    "E:\\NBDProjectNcstech\\NBDProjectNcstech\\NBDProjectNcstech.csproj": {
+    "C:\\Users\\Owner\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\NBDProjectNcstech.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\NBDProjectNcstech\\NBDProjectNcstech\\NBDProjectNcstech.csproj",
+        "projectUniqueName": "C:\\Users\\Owner\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\NBDProjectNcstech.csproj",
         "projectName": "NBDProjectNcstech",
-        "projectPath": "E:\\NBDProjectNcstech\\NBDProjectNcstech\\NBDProjectNcstech.csproj",
-        "packagesPath": "C:\\Users\\jdsta\\.nuget\\packages\\",
-        "outputPath": "E:\\NBDProjectNcstech\\NBDProjectNcstech\\obj\\",
+        "projectPath": "C:\\Users\\Owner\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\NBDProjectNcstech.csproj",
+        "packagesPath": "C:\\Users\\Owner\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Owner\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\jdsta\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Owner\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -61,9 +61,19 @@
               "target": "Package",
               "version": "[7.0.13, )"
             },
-            "Microsoft.EntityFrameworkCore.Tools": {
+            "Microsoft.EntityFrameworkCore.Sqlite": {
               "target": "Package",
               "version": "[7.0.13, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.15, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[7.0.11, )"
             }
           },
           "imports": [
@@ -85,7 +95,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     }
