@@ -30,30 +30,26 @@
                 <li class="nav-item">
                     <h3>Hello, Admin!</h3>
                 </li>
-                
-               
+
+
             </ul>
 
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
- 
+
                 <li class="nav-item">
                     <a class="nav-link" data-widget="fullscreen" href="#" role="button">
                         <i class="fas fa-expand-arrows-alt"></i>
                     </a>
-              </li>
+                </li>
             </ul>
         </nav>
         <!-- /.navbar -->
-
-
-
-
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
             <a asp-controller="Home" asp-action="Index" class="brand-link">
-                <img src="dist/img/nbd.png" alt="nbd Logo" class="brand-image img-circle elevation-3" >
+                <img src="dist/img/nbd.png" alt="nbd Logo" class="brand-image img-circle elevation-3">
                 <span class="brand-text font-weight-light">Natural By Design</span>
             </a>
 
@@ -69,16 +65,16 @@
                     </div>
                 </div>
 
-               @*  <!-- SidebarSearch Form -->
+                @*  <!-- SidebarSearch Form -->
                 <div class="form-inline">
-                    <div class="input-group" data-widget="sidebar-search">
-                        <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
-                        <div class="input-group-append">
-                            <button class="btn btn-sidebar">
-                                <i class="fas fa-search fa-fw"></i>
-                            </button>
-                        </div>
-                    </div>
+                <div class="input-group" data-widget="sidebar-search">
+                <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+                <div class="input-group-append">
+                <button class="btn btn-sidebar">
+                <i class="fas fa-search fa-fw"></i>
+                </button>
+                </div>
+                </div>
                 </div> *@
 
                 <!-- Sidebar Menu -->
@@ -88,7 +84,6 @@
                         <!-- Home -->
                         <li class="nav-item">
                             <a  class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">
-                             
                                 <i class="nav-icon fas fa-home"></i>
                                 <p>Home</p>
                             </a>
@@ -96,7 +91,7 @@
 
                         <!-- Client -->
                         <li class="nav-item">
-                            <a  class="nav-link" asp-area="" asp-controller="Clients" asp-action="Index">
+                            <a class="nav-link" asp-area="" asp-controller="Clients" asp-action="Index">
                                 <i class="nav-icon fas fa-users"></i>
                                 <p>Client</p>
                             </a>
@@ -114,76 +109,77 @@
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-handshake"></i>
-                                <p>Bid
+                                <p>
+                                    Bid
                                     <i class="fas fa-angle-left right"></i>
                                 </p>
                             </a>
-                       
-                        <ul class="nav nav-treeview">
-                        <!-- Design Budget -->
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Design Budget</p>
-                            </a>
-                        </li>
 
-                        <!-- Production Plan -->
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Production Plan</p>
-                            </a>
-                        </li>
+                            <ul class="nav nav-treeview">
+                                <!-- Design Budget -->
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Design Budget</p>
+                                    </a>
+                                </li>
+
+                                <!-- Production Plan -->
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Production Plan</p>
+                                    </a>
+                                </li>
                             </ul>
-                     </li>
-                    
+                        </li>
 
 
-                    <!-- Reports -->
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
+
+                        <!-- Reports -->
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-flag"></i>
-                            <p>
-                                Reports
-                                <i class="fas fa-angle-left right"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
+                                <p>
+                                    Reports
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
 
-                            <!-- PDW -->
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">
+                                <!-- PDW -->
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                    <p>PDW</p>
-                                </a>
-                            </li>
+                                        <p>PDW</p>
+                                    </a>
+                                </li>
 
-                            <!-- DDW -->
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">
+                                <!-- DDW -->
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                    <p>DDW</p>
-                                </a>
-                            </li>
+                                        <p>DDW</p>
+                                    </a>
+                                </li>
 
-                            <!-- Project Administration Report -->
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">
+                                <!-- Project Administration Report -->
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                    <p>Project Administration Report</p>
-                                </a>
-                            </li>
+                                        <p>Project Administration Report</p>
+                                    </a>
+                                </li>
 
-                            <!-- Inventory Report -->
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">
+                                <!-- Inventory Report -->
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                    <p>Inventory Report</p>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
+                                        <p>Inventory Report</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
 
 
 
@@ -202,6 +198,7 @@
             </div>
             <!-- /.sidebar -->
         </aside>
+
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
