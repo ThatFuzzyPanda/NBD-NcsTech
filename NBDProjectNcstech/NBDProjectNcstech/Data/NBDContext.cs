@@ -10,6 +10,11 @@ namespace NBDProjectNcstech.Data
 
 		}
 
+		public DbSet<MaterialRequirments> MaterialRequirments { get; set; }
+		public DbSet<Inventory> Inventory { get; set; }
+		public DbSet<ItemType> ItemTypes { get; set; }
+		public DbSet<LabourRequirments> LabourRequirments { get; set; }
+		public DbSet<Labour> Labours { get; set; }
 		public DbSet<Client> Clients { get; set; }
 		public DbSet<Project> Projects { get; set; }
 		//public DbSet<Province> Provinces { get; set; }

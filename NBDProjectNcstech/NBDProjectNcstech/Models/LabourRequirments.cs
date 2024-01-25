@@ -9,5 +9,7 @@
         
         public double ExtendedPrice { get; set; }
 
+
+
     }
 }
