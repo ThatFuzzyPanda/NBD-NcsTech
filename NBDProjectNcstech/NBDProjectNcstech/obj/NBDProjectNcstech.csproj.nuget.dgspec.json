@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\fevie\\OneDrive\\Desktop\\community\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\NBDProjectNcstech.csproj": {}
+    "C:\\Users\\jdsta\\OneDrive\\Documents\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\NBDProjectNcstech.csproj": {}
   },
   "projects": {
-    "C:\\Users\\fevie\\OneDrive\\Desktop\\community\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\NBDProjectNcstech.csproj": {
+    "C:\\Users\\jdsta\\OneDrive\\Documents\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\NBDProjectNcstech.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\fevie\\OneDrive\\Desktop\\community\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\NBDProjectNcstech.csproj",
+        "projectUniqueName": "C:\\Users\\jdsta\\OneDrive\\Documents\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\NBDProjectNcstech.csproj",
         "projectName": "NBDProjectNcstech",
-        "projectPath": "C:\\Users\\fevie\\OneDrive\\Desktop\\community\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\NBDProjectNcstech.csproj",
-        "packagesPath": "C:\\Users\\fevie\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\fevie\\OneDrive\\Desktop\\community\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\obj\\",
+        "projectPath": "C:\\Users\\jdsta\\OneDrive\\Documents\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\NBDProjectNcstech.csproj",
+        "packagesPath": "C:\\Users\\jdsta\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\jdsta\\OneDrive\\Documents\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\fevie\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\jdsta\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -74,6 +74,18 @@
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[7.0.11, )"
+            },
+            "bootstrap": {
+              "target": "Package",
+              "version": "[5.3.2, )"
+            },
+            "jQuery": {
+              "target": "Package",
+              "version": "[3.7.1, )"
+            },
+            "popper.js": {
+              "target": "Package",
+              "version": "[1.16.1, )"
             }
           },
           "imports": [
