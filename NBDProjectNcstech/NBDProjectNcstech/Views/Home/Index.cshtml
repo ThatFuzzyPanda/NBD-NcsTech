@@ -1,6 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+@model dynamic
 
 <!DOCTYPE html>
 
@@ -306,69 +307,35 @@
                                     <table class="table table-striped table-valign-middle">
                                         <thead>
                                             <tr>
-                                                <th>Project</th>
-                                                <th>Client Name</th>
-                                                <th>Contacts</th>
+                                                <th>Name</th>
+                                                <th>Contact Person</th>
+                                                <th>Phone Number</th>
+                                                <th>Street Name</th>
+                                                <th>City</th>
+                                                <th>Province</th>
+                                                <th>Postal Code</th>
                                                 <th>More</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>
-                                                    Project 1
-                                                </td>
-                                                <td>Joe Peters</td>
-                                                <td>
-                                                    123-456-7890
-                                                </td>
-                                                <td>
-                                                    <a href="#" class="text-muted">
-                                                        <i class="fas fa-search"></i>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    Project 2
-                                                </td>
-                                                <td>Joe Peters2</td>
-                                                <td>
-                                                    123-456-7891
-                                                </td>
-                                                <td>
-                                                    <a href="#" class="text-muted">
-                                                        <i class="fas fa-search"></i>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    Project 3
-                                                </td>
-                                                <td>Joe Peters3</td>
-                                                <td>
-                                                    123-456-7893
-                                                </td>
-                                                <td>
-                                                    <a href="#" class="text-muted">
-                                                        <i class="fas fa-search"></i>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    Project 4
-                                                </td>
-                                                <td>Joe Peters4</td>
-                                                <td>
-                                                    123-456-7894
-                                                </td>
-                                                <td>
-                                                    <a href="#" class="text-muted">
-                                                        <i class="fas fa-search"></i>
-                                                    </a>
-                                                </td>
-                                            </tr>
+                                            @foreach (var client in Model.Clients)
+                                            {
+                                                <tr>
+                                                    <td>@client.Name</td>
+                                                    <td>@client.ContactPerson</td>
+                                                    <td>@client.Phone</td>
+                                                    <td>@client.Street</td>
+                                                    <td>@client.City</td>
+                                                    <td>@client.Province</td>
+                                                    <td>@client.PostalCode</td>
+                                                    <td>
+                                                        <a asp-controller="Clients" asp-action="Details" asp-route-id="@client.ID" class="text-muted">
+                                                            <i class="fas fa-search"></i>
+                                                        </a>
+                                                        
+                                                    </td>
+                                                </tr>
+                                            }
                                         </tbody>
                                     </table>
                                 </div>
@@ -394,82 +361,33 @@
                                     <table class="table table-striped table-valign-middle">
                                         <thead>
                                             <tr>
-                                                <th>Project</th>
-                                                <th>CLient Name</th>
-                                                <th>NBD Staff</th>
                                                 <th>Bid Date</th>
+                                                <th>Project Site</th>
+                                                <th>Est. Begin Date</th>
+                                                <th>Est. Complete Date</th>
+                                                <th>Bid Amount</th>
+                                                <th>Client</th>
                                                 <th>More</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>
-                                                    Project 1
-                                                </td>
-                                                <td>Joe Peters4</td>
-                                                <td>
-                                                    NBD Staff
-                                                </td>
-                                                <td>
-                                                    01-12-2024
-                                                </td>
-                                                <td>
-                                                    <a href="#" class="text-muted">
-                                                        <i class="fas fa-search"></i>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    Project 1
-                                                </td>
-                                                <td>Joe Peters4</td>
-                                                <td>
-                                                    NBD Staff
-                                                </td>
-                                                <td>
-                                                    01-12-2024
-                                                </td>
-                                                <td>
-                                                    <a href="#" class="text-muted">
-                                                        <i class="fas fa-search"></i>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    Project 1
-                                                </td>
-                                                <td>Joe Peters4</td>
-                                                <td>
-                                                    NBD Staff
-                                                </td>
-                                                <td>
-                                                    01-12-2024
-                                                </td>
-                                                <td>
-                                                    <a href="#" class="text-muted">
-                                                        <i class="fas fa-search"></i>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    Project 1
-                                                </td>
-                                                <td>Joe Peters4</td>
-                                                <td>
-                                                    NBD Staff
-                                                </td>
-                                                <td>
-                                                    01-12-2024
-                                                </td>
-                                                <td>
-                                                    <a href="#" class="text-muted">
-                                                        <i class="fas fa-search"></i>
-                                                    </a>
-                                                </td>
-                                            </tr>
+                                            @foreach (var project in Model.Projects)
+                                            {
+                                                <tr>
+                                                    <td>@project.BidDate.ToString("yyyy-MM-dd")</td>
+                                                    <td>@project.ProjectSite</td>
+                                                    <td>@project.Est_BeginDate.ToString("yyyy-MM-dd")</td>
+                                                    <td>@project.Est_CompleteDate.ToString("yyyy-MM-dd")</td>
+                                                    <td>@project.BidAmount</td>
+                                                    <td>@project.Client.Name</td>
+                                                    <td>
+                                                        <a asp-controller="Projects" asp-action="Details" asp-route-id="@project.Id" class="text-muted">
+                                                            <i class="fas fa-search"></i>
+                                                        </a>
+                                                    </td>
+
+                                                </tr>
+                                            }
                                         </tbody>
                                     </table>
                                 </div>
