@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "xvXxKhs7202zl+aBcHLhgL9NySkc89PB4R3aucX7Cg8=",
+  "Hash": "GSg+t/sQgEeo1uZxMYh6eLQlJxQlQOn9uBk/9pw7bvQ=",
   "Source": "NBDProjectNcstech",
   "BasePath": "_content/NBDProjectNcstech",
   "Mode": "Default",
@@ -1834,6 +1834,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\site.css"
+    },
+    {
+      "Identity": "C:\\Users\\Exdru\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\wwwroot\\css\\TableStyle.css",
+      "SourceId": "NBDProjectNcstech",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Exdru\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\wwwroot\\",
+      "BasePath": "_content/NBDProjectNcstech",
+      "RelativePath": "css/TableStyle.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\TableStyle.css"
     },
     {
       "Identity": "C:\\Users\\Exdru\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\wwwroot\\dist\\css\\adminlte.css",

@@ -3,63 +3,332 @@
 @{
     ViewData["Title"] = "Index";
 }
+<!DOCTYPE html>
 
-<h1>Index</h1>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Natural By Design |Home</title>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.BidDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ProjectSite)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Est_BeginDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Est_CompleteDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.BidAmount)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Client)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.BidDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProjectSite)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Est_BeginDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Est_CompleteDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.BidAmount)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Client.City)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="dist/css/adminlte.min.css">
+    <link rel="stylesheet" href="~/css/TableStyle.css">
+</head>
+<body class="hold-transition sidebar-mini">
+    <div class="wrapper">
+
+        <!-- Navbar -->
+        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+            <!-- Left navbar links -->
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+                </li>
+                <li class="nav-item">
+                    <h3>Hello, Admin!</h3>
+                </li>
+
+
+            </ul>
+
+            <!-- Right navbar links -->
+            <ul class="navbar-nav ml-auto">
+
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+                        <i class="fas fa-expand-arrows-alt"></i>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <!-- /.navbar -->
+        <!-- Main Sidebar Container -->
+        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+            <!-- Brand Logo -->
+            <a asp-controller="Home" asp-action="Index" class="brand-link">
+                <img src="dist/img/nbd.png" alt="nbd Logo" class="brand-image img-circle elevation-3">
+                <span class="brand-text font-weight-light">Natural By Design</span>
+            </a>
+
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <!-- Sidebar user panel (optional) -->
+                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                    <div class="image">
+                        <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+                    </div>
+                    <div class="info">
+                        <a href="#" class="d-block">Alexander Pierce</a>
+                    </div>
+                </div>
+
+                @*  <!-- SidebarSearch Form -->
+                <div class="form-inline">
+                <div class="input-group" data-widget="sidebar-search">
+                <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+                <div class="input-group-append">
+                <button class="btn btn-sidebar">
+                <i class="fas fa-search fa-fw"></i>
+                </button>
+                </div>
+                </div>
+                </div> *@
+
+                <!-- Sidebar Menu -->
+                <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+
+                        <!-- Home -->
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">
+                                <i class="nav-icon fas fa-home"></i>
+                                <p>Home</p>
+                            </a>
+                        </li>
+
+                        <!-- Client -->
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Clients" asp-action="Index">
+                                <i class="nav-icon fas fa-users"></i>
+                                <p>Client</p>
+                            </a>
+                        </li>
+
+                        <!-- Project -->
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Projects" asp-action="Index">
+                                <i class="nav-icon fas fa-cogs"></i>
+                                <p>Project</p>
+                            </a>
+                        </li>
+
+                        <!-- Bid -->
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-handshake"></i>
+                                <p>
+                                    Bid
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+
+                            <ul class="nav nav-treeview">
+                                <!-- Design Budget -->
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Design Budget</p>
+                                    </a>
+                                </li>
+
+                                <!-- Production Plan -->
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Production Plan</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+
+
+                        <!-- Reports -->
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-flag"></i>
+                                <p>
+                                    Reports
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+
+                                <!-- PDW -->
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>PDW</p>
+                                    </a>
+                                </li>
+
+                                <!-- DDW -->
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>DDW</p>
+                                    </a>
+                                </li>
+
+                                <!-- Project Administration Report -->
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Project Administration Report</p>
+                                    </a>
+                                </li>
+
+                                <!-- Inventory Report -->
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Inventory Report</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+
+
+                        <!-- Logout -->
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-sign-out-alt"></i>
+                                <p>Logout</p>
+                            </a>
+                        </li>
+
+                    </ul>
+                </nav>
+                <!-- /.sidebar-menu -->
+
+            </div>
+            <!-- /.sidebar -->
+        </aside>
+
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                        </div><!-- /.col -->
+                    </div><!-- /.row -->
+                </div><!-- /.container-fluid -->
+            </div>
+            <!-- /.content-header -->
+            <!-- Main content -->
+            <!-- /.content-header -->
+            <!-- Main content -->
+            <div class="content">
+                <div class="container-fluid">
+
+                    <!-- /.row -->
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">Projects</h3>
+                                    <div class="card-tools">
+                                        <div class="input-group input-group-sm" style="width: 250px;">
+                                            <a class="create-btn" asp-action="Create">Create New</a>
+                                            <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
+                                            <div class="input-group-append">
+                                                <button type="submit" class="btn btn-default">
+                                                    <i class="fas fa-search"></i>
+                                                </button>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /.card-header -->
+                                <div class="card-body table-responsive p-0">
+                                    <table class="table table-hover text-nowrap">
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.BidDate)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.ProjectSite)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Est_BeginDate)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Est_CompleteDate)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.BidAmount)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Client)
+                                                </th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var item in Model)
+                                            {
+                                                <tr>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.BidDate)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.ProjectSite)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.Est_BeginDate)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.Est_CompleteDate)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.BidAmount)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.Client.City)
+                                                    </td>
+                                                    <td>
+                                                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                                                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                                                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+                            <!-- /.card -->
+                        </div>
+                        <!-- /.row -->
+                    </div><!-- /.container-fluid -->
+                </div> <!-- /.content -->
+
+            </div> <!-- /.content-wrapper -->
+        </div> <!-- /.content-wrapper -->
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+            <div class="p-3">
+                <h5>Title</h5>
+                <p>Sidebar content</p>
+            </div>
+        </aside>
+        <!-- /.control-sidebar -->
+        <!-- Main Footer -->
+        <footer class="main-footer">
+
+            <!-- Default to the left -->
+            <strong>    &copy; 2024 - NBDProjectNcstech - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a></strong>
+        </footer>
+    </div>
+
+    <!-- jQuery -->
+    <script src="plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="dist/js/adminlte.min.js"></script>
+</body>
+</html>

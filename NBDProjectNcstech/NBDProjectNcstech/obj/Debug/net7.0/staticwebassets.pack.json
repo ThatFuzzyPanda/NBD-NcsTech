@@ -181,6 +181,10 @@
       "PackagePath": "staticwebassets\\NBDProjectNcstech.bundle.scp.css"
     },
     {
+      "Id": "C:\\Users\\Exdru\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\wwwroot\\css\\TableStyle.css",
+      "PackagePath": "staticwebassets\\css\\TableStyle.css"
+    },
+    {
       "Id": "C:\\Users\\Exdru\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
