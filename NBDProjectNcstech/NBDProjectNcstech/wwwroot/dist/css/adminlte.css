@@ -41,6 +41,11 @@
   --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
+
+.custom-btn {
+    background-color: #63E6BE !important;
+    border-color: #63E6BE !important;
+}
 *,
 *::before,
 *::after {
