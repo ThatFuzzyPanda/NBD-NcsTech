@@ -12,5 +12,6 @@
     <WebStackScaffolding_DbContextTypeFullName>NBDProjectNcstech.Data.NBDContext</WebStackScaffolding_DbContextTypeFullName>
     <WebStackScaffolding_IsAsyncSelected>False</WebStackScaffolding_IsAsyncSelected>
     <WebStackScaffolding_IsViewGenerationSelected>True</WebStackScaffolding_IsViewGenerationSelected>
+    <NameOfLastUsedPublishProfile>C:\Users\Owner\NBD-NcsTech\NBDProjectNcstech\NBDProjectNcstech\Properties\PublishProfiles\NatureByDesign - Web Deploy.pubxml</NameOfLastUsedPublishProfile>
   </PropertyGroup>
 </Project>
