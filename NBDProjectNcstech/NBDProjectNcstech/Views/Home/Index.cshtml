@@ -349,8 +349,8 @@
                                                 <th>Bid Date</th>
                                                 <th>Project Site</th>
                                                 <th>Est. Begin Date</th>
-                                                <th>Est. Complete Date</th>
-                                                <th>Bid Amount</th>
+                                                @* <th>Est. Complete Date</th> *@
+                                                @* <th>Bid Amount</th> *@
                                                 <th>Client</th>
                                                 <th>More</th>
                                             </tr>
@@ -362,8 +362,8 @@
                                                     <td>@project.BidDate.ToString("yyyy-MM-dd")</td>
                                                     <td>@project.ProjectSite</td>
                                                     <td>@project.Est_BeginDate.ToString("yyyy-MM-dd")</td>
-                                                    <td>@project.Est_CompleteDate.ToString("yyyy-MM-dd")</td>
-                                                    <td>@project.BidAmount</td>
+                                                    @* <td>@project.Est_CompleteDate.ToString("yyyy-MM-dd")</td>
+                                                    <td>@project.BidAmount.ToString("C")</td> *@
                                                     <td>@project.Client.Name</td>
                                                     <td>
                                                         <a asp-controller="Projects" asp-action="Details" asp-route-id="@project.Id" class="text-muted">

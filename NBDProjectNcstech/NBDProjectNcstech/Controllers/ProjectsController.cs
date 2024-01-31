@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using NBDProjectNcstech.Data;
 using NBDProjectNcstech.Models;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace NBDProjectNcstech.Controllers
 {
@@ -48,8 +49,8 @@ namespace NBDProjectNcstech.Controllers
         // GET: Projects/Create
         public IActionResult Create()
         {
-            ViewData["ClientId"] = new SelectList(_context.Clients, "ID", "City");
-            return View();
+			PopulateDropDownLists();
+			return View();
         }
 
         // POST: Projects/Create
@@ -65,7 +66,7 @@ namespace NBDProjectNcstech.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ClientId"] = new SelectList(_context.Clients, "ID", "City", project.ClientId);
+			PopulateDropDownLists(project);
             return View(project);
         }
 
@@ -82,8 +83,8 @@ namespace NBDProjectNcstech.Controllers
             {
                 return NotFound();
             }
-            ViewData["ClientId"] = new SelectList(_context.Clients, "ID", "City", project.ClientId);
-            return View(project);
+			PopulateDropDownLists(project);
+			return View(project);
         }
 
         // POST: Projects/Edit/5
@@ -118,8 +119,8 @@ namespace NBDProjectNcstech.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ClientId"] = new SelectList(_context.Clients, "ID", "City", project.ClientId);
-            return View(project);
+			PopulateDropDownLists(project);
+			return View(project);
         }
 
         // GET: Projects/Delete/5
@@ -159,8 +160,18 @@ namespace NBDProjectNcstech.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-
-        private bool ProjectExists(int id)
+        //client ddl
+        private SelectList ClientSelectList(int? selectedId)
+        {
+            return new SelectList(_context
+                .Clients
+                .OrderBy(m => m.Name), "ID", "Name", selectedId);
+        }
+        private void PopulateDropDownLists(Project project = null)
+        {
+            ViewData["ClientId"] = ClientSelectList(project?.ClientId);
+        }
+            private bool ProjectExists(int id)
         {
           return _context.Projects.Any(e => e.Id == id);
         }
