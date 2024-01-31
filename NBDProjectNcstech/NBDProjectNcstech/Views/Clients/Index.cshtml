@@ -52,7 +52,8 @@
             <!-- Brand Logo -->
             <a asp-controller="Home" asp-action="Index" class="brand-link">
                 <img src="dist/img/nbd.png" alt="nbd Logo" class="brand-image img-circle elevation-3">
-                <span class="brand-text font-weight-light">Natural By Design</span>
+                <span class="brand-text font-weight-bold" style="font-family: 'Times New Roman', Times, serif;">Natural By Design</span>
+
             </a>
 
             <!-- Sidebar -->
@@ -102,7 +103,7 @@
                         <!-- Project -->
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="Projects" asp-action="Index">
-                                <i class="nav-icon fas fa-cogs"></i>
+                                <i class="nav-icon fas fa-newspaper"></i>
                                 <p>Project</p>
                             </a>
                         </li>
@@ -141,7 +142,7 @@
                         <!-- Reports -->
                         <li class="nav-item">
                             <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-flag"></i>
+                                <i class="nav-icon fas fa-file-invoice"></i>
                                 <p>
                                     Reports
                                     <i class="fas fa-angle-left right"></i>
@@ -271,10 +272,17 @@
                                                     <td>
                                                         @Html.DisplayFor(modelItem => item.Phone)
                                                     </td>
+                                                    
                                                     <td>
-                                                        <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
-                                                        <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
-                                                        <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+                                                        <a href="@Url.Action("Edit", new { id = item.ID })">
+                                                            <i class="fas fa-edit" style="color: #15752d;"></i>
+                                                        </a> |
+                                                        <a href="@Url.Action("Details", new { id = item.ID })">
+                                                            <i class="fas fa-info-circle" style="color: #005fa8;"></i>
+                                                        </a> |
+                                                        <a href="@Url.Action("Delete", new { id = item.ID })">
+                                                            <i class="fas fa-trash-alt" style="color: #ff0000;"></i>
+                                                        </a>
                                                     </td>
                                                 </tr>
                                             }

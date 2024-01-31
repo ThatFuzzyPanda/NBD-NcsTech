@@ -52,21 +52,24 @@
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
             <a asp-controller="Home" asp-action="Index" class="brand-link">
-                <img src="dist/img/nbd.png" alt="nbd Logo" class="brand-image img-circle elevation-3">
-                <span class="brand-text font-weight-light">Natural By Design</span>
+                <img src="~/dist/img/nbd.png" alt="nbd Logo" class="brand-image img-circle elevation-3">
+
+                @* <img src="dist/img/nbd.png" alt="nbd Logo" class="brand-image img-circle elevation-3"> *@
+                <span class="brand-text font-weight-bold" style="font-family: 'Times New Roman', Times, serif;">Natural By Design</span>
+
             </a>
 
             <!-- Sidebar -->
             <div class="sidebar">
                 <!-- Sidebar user panel (optional) -->
-                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                    <div class="image">
-                        <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
-                    </div>
-                    <div class="info">
-                        <a href="#" class="d-block">Alexander Pierce</a>
-                    </div>
+                @*  <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                <div class="image">
+                <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
                 </div>
+                <div class="info">
+                <a href="#" class="d-block">Alexander Pierce</a>
+                </div>
+                </div> *@
 
                 @*  <!-- SidebarSearch Form -->
                 <div class="form-inline">
@@ -103,7 +106,7 @@
                         <!-- Project -->
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="Projects" asp-action="Index">
-                                <i class="nav-icon fas fa-cogs"></i>
+                                <i class="nav-icon fas fa-newspaper"></i>
                                 <p>Project</p>
                             </a>
                         </li>
@@ -142,7 +145,7 @@
                         <!-- Reports -->
                         <li class="nav-item">
                             <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-flag"></i>
+                                <i class="nav-icon fas fa-file-invoice"></i>
                                 <p>
                                     Reports
                                     <i class="fas fa-angle-left right"></i>
@@ -203,6 +206,7 @@
         </aside>
 
 
+
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
@@ -222,58 +226,66 @@
                 <div class="container-fluid">
 
                     <!-- /.row -->
-                    <h1>Create</h1>
-
-                    <h4>Client</h4>
-                    <hr />
-                    <div class="row">
-                        <div class="col-md-4">
-                            <form asp-action="Create">
-                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                                <div class="form-group">
-                                    <label asp-for="Name" class="control-label"></label>
-                                    <input asp-for="Name" class="form-control" />
-                                    <span asp-validation-for="Name" class="text-danger"></span>
-                                </div>
-                                <div class="form-group">
-                                    <label asp-for="ContactPerson" class="control-label"></label>
-                                    <input asp-for="ContactPerson" class="form-control" />
-                                    <span asp-validation-for="ContactPerson" class="text-danger"></span>
-                                </div>
-                                <div class="form-group">
-                                    <label asp-for="Phone" class="control-label"></label>
-                                    <input asp-for="Phone" class="form-control" />
-                                    <span asp-validation-for="Phone" class="text-danger"></span>
-                                </div>
-                                <div class="form-group">
-                                    <label asp-for="Street" class="control-label"></label>
-                                    <input asp-for="Street" class="form-control" />
-                                    <span asp-validation-for="Street" class="text-danger"></span>
-                                </div>
-                                <div class="form-group">
-                                    <label asp-for="City" class="control-label"></label>
-                                    <input asp-for="City" class="form-control" />
-                                    <span asp-validation-for="City" class="text-danger"></span>
-                                </div>
-                                <div class="form-group">
-                                    <label asp-for="Province" class="control-label"></label>
-                                    <input asp-for="Province" class="form-control" />
-                                    <span asp-validation-for="Province" class="text-danger"></span>
-                                </div>
-                                <div class="form-group">
-                                    <label asp-for="PostalCode" class="control-label"></label>
-                                    <input asp-for="PostalCode" class="form-control" />
-                                    <span asp-validation-for="PostalCode" class="text-danger"></span>
-                                </div>
-                                <div class="form-group">
-                                    <input type="submit" value="Create" class="btn btn-primary" />
-                                </div>
-                            </form>
+                   <div class="row mb-3">
+                        <div class="col-md-6 offset-md-3">
+                            <h1>Create New Client</h1>
                         </div>
                     </div>
 
-                    <div>
-                        <a asp-action="Index">Back to List</a>
+                    <div class="row mb-3">
+                        <div class="col-md-6 offset-md-3">
+
+                                    <form asp-action="Create">
+                                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                        <div class="form-group">
+                                            <label asp-for="Name" class="control-label">Name</label>
+                                            <input asp-for="Name" class="form-control" />
+                                            <span asp-validation-for="Name" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label asp-for="ContactPerson" class="control-label">Contact Person</label>
+                                            <input asp-for="ContactPerson" class="form-control" />
+                                            <span asp-validation-for="ContactPerson" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label asp-for="Phone" class="control-label">Phone</label>
+                                            <input asp-for="Phone" class="form-control" />
+                                            <span asp-validation-for="Phone" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label asp-for="Street" class="control-label">Street</label>
+                                            <input asp-for="Street" class="form-control" />
+                                            <span asp-validation-for="Street" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label asp-for="City" class="control-label">City</label>
+                                            <input asp-for="City" class="form-control" />
+                                            <span asp-validation-for="City" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label asp-for="Province" class="control-label">Province</label>
+                                            <input asp-for="Province" class="form-control" />
+                                            <span asp-validation-for="Province" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label asp-for="PostalCode" class="control-label">Postal Code</label>
+                                            <input asp-for="PostalCode" class="form-control" />
+                                            <span asp-validation-for="PostalCode" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <button type="submit" class="btn btn-primary">Create</button>
+                                            <button type="button" onclick="window.location.href = '@Url.Action("Index")'" class="btn btn-primary">Cancel</button>
+
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+
+
+                        <div>
+                        
                     </div><!-- /.container-fluid -->
                 </div> <!-- /.content -->
 
