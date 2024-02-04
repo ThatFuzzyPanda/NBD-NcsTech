@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 
 namespace NBDProjectNcstech.Models
 {
@@ -25,7 +26,8 @@ namespace NBDProjectNcstech.Models
 		[Required(ErrorMessage = "You must enter a est. complete date.")]
 		[Display(Name = "Est. Complete Date")]
 		[DataType(DataType.Date)]
-		[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+		
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
 		public DateTime Est_CompleteDate { get; set; }
 
 		[Required(ErrorMessage = "You must enter the bid amount.")]
@@ -45,19 +47,21 @@ namespace NBDProjectNcstech.Models
 		public int ClientId { get; set; }
 		public Client Client { get; set; }
 
-		public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-		{
-			if (Est_BeginDate < BidDate)
-			{
-				yield return new ValidationResult("Estimated begin date cannot be before bid date.", new[] { "Est. Begin Date" });
-			}
-			if (Est_CompleteDate < Est_BeginDate)
-			{
-				yield return new ValidationResult("Estimated completion date cannot be before estimated begin date.", new[] { "Est. Completion Date" });
-			}
-		}
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+			
+            if (Est_BeginDate < BidDate)
+            {
+                yield return new ValidationResult("Estimated begin date cannot be before bid date.", new[] { "Est_BeginDate" });
+            }
+            if (Est_CompleteDate < Est_BeginDate)
+            {
+                yield return new ValidationResult("Estimated completion date cannot be before estimated begin date.", new[] { "Est_CompleteDate" });
+            }
+        }
 
-	}
+
+    }
 }
 
 
