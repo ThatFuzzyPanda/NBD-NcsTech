@@ -5,12 +5,15 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using NBDProjectNcstech.CustomControllers;
 using NBDProjectNcstech.Data;
 using NBDProjectNcstech.Models;
+using NBDProjectNcstech.Utilities;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace NBDProjectNcstech.Controllers
 {
-    public class ClientsController : Controller
+    public class ClientsController : CognizantController
     {
         private readonly NBDContext _context;
 
@@ -20,9 +23,17 @@ namespace NBDProjectNcstech.Controllers
         }
 
         // GET: Clients
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? page, int? pageSizeID)
         {
-              return View(await _context.Clients.ToListAsync());
+            var clients = _context.Clients
+                          .AsNoTracking();
+
+            //Handle Paging
+            int pageSize = PageSizeHelper.SetPageSize(HttpContext, pageSizeID, ControllerName());
+            ViewData["pageSizeID"] = PageSizeHelper.PageSizeList(pageSize);
+            var pagedData = await PaginatedList<Client>.CreateAsync(clients.AsNoTracking(), page ?? 1, pageSize);
+
+            return View(pagedData);
         }
 
         // GET: Clients/Details/5
@@ -148,14 +159,14 @@ namespace NBDProjectNcstech.Controllers
             {
                 _context.Clients.Remove(client);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool ClientExists(int id)
         {
-          return _context.Clients.Any(e => e.ID == id);
+            return _context.Clients.Any(e => e.ID == id);
         }
     }
 }
