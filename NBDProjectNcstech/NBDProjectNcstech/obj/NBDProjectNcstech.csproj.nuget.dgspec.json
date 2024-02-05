@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\fevie\\OneDrive\\Desktop\\community\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\NBDProjectNcstech.csproj": {}
+    "C:\\Users\\Exdru\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\NBDProjectNcstech.csproj": {}
   },
   "projects": {
-    "C:\\Users\\fevie\\OneDrive\\Desktop\\community\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\NBDProjectNcstech.csproj": {
+    "C:\\Users\\Exdru\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\NBDProjectNcstech.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\fevie\\OneDrive\\Desktop\\community\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\NBDProjectNcstech.csproj",
+        "projectUniqueName": "C:\\Users\\Exdru\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\NBDProjectNcstech.csproj",
         "projectName": "NBDProjectNcstech",
-        "projectPath": "C:\\Users\\fevie\\OneDrive\\Desktop\\community\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\NBDProjectNcstech.csproj",
-        "packagesPath": "C:\\Users\\fevie\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\fevie\\OneDrive\\Desktop\\community\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\obj\\",
+        "projectPath": "C:\\Users\\Exdru\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\NBDProjectNcstech.csproj",
+        "packagesPath": "C:\\Users\\Exdru\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Exdru\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\fevie\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Exdru\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -107,7 +107,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     }
