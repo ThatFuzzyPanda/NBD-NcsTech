@@ -6,15 +6,13 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using NBDProjectNcstech.CustomControllers;
 using NBDProjectNcstech.Data;
 using NBDProjectNcstech.Models;
-using NBDProjectNcstech.Utilities;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace NBDProjectNcstech.Controllers
 {
-    public class ProjectsController : CognizantController
+    public class ProjectsController : Controller
     {
         private readonly NBDContext _context;
 
@@ -24,18 +22,10 @@ namespace NBDProjectNcstech.Controllers
         }
 
         // GET: Projects
-        public async Task<IActionResult> Index(int? page, int? pageSizeID)
+        public async Task<IActionResult> Index()
         {
-            var nBDContext = _context.Projects
-                            .Include(p => p.Client)
-                            .AsNoTracking();
-
-            //Handle Paging
-            int pageSize = PageSizeHelper.SetPageSize(HttpContext, pageSizeID, ControllerName());
-            ViewData["pageSizeID"] = PageSizeHelper.PageSizeList(pageSize);
-            var pagedData = await PaginatedList<Project>.CreateAsync(nBDContext.AsNoTracking(), page ?? 1, pageSize);
-
-            return View(pagedData);
+            var nBDContext = _context.Projects.Include(p => p.Client);
+            return View(await nBDContext.ToListAsync());
         }
 
         // GET: Projects/Details/5

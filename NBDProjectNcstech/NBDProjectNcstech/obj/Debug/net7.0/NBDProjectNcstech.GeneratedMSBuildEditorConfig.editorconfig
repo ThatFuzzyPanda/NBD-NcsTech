@@ -9,93 +9,87 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = NBDProjectNcstech
 build_property.RootNamespace = NBDProjectNcstech
-build_property.ProjectDir = C:\Users\Exdru\NBD-NcsTech\NBDProjectNcstech\NBDProjectNcstech\
+build_property.ProjectDir = C:\Users\fevie\OneDrive\Desktop\community\NBD-NcsTech\NBDProjectNcstech\NBDProjectNcstech\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 7.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\Exdru\NBD-NcsTech\NBDProjectNcstech\NBDProjectNcstech
+build_property.MSBuildProjectDirectory = C:\Users\fevie\OneDrive\Desktop\community\NBD-NcsTech\NBDProjectNcstech\NBDProjectNcstech
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/Exdru/NBD-NcsTech/NBDProjectNcstech/NBDProjectNcstech/Areas/Identity/Pages/_ViewStart.cshtml]
+[C:/Users/fevie/OneDrive/Desktop/community/NBD-NcsTech/NBDProjectNcstech/NBDProjectNcstech/Areas/Identity/Pages/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Exdru/NBD-NcsTech/NBDProjectNcstech/NBDProjectNcstech/Views/Clients/Create.cshtml]
+[C:/Users/fevie/OneDrive/Desktop/community/NBD-NcsTech/NBDProjectNcstech/NBDProjectNcstech/Views/Clients/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50c1xDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Exdru/NBD-NcsTech/NBDProjectNcstech/NBDProjectNcstech/Views/Clients/Delete.cshtml]
+[C:/Users/fevie/OneDrive/Desktop/community/NBD-NcsTech/NBDProjectNcstech/NBDProjectNcstech/Views/Clients/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50c1xEZWxldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Exdru/NBD-NcsTech/NBDProjectNcstech/NBDProjectNcstech/Views/Clients/Details.cshtml]
+[C:/Users/fevie/OneDrive/Desktop/community/NBD-NcsTech/NBDProjectNcstech/NBDProjectNcstech/Views/Clients/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50c1xEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Exdru/NBD-NcsTech/NBDProjectNcstech/NBDProjectNcstech/Views/Clients/Edit.cshtml]
+[C:/Users/fevie/OneDrive/Desktop/community/NBD-NcsTech/NBDProjectNcstech/NBDProjectNcstech/Views/Clients/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50c1xFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Exdru/NBD-NcsTech/NBDProjectNcstech/NBDProjectNcstech/Views/Clients/Index.cshtml]
+[C:/Users/fevie/OneDrive/Desktop/community/NBD-NcsTech/NBDProjectNcstech/NBDProjectNcstech/Views/Clients/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50c1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Exdru/NBD-NcsTech/NBDProjectNcstech/NBDProjectNcstech/Views/Home/Index.cshtml]
+[C:/Users/fevie/OneDrive/Desktop/community/NBD-NcsTech/NBDProjectNcstech/NBDProjectNcstech/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Exdru/NBD-NcsTech/NBDProjectNcstech/NBDProjectNcstech/Views/Home/Privacy.cshtml]
+[C:/Users/fevie/OneDrive/Desktop/community/NBD-NcsTech/NBDProjectNcstech/NBDProjectNcstech/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Exdru/NBD-NcsTech/NBDProjectNcstech/NBDProjectNcstech/Views/Projects/Create.cshtml]
+[C:/Users/fevie/OneDrive/Desktop/community/NBD-NcsTech/NBDProjectNcstech/NBDProjectNcstech/Views/Projects/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvamVjdHNcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Exdru/NBD-NcsTech/NBDProjectNcstech/NBDProjectNcstech/Views/Projects/Delete.cshtml]
+[C:/Users/fevie/OneDrive/Desktop/community/NBD-NcsTech/NBDProjectNcstech/NBDProjectNcstech/Views/Projects/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvamVjdHNcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Exdru/NBD-NcsTech/NBDProjectNcstech/NBDProjectNcstech/Views/Projects/Details.cshtml]
+[C:/Users/fevie/OneDrive/Desktop/community/NBD-NcsTech/NBDProjectNcstech/NBDProjectNcstech/Views/Projects/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvamVjdHNcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Exdru/NBD-NcsTech/NBDProjectNcstech/NBDProjectNcstech/Views/Projects/Edit.cshtml]
+[C:/Users/fevie/OneDrive/Desktop/community/NBD-NcsTech/NBDProjectNcstech/NBDProjectNcstech/Views/Projects/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvamVjdHNcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Exdru/NBD-NcsTech/NBDProjectNcstech/NBDProjectNcstech/Views/Projects/Index.cshtml]
+[C:/Users/fevie/OneDrive/Desktop/community/NBD-NcsTech/NBDProjectNcstech/NBDProjectNcstech/Views/Projects/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvamVjdHNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Exdru/NBD-NcsTech/NBDProjectNcstech/NBDProjectNcstech/Views/Shared/Error.cshtml]
+[C:/Users/fevie/OneDrive/Desktop/community/NBD-NcsTech/NBDProjectNcstech/NBDProjectNcstech/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Exdru/NBD-NcsTech/NBDProjectNcstech/NBDProjectNcstech/Views/Shared/_LoginPartial.cshtml]
+[C:/Users/fevie/OneDrive/Desktop/community/NBD-NcsTech/NBDProjectNcstech/NBDProjectNcstech/Views/Shared/_LoginPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Mb2dpblBhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Exdru/NBD-NcsTech/NBDProjectNcstech/NBDProjectNcstech/Views/Shared/_PageSizeModal.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9QYWdlU2l6ZU1vZGFsLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Exdru/NBD-NcsTech/NBDProjectNcstech/NBDProjectNcstech/Views/Shared/_PagingNavBar.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9QYWdpbmdOYXZCYXIuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Exdru/NBD-NcsTech/NBDProjectNcstech/NBDProjectNcstech/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/fevie/OneDrive/Desktop/community/NBD-NcsTech/NBDProjectNcstech/NBDProjectNcstech/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Exdru/NBD-NcsTech/NBDProjectNcstech/NBDProjectNcstech/Views/_ViewImports.cshtml]
+[C:/Users/fevie/OneDrive/Desktop/community/NBD-NcsTech/NBDProjectNcstech/NBDProjectNcstech/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Exdru/NBD-NcsTech/NBDProjectNcstech/NBDProjectNcstech/Views/_ViewStart.cshtml]
+[C:/Users/fevie/OneDrive/Desktop/community/NBD-NcsTech/NBDProjectNcstech/NBDProjectNcstech/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Exdru/NBD-NcsTech/NBDProjectNcstech/NBDProjectNcstech/Views/Shared/_Layout.cshtml]
+[C:/Users/fevie/OneDrive/Desktop/community/NBD-NcsTech/NBDProjectNcstech/NBDProjectNcstech/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-2y3ix3z0ca
