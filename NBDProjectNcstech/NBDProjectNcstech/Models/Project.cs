@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 
 namespace NBDProjectNcstech.Models
 {
@@ -26,7 +27,8 @@ namespace NBDProjectNcstech.Models
 		[Required(ErrorMessage = "You must enter a est. complete date.")]
 		[Display(Name = "Est. Complete Date")]
 		[DataType(DataType.Date)]
-		[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+		
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
 		public DateTime Est_CompleteDate { get; set; }
 
 		[Required(ErrorMessage = "You must enter the bid amount.")]
@@ -58,7 +60,8 @@ namespace NBDProjectNcstech.Models
 			}
 		}
 
-	}
+
+    }
 }
 
 

@@ -1,4 +1,5 @@
 ﻿using Microsoft.Identity.Client;
+using System.ComponentModel.DataAnnotations;
 
 namespace NBDProjectNcstech.Models
 {
@@ -6,10 +7,11 @@ namespace NBDProjectNcstech.Models
     {
         public int ID { get; set; }
 
+        [Display(Name = "Labor Type")]
         public string LabourType { get; set; }
-
+        [Display(Name = "Labor Pirce")]
         public decimal LabourPrice { get; set; }
-
+        [Display(Name = "Labor Cost")]
         public decimal LavourCost { get; set; }
 
         public ICollection<LabourRequirments> LabourRequirments { get; set; } = new HashSet<LabourRequirments>();
