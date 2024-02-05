@@ -13,6 +13,7 @@ namespace NBDProjectNcstech.Models
 		public DateTime BidDate { get; set; } = DateTime.Today; //Setting the bid date to current date
 
 		[Display(Name = "Project Site")]
+		[Required(ErrorMessage = "You must enter project site name.")]
 		[StringLength(60, ErrorMessage = "Project site cannot be more than 60 characters long.")]
 		public string ProjectSite { get; set; }
 
@@ -49,11 +50,11 @@ namespace NBDProjectNcstech.Models
 		{
 			if (Est_BeginDate < BidDate)
 			{
-				yield return new ValidationResult("Estimated begin date cannot be before bid date.", new[] { "Est. Begin Date" });
+				yield return new ValidationResult("Estimated begin date cannot be before bid date.", new[] { "Est_BeginDate" });
 			}
 			if (Est_CompleteDate < Est_BeginDate)
 			{
-				yield return new ValidationResult("Estimated completion date cannot be before estimated begin date.", new[] { "Est. Completion Date" });
+				yield return new ValidationResult("Estimated completion date cannot be before estimated begin date.", new[] { "Est_CompleteDate" });
 			}
 		}
 

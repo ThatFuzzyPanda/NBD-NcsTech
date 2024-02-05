@@ -17,16 +17,40 @@ namespace NBDProjectNcstech.Data.NBDMigrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.15");
 
+            modelBuilder.Entity("NBDProjectNcstech.Models.City", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ProvinceID")
+                        .IsRequired()
+                        .HasMaxLength(2)
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("ProvinceID");
+
+                    b.HasIndex("Name", "ProvinceID")
+                        .IsUnique();
+
+                    b.ToTable("Cities");
+                });
+
             modelBuilder.Entity("NBDProjectNcstech.Models.Client", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("City")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("TEXT");
+                    b.Property<int?>("CityID")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("ContactPerson")
                         .IsRequired()
@@ -47,19 +71,141 @@ namespace NBDProjectNcstech.Data.NBDMigrations
                         .HasMaxLength(7)
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Province")
+                    b.Property<string>("Street")
+                        .HasMaxLength(50)
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("CityID");
+
+                    b.ToTable("Clients");
+                });
+
+            modelBuilder.Entity("NBDProjectNcstech.Models.Inventory", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("ItemTypeID")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Street")
+                    b.Property<int>("TypeID")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("ItemTypeID");
+
+                    b.ToTable("Inventory");
+                });
+
+            modelBuilder.Entity("NBDProjectNcstech.Models.ItemType", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("TEXT");
 
                     b.HasKey("ID");
 
-                    b.ToTable("Clients");
+                    b.ToTable("ItemTypes");
+                });
+
+            modelBuilder.Entity("NBDProjectNcstech.Models.Labour", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<decimal>("LabourPrice")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("LabourType")
+                        .HasColumnType("TEXT");
+
+                    b.Property<decimal>("LavourCost")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Labours");
+                });
+
+            modelBuilder.Entity("NBDProjectNcstech.Models.LabourRequirments", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("TEXT");
+
+                    b.Property<double>("ExtendedPrice")
+                        .HasColumnType("REAL");
+
+                    b.Property<int>("Hours")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("LabourID")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<double>("UnitPrice")
+                        .HasColumnType("REAL");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("LabourID");
+
+                    b.ToTable("LabourRequirments");
+                });
+
+            modelBuilder.Entity("NBDProjectNcstech.Models.MaterialRequirments", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<decimal>("CostPrice")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(50)
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("InventoryID")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("Quanity")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<decimal>("SalePrice")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("SizeH")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("SizeL")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("SizeW")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("InventoryID");
+
+                    b.ToTable("MaterialRequirments");
                 });
 
             modelBuilder.Entity("NBDProjectNcstech.Models.Project", b =>
@@ -84,6 +230,7 @@ namespace NBDProjectNcstech.Data.NBDMigrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("ProjectSite")
+                        .IsRequired()
                         .HasMaxLength(60)
                         .HasColumnType("TEXT");
 
@@ -92,6 +239,73 @@ namespace NBDProjectNcstech.Data.NBDMigrations
                     b.HasIndex("ClientId");
 
                     b.ToTable("Projects");
+                });
+
+            modelBuilder.Entity("NBDProjectNcstech.Models.Province", b =>
+                {
+                    b.Property<string>("ID")
+                        .HasMaxLength(2)
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Provinces");
+                });
+
+            modelBuilder.Entity("NBDProjectNcstech.Models.City", b =>
+                {
+                    b.HasOne("NBDProjectNcstech.Models.Province", "Province")
+                        .WithMany("Cities")
+                        .HasForeignKey("ProvinceID")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Province");
+                });
+
+            modelBuilder.Entity("NBDProjectNcstech.Models.Client", b =>
+                {
+                    b.HasOne("NBDProjectNcstech.Models.City", "City")
+                        .WithMany("Clients")
+                        .HasForeignKey("CityID");
+
+                    b.Navigation("City");
+                });
+
+            modelBuilder.Entity("NBDProjectNcstech.Models.Inventory", b =>
+                {
+                    b.HasOne("NBDProjectNcstech.Models.ItemType", "ItemType")
+                        .WithMany()
+                        .HasForeignKey("ItemTypeID");
+
+                    b.Navigation("ItemType");
+                });
+
+            modelBuilder.Entity("NBDProjectNcstech.Models.LabourRequirments", b =>
+                {
+                    b.HasOne("NBDProjectNcstech.Models.Labour", "Labour")
+                        .WithMany("LabourRequirments")
+                        .HasForeignKey("LabourID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Labour");
+                });
+
+            modelBuilder.Entity("NBDProjectNcstech.Models.MaterialRequirments", b =>
+                {
+                    b.HasOne("NBDProjectNcstech.Models.Inventory", "Inventory")
+                        .WithMany()
+                        .HasForeignKey("InventoryID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Inventory");
                 });
 
             modelBuilder.Entity("NBDProjectNcstech.Models.Project", b =>
@@ -105,9 +319,24 @@ namespace NBDProjectNcstech.Data.NBDMigrations
                     b.Navigation("Client");
                 });
 
+            modelBuilder.Entity("NBDProjectNcstech.Models.City", b =>
+                {
+                    b.Navigation("Clients");
+                });
+
             modelBuilder.Entity("NBDProjectNcstech.Models.Client", b =>
                 {
                     b.Navigation("Projects");
+                });
+
+            modelBuilder.Entity("NBDProjectNcstech.Models.Labour", b =>
+                {
+                    b.Navigation("LabourRequirments");
+                });
+
+            modelBuilder.Entity("NBDProjectNcstech.Models.Province", b =>
+                {
+                    b.Navigation("Cities");
                 });
 #pragma warning restore 612, 618
         }

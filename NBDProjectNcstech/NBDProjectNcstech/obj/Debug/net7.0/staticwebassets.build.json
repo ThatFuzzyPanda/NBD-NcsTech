@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Sm92RUKS/dX9LR6lM4TFBEez/NC5rf8Kbji8i9A122s=",
+  "Hash": "sCn1HVpJ21JbAKK3NOL0uMnWIf3ZIa6jgMOCXZ9dwKw=",
   "Source": "NBDProjectNcstech",
   "BasePath": "_content/NBDProjectNcstech",
   "Mode": "Default",
@@ -2922,6 +2922,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\dist\\img\\nbd.png"
+    },
+    {
+      "Identity": "C:\\Users\\Owner\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\wwwroot\\dist\\img\\nbds.png",
+      "SourceId": "NBDProjectNcstech",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Owner\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\wwwroot\\",
+      "BasePath": "_content/NBDProjectNcstech",
+      "RelativePath": "dist/img/nbds.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\dist\\img\\nbds.png"
     },
     {
       "Identity": "C:\\Users\\Owner\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\wwwroot\\dist\\img\\photo1.png",
