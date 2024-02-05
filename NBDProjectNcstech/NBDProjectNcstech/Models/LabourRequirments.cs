@@ -16,7 +16,9 @@ namespace NBDProjectNcstech.Models
         [Display(Name = " Extended Price")]
         public double ExtendedPrice { get; set; }
 
+        public int LabourID { get; set; }
 
+        public Labour Labour { get; set; }
 
     }
 }

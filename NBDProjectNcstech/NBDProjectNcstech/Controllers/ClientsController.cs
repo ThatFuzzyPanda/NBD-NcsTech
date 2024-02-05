@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -45,6 +46,8 @@ namespace NBDProjectNcstech.Controllers
             }
 
             var client = await _context.Clients
+                .Include(c => c.City)
+                .Include(c=>c.City.Province)
                 .FirstOrDefaultAsync(m => m.ID == id);
             if (client == null)
             {
@@ -57,6 +60,7 @@ namespace NBDProjectNcstech.Controllers
         // GET: Clients/Create
         public IActionResult Create()
         {
+            PopulateDropDownLists();
             return View();
         }
 
@@ -65,7 +69,7 @@ namespace NBDProjectNcstech.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,Name,ContactPerson,Phone,Street,City,Province,PostalCode")] Client client)
+        public async Task<IActionResult> Create([Bind("ID,Name,ContactPerson,Phone,Street,CityID,PostalCode")] Client client)
         {
             if (ModelState.IsValid)
             {
@@ -73,6 +77,7 @@ namespace NBDProjectNcstech.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            PopulateDropDownLists(client);
             return View(client);
         }
 
@@ -84,11 +89,14 @@ namespace NBDProjectNcstech.Controllers
                 return NotFound();
             }
 
-            var client = await _context.Clients.FindAsync(id);
+            var client = await _context.Clients
+                .Include(c => c.City)
+                .FirstOrDefaultAsync(c => c.ID == id);
             if (client == null)
             {
                 return NotFound();
             }
+            PopulateDropDownLists(client);
             return View(client);
         }
 
@@ -97,7 +105,7 @@ namespace NBDProjectNcstech.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Name,ContactPerson,Phone,Street,City,Province,PostalCode")] Client client)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,Name,ContactPerson,Phone,Street,CityID,PostalCode")] Client client)
         {
             if (id != client.ID)
             {
@@ -124,6 +132,7 @@ namespace NBDProjectNcstech.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            PopulateDropDownLists(client);
             return View(client);
         }
 
@@ -136,6 +145,8 @@ namespace NBDProjectNcstech.Controllers
             }
 
             var client = await _context.Clients
+                .Include(c => c.City)
+                .Include(c => c.City.Province)
                 .FirstOrDefaultAsync(m => m.ID == id);
             if (client == null)
             {
@@ -160,10 +171,45 @@ namespace NBDProjectNcstech.Controllers
                 _context.Clients.Remove(client);
             }
 
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+        private SelectList ProvinceSelectList(string selectedId)
+        {
+            return new SelectList(_context.Provinces
+                .OrderBy(p => p.Name), "ID", "Name", selectedId);
+        }
+        private SelectList CitySelectList(string ProvinceID, int? selectedId)
+        {
+            var query = from c in _context.Cities
+                        select c;
+            if (!string.IsNullOrEmpty(ProvinceID))
+            {
+                query = query.Where(c => c.ProvinceID == ProvinceID);
+            }
+            return new SelectList(query.OrderBy(c => c.Name), "ID", "Summary", selectedId);
 
+        }
+        private void PopulateDropDownLists(Client client = null)
+        {
+
+            if ((client?.CityID).HasValue)
+            {
+                ViewData["ProvinceID"] = ProvinceSelectList(client.City.ProvinceID);
+                ViewData["CityID"] = CitySelectList(client.City.ProvinceID, client.CityID);
+            }
+            else
+            {
+                ViewData["ProvinceID"] = ProvinceSelectList(null);
+                ViewData["CityID"] = CitySelectList(null, null);
+            }
+        }
+        [HttpGet]
+        public JsonResult GetCities(string ProvinceID)
+        {
+            return Json(CitySelectList(ProvinceID, null));
+        }
         private bool ClientExists(int id)
         {
             return _context.Clients.Any(e => e.ID == id);

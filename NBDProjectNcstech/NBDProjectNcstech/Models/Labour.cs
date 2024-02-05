@@ -14,8 +14,6 @@ namespace NBDProjectNcstech.Models
         [Display(Name = "Labor Cost")]
         public decimal LavourCost { get; set; }
 
-        public int LabourID { get; set; }
-
-        public Labour labour { get; set; }
+        public ICollection<LabourRequirments> LabourRequirments { get; set; } = new HashSet<LabourRequirments>();
     }
 }

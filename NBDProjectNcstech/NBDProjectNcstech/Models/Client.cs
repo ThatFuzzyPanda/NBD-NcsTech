@@ -25,21 +25,16 @@ namespace NBDProjectNcstech.Models
 		public string Phone { get; set; }
 
 		[Display(Name = "Street Name")]
-		[Required(ErrorMessage = "You cannot leave the street name blank.")]
+		//[Required(ErrorMessage = "You cannot leave the street name blank.")]
 		[StringLength(50, ErrorMessage = "Street name cannot be more than 50 characters long.")]
-		public string Street { get; set; }
+		public string Street { get; set; }  
 
-		[Display(Name = "City")]
-		[Required(ErrorMessage = "You cannot leave the city blank.")]
-		[StringLength(50, ErrorMessage = "City cannot be more than 50 characters long.")]
-		public string City { get; set; }
+        [Display(Name = "City")]
+		[Range(1,int.MaxValue,ErrorMessage ="You must select a city.")]
+        public int? CityID { get; set; }
+		public City City { get; set; }
 
-		[Display(Name = "Province")]
-		[Required(ErrorMessage = "You cannot leave the province blank.")]
-		[StringLength(50, ErrorMessage = "Province cannot be more than 50 characters long.")]
-		public string Province { get; set; }
-
-		[Display(Name = "Postal Code")]
+        [Display(Name = "Postal Code")]
 		[StringLength(7, ErrorMessage = "Postal code cannot be more than 6 characters long.")]
 		[RegularExpression("^[A-Za-z]\\d[A-Za-z] \\d[A-Za-z]\\d$", ErrorMessage = "Invalid postal code.")]
 		public string PostalCode { get; set; }

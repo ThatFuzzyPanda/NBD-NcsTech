@@ -17,10 +17,23 @@ namespace NBDProjectNcstech.Data
 		public DbSet<Labour> Labours { get; set; }
 		public DbSet<Client> Clients { get; set; }
 		public DbSet<Project> Projects { get; set; }
-		//public DbSet<Province> Provinces { get; set; }
-		protected override void OnModelCreating(ModelBuilder modelBuilder)
+        public DbSet<Province> Provinces { get; set; }
+        public DbSet<City> Cities { get; set; }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
-			modelBuilder.Entity<Client>()
+            //Add a unique index to the City/Province
+            modelBuilder.Entity<City>()
+            .HasIndex(c => new { c.Name, c.ProvinceID })
+            .IsUnique();
+
+            //Add this so you don't get Cascade Delete
+            modelBuilder.Entity<Province>()
+                .HasMany<City>(d => d.Cities)
+                .WithOne(p => p.Province)
+                .HasForeignKey(p => p.ProvinceID)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Client>()
 				.HasMany<Project>(c => c.Projects)
 				.WithOne(f => f.Client)
 				.HasForeignKey(f => f.ClientId)
