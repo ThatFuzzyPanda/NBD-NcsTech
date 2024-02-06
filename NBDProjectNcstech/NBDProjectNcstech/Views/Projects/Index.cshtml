@@ -225,41 +225,48 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="card">
-                                    <div class="card-header">
-                                        <h3 class="card-title">Projects</h3>
-                                        <div class="card-tools">
-                                            <div class="input-group input-group-sm" style="width: 250px;">
-                                                 <a asp-controller="Projects" asp-action="Create" class="btn btn-primary btn-sm rounded-circle" style="margin-right: 10px;">
-                                                <i class=" fas fa-plus"></i>
-                                                    
+                                    <div class="card-header" style="background-color:#423535;">
+                                        <div class="row align-items-center">
+                                            <div class="col">
+                                                <label class="control-label" style="color: white;">Project</label>
+                                            </div>
+                                            <div class="col-auto">
+                                                <a asp-controller="Projects" asp-action="Create" class="btn btn-primary btn-sm rounded-circle">
+                                                    <i class="fas fa-plus"></i>
                                                 </a>
-                                                <div class="form-horizontal">
-                                                    <div class="row">
-                                                        <div class="form-group col-md-4">
-                                                            <label class="control-label">Select by Client Name:</label>
-                                                            @Html.DropDownList("ClientId", null, "All Clients", htmlAttributes: new { @class = "form-control" })
-                                                        </div>
-                                                        <div class="form-group col-md-4">
-                                                            <label class="control-label">Filter by Client Name:</label>
-                                                            @Html.TextBox("SearchString", null, new { @class = "form-control" })
-                                                        </div>
-                                                        <div class="form-group col-md-4 align-self-end">
-                                                            <input type="submit" name="actionButton" value="Filter" class="btn btn-outline-primary" />
-                                                            <a asp-action="Index" class="btn btn-outline-dark">Clear</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                
-
-                                                <div class="input-group-append">
-                                                    <button type="submit" class="btn btn-default">
-                                                        <i class="fas fa-search"></i>
-                                                    </button>
-                                                </div>
-
                                             </div>
                                         </div>
                                     </div>
+
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <label class="control-label">Select by Client Name:</label>
+                                                <div class="input-group">
+                                                @Html.DropDownList("ClientId", null, "All Clients", htmlAttributes: new { @class = "form-control" })
+                                               
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label class="control-label">Filter by Client Name:</label>
+                                                <div class="input-group">
+                                                    @Html.TextBox("SearchString", null, new { @class = "form-control" })
+                                                       
+                                                    
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 d-flex align-items-end">
+                                                <button type="submit" name="actionButton" value="Filter" class="btn btn-outline-primary mr-2">
+                                                    <i class="fas fa-search"></i>
+                                                </button>
+                                                <a asp-action="Index" class="btn btn-outline-dark">Clear</a>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+
+
                                     <!-- /.card-header -->
                                     <div class="card-body table-responsive p-0">
                                         <table class="table table-hover text-nowrap">
