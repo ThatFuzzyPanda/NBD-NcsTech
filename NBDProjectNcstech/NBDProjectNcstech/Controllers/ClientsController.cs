@@ -195,6 +195,7 @@ namespace NBDProjectNcstech.Controllers
             }
             return View(client);
         }
+      
         private SelectList ProvinceSelectList(string selectedId)
         {
             return new SelectList(_context.Provinces

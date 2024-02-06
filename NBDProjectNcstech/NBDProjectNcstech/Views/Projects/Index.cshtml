@@ -241,20 +241,13 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-md-4">
-                                                <label class="control-label">Select by Client Name:</label>
+                                                <label class="control-label">Select by Organization Name:</label>
                                                 <div class="input-group">
-                                                @Html.DropDownList("ClientId", null, "All Clients", htmlAttributes: new { @class = "form-control" })
+                                                    @Html.DropDownList("ClientId", null, "All Organization", htmlAttributes: new { @class = "form-control" })
                                                
                                                 </div>
                                             </div>
-                                            <div class="col-md-4">
-                                                <label class="control-label">Filter by Client Name:</label>
-                                                <div class="input-group">
-                                                    @Html.TextBox("SearchString", null, new { @class = "form-control" })
-                                                       
-                                                    
-                                                </div>
-                                            </div>
+                                       
                                             <div class="col-md-4 d-flex align-items-end">
                                                 <button type="submit" name="actionButton" value="Filter" class="btn btn-outline-primary mr-2">
                                                     <i class="fas fa-search"></i>
@@ -288,7 +281,7 @@
                                                     @Html.DisplayNameFor(model => model.BidAmount)
                                                     </th> *@
                                                     <th>
-                                                        @Html.DisplayNameFor(model => model.Client)
+                                                        @Html.DisplayNameFor(model => model.ClientId)
                                                     </th>
                                                     <th></th>
                                                 </tr>

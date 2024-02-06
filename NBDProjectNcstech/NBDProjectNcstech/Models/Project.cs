@@ -43,7 +43,7 @@ namespace NBDProjectNcstech.Models
 		//public int StaffId { get; set; }
 		//public Staff Staff { get; set; }
 
-		[Display(Name = "Client")]
+		[Display(Name = "Organization Name")]
 		[Required(ErrorMessage = "You must select a Client.")]
 		public int ClientId { get; set; }
 		public Client Client { get; set; }
