@@ -24,11 +24,16 @@ namespace NBDProjectNcstech.Controllers
         }
 
         // GET: Clients
-        public async Task<IActionResult> Index(int? page, int? pageSizeID)
+        public async Task<IActionResult> Index(string SearchString, int? page, int? pageSizeID)
         {
             var clients = _context.Clients
                           .AsNoTracking();
 
+            if (!System.String.IsNullOrEmpty(SearchString))
+            {
+                clients = clients.Where(p => p.Name.ToUpper().Contains(SearchString.ToUpper())
+                                       || p.ContactPerson.ToUpper().Contains(SearchString.ToUpper()));
+            }
             //Handle Paging
             int pageSize = PageSizeHelper.SetPageSize(HttpContext, pageSizeID, ControllerName());
             ViewData["pageSizeID"] = PageSizeHelper.PageSizeList(pageSize);

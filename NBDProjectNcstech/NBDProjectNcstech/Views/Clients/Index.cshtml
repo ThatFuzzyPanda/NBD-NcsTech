@@ -232,7 +232,14 @@
                                                 <a asp-controller="Clients" asp-action="Create" class="btn btn-primary btn-sm rounded-circle" style="margin-right: 10px;">
                                                     <i class="fas fa-user-plus"></i>
                                                 </a>
-                                                <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+                                                <div class="form-group col-md-4">
+                                                    <label class="control-label">Search by Client Name:</label>
+                                                    @Html.TextBox("SearchString", null, new { @class = "form-control" })
+                                                </div>
+                                                <div class="form-group col-md-4 align-self-end">
+                                                    <input type="submit" name="actionButton" value="Search" class="btn btn-outline-primary" />
+                                                    <a asp-action="Index" class="btn btn-outline-dark">Clear</a>
+                                                </div>
 
                                                 <div class="input-group-append">
                                                     <button type="submit" class="btn btn-default">

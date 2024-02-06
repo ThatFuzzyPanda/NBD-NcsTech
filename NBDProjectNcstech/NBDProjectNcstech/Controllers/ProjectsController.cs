@@ -24,16 +24,28 @@ namespace NBDProjectNcstech.Controllers
         }
 
         // GET: Projects
-        public async Task<IActionResult> Index(int? page, int? pageSizeID)
+        public async Task<IActionResult> Index(string SearchString, int? ClientId, int? page, int? pageSizeID)
         {
-            var nBDContext = _context.Projects
-                            .Include(p => p.Client)
+            PopulateDropDownLists();
+
+            var projects = _context.Projects
+                            .Include(p => p.Client)                 
                             .AsNoTracking();
+
+            //Add as many filters as needed
+            if (ClientId.HasValue)
+            {
+                projects = projects.Where(p => p.ClientId == ClientId);
+            }
+            if (!System.String.IsNullOrEmpty(SearchString))
+            {
+                projects = projects.Where(p => p.Client.Name.ToUpper().Contains(SearchString.ToUpper()));
+            }
 
             //Handle Paging
             int pageSize = PageSizeHelper.SetPageSize(HttpContext, pageSizeID, ControllerName());
             ViewData["pageSizeID"] = PageSizeHelper.PageSizeList(pageSize);
-            var pagedData = await PaginatedList<Project>.CreateAsync(nBDContext.AsNoTracking(), page ?? 1, pageSize);
+            var pagedData = await PaginatedList<Project>.CreateAsync(projects.AsNoTracking(), page ?? 1, pageSize);
 
             return View(pagedData);
         }
