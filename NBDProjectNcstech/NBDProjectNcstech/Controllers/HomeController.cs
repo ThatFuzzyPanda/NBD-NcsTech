@@ -1,12 +1,15 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using NBDProjectNcstech.CustomControllers;
 using NBDProjectNcstech.Data;
+using NBDProjectNcstech.Utilities;
 using NBDProjectNcstech.Models;
 using System.Diagnostics;
 using System.Dynamic;
+using Microsoft.EntityFrameworkCore;
 
 namespace NBDProjectNcstech.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : CognizantController
     {
         private readonly ILogger<HomeController> _logger;
         private readonly NBDContext _context;
@@ -16,14 +19,28 @@ namespace NBDProjectNcstech.Controllers
             _logger = logger;
             _context = nBDContext;
         }
-
-        public IActionResult Index()
+        public async Task<IActionResult> Index(int? page, int? pageSizeID)
         {
-            dynamic combinedModel = new ExpandoObject();
-            combinedModel.Clients = _context.Clients.ToList();
-            combinedModel.Projects = _context.Projects.ToList();
+            var clients = _context.Clients.AsNoTracking();
+            var projects =  _context.Projects
+                            .Include(p => p.Client)
+                            .AsNoTracking();
 
-            return View(combinedModel);
+            //Handle Paging
+            int pageSize = PageSizeHelper.SetPageSize(HttpContext, pageSizeID, ControllerName());
+            ViewData["pageSizeID"] = PageSizeHelper.PageSizeList(pageSize);
+
+            // Separate paginated lists for clients and projects
+            var pagedDataClient = await PaginatedList<Client>.CreateAsync(clients.AsQueryable(), page ?? 1, pageSize);
+            var pagedDataProject = await PaginatedList<Project>.CreateAsync(projects.AsQueryable(), page ?? 1, pageSize);
+
+            var combinedLists = new PaginatedHomeLists
+            {
+                PagedClients = pagedDataClient,
+                PagedProjects = pagedDataProject
+            };
+
+            return View(combinedLists);
         }
 
         public IActionResult Privacy()
