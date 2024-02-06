@@ -7,12 +7,12 @@ namespace NBDProjectNcstech.Models
 
 		public int ID { get; set; }
 
-		[Display(Name = "Name")]
+		[Display(Name = "Organization Name")]
 		[Required(ErrorMessage = "You cannot leave the first name blank.")]
 		[StringLength(50, ErrorMessage = "First name cannot be more than 50 characters long.")]
 		public string Name { get; set; }
 
-		[Display(Name = "Contact")]
+		[Display(Name = "Contact Person")]
 		[Required(ErrorMessage = "You cannot leave the contact name blank.")]
 		[StringLength(50, ErrorMessage = "Contact name cannot be more than 50 characters long.")]
 		public string ContactPerson { get; set; }
