@@ -144,6 +144,7 @@ namespace NBDProjectNcstech.Controllers
 
             var project = await _context.Projects
                 .Include(p => p.Client)
+                .AsNoTracking()
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (project == null)
             {
@@ -160,16 +161,31 @@ namespace NBDProjectNcstech.Controllers
         {
             if (_context.Projects == null)
             {
-                return Problem("Entity set 'NBDContext.Projects'  is null.");
+                return Problem("There are no project to delete.");
             }
             var project = await _context.Projects.FindAsync(id);
-            if (project != null)
+            try
             {
-                _context.Projects.Remove(project);
+                if (project != null)
+                {
+                    _context.Projects.Remove(project);
+                }
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
             }
-            
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            catch (DbUpdateException dex)
+            {
+                if (dex.GetBaseException().Message.Contains("FOREIGN KEY constraint failed"))
+                {
+                    ModelState.AddModelError("", "Unable to Delete Project. You cannot delete a Project that has a Client in the system.");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
+                }
+            }
+            return View(project);
+
         }
         //client ddl
         private SelectList ClientSelectList(int? selectedId)

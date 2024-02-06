@@ -147,6 +147,7 @@ namespace NBDProjectNcstech.Controllers
             var client = await _context.Clients
                 .Include(c => c.City)
                 .Include(c => c.City.Province)
+                .AsNoTracking()
                 .FirstOrDefaultAsync(m => m.ID == id);
             if (client == null)
             {
@@ -163,17 +164,31 @@ namespace NBDProjectNcstech.Controllers
         {
             if (_context.Clients == null)
             {
-                return Problem("Entity set 'NBDContext.Clients'  is null.");
+                return Problem("There are no Clients to delete.");
             }
+            
             var client = await _context.Clients.FindAsync(id);
-            if (client != null)
+            try
             {
-                _context.Clients.Remove(client);
+                if (client != null)
+                {
+                    _context.Clients.Remove(client);
+                }
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
             }
-
-
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            catch (DbUpdateException dex)
+            {
+                if (dex.GetBaseException().Message.Contains("FOREIGN KEY constraint failed"))
+                {
+                    ModelState.AddModelError("", "Unable to Delete Client. You cannot delete a Client that has a Project in the system.");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
+                }
+            }
+            return View(client);
         }
         private SelectList ProvinceSelectList(string selectedId)
         {
