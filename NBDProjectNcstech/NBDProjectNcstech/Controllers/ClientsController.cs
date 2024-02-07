@@ -31,8 +31,9 @@ namespace NBDProjectNcstech.Controllers
 
             if (!System.String.IsNullOrEmpty(SearchString))
             {
-                clients = clients.Where(p => p.Name.ToUpper().Contains(SearchString.ToUpper())
-                                       || p.ContactPerson.ToUpper().Contains(SearchString.ToUpper()));
+                //clients = clients.Where(p => p.Name.ToUpper().Contains(SearchString.ToUpper())
+                //                       || p.ContactPerson.ToUpper().Contains(SearchString.ToUpper()));
+                clients = clients.Where(c => c.Name.ToUpper().Contains(SearchString.ToUpper()));
             }
             //Handle Paging
             int pageSize = PageSizeHelper.SetPageSize(HttpContext, pageSizeID, ControllerName());
