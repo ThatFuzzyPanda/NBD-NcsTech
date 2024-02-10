@@ -266,7 +266,7 @@
                                             <thead>
                                                 <tr>
                                                     <th>
-                                                        @Html.DisplayNameFor(model => model.BidDate)
+                                                        @Html.ActionLink("Bid Date", "Index",new {sortOrder = ViewBag.DateSortParm})
                                                     </th>
                                                     <th>
                                                         @Html.DisplayNameFor(model => model.ProjectSite)

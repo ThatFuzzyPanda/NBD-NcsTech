@@ -24,7 +24,7 @@ namespace NBDProjectNcstech.Controllers
         }
 
         // GET: Projects
-        public async Task<IActionResult> Index(string SearchString, int? ClientId, int? page, int? pageSizeID)
+        public async Task<IActionResult> Index(string SearchString, int? ClientId, int? page, int? pageSizeID,string sortOrder)
         {
             PopulateDropDownLists();
 
@@ -36,10 +36,28 @@ namespace NBDProjectNcstech.Controllers
             if (ClientId.HasValue)
             {
                 projects = projects.Where(p => p.ClientId == ClientId);
+
             }
             if (!System.String.IsNullOrEmpty(SearchString))
             {
                 projects = projects.Where(p => p.Client.Name.ToUpper().Contains(SearchString.ToUpper()));
+            }
+            //sorting
+            ViewBag.NameSortParm = string.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.DateSortparm = sortOrder == "Date" ? "date_desc" : "Date";
+            
+
+            switch(sortOrder)
+            {
+                case "Date":
+                    projects = projects.OrderBy(p => p.BidDate);
+                    break;
+                case "date_desc":
+                    projects = projects.OrderByDescending(p => p.BidDate);
+                    break;
+                default:
+                    projects = projects.OrderBy(p => p.BidDate);
+                    break;
             }
 
             //Handle Paging

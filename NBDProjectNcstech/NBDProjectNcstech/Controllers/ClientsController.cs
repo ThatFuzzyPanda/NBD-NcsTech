@@ -24,22 +24,27 @@ namespace NBDProjectNcstech.Controllers
         }
 
         // GET: Clients
-        public async Task<IActionResult> Index(string SearchString, int? page, int? pageSizeID)
+        public async Task<IActionResult> Index(string SearchString, int? Id, int? page, int? pageSizeID)
         {
             var clients = _context.Clients
                           .AsNoTracking();
 
+            if (Id.HasValue)
+            {
+                clients = clients.Where(p => p.ID == Id);
+            }
             if (!System.String.IsNullOrEmpty(SearchString))
             {
                 //clients = clients.Where(p => p.Name.ToUpper().Contains(SearchString.ToUpper())
                 //                       || p.ContactPerson.ToUpper().Contains(SearchString.ToUpper()));
-                clients = clients.Where(c => c.Name.ToUpper().Contains(SearchString.ToUpper()));
+                clients = clients.Where(c => c.ContactPerson.ToUpper().Contains(SearchString.ToUpper()));
             }
+            
             //Handle Paging
             int pageSize = PageSizeHelper.SetPageSize(HttpContext, pageSizeID, ControllerName());
             ViewData["pageSizeID"] = PageSizeHelper.PageSizeList(pageSize);
             var pagedData = await PaginatedList<Client>.CreateAsync(clients.AsNoTracking(), page ?? 1, pageSize);
-
+            PopulateDropDownLists();
             return View(pagedData);
         }
 
@@ -213,8 +218,15 @@ namespace NBDProjectNcstech.Controllers
             return new SelectList(query.OrderBy(c => c.Name), "ID", "Summary", selectedId);
 
         }
+        private SelectList ClientSelectList(int? selectedId)
+        {
+            return new SelectList(_context
+                .Clients
+                .OrderBy(m => m.Name), "ID", "Name", selectedId);
+        }
         private void PopulateDropDownLists(Client client = null)
         {
+            
 
             if ((client?.CityID).HasValue)
             {
@@ -226,6 +238,7 @@ namespace NBDProjectNcstech.Controllers
                 ViewData["ProvinceID"] = ProvinceSelectList(null);
                 ViewData["CityID"] = CitySelectList(null, null);
             }
+            ViewData["Id"] = ClientSelectList(client?.ID);
         }
         [HttpGet]
         public JsonResult GetCities(string ProvinceID)
