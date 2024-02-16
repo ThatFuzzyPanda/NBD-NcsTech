@@ -1593,7 +1593,7 @@
           }
         }
       },
-      "Microsoft.DotNet.Scaffolding.Shared/7.0.11": {
+      "Microsoft.DotNet.Scaffolding.Shared/7.0.12": {
         "type": "package",
         "dependencies": {
           "Humanizer": "2.14.1",
@@ -1612,11 +1612,11 @@
           }
         }
       },
-      "Microsoft.EntityFrameworkCore/7.0.15": {
+      "Microsoft.EntityFrameworkCore/7.0.16": {
         "type": "package",
         "dependencies": {
-          "Microsoft.EntityFrameworkCore.Abstractions": "7.0.15",
-          "Microsoft.EntityFrameworkCore.Analyzers": "7.0.15",
+          "Microsoft.EntityFrameworkCore.Abstractions": "7.0.16",
+          "Microsoft.EntityFrameworkCore.Analyzers": "7.0.16",
           "Microsoft.Extensions.Caching.Memory": "7.0.0",
           "Microsoft.Extensions.DependencyInjection": "7.0.0",
           "Microsoft.Extensions.Logging": "7.0.0"
@@ -1635,7 +1635,7 @@
           "buildTransitive/net6.0/Microsoft.EntityFrameworkCore.props": {}
         }
       },
-      "Microsoft.EntityFrameworkCore.Abstractions/7.0.15": {
+      "Microsoft.EntityFrameworkCore.Abstractions/7.0.16": {
         "type": "package",
         "compile": {
           "lib/net6.0/Microsoft.EntityFrameworkCore.Abstractions.dll": {
@@ -1648,7 +1648,7 @@
           }
         }
       },
-      "Microsoft.EntityFrameworkCore.Analyzers/7.0.15": {
+      "Microsoft.EntityFrameworkCore.Analyzers/7.0.16": {
         "type": "package",
         "compile": {
           "lib/netstandard2.0/_._": {}
@@ -1657,11 +1657,11 @@
           "lib/netstandard2.0/_._": {}
         }
       },
-      "Microsoft.EntityFrameworkCore.Design/7.0.15": {
+      "Microsoft.EntityFrameworkCore.Design/7.0.16": {
         "type": "package",
         "dependencies": {
           "Humanizer.Core": "2.14.1",
-          "Microsoft.EntityFrameworkCore.Relational": "7.0.15",
+          "Microsoft.EntityFrameworkCore.Relational": "7.0.16",
           "Microsoft.Extensions.DependencyModel": "7.0.0",
           "Mono.TextTemplating": "2.2.1"
         },
@@ -1679,10 +1679,10 @@
           "build/net6.0/Microsoft.EntityFrameworkCore.Design.props": {}
         }
       },
-      "Microsoft.EntityFrameworkCore.Relational/7.0.15": {
+      "Microsoft.EntityFrameworkCore.Relational/7.0.16": {
         "type": "package",
         "dependencies": {
-          "Microsoft.EntityFrameworkCore": "7.0.15",
+          "Microsoft.EntityFrameworkCore": "7.0.16",
           "Microsoft.Extensions.Configuration.Abstractions": "7.0.0"
         },
         "compile": {
@@ -1744,10 +1744,10 @@
           }
         }
       },
-      "Microsoft.EntityFrameworkCore.Tools/7.0.15": {
+      "Microsoft.EntityFrameworkCore.Tools/7.0.16": {
         "type": "package",
         "dependencies": {
-          "Microsoft.EntityFrameworkCore.Design": "7.0.15"
+          "Microsoft.EntityFrameworkCore.Design": "7.0.16"
         },
         "compile": {
           "lib/net6.0/_._": {}
@@ -2203,11 +2203,11 @@
           }
         }
       },
-      "Microsoft.VisualStudio.Web.CodeGeneration/7.0.11": {
+      "Microsoft.VisualStudio.Web.CodeGeneration/7.0.12": {
         "type": "package",
         "dependencies": {
           "Microsoft.Extensions.DependencyInjection": "7.0.0",
-          "Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore": "7.0.11"
+          "Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore": "7.0.12"
         },
         "compile": {
           "lib/net7.0/Microsoft.VisualStudio.Web.CodeGeneration.dll": {
@@ -2220,11 +2220,11 @@
           }
         }
       },
-      "Microsoft.VisualStudio.Web.CodeGeneration.Core/7.0.11": {
+      "Microsoft.VisualStudio.Web.CodeGeneration.Core/7.0.12": {
         "type": "package",
         "dependencies": {
           "Microsoft.Extensions.DependencyInjection": "7.0.0",
-          "Microsoft.VisualStudio.Web.CodeGeneration.Templating": "7.0.11",
+          "Microsoft.VisualStudio.Web.CodeGeneration.Templating": "7.0.12",
           "Newtonsoft.Json": "13.0.1"
         },
         "compile": {
@@ -2238,11 +2238,11 @@
           }
         }
       },
-      "Microsoft.VisualStudio.Web.CodeGeneration.Design/7.0.11": {
+      "Microsoft.VisualStudio.Web.CodeGeneration.Design/7.0.12": {
         "type": "package",
         "dependencies": {
-          "Microsoft.DotNet.Scaffolding.Shared": "7.0.11",
-          "Microsoft.VisualStudio.Web.CodeGenerators.Mvc": "7.0.11"
+          "Microsoft.DotNet.Scaffolding.Shared": "7.0.12",
+          "Microsoft.VisualStudio.Web.CodeGenerators.Mvc": "7.0.12"
         },
         "compile": {
           "lib/net7.0/dotnet-aspnet-codegenerator-design.dll": {
@@ -2255,11 +2255,11 @@
           }
         }
       },
-      "Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore/7.0.11": {
+      "Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore/7.0.12": {
         "type": "package",
         "dependencies": {
-          "Microsoft.DotNet.Scaffolding.Shared": "7.0.11",
-          "Microsoft.VisualStudio.Web.CodeGeneration.Core": "7.0.11"
+          "Microsoft.DotNet.Scaffolding.Shared": "7.0.12",
+          "Microsoft.VisualStudio.Web.CodeGeneration.Core": "7.0.12"
         },
         "compile": {
           "lib/net7.0/Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore.dll": {
@@ -2272,13 +2272,13 @@
           }
         }
       },
-      "Microsoft.VisualStudio.Web.CodeGeneration.Templating/7.0.11": {
+      "Microsoft.VisualStudio.Web.CodeGeneration.Templating/7.0.12": {
         "type": "package",
         "dependencies": {
           "Microsoft.AspNetCore.Razor.Language": "6.0.11",
           "Microsoft.CodeAnalysis.CSharp": "4.4.0",
           "Microsoft.CodeAnalysis.Razor": "6.0.11",
-          "Microsoft.VisualStudio.Web.CodeGeneration.Utils": "7.0.11"
+          "Microsoft.VisualStudio.Web.CodeGeneration.Utils": "7.0.12"
         },
         "compile": {
           "lib/net7.0/Microsoft.VisualStudio.Web.CodeGeneration.Templating.dll": {
@@ -2291,12 +2291,12 @@
           }
         }
       },
-      "Microsoft.VisualStudio.Web.CodeGeneration.Utils/7.0.11": {
+      "Microsoft.VisualStudio.Web.CodeGeneration.Utils/7.0.12": {
         "type": "package",
         "dependencies": {
           "Microsoft.Build": "17.3.2",
           "Microsoft.CodeAnalysis.CSharp.Workspaces": "4.4.0",
-          "Microsoft.DotNet.Scaffolding.Shared": "7.0.11",
+          "Microsoft.DotNet.Scaffolding.Shared": "7.0.12",
           "Newtonsoft.Json": "13.0.1"
         },
         "compile": {
@@ -2310,11 +2310,11 @@
           }
         }
       },
-      "Microsoft.VisualStudio.Web.CodeGenerators.Mvc/7.0.11": {
+      "Microsoft.VisualStudio.Web.CodeGenerators.Mvc/7.0.12": {
         "type": "package",
         "dependencies": {
-          "Microsoft.DotNet.Scaffolding.Shared": "7.0.11",
-          "Microsoft.VisualStudio.Web.CodeGeneration": "7.0.11"
+          "Microsoft.DotNet.Scaffolding.Shared": "7.0.12",
+          "Microsoft.VisualStudio.Web.CodeGeneration": "7.0.12"
         },
         "compile": {
           "lib/net7.0/Microsoft.VisualStudio.Web.CodeGenerators.Mvc.dll": {
@@ -6415,24 +6415,24 @@
         "microsoft.diasymreader.nuspec"
       ]
     },
-    "Microsoft.DotNet.Scaffolding.Shared/7.0.11": {
-      "sha512": "4FhkEyNg3AJisZsSjRzFfLenWDtT+qYGisGk1h/7HU+Ed5ReFnEx5SRFkU7wTSBEQ/CmU/0V7jeG43oNNeaaeg==",
+    "Microsoft.DotNet.Scaffolding.Shared/7.0.12": {
+      "sha512": "p6NxvJNQy6+6imSO0HkRKPqwOhRUIbAkW78qFLIAvbasuh9vbcJKbO+gBks0phHBu4xVse0n7rdOxvp+DM+kbA==",
       "type": "package",
-      "path": "microsoft.dotnet.scaffolding.shared/7.0.11",
+      "path": "microsoft.dotnet.scaffolding.shared/7.0.12",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "lib/net7.0/Microsoft.DotNet.Scaffolding.Shared.dll",
         "lib/net7.0/Microsoft.DotNet.Scaffolding.Shared.xml",
-        "microsoft.dotnet.scaffolding.shared.7.0.11.nupkg.sha512",
+        "microsoft.dotnet.scaffolding.shared.7.0.12.nupkg.sha512",
         "microsoft.dotnet.scaffolding.shared.nuspec"
       ]
     },
-    "Microsoft.EntityFrameworkCore/7.0.15": {
-      "sha512": "grjnH94+hXgTqRFdfl88otvlqHTG1QEtlLm6ADI3vtZ1h+C8xNhvKRLNNw1RMD7CKADpoEEPNgqTXKCg+Ki8OQ==",
+    "Microsoft.EntityFrameworkCore/7.0.16": {
+      "sha512": "SbMHFQG7iXgBTUFv5XxVMwpRqDKah4qTraDAGUv4gkaudFAOSuNfNRfCXY282hij79P1oxg/M9Wni+8GXavxQQ==",
       "type": "package",
-      "path": "microsoft.entityframeworkcore/7.0.15",
+      "path": "microsoft.entityframeworkcore/7.0.16",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -6440,42 +6440,42 @@
         "buildTransitive/net6.0/Microsoft.EntityFrameworkCore.props",
         "lib/net6.0/Microsoft.EntityFrameworkCore.dll",
         "lib/net6.0/Microsoft.EntityFrameworkCore.xml",
-        "microsoft.entityframeworkcore.7.0.15.nupkg.sha512",
+        "microsoft.entityframeworkcore.7.0.16.nupkg.sha512",
         "microsoft.entityframeworkcore.nuspec"
       ]
     },
-    "Microsoft.EntityFrameworkCore.Abstractions/7.0.15": {
-      "sha512": "YZYw1g0EGGkWdC+ymHRccQryerGyh7XlcL8nRo3r7kkPurPJgVCCtC+PK5pBwJGPDdwCYMrwHSoAtfEWcqqQjQ==",
+    "Microsoft.EntityFrameworkCore.Abstractions/7.0.16": {
+      "sha512": "emuQo430RBfwZSxwTYKu0/+ohRixXaRNi3njEbzcnaFqc94oU6afcx5KYtk5/lrBQn58Oo0CUmDRhMeFQI4Kgg==",
       "type": "package",
-      "path": "microsoft.entityframeworkcore.abstractions/7.0.15",
+      "path": "microsoft.entityframeworkcore.abstractions/7.0.16",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "lib/net6.0/Microsoft.EntityFrameworkCore.Abstractions.dll",
         "lib/net6.0/Microsoft.EntityFrameworkCore.Abstractions.xml",
-        "microsoft.entityframeworkcore.abstractions.7.0.15.nupkg.sha512",
+        "microsoft.entityframeworkcore.abstractions.7.0.16.nupkg.sha512",
         "microsoft.entityframeworkcore.abstractions.nuspec"
       ]
     },
-    "Microsoft.EntityFrameworkCore.Analyzers/7.0.15": {
-      "sha512": "zscMrRQQR1O4U5PhZ98ASBNdU/mAsSpqTwkE8RrguZEox31jYBK65LWTlFPPBWycEiC6U9feBZZ3bkkrmpWtbQ==",
+    "Microsoft.EntityFrameworkCore.Analyzers/7.0.16": {
+      "sha512": "DO8M/90nqgq7fFoR4SIty9thhK22RBIwxoJxPIwrATy9FV1QKGPUeG9iMnz1yHv5/NxZWr8xF44oFAsrgcHgXg==",
       "type": "package",
-      "path": "microsoft.entityframeworkcore.analyzers/7.0.15",
+      "path": "microsoft.entityframeworkcore.analyzers/7.0.16",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "analyzers/dotnet/cs/Microsoft.EntityFrameworkCore.Analyzers.dll",
         "lib/netstandard2.0/_._",
-        "microsoft.entityframeworkcore.analyzers.7.0.15.nupkg.sha512",
+        "microsoft.entityframeworkcore.analyzers.7.0.16.nupkg.sha512",
         "microsoft.entityframeworkcore.analyzers.nuspec"
       ]
     },
-    "Microsoft.EntityFrameworkCore.Design/7.0.15": {
-      "sha512": "knFwFoPpYqpV09xqZxowqA3Sbxg8cAKmJFuQDl43ZqgtCcMAEnVeH8aBLzSmpggauzC28/MWVtP88N/C+ko4dA==",
+    "Microsoft.EntityFrameworkCore.Design/7.0.16": {
+      "sha512": "Z5Ra/VP8JfWPHE/3Ix0WzTlupk0KDhlCuUTOdUWREg1JpWpk8B8k7i3dX5TOLkAIvFfph1F3KT/5+sspuJtiEg==",
       "type": "package",
-      "path": "microsoft.entityframeworkcore.design/7.0.15",
+      "path": "microsoft.entityframeworkcore.design/7.0.16",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -6483,21 +6483,21 @@
         "build/net6.0/Microsoft.EntityFrameworkCore.Design.props",
         "lib/net6.0/Microsoft.EntityFrameworkCore.Design.dll",
         "lib/net6.0/Microsoft.EntityFrameworkCore.Design.xml",
-        "microsoft.entityframeworkcore.design.7.0.15.nupkg.sha512",
+        "microsoft.entityframeworkcore.design.7.0.16.nupkg.sha512",
         "microsoft.entityframeworkcore.design.nuspec"
       ]
     },
-    "Microsoft.EntityFrameworkCore.Relational/7.0.15": {
-      "sha512": "D03N/DF3lmtHHVd0RqHxZg+rtd3r8C4h7RJoy/ShxQA0r6rpJ/99ZA6HY9WeEgqsRbm2M8Lmj9MwJomcsJ+4GQ==",
+    "Microsoft.EntityFrameworkCore.Relational/7.0.16": {
+      "sha512": "g5G9SDhhxi9jUvUIrWl8r5Xi3cxY1W549ijLjO6y/2xTQv5ZF83u9MOrO9LYVi1wmm7Dih37U46rh9ZNcWBl0g==",
       "type": "package",
-      "path": "microsoft.entityframeworkcore.relational/7.0.15",
+      "path": "microsoft.entityframeworkcore.relational/7.0.16",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "lib/net6.0/Microsoft.EntityFrameworkCore.Relational.dll",
         "lib/net6.0/Microsoft.EntityFrameworkCore.Relational.xml",
-        "microsoft.entityframeworkcore.relational.7.0.15.nupkg.sha512",
+        "microsoft.entityframeworkcore.relational.7.0.16.nupkg.sha512",
         "microsoft.entityframeworkcore.relational.nuspec"
       ]
     },
@@ -6542,17 +6542,17 @@
         "microsoft.entityframeworkcore.sqlserver.nuspec"
       ]
     },
-    "Microsoft.EntityFrameworkCore.Tools/7.0.15": {
-      "sha512": "7/gt7XfvQ1Sb7+kk6HkU8s6MlCkXRoEHKcJ0fXjGhLgDPq6e1G9/WJZvCxuLJzOFjxn4MIJMiEbdN8KVrIQ9CA==",
+    "Microsoft.EntityFrameworkCore.Tools/7.0.16": {
+      "sha512": "ZqBGxy8X1877dnGMVwmLzuMhZz8IstuX5QfUoKiQGIGRYV4r2YvxZX3oLw9BvyMZBgtm95dcW6Bev0gerKRNfA==",
       "type": "package",
-      "path": "microsoft.entityframeworkcore.tools/7.0.15",
+      "path": "microsoft.entityframeworkcore.tools/7.0.16",
       "hasTools": true,
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "lib/net6.0/_._",
-        "microsoft.entityframeworkcore.tools.7.0.15.nupkg.sha512",
+        "microsoft.entityframeworkcore.tools.7.0.16.nupkg.sha512",
         "microsoft.entityframeworkcore.tools.nuspec",
         "tools/EntityFrameworkCore.PS2.psd1",
         "tools/EntityFrameworkCore.PS2.psm1",
@@ -7235,38 +7235,38 @@
         "microsoft.sqlserver.server.nuspec"
       ]
     },
-    "Microsoft.VisualStudio.Web.CodeGeneration/7.0.11": {
-      "sha512": "JAv6JMI38nqsMaaMjSkXpI/yn4u4QQphzZLAG9YLJToos3j0wz54UUxcV2v0WYP0U17cfy2Sr5I8/xJh4KI7ew==",
+    "Microsoft.VisualStudio.Web.CodeGeneration/7.0.12": {
+      "sha512": "PtklpPK9F+VKE+fkrsrT///HQ8B8vheianprB9wQLNASH4O/IXDzf4LDRRDFhyofW8RSSf3eujsmu+s74CylKA==",
       "type": "package",
-      "path": "microsoft.visualstudio.web.codegeneration/7.0.11",
+      "path": "microsoft.visualstudio.web.codegeneration/7.0.12",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "lib/net7.0/Microsoft.VisualStudio.Web.CodeGeneration.dll",
         "lib/net7.0/Microsoft.VisualStudio.Web.CodeGeneration.xml",
-        "microsoft.visualstudio.web.codegeneration.7.0.11.nupkg.sha512",
+        "microsoft.visualstudio.web.codegeneration.7.0.12.nupkg.sha512",
         "microsoft.visualstudio.web.codegeneration.nuspec"
       ]
     },
-    "Microsoft.VisualStudio.Web.CodeGeneration.Core/7.0.11": {
-      "sha512": "bmZZRWvJK1UM/k8U4avGDMf3b0PJ7DI6nLZSwPk3uDzOJBjmjnqAqKuPPfmRfYMF5wedV2IdJObvTzieRevAvg==",
+    "Microsoft.VisualStudio.Web.CodeGeneration.Core/7.0.12": {
+      "sha512": "g1LXpZjFXUT1xLMNP66UCsbr1FTSUFgffaCpXgHTSgJvqTxRVRWz8g9VMaCKDMs+I3HrdTk3k4Eyv6CbParb5Q==",
       "type": "package",
-      "path": "microsoft.visualstudio.web.codegeneration.core/7.0.11",
+      "path": "microsoft.visualstudio.web.codegeneration.core/7.0.12",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "lib/net7.0/Microsoft.VisualStudio.Web.CodeGeneration.Core.dll",
         "lib/net7.0/Microsoft.VisualStudio.Web.CodeGeneration.Core.xml",
-        "microsoft.visualstudio.web.codegeneration.core.7.0.11.nupkg.sha512",
+        "microsoft.visualstudio.web.codegeneration.core.7.0.12.nupkg.sha512",
         "microsoft.visualstudio.web.codegeneration.core.nuspec"
       ]
     },
-    "Microsoft.VisualStudio.Web.CodeGeneration.Design/7.0.11": {
-      "sha512": "kCM/alR4BhyriAhcwuiOIYLgDv/4OiPeUVPbRAA/0+rRIg/aA/J1dHqKkiFRb9h/WM7TC5YnjyFrfItbkrKs1w==",
+    "Microsoft.VisualStudio.Web.CodeGeneration.Design/7.0.12": {
+      "sha512": "qTWYdxikSxuDYVX5WEf6nnEzxB01uKbAqwKz6hDEKn46GxixqSCpFPUyP5poqEuoPfL/wtIAIqfsZeipJzgFzA==",
       "type": "package",
-      "path": "microsoft.visualstudio.web.codegeneration.design/7.0.11",
+      "path": "microsoft.visualstudio.web.codegeneration.design/7.0.12",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -7274,14 +7274,14 @@
         "README.md",
         "lib/net7.0/dotnet-aspnet-codegenerator-design.dll",
         "lib/net7.0/dotnet-aspnet-codegenerator-design.xml",
-        "microsoft.visualstudio.web.codegeneration.design.7.0.11.nupkg.sha512",
+        "microsoft.visualstudio.web.codegeneration.design.7.0.12.nupkg.sha512",
         "microsoft.visualstudio.web.codegeneration.design.nuspec"
       ]
     },
-    "Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore/7.0.11": {
-      "sha512": "4p/zPQ8GySfsMDKdB/kUirYx11SaNUgMkcmyy1cNODvd8Ld7mQgf++FyOGFmG3vzxAuPmJk5bTg6nXaSxirOFw==",
+    "Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore/7.0.12": {
+      "sha512": "8YOZppLvbATiZZBh9fn55pqdiN9cepsReszIvUzrbrGjLRDlcNwhtpgHAP77a7tVzuCavs8O8ak1jg3umcJI6w==",
       "type": "package",
-      "path": "microsoft.visualstudio.web.codegeneration.entityframeworkcore/7.0.11",
+      "path": "microsoft.visualstudio.web.codegeneration.entityframeworkcore/7.0.12",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -7290,42 +7290,42 @@
         "lib/net7.0/Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore.dll",
         "lib/net7.0/Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore.runtimeconfig.json",
         "lib/net7.0/Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore.xml",
-        "microsoft.visualstudio.web.codegeneration.entityframeworkcore.7.0.11.nupkg.sha512",
+        "microsoft.visualstudio.web.codegeneration.entityframeworkcore.7.0.12.nupkg.sha512",
         "microsoft.visualstudio.web.codegeneration.entityframeworkcore.nuspec"
       ]
     },
-    "Microsoft.VisualStudio.Web.CodeGeneration.Templating/7.0.11": {
-      "sha512": "h8FkRQ9SWsWrKOiw2tOYmkZH1c6OGYZF3+YUNqIdI4DVddDu6cDU/3EMoax1JlwmOCkFHjDRoxZrdobwe6sOfg==",
+    "Microsoft.VisualStudio.Web.CodeGeneration.Templating/7.0.12": {
+      "sha512": "XEolQ6OAihwhx0QiIWrqDbX1lXh1U2YQ33EcsPKvpzkIe+zZ7/eUGJAQELuAUYxMrPGNOZgNLYV2pelZoi2lcQ==",
       "type": "package",
-      "path": "microsoft.visualstudio.web.codegeneration.templating/7.0.11",
+      "path": "microsoft.visualstudio.web.codegeneration.templating/7.0.12",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "lib/net7.0/Microsoft.VisualStudio.Web.CodeGeneration.Templating.dll",
         "lib/net7.0/Microsoft.VisualStudio.Web.CodeGeneration.Templating.xml",
-        "microsoft.visualstudio.web.codegeneration.templating.7.0.11.nupkg.sha512",
+        "microsoft.visualstudio.web.codegeneration.templating.7.0.12.nupkg.sha512",
         "microsoft.visualstudio.web.codegeneration.templating.nuspec"
       ]
     },
-    "Microsoft.VisualStudio.Web.CodeGeneration.Utils/7.0.11": {
-      "sha512": "hJDb7MxlKv5G4jciTZ+XgKtSX7l4bvw2d6c3eIkW6nkbtySI9EaCqOL6mPplpMwWjlrmFH8r+0Wo9coRoR7hEQ==",
+    "Microsoft.VisualStudio.Web.CodeGeneration.Utils/7.0.12": {
+      "sha512": "uH/d7udY6eefM3uGBaPK0vzO6daJ0x6EKbaEPzNj6WVlVmNIpeu2uyPvMylasEek4E+7rKR170Q4o9tMCdCi2Q==",
       "type": "package",
-      "path": "microsoft.visualstudio.web.codegeneration.utils/7.0.11",
+      "path": "microsoft.visualstudio.web.codegeneration.utils/7.0.12",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "lib/net7.0/Microsoft.VisualStudio.Web.CodeGeneration.Utils.dll",
         "lib/net7.0/Microsoft.VisualStudio.Web.CodeGeneration.Utils.xml",
-        "microsoft.visualstudio.web.codegeneration.utils.7.0.11.nupkg.sha512",
+        "microsoft.visualstudio.web.codegeneration.utils.7.0.12.nupkg.sha512",
         "microsoft.visualstudio.web.codegeneration.utils.nuspec"
       ]
     },
-    "Microsoft.VisualStudio.Web.CodeGenerators.Mvc/7.0.11": {
-      "sha512": "OrMjbQk0sqUoLLJ8SQ392skBN6X52TgR7cm6+J8s0aUTGYJM7rm8O+P21ys3OceUR7ZZ8wwwvAm/5puTWR8Q+w==",
+    "Microsoft.VisualStudio.Web.CodeGenerators.Mvc/7.0.12": {
+      "sha512": "Yw48qBzGmQsX9Mj1rCQuOSnO590wF/OGuLSVX5FEdaED36+qlAtRVFDb48oL7O5HZEDyR0kln3+y1tgewxM3oA==",
       "type": "package",
-      "path": "microsoft.visualstudio.web.codegenerators.mvc/7.0.11",
+      "path": "microsoft.visualstudio.web.codegenerators.mvc/7.0.12",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -7792,7 +7792,7 @@
         "lib/net7.0/bootstrap5_identitygeneratorfilesconfig.json",
         "lib/net7.0/identityMinimalHostingChanges.json",
         "lib/net7.0/minimalApiChanges.json",
-        "microsoft.visualstudio.web.codegenerators.mvc.7.0.11.nupkg.sha512",
+        "microsoft.visualstudio.web.codegenerators.mvc.7.0.12.nupkg.sha512",
         "microsoft.visualstudio.web.codegenerators.mvc.nuspec"
       ]
     },
@@ -12430,31 +12430,31 @@
       "Microsoft.AspNetCore.Identity.UI >= 7.0.13",
       "Microsoft.EntityFrameworkCore.SqlServer >= 7.0.13",
       "Microsoft.EntityFrameworkCore.Sqlite >= 7.0.13",
-      "Microsoft.EntityFrameworkCore.Tools >= 7.0.15",
-      "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 7.0.11",
+      "Microsoft.EntityFrameworkCore.Tools >= 7.0.16",
+      "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 7.0.12",
       "bootstrap >= 5.3.2",
       "jQuery >= 3.7.1",
       "popper.js >= 1.16.1"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\gbemi\\.nuget\\packages\\": {},
+    "C:\\Users\\Exdru\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\gbemi\\Downloads\\NBD-NcsTech-main (1)\\NBD-NcsTech-main\\NBDProjectNcstech\\NBDProjectNcstech\\NBDProjectNcstech.csproj",
+      "projectUniqueName": "C:\\Users\\Exdru\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\NBDProjectNcstech.csproj",
       "projectName": "NBDProjectNcstech",
-      "projectPath": "C:\\Users\\gbemi\\Downloads\\NBD-NcsTech-main (1)\\NBD-NcsTech-main\\NBDProjectNcstech\\NBDProjectNcstech\\NBDProjectNcstech.csproj",
-      "packagesPath": "C:\\Users\\gbemi\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\gbemi\\Downloads\\NBD-NcsTech-main (1)\\NBD-NcsTech-main\\NBDProjectNcstech\\NBDProjectNcstech\\obj\\",
+      "projectPath": "C:\\Users\\Exdru\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\NBDProjectNcstech.csproj",
+      "packagesPath": "C:\\Users\\Exdru\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Exdru\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\gbemi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Exdru\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -12506,11 +12506,11 @@
             "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
             "suppressParent": "All",
             "target": "Package",
-            "version": "[7.0.15, )"
+            "version": "[7.0.16, )"
           },
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
             "target": "Package",
-            "version": "[7.0.11, )"
+            "version": "[7.0.12, )"
           },
           "bootstrap": {
             "target": "Package",

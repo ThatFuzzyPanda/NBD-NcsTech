@@ -86,7 +86,7 @@ namespace NBDProjectNcstech.Controllers
             {
                 _context.Add(client);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "ClientProject", new { ClientId = client.ID });
             }
             PopulateDropDownLists(client);
             return View(client);
@@ -141,7 +141,7 @@ namespace NBDProjectNcstech.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "ClientProject", new { ClientId = client.ID });
             }
             PopulateDropDownLists(client);
             return View(client);
