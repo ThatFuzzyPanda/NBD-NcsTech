@@ -64,6 +64,26 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50c1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Exdru/NBD-NcsTech/NBDProjectNcstech/NBDProjectNcstech/Views/DesignBids/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGVzaWduQmlkc1xDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Exdru/NBD-NcsTech/NBDProjectNcstech/NBDProjectNcstech/Views/DesignBids/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGVzaWduQmlkc1xEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Exdru/NBD-NcsTech/NBDProjectNcstech/NBDProjectNcstech/Views/DesignBids/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGVzaWduQmlkc1xEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Exdru/NBD-NcsTech/NBDProjectNcstech/NBDProjectNcstech/Views/DesignBids/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGVzaWduQmlkc1xFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Exdru/NBD-NcsTech/NBDProjectNcstech/NBDProjectNcstech/Views/DesignBids/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGVzaWduQmlkc1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Exdru/NBD-NcsTech/NBDProjectNcstech/NBDProjectNcstech/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -78,6 +98,26 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/Exdru/NBD-NcsTech/NBDProjectNcstech/NBDProjectNcstech/Views/Home/_ProjectPagingNavBar.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxfUHJvamVjdFBhZ2luZ05hdkJhci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Exdru/NBD-NcsTech/NBDProjectNcstech/NBDProjectNcstech/Views/LabourRequirments/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTGFib3VyUmVxdWlybWVudHNcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Exdru/NBD-NcsTech/NBDProjectNcstech/NBDProjectNcstech/Views/LabourRequirments/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTGFib3VyUmVxdWlybWVudHNcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Exdru/NBD-NcsTech/NBDProjectNcstech/NBDProjectNcstech/Views/LabourRequirments/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTGFib3VyUmVxdWlybWVudHNcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Exdru/NBD-NcsTech/NBDProjectNcstech/NBDProjectNcstech/Views/LabourRequirments/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTGFib3VyUmVxdWlybWVudHNcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Exdru/NBD-NcsTech/NBDProjectNcstech/NBDProjectNcstech/Views/LabourRequirments/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTGFib3VyUmVxdWlybWVudHNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Exdru/NBD-NcsTech/NBDProjectNcstech/NBDProjectNcstech/Views/Projects/Create.cshtml]

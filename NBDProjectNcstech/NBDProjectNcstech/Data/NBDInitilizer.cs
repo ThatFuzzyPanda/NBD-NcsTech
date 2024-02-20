@@ -104,6 +104,114 @@ namespace NBDProjectNcstech.Data
 
                 }
 
+                //For Regular workeres
+                string[] regularPositions = new string[] { "Designer", "Sales Associate", "Production Worker", "Gardener", "Driver", "Botanist", "Equipment Operator"};
+                //For Keri, Stan and other managers
+                string[] importantPositions = new string[] {"Group Manager","Co-Owner","General Manager","Production Group Manager", "Administrative Assistant"};
+
+                string[] combinedPosiitions = regularPositions.Concat(importantPositions).ToArray();
+
+                if (!context.StaffPositions.Any())
+                {
+                    foreach (string s in combinedPosiitions)
+                    {
+                        StaffPosition r = new StaffPosition
+                        {
+                            PositionName = s
+                        };
+                        context.StaffPositions.Add(r);
+                    }
+                    context.SaveChanges();
+                }
+
+                //Seed data for Staff
+                string[] firstNames = new string[] { "Lyric", "Antoinette", "Kendal", "Vivian", "Ruth", "Jamison", "Emilia", "Natalee", "Yadiel", "Jakayla", "Lukas", "Moses", "Kyler", "Karla", "Chanel", "Tyler", "Camilla", "Quintin", "Braden", "Clarence" };
+                string[] lastNames = new string[] { "Watts", "Randall", "Arias", "Weber", "Stone", "Carlson", "Robles", "Frederick", "Parker", "Morris", "Soto", "Bruce", "Orozco", "Boyer", "Burns", "Cobb", "Blankenship", "Houston", "Estes", "Atkins", "Miranda", "Zuniga", "Ward", "Mayo", "Costa", "Reeves", "Anthony", "Cook", "Krueger", "Crane", "Watts", "Little", "Henderson", "Bishop" };
+                int firstNamesCount = firstNames.Length;
+                int lastNamesCount = lastNames.Length;
+                int count = 0;
+                if (!context.Staffs.Any())
+                {
+                    while (count < lastNamesCount)
+                    {
+                        Staff r = new Staff
+                        {
+                            FullName = $"{firstNames[random.Next(0, firstNamesCount)]} {lastNames[random.Next(0, lastNamesCount)]}",
+                            Phone = random.Next(2, 10).ToString() + random.Next(213214131, 989898989).ToString(),
+                            StaffPositionID = random.Next(1, regularPositions.Length + 1)
+                        };
+                        context.Staffs.Add(r);
+                        count++;
+                    }
+
+                    //Staff that has been listed in PDF
+                    context.Staffs.AddRange(
+                        new Staff
+                        {
+                            FullName = "Keri Yamaguchi",
+                            Phone = random.Next(2, 10).ToString() + random.Next(213214131, 989898989).ToString(),
+                            StaffPositionID = context.StaffPositions.FirstOrDefault(s => s.PositionName == "Co-Owner").ID
+                        },
+                        new Staff
+                        {
+                            FullName = "Stan Fenton",
+                            Phone = random.Next(2, 10).ToString() + random.Next(213214131, 989898989).ToString(),
+                            StaffPositionID = context.StaffPositions.FirstOrDefault(s => s.PositionName == "Co-Owner").ID
+                        },
+                        new Staff
+                        {
+                            FullName = "Connie Nguyen",
+                            Phone = random.Next(2, 10).ToString() + random.Next(213214131, 989898989).ToString(),
+                            StaffPositionID = context.StaffPositions.FirstOrDefault(s => s.PositionName == "Administrative Assistant").ID
+                        },
+                        new Staff
+                        {
+                            FullName = "Cheryl Poy",
+                            Phone = random.Next(2, 10).ToString() + random.Next(213214131, 989898989).ToString(),
+                            StaffPositionID = context.StaffPositions.FirstOrDefault(s => s.PositionName == "Group Manager").ID
+                        },
+                        new Staff
+                        {
+                            FullName = "Bob Reinhardt",
+                            Phone = random.Next(2, 10).ToString() + random.Next(213214131, 989898989).ToString(),
+                            StaffPositionID = context.StaffPositions.FirstOrDefault(s => s.PositionName == "Sales Associate").ID
+                        },
+                        new Staff
+                        {
+                            FullName = "Tamara Bakken",
+                            Phone = random.Next(2, 10).ToString() + random.Next(213214131, 989898989).ToString(),
+                            StaffPositionID = context.StaffPositions.FirstOrDefault(s => s.PositionName == "Designer").ID
+                        },
+                        new Staff
+                        {
+                            FullName = "Sue Kaufman",
+                            Phone = random.Next(2, 10).ToString() + random.Next(213214131, 989898989).ToString(),
+                            StaffPositionID = context.StaffPositions.FirstOrDefault(s => s.PositionName == "Production Group Manager").ID
+                        },
+                        new Staff
+                        {
+                            FullName = "Monica Goce",
+                            Phone = random.Next(2, 10).ToString() + random.Next(213214131, 989898989).ToString(),
+                            StaffPositionID = context.StaffPositions.FirstOrDefault(s => s.PositionName == "Production Worker").ID
+                        },
+                        new Staff
+                        {
+                            FullName = "Bert Swenson",
+                            Phone = random.Next(2, 10).ToString() + random.Next(213214131, 989898989).ToString(),
+                            StaffPositionID = context.StaffPositions.FirstOrDefault(s => s.PositionName == "Production Worker").ID
+                        },
+                        new Staff
+                        {
+                            FullName = "Jerry",
+                            Phone = random.Next(2, 10).ToString() + random.Next(213214131, 989898989).ToString(),
+                            StaffPositionID = context.StaffPositions.FirstOrDefault(s => s.PositionName == "Equipment Operator").ID
+                        }
+                        );
+                    context.SaveChanges();
+
+                    
+                }
+
                 //string[] Names = {"Gagan Shrestha", "Josh Rydzpol Adlhaie Binalay", "Josh Martin", "Femarie Vien Briones", "Olubusiyi Olorungbemi Famobiwo" };
                 if (!context.Clients.Any())
                 {
@@ -200,7 +308,7 @@ namespace NBDProjectNcstech.Data
                     new Project
                     {
                         BidDate = new DateTime(2023, 09, 10),
-                        ProjectSite = "First Floor center lobby",
+                        ProjectSite = "Second Floor center lobby",
                         Est_BeginDate = new DateTime(2023, 09, 20),
                         Est_CompleteDate = new DateTime(2023, 11, 02),
                         BidAmount = random.Next(10000, 90000),
@@ -236,7 +344,7 @@ namespace NBDProjectNcstech.Data
                     new Project
                     {
                         BidDate = new DateTime(2023, 10, 28),
-                        ProjectSite = "Center Area for Christmas Decoration",
+                        ProjectSite = "Clubhouse, Resort",
                         Est_BeginDate = new DateTime(2023, 11, 05),
                         Est_CompleteDate = new DateTime(2023, 11, 10),
                         BidAmount = random.Next(10000, 90000),
@@ -246,7 +354,7 @@ namespace NBDProjectNcstech.Data
                     new Project
                     {
                         BidDate = new DateTime(2023, 10, 30),
-                        ProjectSite = "Entrance Garden for Christmas Decoration",
+                        ProjectSite = "Mall Entrance",
                         Est_BeginDate = new DateTime(2023, 11, 07),
                         Est_CompleteDate = new DateTime(2023, 11, 11),
                         BidAmount = random.Next(10000, 90000),
@@ -256,6 +364,113 @@ namespace NBDProjectNcstech.Data
                     context.SaveChanges();
                 }
 
+                int[] projectIDs = context.Projects.Select(d => d.Id).ToArray();
+                int projectIDCount = projectIDs.Length;
+
+                if (!context.DesignBids.Any())
+                {
+                    context.DesignBids.AddRange(
+                        new DesignBid
+                        {
+                            ProjectID = context.Projects.FirstOrDefault(p => p.ProjectSite == "Main Entrance Garden").Id
+                        },
+                        new DesignBid
+                        {
+                            ProjectID = context.Projects.FirstOrDefault(p => p.ProjectSite == "Patients recovery Garden").Id
+                        },
+                        new DesignBid
+                        {
+                            ProjectID = context.Projects.FirstOrDefault(p => p.ProjectSite == "First Floor center lobby").Id
+                        },
+                        new DesignBid
+                        {
+                            ProjectID = context.Projects.FirstOrDefault(p => p.ProjectSite == "Second Floor center lobby").Id
+                        },
+                        new DesignBid
+                        {
+                            ProjectID = context.Projects.FirstOrDefault(p => p.ProjectSite == "Main lobby").Id
+                        },
+                        new DesignBid
+                        {
+                            ProjectID = context.Projects.FirstOrDefault(p => p.ProjectSite == "Front desk lobby").Id
+                        },
+                        new DesignBid
+                        {
+                            ProjectID = context.Projects.FirstOrDefault(p => p.ProjectSite == "Center Area for Christmas Decoration").Id
+                        },
+                        new DesignBid
+                        {
+                            ProjectID = context.Projects.FirstOrDefault(p => p.ProjectSite == "Clubhouse, Resort").Id
+                        },
+                        new DesignBid
+                        {
+                            ProjectID = context.Projects.FirstOrDefault(p => p.ProjectSite == "Mall Entrance").Id
+                        },
+                        new DesignBid
+                        {
+                            ProjectID = context.Projects.FirstOrDefault(p => p.ProjectSite == "Entrance Garden for Christmas Decoration").Id
+                        }
+                        );
+
+                    context.SaveChanges();
+                }
+
+                if (!context.DesignBidStaff.Any())
+                {
+                    context.DesignBidStaff.AddRange(
+                        new DesignBidStaff
+                        {
+                            DesignBidID = context.DesignBids.FirstOrDefault(d => d.ID == 1).ID,
+                            StaffID = context.Staffs.FirstOrDefault(d => d.FullName == "Tamara Bakken").ID
+                        },
+                        new DesignBidStaff
+                        {
+                            DesignBidID = context.DesignBids.FirstOrDefault(d => d.ID == 2).ID,
+                            StaffID = context.Staffs.FirstOrDefault(d => d.FullName == "Bert Swenson").ID
+                        },
+                        new DesignBidStaff
+                        {
+                            DesignBidID = context.DesignBids.FirstOrDefault(d => d.ID == 3).ID,
+                            StaffID = context.Staffs.FirstOrDefault(d => d.FullName == "Monica Goce").ID
+                        },
+                        new DesignBidStaff
+                        {
+                            DesignBidID = context.DesignBids.FirstOrDefault(d => d.ID == 4).ID,
+                            StaffID = context.Staffs.FirstOrDefault(d => d.FullName == "Bert Swenson").ID
+                        },
+                        new DesignBidStaff
+                        {
+                            DesignBidID = context.DesignBids.FirstOrDefault(d => d.ID == 5).ID,
+                            StaffID = context.Staffs.FirstOrDefault(d => d.FullName == "Tamara Bakken").ID
+                        },
+                        new DesignBidStaff
+                        {
+                            DesignBidID = context.DesignBids.FirstOrDefault(d => d.ID == 6).ID,
+                            StaffID = context.Staffs.FirstOrDefault(d => d.FullName == "Tamara Bakken").ID
+                        },
+                        new DesignBidStaff
+                        {
+                            DesignBidID = context.DesignBids.FirstOrDefault(d => d.ID == 7).ID,
+                            StaffID = context.Staffs.FirstOrDefault(d => d.FullName == "Tamara Bakken").ID
+                        },
+                        new DesignBidStaff
+                        {
+                            DesignBidID = context.DesignBids.FirstOrDefault(d => d.ID == 8).ID,
+                            StaffID = context.Staffs.FirstOrDefault(d => d.FullName == "Tamara Bakken").ID
+                        },
+                        new DesignBidStaff
+                        {
+                            DesignBidID = context.DesignBids.FirstOrDefault(d => d.ID == 9).ID,
+                            StaffID = context.Staffs.FirstOrDefault(d => d.FullName == "Tamara Bakken").ID
+                        },
+                        new DesignBidStaff
+                        {
+                            DesignBidID = context.DesignBids.FirstOrDefault(d => d.ID == 10).ID,
+                            StaffID = context.Staffs.FirstOrDefault(d => d.FullName == "Tamara Bakken").ID
+                        }
+                        );
+                    context.SaveChanges();
+                }
 
             }
             catch (Exception ex)

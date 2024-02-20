@@ -19,8 +19,19 @@ namespace NBDProjectNcstech.Data
 		public DbSet<Project> Projects { get; set; }
         public DbSet<Province> Provinces { get; set; }
         public DbSet<City> Cities { get; set; }
+        public DbSet<Staff> Staffs { get; set; }
+        public DbSet<StaffPosition> StaffPositions { get; set; }
+        public DbSet<Approval> Approvals { get; set; }
+        public DbSet<DesignBid> DesignBids { get; set; }
+        public DbSet<DesignBidStaff> DesignBidStaff { get; set; }
+
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
+            //Many to Many Intersection (Design Bid and Staff)
+            modelBuilder.Entity<DesignBidStaff>()
+            .HasKey(d => new { d.StaffID, d.DesignBidID});
+
             //Add a unique index to the City/Province
             modelBuilder.Entity<City>()
             .HasIndex(c => new { c.Name, c.ProvinceID })

@@ -36,19 +36,19 @@ namespace NBDProjectNcstech.Models
 		[DataType(DataType.Currency)]
 		public double BidAmount { get; set; }
 
-		//foreign keys
-
-		//[Display(Name = "Staff")]
-		//[Required(ErrorMessage = "You must select a Staff")]
-		//public int StaffId { get; set; }
-		//public Staff Staff { get; set; }
-
-		[Display(Name = "Organization Name")]
+        //foreign keys
+        [Display(Name = "Organization Name")]
 		[Required(ErrorMessage = "You must select a Client.")]
 		public int ClientId { get; set; }
 		public Client Client { get; set; }
 
-		public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        [Display(Name = "Staffs")]
+        public ICollection<Staff> Staffs { get; set; } = new HashSet<Staff>();
+
+        [Display(Name = "Design Bids")]
+        public ICollection<DesignBid> DesignBids { get; set; } = new HashSet<DesignBid>();
+
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
 		{
 			if (Est_BeginDate < BidDate)
 			{
@@ -59,8 +59,6 @@ namespace NBDProjectNcstech.Models
 				yield return new ValidationResult("Estimated completion date cannot be before estimated begin date.", new[] { "Est_CompleteDate" });
 			}
 		}
-
-
     }
 }
 

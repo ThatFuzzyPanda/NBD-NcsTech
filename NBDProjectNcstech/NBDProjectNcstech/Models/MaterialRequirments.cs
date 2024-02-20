@@ -32,9 +32,14 @@ namespace NBDProjectNcstech.Models
             return $"{SizeL} x {SizeW} x {SizeH}";
         }
 
+        //Foregin Keys
+        [Display(Name = "Inventory")]
         public int InventoryID { get; set; }
-
         public Inventory Inventory { get; set; }
+
+        [Display(Name = "Design Bid")]
+        public int DesignBidID { get; set; }
+        public DesignBid DesignBid { get; set; }
 
     }
 }
