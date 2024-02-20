@@ -20,6 +20,26 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Exdru/NBD-NcsTech/NBDProjectNcstech/NBDProjectNcstech/Views/Approvals/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXBwcm92YWxzXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Exdru/NBD-NcsTech/NBDProjectNcstech/NBDProjectNcstech/Views/Approvals/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXBwcm92YWxzXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Exdru/NBD-NcsTech/NBDProjectNcstech/NBDProjectNcstech/Views/Approvals/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXBwcm92YWxzXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Exdru/NBD-NcsTech/NBDProjectNcstech/NBDProjectNcstech/Views/Approvals/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXBwcm92YWxzXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Exdru/NBD-NcsTech/NBDProjectNcstech/NBDProjectNcstech/Views/Approvals/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXBwcm92YWxzXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Exdru/NBD-NcsTech/NBDProjectNcstech/NBDProjectNcstech/Views/ClientProject/Add.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50UHJvamVjdFxBZGQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -62,6 +82,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/Exdru/NBD-NcsTech/NBDProjectNcstech/NBDProjectNcstech/Views/Clients/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50c1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Exdru/NBD-NcsTech/NBDProjectNcstech/NBDProjectNcstech/Views/DesignBids/ApprovalEdit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGVzaWduQmlkc1xBcHByb3ZhbEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Exdru/NBD-NcsTech/NBDProjectNcstech/NBDProjectNcstech/Views/DesignBids/Create.cshtml]

@@ -28,6 +28,7 @@ namespace NBDProjectNcstech.Controllers
         {
             var designBids = _context.DesignBids
                 .Include(d => d.Project)
+                .Include(d => d.Approvals)
                 .Include(d => d.DesignBidStaffs).ThenInclude(d => d.Staff)
                 .AsNoTracking();
 
@@ -48,6 +49,7 @@ namespace NBDProjectNcstech.Controllers
 
             var designBid = await _context.DesignBids
                 .Include(d => d.Project)
+                .Include(d => d.Approvals)
                 .Include(d => d.LabourRequirments)
                 .Include(d => d.DesignBidStaffs).ThenInclude(d => d.Staff)
                 .AsNoTracking()
@@ -87,6 +89,15 @@ namespace NBDProjectNcstech.Controllers
 
                     }
                 }
+
+                //Create new Approval with both its status as pending 
+                var newApproval = new Approval
+                {
+                    AdminApprovalStatus = ApprovalStatus.Pending.ToString(),
+                    ClientApprovalStatus = ApprovalStatus.Pending.ToString()
+                };
+                designBid.Approvals.Add(newApproval);
+
                 if (ModelState.IsValid)
                 {
                     _context.Add(designBid);
@@ -206,7 +217,7 @@ namespace NBDProjectNcstech.Controllers
         {
             if (_context.DesignBids == null)
             {
-                return Problem("Entity set 'NBDContext.DesignBids'  is null.");
+                return Problem("Entity set 'NBDContext.DesignBids' is null.");
             }
             var designBid = await _context.DesignBids
                                   .Include(d => d.DesignBidStaffs).ThenInclude(d => d.Staff)
@@ -220,7 +231,63 @@ namespace NBDProjectNcstech.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private void PopulateAssignedStaffData(DesignBid designBid)
+        // GET: DesignBids/Edit/5
+        public async Task<IActionResult> ApprovalEdit(int? id)
+        {
+            if (id == null || _context.Approvals == null)
+            {
+                return NotFound();
+            }
+
+            var approvalToUpdate = await _context.Approvals
+                                  .FirstOrDefaultAsync(d => d.ID == id);
+            if (approvalToUpdate == null)
+            {
+                return NotFound();
+            }
+            return View(approvalToUpdate);
+        }
+
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public async Task<IActionResult> AdminApproval(int id, string adminApprovalStatus, string adminApprovalNotes)
+		{
+			var approvalToUpdate = await _context.Approvals
+                                .FirstOrDefaultAsync(d => d.ID == id);
+
+			if (approvalToUpdate == null)
+			{
+				return NotFound();
+			}
+
+			if (await TryUpdateModelAsync<Approval>(approvalToUpdate, "",
+				a => a.AdminApprovalStatus, a => a.AdminApprovalNotes, a =>a.AdminApprovalDate))
+			{
+				try
+				{
+					_context.Update(approvalToUpdate);
+					await _context.SaveChangesAsync();
+					return RedirectToAction(nameof(Index));
+				}
+				catch (DbUpdateConcurrencyException)
+				{
+					if (!DesignBidExists(approvalToUpdate.ID))
+					{
+						return NotFound();
+					}
+					else
+					{
+						throw;
+					}
+				}
+			}
+
+			return View(approvalToUpdate);
+		}
+
+
+
+		private void PopulateAssignedStaffData(DesignBid designBid)
         {
             var allOptions = _context.Staffs;
             var currentOptionIDs = new HashSet<int>(designBid.DesignBidStaffs.Select(d => d.StaffID));

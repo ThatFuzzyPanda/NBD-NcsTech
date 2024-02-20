@@ -285,6 +285,10 @@
                                                     <th>
                                                         @Html.DisplayNameFor(model => model.DesignBidStaffs)
                                                     </th>
+                                                    <th>
+                                                        @Html.DisplayNameFor(model => model.Approvals)
+                                                    </th>
+                                                    <th></th>
                                                     <th></th>
                                                 </tr>
                                             </thead>
@@ -300,6 +304,23 @@
                                                             {
                                                                 @d.Staff.FullName <br />
                                                             }
+                                                        </td>
+                                                        <td>
+                                                            Admin Approval:
+                                                            @foreach (var a in item.Approvals)
+                                                            {
+                                                                @a.AdminApprovalStatus <br />
+                                                            }
+                                                            Client Approval:
+                                                            @foreach (var a in item.Approvals)
+                                                            {
+                                                                @a.ClientApprovalStatus <br />
+                                                            }
+                                                        </td>
+                                                        <td>
+                                                            <a asp-controller="DesignBids" asp-action="ApprovalEdit" asp-route-id="@item.ID" asp-route-status="approve" class="btn btn-success btn-sm" role="button">
+                                                                Approve
+                                                            </a>
                                                         </td>
                                                         <td>
                                                             <a href="@Url.Action("Edit", new { id = item.ID })">

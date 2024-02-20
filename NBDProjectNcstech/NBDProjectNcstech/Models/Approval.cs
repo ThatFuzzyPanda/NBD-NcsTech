@@ -2,6 +2,13 @@
 
 namespace NBDProjectNcstech.Models
 {
+    public enum ApprovalStatus
+    {
+        Approved,
+        Pending,
+        Denied
+    }
+
     public class Approval
     {
         public int ID { get; set; }
