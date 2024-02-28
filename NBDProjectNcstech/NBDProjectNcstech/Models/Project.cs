@@ -27,28 +27,29 @@ namespace NBDProjectNcstech.Models
 		[Required(ErrorMessage = "You must enter a est. complete date.")]
 		[Display(Name = "Est. Complete Date")]
 		[DataType(DataType.Date)]
-		
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+
+		[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
 		public DateTime Est_CompleteDate { get; set; }
 
 		[Required(ErrorMessage = "You must enter the bid amount.")]
 		[Display(Name = "Bid Amount")]
+		[DisplayFormat(DataFormatString = "{0:C}")]
 		[DataType(DataType.Currency)]
 		public double BidAmount { get; set; }
 
-        //foreign keys
-        [Display(Name = "Organization Name")]
+		//foreign keys
+		[Display(Name = "Organization Name")]
 		[Required(ErrorMessage = "You must select a Client.")]
 		public int ClientId { get; set; }
 		public Client Client { get; set; }
 
-        [Display(Name = "Staffs")]
-        public ICollection<Staff> Staffs { get; set; } = new HashSet<Staff>();
+		[Display(Name = "Staffs")]
+		public ICollection<Staff> Staffs { get; set; } = new HashSet<Staff>();
 
-        [Display(Name = "Design Bids")]
-        public ICollection<DesignBid> DesignBids { get; set; } = new HashSet<DesignBid>();
+		[Display(Name = "Design Bids")]
+		public ICollection<DesignBid> DesignBids { get; set; } = new HashSet<DesignBid>();
 
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+		public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
 		{
 			if (Est_BeginDate < BidDate)
 			{
@@ -59,7 +60,7 @@ namespace NBDProjectNcstech.Models
 				yield return new ValidationResult("Estimated completion date cannot be before estimated begin date.", new[] { "Est_CompleteDate" });
 			}
 		}
-    }
+	}
 }
 
 
