@@ -24,7 +24,7 @@ namespace NBDProjectNcstech.Controllers
         }
 
         // GET: DesignBids
-        public async Task<IActionResult> Index(int? page, int? pageSizeID)
+        public async Task<IActionResult> Index( string SearchString, int? page, int? pageSizeID)
         {
             var designBids = _context.DesignBids
                 .Include(d => d.Project)
@@ -32,8 +32,17 @@ namespace NBDProjectNcstech.Controllers
                 .Include(d => d.DesignBidStaffs).ThenInclude(d => d.Staff)
                 .AsNoTracking();
 
-            //Handle Paging
-            int pageSize = PageSizeHelper.SetPageSize(HttpContext, pageSizeID, ControllerName());
+
+			//search and filter
+			if (!System.String.IsNullOrEmpty(SearchString))
+			{
+				//clients = clients.Where(p => p.Name.ToUpper().Contains(SearchString.ToUpper())
+				//                       || p.ContactPerson.ToUpper().Contains(SearchString.ToUpper()));
+				designBids = designBids.Where(c => c.Project.ProjectSite.ToUpper().Contains(SearchString.ToUpper()));
+			}
+
+			//Handle Paging
+			int pageSize = PageSizeHelper.SetPageSize(HttpContext, pageSizeID, ControllerName());
             ViewData["pageSizeID"] = PageSizeHelper.PageSizeList(pageSize);
             var pagedData = await PaginatedList<DesignBid>.CreateAsync(designBids.AsNoTracking(), page ?? 1, pageSize);
             return View(pagedData);
