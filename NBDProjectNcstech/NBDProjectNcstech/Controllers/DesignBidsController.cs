@@ -11,6 +11,7 @@ using NBDProjectNcstech.Data;
 using NBDProjectNcstech.Models;
 using NBDProjectNcstech.Utilities;
 using NBDProjectNcstech.ViewModels;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace NBDProjectNcstech.Controllers
 {
@@ -29,6 +30,8 @@ namespace NBDProjectNcstech.Controllers
             var designBids = _context.DesignBids
                 .Include(d => d.Project)
                 .Include(d => d.Approvals)
+                .Include(d => d.LabourRequirments)
+                .Include(d => d.MaterialRequirments)
                 .Include(d => d.DesignBidStaffs).ThenInclude(d => d.Staff)
                 .AsNoTracking();
 
@@ -60,7 +63,8 @@ namespace NBDProjectNcstech.Controllers
                 .Include(d => d.Project)
                 .Include(d => d.Approvals)
                 .Include(d => d.LabourRequirments)
-                .Include(d => d.DesignBidStaffs).ThenInclude(d => d.Staff)
+                .Include(d => d.MaterialRequirments)
+				.Include(d => d.DesignBidStaffs).ThenInclude(d => d.Staff)
                 .AsNoTracking()
                 .FirstOrDefaultAsync(m => m.ID == id);
             if (designBid == null)
@@ -75,7 +79,8 @@ namespace NBDProjectNcstech.Controllers
         public IActionResult Create()
         {
             var designBid = new DesignBid();
-            PopulateAssignedStaffData(designBid);
+            //PopulateAssignedStaffData(designBid);
+            PopulateAssignedDesignStaffLists(designBid);
             ViewData["ProjectID"] = new SelectList(_context.Projects, "Id", "ProjectSite");
             return View();
         }
@@ -122,8 +127,9 @@ namespace NBDProjectNcstech.Controllers
             {
                 ModelState.AddModelError("", "Unable to save changes.");
             }
-            PopulateAssignedStaffData(designBid);
-            ViewData["ProjectID"] = new SelectList(_context.Projects, "Id", "ProjectSite", designBid.ProjectID);
+            //PopulateAssignedStaffData(designBid);
+            PopulateAssignedDesignStaffLists(designBid);
+			ViewData["ProjectID"] = new SelectList(_context.Projects, "Id", "ProjectSite", designBid.ProjectID);
             return View(designBid);
         }
 
@@ -142,8 +148,9 @@ namespace NBDProjectNcstech.Controllers
             {
                 return NotFound();
             }
-            PopulateAssignedStaffData(designBid);
-            ViewData["ProjectID"] = new SelectList(_context.Projects, "Id", "ProjectSite", designBid.ProjectID);
+            //PopulateAssignedStaffData(designBid);
+			PopulateAssignedDesignStaffLists(designBid);
+			ViewData["ProjectID"] = new SelectList(_context.Projects, "Id", "ProjectSite", designBid.ProjectID);
             return View(designBid);
         }
 
@@ -162,9 +169,10 @@ namespace NBDProjectNcstech.Controllers
                 return NotFound();
             }
 
-            UpdateDesignBidStaffs(selectedOptions,designBidToUpdate);
+            //UpdateDesignBidStaffs(selectedOptions,designBidToUpdate);
+			UpdateDesignBidStaffsListboxes(selectedOptions, designBidToUpdate);
 
-            if (await TryUpdateModelAsync<DesignBid>(designBidToUpdate, "",
+			if (await TryUpdateModelAsync<DesignBid>(designBidToUpdate, "",
                 d => d.ProjectID))
             {
                 try
@@ -193,8 +201,9 @@ namespace NBDProjectNcstech.Controllers
                 }
             }
 
-            PopulateAssignedStaffData(designBidToUpdate);
-            ViewData["ProjectID"] = new SelectList(_context.Projects, "Id", "ProjectSite", designBidToUpdate.ProjectID);
+            //PopulateAssignedStaffData(designBidToUpdate);
+			PopulateAssignedDesignStaffLists(designBidToUpdate);
+			ViewData["ProjectID"] = new SelectList(_context.Projects, "Id", "ProjectSite", designBidToUpdate.ProjectID);
             return View(designBidToUpdate);
         }
 
@@ -345,9 +354,85 @@ namespace NBDProjectNcstech.Controllers
             }
         }
 
+		//Note that we will use the two list box approach for edit.
+		#region Maintain List Boxes
+		private void PopulateAssignedDesignStaffLists(DesignBid designbid)
+		{
+			//For this to work, you must have Included the child collection in the parent object
+			var allOptions = _context.Staffs
+									.Where(s => s.StaffPosition.PositionName == "Designer" || s.StaffPosition.PositionName == "Laborer")
+									.Include(s => s.StaffPosition);
+
+			var currentOptionsHS = new HashSet<int>(designbid.DesignBidStaffs.Select(b => b.StaffID));
+
+			//Instead of one list with a boolean, we will make two lists
+			var selected = new List<ListOptionVM>();
+			var available = new List<ListOptionVM>();
+
+			foreach (var r in allOptions)
+			{
+				if (currentOptionsHS.Contains(r.ID))
+				{
+					selected.Add(new ListOptionVM
+					{
+						ID = r.ID,
+						DisplayText = $"{r.FullName} - {r.StaffPosition.PositionName}"
+					});
+				}
+				else
+				{
+					available.Add(new ListOptionVM
+					{
+						ID = r.ID,
+						DisplayText = $"{r.FullName} - {r.StaffPosition.PositionName}"
+					});
+				}
+			}
+
+			ViewData["selOpts"] = new MultiSelectList(selected.OrderBy(s => s.DisplayText), "ID", "DisplayText");
+			ViewData["availOpts"] = new MultiSelectList(available.OrderBy(s => s.DisplayText), "ID", "DisplayText");
+		}
+
+
+		private void UpdateDesignBidStaffsListboxes(string[] selectedOptions, DesignBid designBidToUpdate)
+        {
+            if (selectedOptions == null)
+            {
+                designBidToUpdate.DesignBidStaffs = new List<DesignBidStaff>();
+                return;
+            }
+
+            var selectedOptionsHS = new HashSet<string>(selectedOptions);
+            var currentOptionsHS = new HashSet<int>(designBidToUpdate.DesignBidStaffs.Select(b => b.StaffID));
+            foreach (var r in _context.Staffs)
+            {
+                if (selectedOptionsHS.Contains(r.ID.ToString()))//it is selected
+                {
+                    if (!currentOptionsHS.Contains(r.ID))//but not currently in the Function's collection - Add it!
+                    {
+                        designBidToUpdate.DesignBidStaffs.Add(new DesignBidStaff
+                        {
+                            StaffID = r.ID,
+                            DesignBidID = designBidToUpdate.ID
+                        });
+                    }
+                }
+                else //not selected
+                {
+                    if (currentOptionsHS.Contains(r.ID))//but is currently in the Function's collection - Remove it!
+                    {
+                        DesignBidStaff staffToRemove = designBidToUpdate.DesignBidStaffs.FirstOrDefault(d => d.StaffID == r.ID);
+                        _context.Remove(staffToRemove);
+                    }
+                }
+            }
+        }
+        #endregion
+
         private bool DesignBidExists(int id)
         {
             return _context.DesignBids.Any(e => e.ID == id);
         }
     }
+
 }

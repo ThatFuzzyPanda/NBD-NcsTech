@@ -105,7 +105,7 @@ namespace NBDProjectNcstech.Data
                 }
 
                 //For Regular workeres
-                string[] regularPositions = new string[] { "Designer", "Sales Associate", "Production Worker", "Gardener", "Driver", "Botanist", "Equipment Operator"};
+                string[] regularPositions = new string[] { "Designer", "Sales Associate", "Laborer", "Gardener", "Driver", "Botanist", "Equipment Operator"};
                 //For Keri, Stan and other managers
                 string[] importantPositions = new string[] {"Group Manager","Co-Owner","General Manager","Production Group Manager", "Administrative Assistant"};
 
@@ -192,13 +192,13 @@ namespace NBDProjectNcstech.Data
                         {
                             FullName = "Monica Goce",
                             Phone = random.Next(2, 10).ToString() + random.Next(213214131, 989898989).ToString(),
-                            StaffPositionID = context.StaffPositions.FirstOrDefault(s => s.PositionName == "Production Worker").ID
+                            StaffPositionID = context.StaffPositions.FirstOrDefault(s => s.PositionName == "Laborer").ID
                         },
                         new Staff
                         {
                             FullName = "Bert Swenson",
                             Phone = random.Next(2, 10).ToString() + random.Next(213214131, 989898989).ToString(),
-                            StaffPositionID = context.StaffPositions.FirstOrDefault(s => s.PositionName == "Production Worker").ID
+                            StaffPositionID = context.StaffPositions.FirstOrDefault(s => s.PositionName == "Laborer").ID
                         },
                         new Staff
                         {

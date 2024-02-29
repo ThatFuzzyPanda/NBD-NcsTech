@@ -296,7 +296,48 @@
                                             }
                                         </tbody>
                                     </table>
-
+                                </dd>
+                                <dt class="col-sm-2">
+                                    @Html.DisplayNameFor(model => model.MaterialRequirments)
+                                </dt>
+                                <dd class="col-sm-10">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.MaterialRequirments.FirstOrDefault().Quanity)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.MaterialRequirments.FirstOrDefault().Description)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.MaterialRequirments.FirstOrDefault().CostPrice)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.MaterialRequirments.FirstOrDefault().SalePrice)
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var item in Model.MaterialRequirments)
+                                            {
+                                                <tr>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.Quanity)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.Description)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.CostPrice)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.SalePrice)
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
                                 </dd>
                             </dl>
                             <div>
