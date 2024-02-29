@@ -485,10 +485,6 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
-      "Id": "C:\\Users\\Exdru\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\wwwroot\\js\\multiselect.js",
-      "PackagePath": "staticwebassets\\js\\multiselect.js"
-    },
-    {
       "Id": "C:\\Users\\Exdru\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },
