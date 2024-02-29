@@ -6,6 +6,7 @@ using NBDProjectNcstech.Models;
 using System.Diagnostics;
 using System.Dynamic;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace NBDProjectNcstech.Controllers
 {
@@ -19,22 +20,36 @@ namespace NBDProjectNcstech.Controllers
             _logger = logger;
             _context = nBDContext;
         }
-        public async Task<IActionResult> Index(int? page, int? pageSizeID)
+        public async Task<IActionResult> Index(string SearchString, int? idProject, int? Id,int? page, int? pageSizeID)
         {
             var clients = _context.Clients.AsNoTracking();
             var projects =  _context.Projects
                             .Include(p => p.Client)
                             .AsNoTracking();
 
-            //Handle Paging
-            int pageSize = PageSizeHelper.SetPageSize(HttpContext, pageSizeID, ControllerName());
+			if (Id.HasValue)
+			{
+				clients = clients.Where(p => p.ID == Id);
+			}
+			if (idProject.HasValue)
+			{
+				projects = projects.Where(p => p.ClientId == idProject);
+			}
+
+			if (!System.String.IsNullOrEmpty(SearchString))
+            { 
+				clients = clients.Where(c => c.ContactPerson.ToUpper().Contains(SearchString.ToUpper()));
+			}
+
+			//Handle Paging
+			int pageSize = PageSizeHelper.SetPageSize(HttpContext, pageSizeID, ControllerName());
             ViewData["pageSizeID"] = PageSizeHelper.PageSizeList(pageSize);
 
             // Separate paginated lists for clients and projects
             var pagedDataClient = await PaginatedList<Client>.CreateAsync(clients.AsQueryable(), page ?? 1, pageSize);
             var pagedDataProject = await PaginatedList<Project>.CreateAsync(projects.AsQueryable(), page ?? 1, pageSize);
-
-            var combinedLists = new PaginatedHomeLists
+            PopulateDropDownLists();
+			var combinedLists = new PaginatedHomeLists
             {
                 PagedClients = pagedDataClient,
                 PagedProjects = pagedDataProject
@@ -42,8 +57,18 @@ namespace NBDProjectNcstech.Controllers
 
             return View(combinedLists);
         }
-
-        public IActionResult Privacy()
+		private SelectList ClientSelectList(int? selectedId)
+		{
+			return new SelectList(_context
+				.Clients
+				.OrderBy(m => m.Name), "ID", "Name", selectedId);
+		}
+		private void PopulateDropDownLists(Client client = null)
+        { 
+			ViewData["Id"] = ClientSelectList(client?.ID);
+			ViewData["idProject"] = ClientSelectList(client?.ID);
+		}
+		public IActionResult Privacy()
         {
             return View();
         }
