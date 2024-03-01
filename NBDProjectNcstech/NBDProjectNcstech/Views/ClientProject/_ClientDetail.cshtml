@@ -1,49 +1,73 @@
 ﻿@model NBDProjectNcstech.Models.Client
-<div class="row">
-    <div class="col-6">
-        <dl class="row" style="font-size: 1.2em;">
-            <dt class="col-sm-3">
-                @Html.DisplayNameFor(model => model.Name)
-            </dt>
-            <dd class="col-sm-9">
-                @Html.DisplayFor(model => model.Name)
-            </dd>
-            <dt class="col-sm-3">
-                @Html.DisplayNameFor(model => model.ContactPerson)
-            </dt>
-            <dd class="col-sm-9">
-                @Html.DisplayFor(model => model.ContactPerson)
-            </dd>
-            <dt class="col-sm-3">
-                @Html.DisplayNameFor(model => model.Phone)
-            </dt>
-            <dd class="col-sm-9">
-                @Html.DisplayFor(model => model.FormatedPhoneNumber)
-            </dd>
-            <dt class="col-sm-3">
-                @Html.DisplayNameFor(model => model.Street)
-            </dt>
-            <dd class="col-sm-9">
-                @Html.DisplayFor(model => model.Street)
-            </dd>
-            <dt class="col-sm-3">
-                @Html.DisplayNameFor(model => model.City.Province)
-            </dt>
-            <dd class="col-sm-9">
-                @Html.DisplayFor(model => model.City.Province.Name)
-            </dd>
-            <dt class="col-sm-3">
-                @Html.DisplayNameFor(model => model.City)
-            </dt>
-            <dd class="col-sm-9">
-                @Html.DisplayFor(model => model.City.Summary)
-            </dd>
-            <dt class="col-sm-3">
-                @Html.DisplayNameFor(model => model.PostalCode)
-            </dt>
-            <dd class="col-sm-9">
-                @Html.DisplayFor(model => model.PostalCode)
-            </dd>
-        </dl>
-    </div>
-</div>
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            
+
+
+                <!-- Main content -->
+                <div class="callout callout-info">
+                    <!-- title row -->
+                    <div class="row">
+                        <div class="col-12">
+                        <h4><strong>Client  Details</strong></h4>
+                        <hr />
+                            <dl class="row" style="font-size: 1.2em;">
+                                <dt class="col-sm-3">
+                                    @Html.DisplayNameFor(model => model.Name)
+                                </dt>
+                                <dd class="col-sm-9">
+                                    @Html.DisplayFor(model => model.Name)
+                                </dd>
+                                <dt class="col-sm-3">
+                                    @Html.DisplayNameFor(model => model.ContactPerson)
+                                </dt>
+                                <dd class="col-sm-9">
+                                    @Html.DisplayFor(model => model.ContactPerson)
+                                </dd>
+                                <dt class="col-sm-3">
+                                    @Html.DisplayNameFor(model => model.Phone)
+                                </dt>
+                                <dd class="col-sm-9">
+                                    @Html.DisplayFor(model => model.FormatedPhoneNumber)
+                                </dd>
+                                <dt class="col-sm-3">
+                                    @Html.DisplayNameFor(model => model.Street)
+                                </dt>
+                                <dd class="col-sm-9">
+                                    @Html.DisplayFor(model => model.Street)
+                                </dd>
+                                <dt class="col-sm-3">
+                                    @Html.DisplayNameFor(model => model.City.Province)
+                                </dt>
+                                <dd class="col-sm-9">
+                                    @Html.DisplayFor(model => model.City.Province.Name)
+                                </dd>
+                                <dt class="col-sm-3">
+                                    @Html.DisplayNameFor(model => model.City)
+                                </dt>
+                                <dd class="col-sm-9">
+                                    @Html.DisplayFor(model => model.City.Summary)
+                                </dd>
+                                <dt class="col-sm-3">
+                                    @Html.DisplayNameFor(model => model.PostalCode)
+                                </dt>
+                                <dd class="col-sm-9">
+                                    @Html.DisplayFor(model => model.PostalCode)
+                                </dd>
+                            </dl>
+                    </div>
+                    <!-- /.row -->
+                 
+
+                
+                    <!-- /.row -->
+                   
+            
+                </div>
+                <!-- /.invoice -->
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</section>
+<!-- /.content -->
