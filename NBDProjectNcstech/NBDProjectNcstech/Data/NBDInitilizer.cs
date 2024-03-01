@@ -20,7 +20,157 @@ namespace NBDProjectNcstech.Data
                 //To randomly generate data
                 Random random = new Random();
                 DateTime ranDate = DateTime.Now;
+
+                //Item Types
+
+                if (!context.ItemTypes.Any())
+                {
+                    context.ItemTypes.AddRange(
+                        new ItemType { Name = "Plants" },
+                        new ItemType { Name = "Pottery" },
+                        new ItemType { Name = "Materials" }
+                    );
+					context.SaveChanges();
+				}
+                //Inventory 
+                if (!context.Inventory.Any())
+                {
+                    context.Inventory.AddRange(
+                        //Pottery
+                        new Inventory
+                        {
+                            Name = "granite Fountain",
+                            TypeID = context.ItemTypes.FirstOrDefault(c => c.Name == "Pottery").ID,
+                            Description = "granite Fountain",
+                            Size = "48",
+                            CostPrice = 750
+                        },
+                        new Inventory
+                        {
+                            Name = "Concret Ern",
+                            TypeID = context.ItemTypes.FirstOrDefault(c => c.Name == "Pottery").ID,
+                            Description = "Concret Ern",
+                            Size = "73",
+                            CostPrice = 195
+
+                        },
+                        new Inventory
+                        {
+                            Name = "granite Pots",
+                            TypeID = context.ItemTypes.FirstOrDefault(c => c.Name == "Pottery").ID,
+                            Description = "granite Pots",
+                            Size = "50",
+                            CostPrice = 195
+                        },
+
+                        new Inventory
+                        {
+                            Name = "Wooden pots",
+                            TypeID = context.ItemTypes.FirstOrDefault(c => c.Name == "Pottery").ID,
+                            Description = "Wooden pots",
+                            Size = "48",
+                            CostPrice = 100
+
+                        },
+
+                        new Inventory
+                        {
+                            Name = "caryota mitis",
+                            TypeID = context.ItemTypes.FirstOrDefault(c => c.Name == "Plants").ID,
+                            Description = "caryota mitis",
+                            Size = "7",
+                            CostPrice = 233
+                        },
+
+                        new Inventory
+                        {
+                            Name = "marginata",
+                            TypeID = context.ItemTypes.FirstOrDefault(c => c.Name == "Plants").ID,
+                            Description = "marginata",
+                            Size = "15",
+                            CostPrice = 75
+                        },
+
+                        new Inventory
+                        {
+                            Name = "laccospadix australasica palm",
+                            TypeID = context.ItemTypes.FirstOrDefault(c => c.Name == "Plants").ID,
+                            Description = "laccospadix australasica palm",
+                            Size = "7",
+                            CostPrice = 749
+
+                        },
+
+                        new Inventory
+                        {
+                            Name = "Blue Fescue",
+                            TypeID = context.ItemTypes.FirstOrDefault(c => c.Name == "Plants").ID,
+                            Description = "Blue Fescue",
+                            Size = "2",
+                            CostPrice = 860
+
+                        },
+
+                        new Inventory
+                        {
+                            Name = "Top Soil",
+                            TypeID = context.ItemTypes.FirstOrDefault(c => c.Name == "Materials").ID,
+                            Description = "Top Soil",
+                            Size = "15",
+                            CostPrice = 15.97M
+                        },
+
+                        new Inventory
+                        {
+                            Name = "Mulch",
+                            TypeID = context.ItemTypes.FirstOrDefault(c => c.Name == "Materials").ID,
+                            Description = "Mulch",
+                            Size = "10",
+
+                            CostPrice = 20
+                        },
+
+                        new Inventory
+                        {
+                            Name = "decorative cedar bark (CBRK5)",
+                            TypeID = context.ItemTypes.FirstOrDefault(c => c.Name == "Materials").ID,
+                            Description = "decorative cedar bark (CBRK5)",
+                            Size = "5",
+                            CostPrice = 15.95M
+                        },
+
+                        new Inventory
+                        {
+                            Name = "Screenings",
+                            TypeID = context.ItemTypes.FirstOrDefault(c => c.Name == "Materials").ID,
+                            Description = "Screenings",
+                            Size = "5",
+                            CostPrice = 20
+                        }
+
+                    );
+					context.SaveChanges();
+				}
+
+                //Material Requriments
+                if (!context.MaterialRequirments.Any())
+                {
+                    var materialRequirments = new List<MaterialRequirments>()
+                    {
+                      new MaterialRequirments
+                      {
+                          InventoryID = context.Inventory.FirstOrDefault(c => c.Name=="Screenings").ID,
+                          //Quanity 
+                          
+                      }
+
+
+
+                    };
+                }
+
                 //Provinces 
+                if (!context.Provinces.Any())
                 if (!context.Provinces.Any())
                 {
                     var provinces = new List<Province>
@@ -471,6 +621,7 @@ namespace NBDProjectNcstech.Data
                         );
                     context.SaveChanges();
                 }
+                
 
             }
             catch (Exception ex)
