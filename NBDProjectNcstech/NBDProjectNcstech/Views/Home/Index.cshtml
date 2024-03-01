@@ -347,7 +347,8 @@
 														<td>@client.ContactPerson</td>
 														<td>@client.FormatedPhoneNumber</td>
 														<td>
-															<a asp-controller="Clients" asp-action="Details" asp-route-id="@client.ID" class="text-muted">
+															<a asp-controller="ClientProject" asp-action="Index" asp-route-ClientId="@client.ID" class="text-muted"
+															   role="button" data-bs-toggle="tooltip" title="@ViewData["ControllerFriendlyName"] Details">
 																<i class="fas fa-info-circle" style="color: #005fa8;"></i>
 															</a>
 														</td>
