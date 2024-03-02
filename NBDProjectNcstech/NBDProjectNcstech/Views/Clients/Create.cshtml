@@ -233,18 +233,19 @@
 
 
 				<div class="card card-primary">
+						<div class="card-header" style="background-color:darkgreen;">
 					<div class="row mb-2"><br/>
-							<div class="col-md-6 offset-md-3" style="margin-top: 20px;">
-							<h1>Create New Client</h1>
+							<divdiv class="col-md-6 offset-md-3" style="margin-top: 20px;">
+								<h3 style="color: white;">Create New Client</h3>
 							
 						</div>
-							
-					</div>
-						<hr style="width: 100%" />
+						</div>
+					
+						
 					<div class="row mb-3">
 						<div class="col-md-6 offset-md-3">
-
-							<form asp-action="Create">
+								<br />
+								<form asp-action="Create" style="font-size: 1.2em;">
 								<div asp-validation-summary="ModelOnly" class="text-danger"></div>
 								<div class="form-group">
 									<label asp-for="Name" class="control-label">Organization name</label>
@@ -285,7 +286,7 @@
 									<span asp-validation-for="PostalCode" class="text-danger"></span>
 								</div>
 								<div class="form-group">
-									<button type="submit" class="btn btn-primary">Create</button>
+									<button type="submit" class="btn btn-success">Create</button>
 									<button type="button" onclick="window.location.href = '@Url.Action("Index")'" class="btn btn-primary">Cancel</button>
 
 								</div>
