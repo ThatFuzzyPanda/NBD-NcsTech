@@ -287,8 +287,8 @@
 								</div>
 								<div class="form-group">
 									<button type="submit" class="btn btn-success">Create</button>
-									<button type="button" onclick="window.location.href = '@Url.Action("Index")'" class="btn btn-primary">Cancel</button>
-
+									<button type="button" onclick="window.location.href = '@Url.Action("Index")'" class="btn btn-primary">Back</button>
+										
 								</div>
 							</form>
 						</div>
@@ -337,5 +337,6 @@
 			var URL = "/Clients/GetCities/?ProvinceID=" + selectedProvince;
 			refreshDDL('CityID', URL, true, 'Select a Province with Cities first', false, null, true);
 		});
+
 	</script>
 }
