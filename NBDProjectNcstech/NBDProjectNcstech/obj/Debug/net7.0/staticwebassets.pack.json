@@ -489,6 +489,10 @@
       "PackagePath": "staticwebassets\\js\\multiselect.js"
     },
     {
+      "Id": "C:\\Users\\Owner\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\wwwroot\\js\\refreshDDL.js",
+      "PackagePath": "staticwebassets\\js\\refreshDDL.js"
+    },
+    {
       "Id": "C:\\Users\\Owner\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },
