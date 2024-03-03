@@ -41,12 +41,7 @@ namespace NBDProjectNcstech.Data.NBDMigrations
                     b.Property<string>("ClientApprovalStatus")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("DesignBidID")
-                        .HasColumnType("INTEGER");
-
                     b.HasKey("ID");
-
-                    b.HasIndex("DesignBidID");
 
                     b.ToTable("Approvals");
                 });
@@ -91,6 +86,13 @@ namespace NBDProjectNcstech.Data.NBDMigrations
                         .HasMaxLength(50)
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("CreatedBy")
+                        .HasMaxLength(256)
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime?>("CreatedOn")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -109,6 +111,13 @@ namespace NBDProjectNcstech.Data.NBDMigrations
                         .HasMaxLength(50)
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("UpdatedBy")
+                        .HasMaxLength(256)
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime?>("UpdatedOn")
+                        .HasColumnType("TEXT");
+
                     b.HasKey("ID");
 
                     b.HasIndex("CityID");
@@ -122,10 +131,43 @@ namespace NBDProjectNcstech.Data.NBDMigrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<int?>("ApprovalID")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("ApprovedBy")
+                        .HasMaxLength(256)
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime?>("ApprovedOn")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("CreatedBy")
+                        .HasMaxLength(256)
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime?>("CreatedOn")
+                        .HasColumnType("TEXT");
+
                     b.Property<int>("ProjectID")
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("RejectedBy")
+                        .HasMaxLength(256)
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime?>("RejectedOn")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasMaxLength(256)
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime?>("UpdatedOn")
+                        .HasColumnType("TEXT");
+
                     b.HasKey("ID");
+
+                    b.HasIndex("ApprovalID");
 
                     b.HasIndex("ProjectID");
 
@@ -370,17 +412,6 @@ namespace NBDProjectNcstech.Data.NBDMigrations
                     b.ToTable("StaffPositions");
                 });
 
-            modelBuilder.Entity("NBDProjectNcstech.Models.Approval", b =>
-                {
-                    b.HasOne("NBDProjectNcstech.Models.DesignBid", "DesignBid")
-                        .WithMany("Approvals")
-                        .HasForeignKey("DesignBidID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("DesignBid");
-                });
-
             modelBuilder.Entity("NBDProjectNcstech.Models.City", b =>
                 {
                     b.HasOne("NBDProjectNcstech.Models.Province", "Province")
@@ -403,11 +434,17 @@ namespace NBDProjectNcstech.Data.NBDMigrations
 
             modelBuilder.Entity("NBDProjectNcstech.Models.DesignBid", b =>
                 {
+                    b.HasOne("NBDProjectNcstech.Models.Approval", "Approval")
+                        .WithMany("DesignBids")
+                        .HasForeignKey("ApprovalID");
+
                     b.HasOne("NBDProjectNcstech.Models.Project", "Project")
                         .WithMany("DesignBids")
                         .HasForeignKey("ProjectID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Approval");
 
                     b.Navigation("Project");
                 });
@@ -504,6 +541,11 @@ namespace NBDProjectNcstech.Data.NBDMigrations
                     b.Navigation("StaffPosition");
                 });
 
+            modelBuilder.Entity("NBDProjectNcstech.Models.Approval", b =>
+                {
+                    b.Navigation("DesignBids");
+                });
+
             modelBuilder.Entity("NBDProjectNcstech.Models.City", b =>
                 {
                     b.Navigation("Clients");
@@ -516,8 +558,6 @@ namespace NBDProjectNcstech.Data.NBDMigrations
 
             modelBuilder.Entity("NBDProjectNcstech.Models.DesignBid", b =>
                 {
-                    b.Navigation("Approvals");
-
                     b.Navigation("DesignBidStaffs");
 
                     b.Navigation("LabourRequirments");

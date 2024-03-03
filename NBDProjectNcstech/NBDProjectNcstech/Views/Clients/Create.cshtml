@@ -270,13 +270,13 @@
 								<div class="form-group">
 									<label class="control-label">Province</label>
 									<select class="form-control" id="ProvinceID" name="ProvinceID" asp-items="ViewBag.ProvinceID">
-										<option value="">Select Province</option>
+										<option value="0">Select Province</option>
 									</select>
 								</div>
 								<div class="form-group">
 									<label id="CityIDLabel" class="control-label">City</label>
 									<select id="CityID" name="CityID" class="form-control" asp-items="ViewBag.CityID">
-										<option value="">Select a Province First</option>
+										<option value="0">Select a City</option>
 									</select>
 									<span asp-validation-for="CityID" class="text-danger"></span>
 								</div>
@@ -287,8 +287,8 @@
 								</div>
 								<div class="form-group">
 									<button type="submit" class="btn btn-success">Create</button>
-									<button type="button" onclick="window.location.href = '@Url.Action("Index")'" class="btn btn-primary">Cancel</button>
-
+									<button type="button" onclick="window.location.href = '@Url.Action("Index")'" class="btn btn-primary">Back</button>
+										
 								</div>
 							</form>
 						</div>
@@ -335,7 +335,8 @@
 		$('#ProvinceID').change(function () {
 			var selectedProvince = $("#ProvinceID").val();
 			var URL = "/Clients/GetCities/?ProvinceID=" + selectedProvince;
-			refreshDDL('CityID', URL, true, 'Select a Province with Cities first', false, null, true);
+			refreshDDL('CityID', URL, true, 'Select a City', false, null, true);
 		});
+
 	</script>
 }
