@@ -553,38 +553,38 @@ namespace NBDProjectNcstech.Data
                 int[] projectIDs = context.Projects.Select(d => d.Id).ToArray();
                 int projectIDCount = projectIDs.Length;
 
-                if (!context.DesignBids.Any())
-                {
-                    context.DesignBids.AddRange(
-                        new DesignBid
-                        {
-                            ProjectID = context.Projects.FirstOrDefault(p => p.ProjectSite == "Main Entrance Garden").Id
-                        },
-                        new DesignBid
-                        {
-                            ProjectID = context.Projects.FirstOrDefault(p => p.ProjectSite == "Patients recovery Garden").Id
-                        }
-                        );
+                //if (!context.DesignBids.Any())
+                //{
+                //    context.DesignBids.AddRange(
+                //        new DesignBid
+                //        {
+                //            ProjectID = context.Projects.FirstOrDefault(p => p.ProjectSite == "Main Entrance Garden").Id
+                //        },
+                //        new DesignBid
+                //        {
+                //            ProjectID = context.Projects.FirstOrDefault(p => p.ProjectSite == "Patients recovery Garden").Id
+                //        }
+                //        );
 
-                    context.SaveChanges();
-                }
+                //    context.SaveChanges();
+                //}
 
-                if (!context.DesignBidStaff.Any())
-                {
-                    context.DesignBidStaff.AddRange(
-                        new DesignBidStaff
-                        {
-                            DesignBidID = 1,
-                            StaffID = context.Staffs.FirstOrDefault(d => d.FullName == "Tamara Bakken").ID
-                        },
-                        new DesignBidStaff
-                        {
-                            DesignBidID = 2,
-                            StaffID = context.Staffs.FirstOrDefault(d => d.FullName == "Bert Swenson").ID
-                        }
-                        );
-                    context.SaveChanges();
-                }
+                //if (!context.DesignBidStaff.Any())
+                //{
+                //    context.DesignBidStaff.AddRange(
+                //        new DesignBidStaff
+                //        {
+                //            DesignBidID = 1,
+                //            StaffID = context.Staffs.FirstOrDefault(d => d.FullName == "Tamara Bakken").ID
+                //        },
+                //        new DesignBidStaff
+                //        {
+                //            DesignBidID = 2,
+                //            StaffID = context.Staffs.FirstOrDefault(d => d.FullName == "Bert Swenson").ID
+                //        }
+                //        );
+                //    context.SaveChanges();
+                //}
 
                 
             }
