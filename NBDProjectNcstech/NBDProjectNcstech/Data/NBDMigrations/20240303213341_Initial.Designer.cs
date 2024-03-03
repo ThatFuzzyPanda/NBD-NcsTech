@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NBDProjectNcstech.Data;
 
@@ -10,9 +11,11 @@ using NBDProjectNcstech.Data;
 namespace NBDProjectNcstech.Data.NBDMigrations
 {
     [DbContext(typeof(NBDContext))]
-    partial class NBDContextModelSnapshot : ModelSnapshot
+    [Migration("20240303213341_Initial")]
+    partial class Initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.16");

@@ -62,7 +62,6 @@ namespace NBDProjectNcstech.Controllers
 
             var designBid = await _context.DesignBids
                 .Include(d => d.Project)
-                .Include(d => d.Approvals)
                 .Include(d => d.LabourRequirments).ThenInclude(d => d.Labour)
                 .Include(d => d.MaterialRequirments).ThenInclude(d => d.Inventory)
                 .Include(d => d.DesignBidStaffs).ThenInclude(d => d.Staff)

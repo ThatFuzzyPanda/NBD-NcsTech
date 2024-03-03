@@ -586,24 +586,7 @@ namespace NBDProjectNcstech.Data
                     context.SaveChanges();
                 }
 
-                if (!context.Approvals.Any())
-                {
-                    context.Approvals.AddRange(
-                        new Approval
-                        {
-                            DesignBidID = 1,
-                            AdminApprovalStatus = ApprovalStatus.Pending.ToString(),
-                            ClientApprovalStatus = ApprovalStatus.Pending.ToString()
-                        },
-                        new Approval
-                        {
-                            DesignBidID = 2,
-                            AdminApprovalStatus = ApprovalStatus.Pending.ToString(),
-                            ClientApprovalStatus = ApprovalStatus.Pending.ToString()
-                        }
-                        );
-                    context.SaveChanges();
-                }
+                
             }
             catch (Exception ex)
             {
