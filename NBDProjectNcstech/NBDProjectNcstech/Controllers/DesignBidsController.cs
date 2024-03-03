@@ -26,27 +26,27 @@ namespace NBDProjectNcstech.Controllers
         }
 
         // GET: DesignBids
-        public async Task<IActionResult> Index( string SearchString, int? page, int? pageSizeID)
+        public async Task<IActionResult> Index(string SearchString, int? page, int? pageSizeID)
         {
             var designBids = _context.DesignBids
                 .Include(d => d.Project)
-                .Include(d => d.Approvals)
-				.Include(d => d.LabourRequirments)
-				.Include(d => d.MaterialRequirments)
-				.Include(d => d.DesignBidStaffs).ThenInclude(d => d.Staff)
+                .Include(d=>d.Approval)
+                .Include(d => d.LabourRequirments)
+                .Include(d => d.MaterialRequirments)
+                .Include(d => d.DesignBidStaffs).ThenInclude(d => d.Staff)
                 .AsNoTracking();
 
 
-			//search and filter
-			if (!System.String.IsNullOrEmpty(SearchString))
-			{
-				//clients = clients.Where(p => p.Name.ToUpper().Contains(SearchString.ToUpper())
-				//                       || p.ContactPerson.ToUpper().Contains(SearchString.ToUpper()));
-				designBids = designBids.Where(c => c.Project.ProjectSite.ToUpper().Contains(SearchString.ToUpper()));
-			}
+            //search and filter
+            if (!System.String.IsNullOrEmpty(SearchString))
+            {
+                //clients = clients.Where(p => p.Name.ToUpper().Contains(SearchString.ToUpper())
+                //                       || p.ContactPerson.ToUpper().Contains(SearchString.ToUpper()));
+                designBids = designBids.Where(c => c.Project.ProjectSite.ToUpper().Contains(SearchString.ToUpper()));
+            }
 
-			//Handle Paging
-			int pageSize = PageSizeHelper.SetPageSize(HttpContext, pageSizeID, ControllerName());
+            //Handle Paging
+            int pageSize = PageSizeHelper.SetPageSize(HttpContext, pageSizeID, ControllerName());
             ViewData["pageSizeID"] = PageSizeHelper.PageSizeList(pageSize);
             var pagedData = await PaginatedList<DesignBid>.CreateAsync(designBids.AsNoTracking(), page ?? 1, pageSize);
             return View(pagedData);
@@ -62,8 +62,8 @@ namespace NBDProjectNcstech.Controllers
 
             var designBid = await _context.DesignBids
                 .Include(d => d.Project)
-                .Include(d => d.Approvals)
-                .Include(d => d.LabourRequirments)
+				.Include(d => d.Approval)
+				.Include(d => d.LabourRequirments)
                 .Include(d => d.MaterialRequirments)
                 .Include(d => d.DesignBidStaffs).ThenInclude(d => d.Staff)
                 .AsNoTracking()
@@ -80,7 +80,7 @@ namespace NBDProjectNcstech.Controllers
         public IActionResult Create()
         {
             var designBid = new DesignBid();
-			PopulateAssignedDesignStaffLists(designBid);
+            PopulateAssignedDesignStaffLists(designBid);
             ViewData["ProjectID"] = new SelectList(_context.Projects, "Id", "ProjectSite");
             return View();
         }
@@ -94,7 +94,9 @@ namespace NBDProjectNcstech.Controllers
         {
             try
             {
-                if (selectedOptions != null)
+				designBid.Approval = new Approval();
+
+				if (selectedOptions != null)
                 {
                     foreach (var staff in selectedOptions)
                     {
@@ -105,13 +107,8 @@ namespace NBDProjectNcstech.Controllers
                 }
 
                 //Create new Approval with both its status as pending 
-                var newApproval = new Approval
-                {
-                    AdminApprovalStatus = ApprovalStatus.Pending.ToString(),
-                    ClientApprovalStatus = ApprovalStatus.Pending.ToString()
-                };
-                designBid.Approvals.Add(newApproval);
-
+                designBid.Approval.AdminApprovalStatus = ApprovalStatus.Pending.ToString();
+                designBid.Approval.ClientApprovalStatus = ApprovalStatus.Pending.ToString();
                 if (ModelState.IsValid)
                 {
                     _context.Add(designBid);
@@ -131,6 +128,94 @@ namespace NBDProjectNcstech.Controllers
             ViewData["ProjectID"] = new SelectList(_context.Projects, "Id", "ProjectSite", designBid.ProjectID);
             return View(designBid);
         }
+        [HttpPost]
+        public async Task<IActionResult> Approve(int? id)
+        {
+            if (id == null || _context.Clients == null)
+            {
+                return NotFound();
+            }
+            var designBid = await _context.DesignBids
+                            .Include(d => d.Project)
+							.Include(d => d.Approval)
+							.Include(d => d.LabourRequirments)
+                            .Include(d => d.MaterialRequirments)
+                            .Include(d => d.DesignBidStaffs).ThenInclude(d => d.Staff)
+                            .AsNoTracking()
+                            .FirstOrDefaultAsync(m => m.ID == id);
+            if (designBid == null)
+            {
+                return Problem("There are no Design Bids to delete.");
+
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+
+					designBid.Approval.AdminApprovalStatus = ApprovalStatus.Approved.ToString();
+                    _context.Update(designBid);
+                    _context.ApproveEntity();
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!DesignBidExists(designBid.ID))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+
+            }
+            return View(designBid);
+
+        }
+        [HttpPost]
+        public async Task<IActionResult> Reject(int id)
+        {
+            var designBid = await _context.DesignBids
+                                        .Include(d => d.Project)
+										.Include(d => d.Approval)
+										.Include(d => d.LabourRequirments)
+                                        .Include(d => d.MaterialRequirments)
+                                        .Include(d => d.DesignBidStaffs).ThenInclude(d => d.Staff)
+                                        .AsNoTracking()
+                                        .FirstOrDefaultAsync(m => m.ID == id);
+            if (designBid == null)
+            {
+                return NotFound();
+            }
+            if (ModelState.IsValid)
+            {
+                try
+                {
+					designBid.Approval.AdminApprovalStatus = ApprovalStatus.Denied.ToString();
+                    _context.Update(designBid);
+                    _context.RejectEntity();
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!DesignBidExists(designBid.ID))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+
+            }
+            return View(designBid);
+        }
 
         // GET: DesignBids/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -147,7 +232,7 @@ namespace NBDProjectNcstech.Controllers
             {
                 return NotFound();
             }
-			PopulateAssignedDesignStaffLists(designBid);
+            PopulateAssignedDesignStaffLists(designBid);
             ViewData["ProjectID"] = new SelectList(_context.Projects, "Id", "ProjectSite", designBid.ProjectID);
             return View(designBid);
         }
@@ -167,7 +252,7 @@ namespace NBDProjectNcstech.Controllers
                 return NotFound();
             }
 
-            UpdateStaffListboxes(selectedOptions,designBidToUpdate);
+            UpdateStaffListboxes(selectedOptions, designBidToUpdate);
 
             if (await TryUpdateModelAsync<DesignBid>(designBidToUpdate, "",
                 d => d.ProjectID))
@@ -198,7 +283,7 @@ namespace NBDProjectNcstech.Controllers
                 }
             }
 
-			PopulateAssignedDesignStaffLists(designBidToUpdate);
+            PopulateAssignedDesignStaffLists(designBidToUpdate);
             ViewData["ProjectID"] = new SelectList(_context.Projects, "Id", "ProjectSite", designBidToUpdate.ProjectID);
             return View(designBidToUpdate);
         }
@@ -213,7 +298,9 @@ namespace NBDProjectNcstech.Controllers
 
             var designBid = await _context.DesignBids
                 .Include(d => d.Project)
-                .Include(d => d.DesignBidStaffs).ThenInclude(d => d.Staff)
+				.Include(d => d.Approval)
+				.Include(d => d.DesignBidStaffs)
+                .ThenInclude(d => d.Staff)
                 .AsNoTracking()
                 .FirstOrDefaultAsync(m => m.ID == id);
             if (designBid == null)
@@ -262,167 +349,167 @@ namespace NBDProjectNcstech.Controllers
             return View(approvalToUpdate);
         }
 
-		[HttpPost]
-		[ValidateAntiForgeryToken]
-		public async Task<IActionResult> AdminApproval(int id, string adminApprovalStatus, string adminApprovalNotes)
-		{
-			var approvalToUpdate = await _context.Approvals
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AdminApproval(int id, string adminApprovalStatus, string adminApprovalNotes)
+        {
+            var approvalToUpdate = await _context.Approvals
                                 .FirstOrDefaultAsync(d => d.ID == id);
 
-			if (approvalToUpdate == null)
-			{
-				return NotFound();
-			}
+            if (approvalToUpdate == null)
+            {
+                return NotFound();
+            }
 
-			if (await TryUpdateModelAsync<Approval>(approvalToUpdate, "",
-				a => a.AdminApprovalStatus, a => a.AdminApprovalNotes, a =>a.AdminApprovalDate))
-			{
-				try
-				{
-					_context.Update(approvalToUpdate);
-					await _context.SaveChangesAsync();
-					return RedirectToAction(nameof(Index));
-				}
-				catch (DbUpdateConcurrencyException)
-				{
-					if (!DesignBidExists(approvalToUpdate.ID))
-					{
-						return NotFound();
-					}
-					else
-					{
-						throw;
-					}
-				}
-			}
+            if (await TryUpdateModelAsync<Approval>(approvalToUpdate, "",
+                a => a.AdminApprovalStatus, a => a.AdminApprovalNotes, a => a.AdminApprovalDate))
+            {
+                try
+                {
+                    _context.Update(approvalToUpdate);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!DesignBidExists(approvalToUpdate.ID))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+            }
 
-			return View(approvalToUpdate);
-		}
+            return View(approvalToUpdate);
+        }
 
 
 
-		//private void PopulateAssignedStaffData(DesignBid designBid)
-		//      {
-		//          var allOptions = _context.Staffs;
-		//          var currentOptionIDs = new HashSet<int>(designBid.DesignBidStaffs.Select(d => d.StaffID));
-		//          var checkBoxes = new List<CheckOptionVM>();
-		//          foreach (var option in allOptions)
-		//          {
-		//              checkBoxes.Add(new CheckOptionVM
-		//              {
-		//                  ID = option.ID,
-		//                  DisplayText = option.FullName,
-		//                  Assigned = currentOptionIDs.Contains(option.ID)
-		//              });
-		//          }
-		//          ViewData["StaffOptions"] = checkBoxes;
-		//      }
+        //private void PopulateAssignedStaffData(DesignBid designBid)
+        //      {
+        //          var allOptions = _context.Staffs;
+        //          var currentOptionIDs = new HashSet<int>(designBid.DesignBidStaffs.Select(d => d.StaffID));
+        //          var checkBoxes = new List<CheckOptionVM>();
+        //          foreach (var option in allOptions)
+        //          {
+        //              checkBoxes.Add(new CheckOptionVM
+        //              {
+        //                  ID = option.ID,
+        //                  DisplayText = option.FullName,
+        //                  Assigned = currentOptionIDs.Contains(option.ID)
+        //              });
+        //          }
+        //          ViewData["StaffOptions"] = checkBoxes;
+        //      }
 
-		//      private void UpdateDesignBidStaffs(string[] selectedOptions, DesignBid designBidToUpdate)
-		//      {
-		//          if (selectedOptions == null)
-		//          {
-		//              designBidToUpdate.DesignBidStaffs = new List<DesignBidStaff>();
-		//              return;
-		//          }
+        //      private void UpdateDesignBidStaffs(string[] selectedOptions, DesignBid designBidToUpdate)
+        //      {
+        //          if (selectedOptions == null)
+        //          {
+        //              designBidToUpdate.DesignBidStaffs = new List<DesignBidStaff>();
+        //              return;
+        //          }
 
-		//          var selectedOptionsHS = new HashSet<string>(selectedOptions);
-		//          var designOptionsHS = new HashSet<int>
-		//              (designBidToUpdate.DesignBidStaffs.Select(d => d.StaffID));
-		//          foreach (var option in _context.Staffs)
-		//          {
-		//              if (selectedOptionsHS.Contains(option.ID.ToString())) //It is checked
-		//              {
-		//                  if (!designOptionsHS.Contains(option.ID))
-		//                  {
-		//                      designBidToUpdate.DesignBidStaffs.Add(new DesignBidStaff { DesignBidID = designBidToUpdate.ID, StaffID = option.ID });
-		//                  }
-		//              }
-		//              else
-		//              {
-		//                  //Checkbox not Checked
-		//                  if (designOptionsHS.Contains(option.ID))
-		//                  {
-		//                      DesignBidStaff staffToRemove = designBidToUpdate.DesignBidStaffs.SingleOrDefault(d => d.StaffID == option.ID);
-		//                      _context.Remove(staffToRemove);
-		//                  }
-		//              }
-		//          }
-		//      }
+        //          var selectedOptionsHS = new HashSet<string>(selectedOptions);
+        //          var designOptionsHS = new HashSet<int>
+        //              (designBidToUpdate.DesignBidStaffs.Select(d => d.StaffID));
+        //          foreach (var option in _context.Staffs)
+        //          {
+        //              if (selectedOptionsHS.Contains(option.ID.ToString())) //It is checked
+        //              {
+        //                  if (!designOptionsHS.Contains(option.ID))
+        //                  {
+        //                      designBidToUpdate.DesignBidStaffs.Add(new DesignBidStaff { DesignBidID = designBidToUpdate.ID, StaffID = option.ID });
+        //                  }
+        //              }
+        //              else
+        //              {
+        //                  //Checkbox not Checked
+        //                  if (designOptionsHS.Contains(option.ID))
+        //                  {
+        //                      DesignBidStaff staffToRemove = designBidToUpdate.DesignBidStaffs.SingleOrDefault(d => d.StaffID == option.ID);
+        //                      _context.Remove(staffToRemove);
+        //                  }
+        //              }
+        //          }
+        //      }
 
-		private void PopulateAssignedDesignStaffLists(DesignBid designbid)
-		{
-			// For this to work, you must have Included the child collection in the parent object
-			var allOptions = _context.Staffs
-									.Where(s => s.StaffPosition != null &&
-												(s.StaffPosition.PositionName == "Designer" || s.StaffPosition.PositionName == "Laborer"))
-									.Include(s => s.StaffPosition) // Ensure StaffPosition is loaded
-									.OrderBy(s => s.StaffPosition.PositionName); // Order by position name
+        private void PopulateAssignedDesignStaffLists(DesignBid designbid)
+        {
+            // For this to work, you must have Included the child collection in the parent object
+            var allOptions = _context.Staffs
+                                    .Where(s => s.StaffPosition != null &&
+                                                (s.StaffPosition.PositionName == "Designer" || s.StaffPosition.PositionName == "Laborer"))
+                                    .Include(s => s.StaffPosition) // Ensure StaffPosition is loaded
+                                    .OrderBy(s => s.StaffPosition.PositionName); // Order by position name
 
-			var currentOptionsHS = new HashSet<int>(designbid.DesignBidStaffs.Select(b => b.StaffID));
+            var currentOptionsHS = new HashSet<int>(designbid.DesignBidStaffs.Select(b => b.StaffID));
 
-			// Instead of one list with a boolean, we will make two lists
-			var selected = new List<ListOptionVM>();
-			var available = new List<ListOptionVM>();
+            // Instead of one list with a boolean, we will make two lists
+            var selected = new List<ListOptionVM>();
+            var available = new List<ListOptionVM>();
 
-			foreach (var r in allOptions)
-			{
-				if (currentOptionsHS.Contains(r.ID))
-				{
-					selected.Add(new ListOptionVM
-					{
-						ID = r.ID,
-						DisplayText = $"{r.FullName} {r.StaffPosition.PositionName}"
-					});
-				}
-				else
-				{
-					available.Add(new ListOptionVM
-					{
-						ID = r.ID,
-						DisplayText = $"{r.FullName} {r.StaffPosition.PositionName}"
-					});
-				}
-			}
+            foreach (var r in allOptions)
+            {
+                if (currentOptionsHS.Contains(r.ID))
+                {
+                    selected.Add(new ListOptionVM
+                    {
+                        ID = r.ID,
+                        DisplayText = $"{r.FullName} {r.StaffPosition.PositionName}"
+                    });
+                }
+                else
+                {
+                    available.Add(new ListOptionVM
+                    {
+                        ID = r.ID,
+                        DisplayText = $"{r.FullName} {r.StaffPosition.PositionName}"
+                    });
+                }
+            }
 
-			ViewData["selOpts"] = new MultiSelectList(selected, "ID", "DisplayText");
-			ViewData["availOpts"] = new MultiSelectList(available, "ID", "DisplayText");
-		}
-		private void UpdateStaffListboxes(string[] selectedOptions, DesignBid designBidToUpdate)
-		{
-			if (selectedOptions == null)
-			{
-				designBidToUpdate.DesignBidStaffs = new List<DesignBidStaff>();
-				return;
-			}
+            ViewData["selOpts"] = new MultiSelectList(selected, "ID", "DisplayText");
+            ViewData["availOpts"] = new MultiSelectList(available, "ID", "DisplayText");
+        }
+        private void UpdateStaffListboxes(string[] selectedOptions, DesignBid designBidToUpdate)
+        {
+            if (selectedOptions == null)
+            {
+                designBidToUpdate.DesignBidStaffs = new List<DesignBidStaff>();
+                return;
+            }
 
-			var selectedOptionsHS = new HashSet<string>(selectedOptions);
-			var currentOptionsHS = new HashSet<int>(designBidToUpdate.DesignBidStaffs.Select(b => b.StaffID));
-			foreach (var r in _context.Staffs)
-			{
-				if (selectedOptionsHS.Contains(r.ID.ToString()))//it is selected
-				{
-					if (!currentOptionsHS.Contains(r.ID))//but not currently in the Function's collection - Add it!
-					{
-						designBidToUpdate.DesignBidStaffs.Add(new DesignBidStaff
-						{
-							StaffID = r.ID,
-							DesignBidID = designBidToUpdate.ID
-						});
-					}
-				}
-				else //not selected
-				{
-					if (currentOptionsHS.Contains(r.ID))//but is currently in the Function's collection - Remove it!
-					{
-						DesignBidStaff staffToRemove = designBidToUpdate.DesignBidStaffs.FirstOrDefault(d => d.StaffID == r.ID);
-						_context.Remove(staffToRemove);
-					}
-				}
-			}
-		}
+            var selectedOptionsHS = new HashSet<string>(selectedOptions);
+            var currentOptionsHS = new HashSet<int>(designBidToUpdate.DesignBidStaffs.Select(b => b.StaffID));
+            foreach (var r in _context.Staffs)
+            {
+                if (selectedOptionsHS.Contains(r.ID.ToString()))//it is selected
+                {
+                    if (!currentOptionsHS.Contains(r.ID))//but not currently in the Function's collection - Add it!
+                    {
+                        designBidToUpdate.DesignBidStaffs.Add(new DesignBidStaff
+                        {
+                            StaffID = r.ID,
+                            DesignBidID = designBidToUpdate.ID
+                        });
+                    }
+                }
+                else //not selected
+                {
+                    if (currentOptionsHS.Contains(r.ID))//but is currently in the Function's collection - Remove it!
+                    {
+                        DesignBidStaff staffToRemove = designBidToUpdate.DesignBidStaffs.FirstOrDefault(d => d.StaffID == r.ID);
+                        _context.Remove(staffToRemove);
+                    }
+                }
+            }
+        }
 
-		private bool DesignBidExists(int id)
+        private bool DesignBidExists(int id)
         {
             return _context.DesignBids.Any(e => e.ID == id);
         }

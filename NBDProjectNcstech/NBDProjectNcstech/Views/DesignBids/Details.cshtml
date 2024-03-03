@@ -331,7 +331,14 @@
                                     <button type="submit" class="btn btn-primary" >Edit</button>
                                      <button type="button" onclick="window.location.href = '@Url.Action("Index")'" class="btn btn-primary">Cancel</button>
                                 </form> 
-                               
+                                <br />
+                                <form method="post" asp-action="Approve" asp-route-id="@Model?.ID">
+                                    <button type="submit" class="btn btn-success">Approve</button>
+                                </form>
+                                <br />
+                                <form method="post" asp-action="Reject" asp-route-id="@Model?.ID">
+                                    <button type="submit" class="btn btn-outline-danger">Reject</button>
+                                </form>
                             </div>
 
                         </div>

@@ -34,8 +34,11 @@ namespace NBDProjectNcstech.Models
         public string ClientApprovalNotes { get; set;}
 
         //Foregin Keys
+        //[Display(Name = "Design Bid")]
+        //public int DesignBidID { get; set; }
+        //public DesignBid DesignBid { get; set; }
+
         [Display(Name = "Design Bid")]
-        public int DesignBidID { get; set; }
-        public DesignBid DesignBid { get; set; }
+        public ICollection<DesignBid> DesignBids { get; set; } = new HashSet<DesignBid>();
     }
 }
