@@ -39,13 +39,13 @@
             <!-- Right navbar links -->
             @* <ul class="navbar-nav ml-auto">
 
-                <li class="nav-item">
-                    <a class="nav-link" data-widget="fullscreen" href="#" role="button">
-                        <i class="fas fa-expand-arrows-alt"></i>
-                    </a>
-                </li>
+            <li class="nav-item">
+            <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+            <i class="fas fa-expand-arrows-alt"></i>
+            </a>
+            </li>
             </ul>*@
-        </nav> 
+        </nav>
         <!-- /.navbar -->
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
@@ -194,10 +194,10 @@
 
                         <!-- Logout -->
                         @* <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-sign-out-alt"></i>
-                                <p>Logout</p>
-                            </a>
+                        <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-sign-out-alt"></i>
+                        <p>Logout</p>
+                        </a>
                         </li> *@
 
                     </ul>
@@ -231,124 +231,206 @@
                     <!-- /.row -->
                     <div class="card card-primary">
                         <div class="card-header" style="background-color:darkcyan">
-                        <div class="row mb-2">
-                            <br />
-                            <div class="col-md-6 offset-md-3" style="margin-top: 20px;">
-                                    <h3 style="color: white;">Client Design Bid Details</h3>
+                            <div class="row mb-2">
+                                <br />
+                                <div class="col-md-6 offset-md-3" style="margin-top: 20px;">
+                                    <h3 style="color: white;">Design Bid Details</h3>
 
-                            </div>
+                                </div>
                             </div>
                         </div>
                         <hr style="width: 100%" />
                         <div class="row mb-3">
                             <br />
                             <div class="col-md-6 offset-md-3">
-                            <dl class="row">
-                                <dt class="col-sm-2">
-                                    @Html.DisplayNameFor(model => model.Project)
-                                </dt>
-                                <dd class="col-sm-10">
-                                    @Html.DisplayFor(model => model.Project.ProjectSite)
-                                </dd>
-                                <dt class="col-sm-2">
-                                    @Html.DisplayNameFor(model => model.DesignBidStaffs)
-                                </dt>
-                                <dd class="col-sm-10">
-                                    @foreach (var d in Model.DesignBidStaffs)
-                                    {
-                                        @d.Staff.FullName <br />
-                                    }
-                                </dd>
-                                <dt class="col-sm-2">
-                                    @Html.DisplayNameFor(model => model.LabourRequirments)
-                                </dt>
-                                <dd class="col-sm-10">
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th>
-                                                    @Html.DisplayNameFor(model => model.LabourRequirments.FirstOrDefault().Hours)
-                                                </th>
-                                                <th>
-                                                    @Html.DisplayNameFor(model => model.LabourRequirments.FirstOrDefault().Description)
-                                                </th>
-                                                <th>
-                                                    @Html.DisplayNameFor(model => model.LabourRequirments.FirstOrDefault().UnitPrice)
-                                                </th>
-                                                <th>
-                                                    @Html.DisplayNameFor(model => model.LabourRequirments.FirstOrDefault().ExtendedPrice)
-                                                </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach (var item in Model.LabourRequirments)
-                                            {
+                                <dl class="row">
+                                    <dt class="col-sm-2">
+                                        @Html.DisplayNameFor(model => model.Project)
+                                    </dt>
+                                    <dd class="col-sm-10">
+                                        @Html.DisplayFor(model => model.Project.ProjectSite)
+                                    </dd>
+                                    <dt class="col-sm-2">
+                                        @Html.DisplayNameFor(model => model.DesignBidStaffs)
+                                    </dt>
+                                    <dd class="col-sm-10">
+                                        @foreach (var d in Model.DesignBidStaffs)
+                                        {
+                                            @d.Staff.FullName <br />
+                                        }
+                                    </dd>
+                                    <dt class="col-sm-2">
+                                        @Html.DisplayNameFor(model => model.LabourRequirments)
+                                    </dt>
+                                    <dd class="col-sm-10">
+                                        <a asp-controller="LabourRequirments" asp-action="Create" class="btn btn-primary btn-sm rounded-circle" style="margin-right: 10px;">
+                                            <i class="fas fa-plus"></i>
+                                        </a>
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>
+                                                        @Html.DisplayNameFor(model => model.LabourRequirments.FirstOrDefault().Hours)
+                                                    </th>
+                                                    <th>
+                                                        @Html.DisplayNameFor(model => model.LabourRequirments.FirstOrDefault().Description)
+                                                    </th>
+                                                    <th>
+                                                        @Html.DisplayNameFor(model => model.LabourRequirments.FirstOrDefault().UnitPrice)
+                                                    </th>
+                                                    <th>
+                                                        @Html.DisplayNameFor(model => model.LabourRequirments.FirstOrDefault().ExtendedPrice)
+                                                    </th>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var item in Model.LabourRequirments)
+                                                {
+                                                    <tr>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Hours)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Description)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.UnitPrice)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.ExtendedPrice)
+                                                        </td>
+                                                        <td>
+                                                            <a href="@Url.Action("Edit", "LabourRequirments", new { id = item.ID })">
+                                                                <i class="fas fa-edit" style="color: #15752d;"></i>
+                                                            </a> |
+                                                            <a href="@Url.Action("Details", "LabourRequirments", new { id = item.ID })">
+                                                                <i class="fas fa-info-circle" style="color: #005fa8;"></i>
+                                                            </a> |
+                                                            <a href="@Url.Action("Delete", "LabourRequirments", new { id = item.ID })">
+                                                                <i class="fas fa-trash-alt" style="color: #ff0000;"></i>
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+
+                                    </dd>
+                                    <dt class="col-sm-2">
+                                        @Html.DisplayNameFor(model => model.MaterialRequirments)
+                                    </dt>
+                                    <dd class="col-sm-10">
+                                        <a asp-controller="MaterialRequirments" asp-action="Create" class="btn btn-primary btn-sm rounded-circle" style="margin-right: 10px;">
+                                            <i class="fas fa-plus"></i>
+                                        </a>
+
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>
+                                                        @Html.DisplayNameFor(model => model.MaterialRequirments.FirstOrDefault().Quanity)
+                                                    </th>
+                                                    <th>
+                                                        @Html.DisplayNameFor(model => model.MaterialRequirments.FirstOrDefault().Inventory.Name)
+                                                    </th>
+                                                    <th>
+                                                        @Html.DisplayNameFor(model => model.MaterialRequirments.FirstOrDefault().ExtendedPrice)
+                                                    </th>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var item in Model.MaterialRequirments)
+                                                {
+                                                    <tr>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Quanity)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Inventory.Name)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.ExtendedPrice)
+                                                        </td>
+                                                        <td>
+                                                            <a href="@Url.Action("Edit", "MaterialRequirments", new { id = item.ID })">
+                                                                <i class="fas fa-edit" style="color: #15752d;"></i>
+                                                            </a> |
+                                                            <a href="@Url.Action("Details", "MaterialRequirments", new { id = item.ID })">
+                                                                <i class="fas fa-info-circle" style="color: #005fa8;"></i>
+                                                            </a> |
+                                                            <a href="@Url.Action("Delete", "MaterialRequirments", new { id = item.ID })">
+                                                                <i class="fas fa-trash-alt" style="color: #ff0000;"></i>
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </dd>
+                                    <dt class="col-sm-2">
+                                        Total Bid Cost
+                                    </dt>
+                                    <dd>
+                                        @{
+                                            // Calculate total labour cost
+                                            decimal totalLabourCost = Model.LabourRequirments.Sum(l => l.ExtendedPrice);
+
+                                            // Calculate total material cost
+                                            decimal totalMaterialCost = Model.MaterialRequirments.Sum(m => m.ExtendedPrice);
+
+                                            // Total bid cost is the sum of total labour cost and total material cost
+                                            decimal totalBidCost = totalLabourCost + totalMaterialCost;
+                                        }
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>
+                                                        Total Labour Cost
+                                                    </th>
+                                                    <th>
+                                                        Total Material Cost
+                                                    </th>
+                                                    <th>
+                                                        Total Bid Cost
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
                                                 <tr>
                                                     <td>
-                                                        @Html.DisplayFor(modelItem => item.Hours)
+                                                        @totalLabourCost.ToString("C")
                                                     </td>
                                                     <td>
-                                                        @Html.DisplayFor(modelItem => item.Description)
+                                                        @totalMaterialCost.ToString("C")
                                                     </td>
                                                     <td>
-                                                        @Html.DisplayFor(modelItem => item.UnitPrice)
-                                                    </td>
-                                                    <td>
-                                                        @Html.DisplayFor(modelItem => item.ExtendedPrice)
+                                                        @totalBidCost.ToString("C")
                                                     </td>
                                                 </tr>
-                                            }
-                                        </tbody>
-                                    </table>
+                                            </tbody>
+                                        </table>
+                                    </dd>
 
-                                </dd>
-                                <dt class="col-sm-2">
-                                    @Html.DisplayNameFor(model => model.MaterialRequirments)
-                                </dt>
-                                <dd class="col-sm-10">
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th>
-                                                    @Html.DisplayNameFor(model => model.MaterialRequirments.FirstOrDefault().Quanity)
-                                                </th>
-                                                
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach (var item in Model.MaterialRequirments)
-                                            {
-                                                <tr>
-                                                    <td>
-                                                        @Html.DisplayFor(modelItem => item.Quanity)
-                                                    </td>
-                                                    
-                                                </tr>
-                                            }
-                                        </tbody>
-                                    </table>
+                                </dl>
+                                <div>
+                                    <form asp-action="Edit" asp-route-id="@Model?.ID" method="get">
+                                        <button type="submit" class="btn btn-primary">Edit</button>
+                                        <button type="button" onclick="window.location.href = '@Url.Action("Index")'" class="btn btn-primary">Cancel</button>
+                                    </form>
 
-                                </dd>
-                            </dl>
-                            <div>
-                                <form asp-action="Edit" asp-route-id="@Model?.ID" method="get">
-                                    <button type="submit" class="btn btn-primary" >Edit</button>
-                                     <button type="button" onclick="window.location.href = '@Url.Action("Index")'" class="btn btn-primary">Cancel</button>
-                                </form>                                                                                                                                                                                                                                                                                   
-                               
+                                </div>
+
                             </div>
-
                         </div>
                     </div>
                 </div>
-            </div>
 
             </div>
             <div>
             </div><!-- /.container-fluid -->
         </div> <!-- /.content -->
-
-    
         <!-- Control Sidebar -->
         <aside class="control-sidebar control-sidebar-dark">
             <!-- Control sidebar content goes here -->

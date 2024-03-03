@@ -12,7 +12,7 @@ namespace NBDProjectNcstech.Models
         [Display(Name = "Labor Pirce")]
         public decimal LabourPrice { get; set; }
         [Display(Name = "Labor Cost")]
-        public decimal LavourCost { get; set; }
+        public decimal LabourCost { get; set; }
 
         public ICollection<LabourRequirments> LabourRequirments { get; set; } = new HashSet<LabourRequirments>();
     }

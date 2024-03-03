@@ -1,4 +1,4 @@
-﻿@model IEnumerable<NBDProjectNcstech.Models.LabourRequirments>
+﻿@model IEnumerable<NBDProjectNcstech.Models.MaterialRequirments>
 
 @{
     ViewData["Title"] = "Index";
@@ -13,16 +13,10 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Hours)
+                @Html.DisplayNameFor(model => model.Quanity)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UnitPrice)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Labour)
+                @Html.DisplayNameFor(model => model.Inventory)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.DesignBid)
@@ -34,16 +28,10 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Hours)
+                @Html.DisplayFor(modelItem => item.Quanity)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UnitPrice)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Labour.ID)
+                @Html.DisplayFor(modelItem => item.Inventory.Name)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.DesignBid.ID)

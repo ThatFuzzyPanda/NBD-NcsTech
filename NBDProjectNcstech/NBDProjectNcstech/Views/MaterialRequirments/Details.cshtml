@@ -1,4 +1,4 @@
-﻿@model NBDProjectNcstech.Models.LabourRequirments
+﻿@model NBDProjectNcstech.Models.MaterialRequirments
 
 @{
     ViewData["Title"] = "Details";
@@ -235,7 +235,7 @@
                             <div class="row mb-2">
                                 <br />
                                 <div class="col-md-6 offset-md-3" style="margin-top: 20px;">
-                                    <h3 style="color: white;">Labour Requirement Details</h3>
+                                    <h3 style="color: white;">Material Requirement Details</h3>
 
                                 </div>
                             </div>
@@ -246,28 +246,16 @@
                             <div class="col-md-6 offset-md-3">
                                 <dl class="row">
                                     <dt class="col-sm-2">
-                                        @Html.DisplayNameFor(model => model.Hours)
+                                        @Html.DisplayNameFor(model => model.Quanity)
                                     </dt>
                                     <dd class="col-sm-10">
-                                        @Html.DisplayFor(model => model.Hours)
+                                        @Html.DisplayFor(model => model.Quanity)
                                     </dd>
                                     <dt class="col-sm-2">
-                                        @Html.DisplayNameFor(model => model.Description)
+                                        @Html.DisplayNameFor(model => model.Inventory)
                                     </dt>
                                     <dd class="col-sm-10">
-                                        @Html.DisplayFor(model => model.Description)
-                                    </dd>
-                                    <dt class="col-sm-2">
-                                        @Html.DisplayNameFor(model => model.UnitPrice)
-                                    </dt>
-                                    <dd class="col-sm-10">
-                                        @Html.DisplayFor(model => model.UnitPrice)
-                                    </dd>
-                                    <dt class="col-sm-2">
-                                        @Html.DisplayNameFor(model => model.Labour)
-                                    </dt>
-                                    <dd class="col-sm-10">
-                                        @Html.DisplayFor(model => model.Labour.ID)
+                                        @Html.DisplayFor(model => model.Inventory.Name)
                                     </dd>
                                     <dt class="col-sm-2">
                                         @Html.DisplayNameFor(model => model.DesignBid)

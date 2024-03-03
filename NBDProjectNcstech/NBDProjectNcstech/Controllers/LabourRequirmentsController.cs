@@ -49,8 +49,7 @@ namespace NBDProjectNcstech.Controllers
         // GET: LabourRequirments/Create
         public IActionResult Create()
         {
-            ViewData["DesignBidID"] = new SelectList(_context.DesignBids, "ID", "ID");
-            ViewData["LabourID"] = new SelectList(_context.Labours, "ID", "ID");
+            PopulateDropDownLists();
             return View();
         }
 
@@ -59,17 +58,16 @@ namespace NBDProjectNcstech.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,Hours,Description,UnitPrice,ExtendedPrice,LabourID,DesignBidID")] LabourRequirments labourRequirments)
+        public async Task<IActionResult> Create([Bind("ID,Hours,Description,UnitPrice,LabourID,DesignBidID")] LabourRequirments labourRequirments)
         {
             if (ModelState.IsValid)
             {
                 _context.Add(labourRequirments);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Details", "DesignBids", new { id = labourRequirments.DesignBidID });
             }
-            ViewData["DesignBidID"] = new SelectList(_context.DesignBids, "ID", "ID", labourRequirments.DesignBidID);
-            ViewData["LabourID"] = new SelectList(_context.Labours, "ID", "ID", labourRequirments.LabourID);
-            return View(labourRequirments);
+            PopulateDropDownLists(labourRequirments);
+            return RedirectToAction("Details", "DesignBids", new { id = labourRequirments.DesignBidID });
         }
 
         // GET: LabourRequirments/Edit/5
@@ -85,8 +83,7 @@ namespace NBDProjectNcstech.Controllers
             {
                 return NotFound();
             }
-            ViewData["DesignBidID"] = new SelectList(_context.DesignBids, "ID", "ID", labourRequirments.DesignBidID);
-            ViewData["LabourID"] = new SelectList(_context.Labours, "ID", "ID", labourRequirments.LabourID);
+            PopulateDropDownLists();
             return View(labourRequirments);
         }
 
@@ -95,7 +92,7 @@ namespace NBDProjectNcstech.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Hours,Description,UnitPrice,ExtendedPrice,LabourID,DesignBidID")] LabourRequirments labourRequirments)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,Hours,Description,UnitPrice,LabourID,DesignBidID")] LabourRequirments labourRequirments)
         {
             if (id != labourRequirments.ID)
             {
@@ -120,11 +117,10 @@ namespace NBDProjectNcstech.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Details", "DesignBids", new { id = labourRequirments.DesignBidID });
             }
-            ViewData["DesignBidID"] = new SelectList(_context.DesignBids, "ID", "ID", labourRequirments.DesignBidID);
-            ViewData["LabourID"] = new SelectList(_context.Labours, "ID", "ID", labourRequirments.LabourID);
-            return View(labourRequirments);
+            PopulateDropDownLists(labourRequirments);
+            return RedirectToAction("Details", "DesignBids", new { id = labourRequirments.DesignBidID });
         }
 
         // GET: LabourRequirments/Delete/5
@@ -161,14 +157,40 @@ namespace NBDProjectNcstech.Controllers
             {
                 _context.LabourRequirments.Remove(labourRequirments);
             }
-            
+
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Details", "DesignBids", new { id = labourRequirments.DesignBidID });
+        }
+
+        //SelectLists for DDLs
+        private SelectList DesignBidSelectList(int? selectedId)
+        {
+            return new SelectList(_context
+                .DesignBids
+                .OrderBy(m => m.Project.ProjectSite)
+                .Select(m => new
+                {
+                    ID = m.ID,
+                    DisplayText = m.Project.ProjectSite // DisplayText will contain only the ProjectSite
+                }), "ID", "DisplayText", selectedId);
+        }
+
+        private SelectList LabourSelectList(int? selectedId)
+        {
+            return new SelectList(_context
+                .Labours
+                .OrderBy(m => m.LabourType), "ID", "LabourType", selectedId);
+        }
+
+        private void PopulateDropDownLists(LabourRequirments labourRequirments = null)
+        {
+            ViewData["DesignBidID"] = DesignBidSelectList(labourRequirments?.DesignBidID);
+            ViewData["LabourID"] = LabourSelectList(labourRequirments?.LabourID);
         }
 
         private bool LabourRequirmentsExists(int id)
         {
-          return _context.LabourRequirments.Any(e => e.ID == id);
+            return _context.LabourRequirments.Any(e => e.ID == id);
         }
     }
 }

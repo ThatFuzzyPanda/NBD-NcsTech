@@ -1,7 +1,7 @@
-﻿@model NBDProjectNcstech.Models.LabourRequirments
+﻿@model NBDProjectNcstech.Models.MaterialRequirments
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Edit";
 }
 
 <!DOCTYPE html>
@@ -38,7 +38,7 @@
             </ul>
 
             <!-- Right navbar links -->
-            @* <ul class="navbar-nav ml-auto">
+            @* 		<ul class="navbar-nav ml-auto">
 
             <li class="nav-item">
             <a class="nav-link" data-widget="fullscreen" href="#" role="button">
@@ -227,7 +227,7 @@
             <!-- /.content-header -->
             <!-- Main content -->
             <div class="content">
-                <div class="container-fluid">
+                <divdiv class="container-fluid">
 
                     <!-- /.row -->
                     <div class="card card-primary">
@@ -235,79 +235,62 @@
                             <div class="row mb-2">
                                 <br />
                                 <div class="col-md-6 offset-md-3" style="margin-top: 20px;">
-                                    <h3 style="color: white;">Labour Requirement Details</h3>
+                                    <h3 style="color: white;">Edit Material Requirement</h3>
 
                                 </div>
                             </div>
                         </div>
                         <hr style="width: 100%" />
                         <div class="row mb-3">
-                            <br />
                             <div class="col-md-6 offset-md-3">
-                                <dl class="row">
-                                    <dt class="col-sm-2">
-                                        @Html.DisplayNameFor(model => model.Hours)
-                                    </dt>
-                                    <dd class="col-sm-10">
-                                        @Html.DisplayFor(model => model.Hours)
-                                    </dd>
-                                    <dt class="col-sm-2">
-                                        @Html.DisplayNameFor(model => model.Description)
-                                    </dt>
-                                    <dd class="col-sm-10">
-                                        @Html.DisplayFor(model => model.Description)
-                                    </dd>
-                                    <dt class="col-sm-2">
-                                        @Html.DisplayNameFor(model => model.UnitPrice)
-                                    </dt>
-                                    <dd class="col-sm-10">
-                                        @Html.DisplayFor(model => model.UnitPrice)
-                                    </dd>
-                                    <dt class="col-sm-2">
-                                        @Html.DisplayNameFor(model => model.Labour)
-                                    </dt>
-                                    <dd class="col-sm-10">
-                                        @Html.DisplayFor(model => model.Labour.ID)
-                                    </dd>
-                                    <dt class="col-sm-2">
-                                        @Html.DisplayNameFor(model => model.DesignBid)
-                                    </dt>
-                                    <dd class="col-sm-10">
-                                        @Html.DisplayFor(model => model.DesignBid.ID)
-                                    </dd>
-                                </dl>
-                                <div>
-                                    <form asp-action="Edit" asp-route-id="@Model?.ID" method="get">
-                                        <button type="submit" class="btn btn-primary">Edit</button>
+                                <form asp-action="Edit">
+                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                    <input type="hidden" asp-for="ID" />
+                                    <div class="form-group">
+                                        <label asp-for="Quanity" class="control-label"></label>
+                                        <input asp-for="Quanity" class="form-control" />
+                                        <span asp-validation-for="Quanity" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="InventoryID" class="control-label"></label>
+                                        <select asp-for="InventoryID" class="form-control" asp-items="ViewBag.InventoryID"></select>
+                                        <span asp-validation-for="InventoryID" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="DesignBidID" class="control-label"></label>
+                                        <select asp-for="DesignBidID" class="form-control" asp-items="ViewBag.DesignBidID"></select>
+                                        <span asp-validation-for="DesignBidID" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="submit" value="Save" class="btn btn-primary" />
                                         <button type="button" onclick="window.history.back();" class="btn btn-primary">Cancel</button>
-                                    </form>
-
-                                </div>
-
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
-                </div>
-
             </div>
-            <div>
-            </div><!-- /.container-fluid -->
-        </div> <!-- /.content -->
-        <!-- Control Sidebar -->
-        <aside class="control-sidebar control-sidebar-dark">
-            <!-- Control sidebar content goes here -->
-            <div class="p-3">
-                <h5>Title</h5>
-                <p>Sidebar content</p>
-            </div>
-        </aside>
-        <!-- /.control-sidebar -->
-        <!-- Main Footer -->
-        <footer class="main-footer">
+        </div>
 
-            <!-- Default to the left -->
-            <strong>    &copy; 2024 - NBDProjectNcstech - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a></strong>
-        </footer>
+
+        <div>
+        </div><!-- /.container-fluid -->
+    </div> <!-- /.content -->
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+        <!-- Control sidebar content goes here -->
+        <div class="p-3">
+            <h5>Title</h5>
+            <p>Sidebar content</p>
+        </div>
+    </aside>
+    <!-- /.control-sidebar -->
+    <!-- Main Footer -->
+    <footer class="main-footer">
+
+        <!-- Default to the left -->
+        <strong>    &copy; 2024 - NBDProjectNcstech - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a></strong>
+    </footer>
     </div>
 
     <!-- jQuery -->
@@ -321,3 +304,19 @@
 
 
 
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script src="~/js/multiselect.js"></script>
+    <script src="~/js/refreshDDL.js"></script>
+    <script type="text/javascript">
+        $('#ProvinceID').change(function () {
+            var selectedProvince = $("#ProvinceID").val();
+            var URL = "/Clients/GetCities/?ProvinceID=" + selectedProvince;
+            refreshDDL('CityID', URL, true, 'Select a Province with Cities first', false, null, true);
+        });
+    </script>
+}

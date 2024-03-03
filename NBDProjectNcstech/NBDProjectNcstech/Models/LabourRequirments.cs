@@ -12,10 +12,13 @@ namespace NBDProjectNcstech.Models
         public string Description { get; set; }
 
         [Display(Name ="Unit Price" )]
-        public double UnitPrice { get; set; }
+        public decimal UnitPrice { get; set; }
         [Display(Name = "Extended Price")]
-        public double ExtendedPrice { get; set; }
-        
+        public decimal ExtendedPrice
+        {
+            get => Hours * UnitPrice;
+        }
+
         //Foregin Keys
         [Display(Name = "Labour")]
         public int LabourID { get; set; }

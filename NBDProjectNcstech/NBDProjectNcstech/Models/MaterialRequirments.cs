@@ -10,11 +10,20 @@ namespace NBDProjectNcstech.Models
         [Display(Name = "Quanity")]
         public int? Quanity { get; set; }
 		[Display(Name = "Extended Price")]
-		[Required(ErrorMessage = "You cannot leave the Sale price Blank")]
-		public decimal ExtendedPrice { get; set; }
+        public decimal ExtendedPrice
+        {
+            get
+            {
+                if (Inventory != null)
+                {
+                    return (decimal)(Quanity ?? 0) * Inventory.CostPrice;
+                }
+                return 0;
+            }
+        }
 
-		//Foregin Keys
-		[Display(Name = "Inventory")]
+        //Foregin Keys
+        [Display(Name = "Inventory")]
         public int InventoryID { get; set; }
         public Inventory Inventory { get; set; }
 

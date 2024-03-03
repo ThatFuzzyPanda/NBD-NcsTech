@@ -169,6 +169,42 @@ namespace NBDProjectNcstech.Data
                     };
                 }
 
+                //Labour
+                if (!context.Labours.Any())
+                {
+                    context.Labours.AddRange(
+                            new Labour
+                            {
+                                LabourType = "Production Worker",
+                                LabourPrice = 30,
+                                LabourCost = 18
+                            },
+                            new Labour
+                            {
+                                LabourType = "Designer",
+                                LabourPrice = 65,
+                                LabourCost = 40
+                            },
+                            new Labour
+                            {
+                                LabourType = "Botanist",
+                                LabourPrice = 75,
+                                LabourCost = 50
+                            },
+                            new Labour
+                            {
+                                LabourType = "Equipment operator",
+                                LabourPrice = 65,
+                                LabourCost = 45
+                            }
+                        );
+                    context.SaveChanges();
+                }
+
+
+
+
+
                 //Provinces 
                 if (!context.Provinces.Any())
                 if (!context.Provinces.Any())
@@ -527,38 +563,6 @@ namespace NBDProjectNcstech.Data
                         new DesignBid
                         {
                             ProjectID = context.Projects.FirstOrDefault(p => p.ProjectSite == "Patients recovery Garden").Id
-                        },
-                        new DesignBid
-                        {
-                            ProjectID = context.Projects.FirstOrDefault(p => p.ProjectSite == "First Floor center lobby").Id
-                        },
-                        new DesignBid
-                        {
-                            ProjectID = context.Projects.FirstOrDefault(p => p.ProjectSite == "Second Floor center lobby").Id
-                        },
-                        new DesignBid
-                        {
-                            ProjectID = context.Projects.FirstOrDefault(p => p.ProjectSite == "Main lobby").Id
-                        },
-                        new DesignBid
-                        {
-                            ProjectID = context.Projects.FirstOrDefault(p => p.ProjectSite == "Front desk lobby").Id
-                        },
-                        new DesignBid
-                        {
-                            ProjectID = context.Projects.FirstOrDefault(p => p.ProjectSite == "Center Area for Christmas Decoration").Id
-                        },
-                        new DesignBid
-                        {
-                            ProjectID = context.Projects.FirstOrDefault(p => p.ProjectSite == "Clubhouse, Resort").Id
-                        },
-                        new DesignBid
-                        {
-                            ProjectID = context.Projects.FirstOrDefault(p => p.ProjectSite == "Mall Entrance").Id
-                        },
-                        new DesignBid
-                        {
-                            ProjectID = context.Projects.FirstOrDefault(p => p.ProjectSite == "Entrance Garden for Christmas Decoration").Id
                         }
                         );
 
@@ -570,59 +574,36 @@ namespace NBDProjectNcstech.Data
                     context.DesignBidStaff.AddRange(
                         new DesignBidStaff
                         {
-                            DesignBidID = context.DesignBids.FirstOrDefault(d => d.ID == 1).ID,
+                            DesignBidID = 1,
                             StaffID = context.Staffs.FirstOrDefault(d => d.FullName == "Tamara Bakken").ID
                         },
                         new DesignBidStaff
                         {
-                            DesignBidID = context.DesignBids.FirstOrDefault(d => d.ID == 2).ID,
+                            DesignBidID = 2,
                             StaffID = context.Staffs.FirstOrDefault(d => d.FullName == "Bert Swenson").ID
-                        },
-                        new DesignBidStaff
-                        {
-                            DesignBidID = context.DesignBids.FirstOrDefault(d => d.ID == 3).ID,
-                            StaffID = context.Staffs.FirstOrDefault(d => d.FullName == "Monica Goce").ID
-                        },
-                        new DesignBidStaff
-                        {
-                            DesignBidID = context.DesignBids.FirstOrDefault(d => d.ID == 4).ID,
-                            StaffID = context.Staffs.FirstOrDefault(d => d.FullName == "Bert Swenson").ID
-                        },
-                        new DesignBidStaff
-                        {
-                            DesignBidID = context.DesignBids.FirstOrDefault(d => d.ID == 5).ID,
-                            StaffID = context.Staffs.FirstOrDefault(d => d.FullName == "Tamara Bakken").ID
-                        },
-                        new DesignBidStaff
-                        {
-                            DesignBidID = context.DesignBids.FirstOrDefault(d => d.ID == 6).ID,
-                            StaffID = context.Staffs.FirstOrDefault(d => d.FullName == "Tamara Bakken").ID
-                        },
-                        new DesignBidStaff
-                        {
-                            DesignBidID = context.DesignBids.FirstOrDefault(d => d.ID == 7).ID,
-                            StaffID = context.Staffs.FirstOrDefault(d => d.FullName == "Tamara Bakken").ID
-                        },
-                        new DesignBidStaff
-                        {
-                            DesignBidID = context.DesignBids.FirstOrDefault(d => d.ID == 8).ID,
-                            StaffID = context.Staffs.FirstOrDefault(d => d.FullName == "Tamara Bakken").ID
-                        },
-                        new DesignBidStaff
-                        {
-                            DesignBidID = context.DesignBids.FirstOrDefault(d => d.ID == 9).ID,
-                            StaffID = context.Staffs.FirstOrDefault(d => d.FullName == "Tamara Bakken").ID
-                        },
-                        new DesignBidStaff
-                        {
-                            DesignBidID = context.DesignBids.FirstOrDefault(d => d.ID == 10).ID,
-                            StaffID = context.Staffs.FirstOrDefault(d => d.FullName == "Tamara Bakken").ID
                         }
                         );
                     context.SaveChanges();
                 }
-                
 
+                if (!context.Approvals.Any())
+                {
+                    context.Approvals.AddRange(
+                        new Approval
+                        {
+                            DesignBidID = 1,
+                            AdminApprovalStatus = ApprovalStatus.Pending.ToString(),
+                            ClientApprovalStatus = ApprovalStatus.Pending.ToString()
+                        },
+                        new Approval
+                        {
+                            DesignBidID = 2,
+                            AdminApprovalStatus = ApprovalStatus.Pending.ToString(),
+                            ClientApprovalStatus = ApprovalStatus.Pending.ToString()
+                        }
+                        );
+                    context.SaveChanges();
+                }
             }
             catch (Exception ex)
             {
