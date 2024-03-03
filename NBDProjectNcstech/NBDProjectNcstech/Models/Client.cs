@@ -1,9 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using MedicalOffice.Models;
+using System.ComponentModel.DataAnnotations;
 using System.Text.RegularExpressions;
 
 namespace NBDProjectNcstech.Models
 {
-    public class Client
+    public class Client: Auditable
     {
         public string FormatedPhoneNumber
         {

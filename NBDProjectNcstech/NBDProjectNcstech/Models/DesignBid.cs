@@ -1,8 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using MedicalOffice.Models;
+using System.ComponentModel.DataAnnotations;
 
 namespace NBDProjectNcstech.Models
 {
-    public class DesignBid
+    public class DesignBid : ApprovalAudit
     {
         public int ID { get; set; }
 
@@ -12,8 +13,11 @@ namespace NBDProjectNcstech.Models
         public int ProjectID { get; set; }
         public Project Project { get; set; }
 
-        [Display(Name = "Approvals")]
-        public ICollection<Approval> Approvals { get; set; } = new HashSet<Approval>();
+        //[Display(Name = "Approvals")]
+        //public ICollection<Approval> Approvals { get; set; } = new HashSet<Approval>();
+        [Display(Name = "Design Bid")]
+        public int? ApprovalID { get; set; }
+        public Approval Approval { get; set; }
 
         [Display(Name = "Labour Requirements")]
         public ICollection<LabourRequirments> LabourRequirments { get; set; } = new HashSet<LabourRequirments>();
