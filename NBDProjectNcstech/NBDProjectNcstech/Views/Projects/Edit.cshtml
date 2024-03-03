@@ -231,16 +231,21 @@
                 <div class="container-fluid">
 
                     <!-- /.row -->
-                    <div class="row mb-3">
-                        <div class="col-md-6 offset-md-3">
-                            <h1>Edit Project</h1>
+                    <div class="card card-primary">
+                        <div class="card-header" style="background-color:darkcyan">
+                        <div class="row mb-2">
+                            <br />
+                            <div class="col-md-6 offset-md-3" style="margin-top: 20px;">
+                                <h3 style="color: white;">Edit Project</h3>
+
+                            </div>
+                            </div>
                         </div>
-                    </div>
-
-                    <div class="row mb-3">
-                        <div class="col-md-6 offset-md-3">
-
-                            <form asp-action="Edit">
+                        
+                        <div class="row mb-3">
+                            <div class="col-md-6 offset-md-3">
+                                <br />
+                                <form asp-action="Edit" style="font-size: 1.3em;">
                                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                                 <input type="hidden" asp-for="Id" />
                                 <div class="form-group">
@@ -283,7 +288,7 @@
                 </div>
             </div>
 
-
+            </div>
             <div>
             </div><!-- /.container-fluid -->
         </div> <!-- /.content -->

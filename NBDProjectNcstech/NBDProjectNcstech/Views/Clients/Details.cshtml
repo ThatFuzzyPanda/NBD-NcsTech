@@ -225,12 +225,12 @@
                 </div>
                 <!-- /.content-header -->
                 <!-- Main content -->
-                <section class="content">
+                <div class="content">
 
                     <!-- Default box -->
                     <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">Client Detail</h3>
+                        <div class="card-header" style="background-color:darkcyan">
+                            <h3 class="card-title" style="color: white;">Client Detail</h3>
 
                             <div class="card-tools">
                                 <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
@@ -241,8 +241,10 @@
                                 </button>
                             </div>
                         </div>
+
                         <div class="card-body">
                             <div class="row">
+                                <br />
                                 <dl class="row" style="font-size: 1.2em;">
                                     <dt class="col-sm-3">
                                         @Html.DisplayNameFor(model => model.Name)

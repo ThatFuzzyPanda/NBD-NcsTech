@@ -230,20 +230,20 @@
 
                     <!-- /.row -->
                    		<div class="card card-primary">
+                        <div class="card-header" style="background-color:darkgreen;">
                         <div class="row mb-2">
                             <br />
                             <div class="col-md-6 offset-md-3" style="margin-top: 20px;">
-                                <h1>Create New Project</h1>
+                                <h3 style="color: white;">Create New Project</h3>
 
                             </div>
-
-                        </div>
-                        <hr style="width: 100%" />
+                            </div>
+                      </div>
 
                     <div class="row mb-3">
                         <div class="col-md-6 offset-md-3">
-
-                            <form asp-action="Add">
+                            <br/>
+                                <form asp-action="Add" style="font-size: 1.2em;">
                                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                               
                                         <input type="hidden" name="ClientId" value="@Model.ClientId" />

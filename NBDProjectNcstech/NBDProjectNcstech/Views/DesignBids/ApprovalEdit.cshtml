@@ -1,4 +1,4 @@
-﻿@model NBDProjectNcstech.Models.Approval
+﻿ @model NBDProjectNcstech.Models.Approval
 @{
     ViewData["Title"] = "ApprovalEdit";
 }
@@ -228,19 +228,24 @@
 			<div class="content">
 				<div class="container-fluid">
 
-					<!-- /.row -->
-					<div class="row mb-3">
-						<div class="col-md-6 offset-md-3">
-							<h1>Edit Client Details</h1>
+					<div class="card card-primary">
+						<div class="card-header" style="background-color:darkcyan">
+
+						<div class="row mb-2">
+							<br />
+							<div class="col-md-6 offset-md-3" style="margin-top: 20px;">
+								<h3>Client Project Approval</h3>
+
+							</div>
+							</div>
 						</div>
-					</div>
-
-					<div class="row mb-3">
-						<div class="col-md-6 offset-md-3">
-
-							<form asp-action="AdminApproval" method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="ID" />
+						<br />
+						<div class="row mb-3">
+							<div class="col-md-6 offset-md-3">
+								
+								<form asp-action="AdminApproval" method="post" style="font-size: 1.3em;">
+							  <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+								   <input type="hidden" asp-for="ID" />
 								<div class="form-group">
 									<label class="control-label">Admin Approval Status:</label>
 									<select name="adminApprovalStatus" class="form-control">
@@ -257,21 +262,21 @@
 									<label class="control-label">Admin Notes:</label>
 									<textarea asp-for="AdminApprovalNotes" class="form-control" rows="4"></textarea>
 								</div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-				<button type="button" onclick="window.location.href = '@Url.Action("Index")'" class="btn btn-primary">Cancel</button>
-            </div>
-        </form>
-						</div>
+							<div class="form-group">
+								<input type="submit" value="Save" class="btn btn-primary" />
+								<button type="button" onclick="window.location.href = '@Url.Action("Index")'" class="btn btn-primary">Cancel</button>
+							</div>
+						</form>
+										</div>
 					</div>
 				</div>
 			</div>
 
-
+			</div>
 			<div>
 			</div><!-- /.container-fluid -->
 		</div> <!-- /.content -->
-
+		</div>
 		
 		<!-- Control Sidebar -->
 		<aside class="control-sidebar control-sidebar-dark">

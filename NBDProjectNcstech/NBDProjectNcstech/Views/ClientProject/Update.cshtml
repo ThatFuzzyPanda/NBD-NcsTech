@@ -230,23 +230,23 @@
                 <div class="container-fluid">
 
                     <div class="card card-primary">
+                        <div class="card-header" style="background-color:darkcyan">
                         <div class="row mb-2">
                             <br />
                             <div class="col-md-6 offset-md-3" style="margin-top: 20px;">
-                                <h1>Edit Client Details</h1>
+                                <h3 style="color: white;">Edit Client Details</h3>
 
                             </div>
-
+                            </div>
                         </div>
-                        <hr style="width: 100%" />
+                      
                     <div class="row mb-3">
                         <div class="col-md-6 offset-md-3">
-                          
-                            <form asp-action="Update">
+                                <br />
+                                <form asp-action="Update" style="font-size: 1.2em;">
                                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                                 <input type="hidden" asp-for="Id" />
-                                <div class="row">
-                                    <div class="col-md-4">
+                               
 
                                         <div class="form-group">
                                             <label asp-for="BidDate" class="control-label"></label>
@@ -278,8 +278,6 @@
                                                 <button type="button" onclick="window.location.href = '@Url.Action("Index")'" class="btn btn-primary">Cancel</button>
                                         </div>
 
-                                    </div>
-                                </div>
                             </form>
                            
                               

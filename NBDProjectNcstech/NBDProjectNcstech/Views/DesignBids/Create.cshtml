@@ -231,19 +231,24 @@
 				<div class="container-fluid">
 
 					<!-- /.row -->
-					<div class="row mb-3">
-						<div class="col-md-6 offset-md-3">
-							<h1>Create New Client</h1>
+					<div class="card card-primary">
+						<div class="card-header" style="background-color:darkgreen;">
+						<div class="row mb-2">
+							<br />
+							<div class="col-md-6 offset-md-3" style="margin-top: 20px;">
+								<h3>Client Project Approval</h3>
+
+							</div>
+							</div>
 						</div>
-					</div>
-
-					<div class="row mb-3">
-						<div class="col-md-6 offset-md-3">
-
-							<form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="row">
-                <div>
+						
+						<div class="row mb-3">
+							<div class="col-md-6 offset-md-3">
+								<br />
+								<form asp-action="Create" style="font-size: 1.3em;">
+					<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+					<div class="row">
+						<div>
                         <div class="form-group">
                             <label asp-for="ProjectID" class="control-label"></label>
                             <select asp-for="ProjectID" class ="form-control" asp-items="ViewBag.ProjectID"></select>
@@ -266,13 +271,13 @@
 											</div>
 										</div>
                         <div class="form-group">
-                            <input type="submit" value="Create" class="btn btn-primary" />
+                            <input type="submit" value="Create" class="btn btn-success" />
                             <button type="button" onclick="window.location.href = '@Url.Action("Index")'" class="btn btn-primary">Cancel</button>
                         </div>
                 </div>
             </div>
-</form>
-
+			</form>
+			</div>
 						</div>
 					</div>
 				</div>
