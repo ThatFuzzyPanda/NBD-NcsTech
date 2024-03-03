@@ -304,13 +304,14 @@
                                                             @Html.DisplayFor(modelItem => item.FormatedPhoneNumber)
                                                         </td>
 
+
                                                         <td>
                                                             <a href="@Url.Action("Edit", new { id = item.ID })">
                                                                 <i class="fas fa-edit" style="color: #15752d;"></i>
                                                             </a> |
-                                                            <a asp-controller="ClientProject" asp-action="Index" asp-route-ClientId="@item.ID" class="btn btn-sm btn-outline-primary"
+                                                            <a asp-controller="ClientProject" asp-action="Index" asp-route-ClientId="@item.ID" class="fas fa-info-circle"
                                                                role="button" data-bs-toggle="tooltip" title="@ViewData["ControllerFriendlyName"] Details">
-                                                                &#x1F50E;
+                                                                
                                                             </a> |
                                                             <a href="@Url.Action("Delete", new { id = item.ID })">
                                                                 <i class="fas fa-trash-alt" style="color: #ff0000;"></i>

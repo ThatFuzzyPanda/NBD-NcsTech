@@ -31,7 +31,6 @@ namespace NBDProjectNcstech.Models
 		[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
 		public DateTime Est_CompleteDate { get; set; }
 
-		[Required(ErrorMessage = "You must enter the bid amount.")]
 		[Display(Name = "Bid Amount")]
 		[DisplayFormat(DataFormatString = "{0:C}")]
 		[DataType(DataType.Currency)]
