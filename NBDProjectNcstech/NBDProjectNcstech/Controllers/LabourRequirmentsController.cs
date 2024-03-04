@@ -49,6 +49,7 @@ namespace NBDProjectNcstech.Controllers
         // GET: LabourRequirments/Create
         public IActionResult Create()
         {
+
             PopulateDropDownLists();
             return View();
         }
@@ -162,12 +163,13 @@ namespace NBDProjectNcstech.Controllers
             return RedirectToAction("Edit", "DesignBids", new { id = labourRequirments.DesignBidID });
         }
 
-        //SelectLists for DDLs
-        private SelectList DesignBidSelectList(int? selectedId)
+        private SelectList OneDesignBidSelectList(int? selectedId)
         {
+            int bidID = Convert.ToInt32(Request.Query["bidID"]);
+            //ViewData["bidID"] = bidID;
             return new SelectList(_context
                 .DesignBids
-                .OrderBy(m => m.Project.ProjectSite)
+                .Where(m => m.ID == bidID)
                 .Select(m => new
                 {
                     ID = m.ID,
@@ -184,9 +186,10 @@ namespace NBDProjectNcstech.Controllers
 
         private void PopulateDropDownLists(LabourRequirments labourRequirments = null)
         {
-            ViewData["DesignBidID"] = DesignBidSelectList(labourRequirments?.DesignBidID);
+            ViewData["DesignBidID"] = OneDesignBidSelectList(labourRequirments?.DesignBidID);
             ViewData["LabourID"] = LabourSelectList(labourRequirments?.LabourID);
         }
+
 
         private bool LabourRequirmentsExists(int id)
         {

@@ -270,6 +270,7 @@
                                     </div>
                                     <div class="form-group">
                                         <input type="submit" id="btnSubmit" value="Save" class="btn btn-primary" />
+                                        <button type="button" onclick="window.location.href = '@Url.Action("Index")'" class="btn btn-primary">Cancel</button>
                                     </div>
                                 </form>
                             </div>
@@ -277,7 +278,7 @@
                             <div class="col-md-6 px-4 py-4">
                                 <!-- Labour requirement table -->
                                 <h4>Labour Requirements</h4>
-                                <a asp-controller="LabourRequirments" asp-action="Create" class="btn btn-primary btn-sm rounded-circle" style="margin-right: 10px;">
+                                <a asp-controller="LabourRequirments" asp-route-bidID="@Model.ID" asp-action="Create" class="btn btn-primary btn-sm rounded-circle" style="margin-right: 10px;">
                                     <i class="fas fa-plus"></i>
                                 </a>
                                 <table class="table">
@@ -315,7 +316,7 @@
                                                     @Html.DisplayFor(modelItem => item.ExtendedPrice)
                                                 </td>
                                                 <td>
-                                                    <a href="@Url.Action("Edit", "LabourRequirments", new { id = item.ID })">
+                                                    <a href="@Url.Action("Edit", "LabourRequirments", new { id = item.ID, bidID = Model.ID })">
                                                         <i class="fas fa-edit" style="color: #15752d;"></i>
                                                     </a> |
                                                     <a href="@Url.Action("Details", "LabourRequirments", new { id = item.ID })">
@@ -332,7 +333,7 @@
 
                                 <!-- Material requirement table -->
                                 <h4>Material Requirements</h4>
-                                <a asp-controller="MaterialRequirments" asp-action="Create" class="btn btn-primary btn-sm rounded-circle" style="margin-right: 10px;">
+                                <a asp-controller="MaterialRequirments" asp-action="Create" asp-route-bidID="@Model.ID" class="btn btn-primary btn-sm rounded-circle" style="margin-right: 10px;">
                                     <i class="fas fa-plus"></i>
                                 </a>
                                 <table class="table">
@@ -364,7 +365,7 @@
                                                     @Html.DisplayFor(modelItem => item.ExtendedPrice)
                                                 </td>
                                                 <td>
-                                                    <a href="@Url.Action("Edit", "MaterialRequirments", new { id = item.ID })">
+                                                    <a href="@Url.Action("Edit", "MaterialRequirments", new { id = item.ID, bidID = Model.ID })">
                                                         <i class="fas fa-edit" style="color: #15752d;"></i>
                                                     </a> |
                                                     <a href="@Url.Action("Details", "MaterialRequirments", new { id = item.ID })">

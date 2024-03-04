@@ -113,7 +113,7 @@ namespace NBDProjectNcstech.Controllers
                 {
                     _context.Add(designBid);
                     await _context.SaveChangesAsync();
-                    return RedirectToAction(nameof(Index));
+                    return RedirectToAction("Edit", "DesignBids", new { id = designBid.ID });
                 }
             }
             catch (RetryLimitExceededException)
