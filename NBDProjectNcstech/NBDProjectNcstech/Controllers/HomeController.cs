@@ -20,7 +20,7 @@ namespace NBDProjectNcstech.Controllers
             _logger = logger;
             _context = nBDContext;
         }
-        public async Task<IActionResult> Index(string SearchString, int? idProject, int? Id,int? page, int? pageSizeID)
+        public async Task<IActionResult> Index( DateTime? Start, DateTime? End,  string SearchString, int? idProject, int? Id,int? page, int? pageSizeID)
         {
             var clients = _context.Clients.AsNoTracking();
             var projects =  _context.Projects
@@ -39,6 +39,10 @@ namespace NBDProjectNcstech.Controllers
 			if (!System.String.IsNullOrEmpty(SearchString))
             { 
 				clients = clients.Where(c => c.ContactPerson.ToUpper().Contains(SearchString.ToUpper()));
+			}
+			if (Start.HasValue && End! > Start)
+			{
+				projects = projects.Where(t => t.BidDate >= Start && t.BidDate <= End);
 			}
 
 			//Handle Paging
