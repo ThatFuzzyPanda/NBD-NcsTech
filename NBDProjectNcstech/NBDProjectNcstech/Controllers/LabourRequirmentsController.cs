@@ -64,10 +64,10 @@ namespace NBDProjectNcstech.Controllers
             {
                 _context.Add(labourRequirments);
                 await _context.SaveChangesAsync();
-                return RedirectToAction("Details", "DesignBids", new { id = labourRequirments.DesignBidID });
+                return RedirectToAction("Edit", "DesignBids", new { id = labourRequirments.DesignBidID });
             }
             PopulateDropDownLists(labourRequirments);
-            return RedirectToAction("Details", "DesignBids", new { id = labourRequirments.DesignBidID });
+            return RedirectToAction("Edit", "DesignBids", new { id = labourRequirments.DesignBidID });
         }
 
         // GET: LabourRequirments/Edit/5
@@ -117,10 +117,10 @@ namespace NBDProjectNcstech.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction("Details", "DesignBids", new { id = labourRequirments.DesignBidID });
+                return RedirectToAction("Edit", "DesignBids", new { id = labourRequirments.DesignBidID });
             }
             PopulateDropDownLists(labourRequirments);
-            return RedirectToAction("Details", "DesignBids", new { id = labourRequirments.DesignBidID });
+            return RedirectToAction("Edit", "DesignBids", new { id = labourRequirments.DesignBidID });
         }
 
         // GET: LabourRequirments/Delete/5
@@ -159,7 +159,7 @@ namespace NBDProjectNcstech.Controllers
             }
 
             await _context.SaveChangesAsync();
-            return RedirectToAction("Details", "DesignBids", new { id = labourRequirments.DesignBidID });
+            return RedirectToAction("Edit", "DesignBids", new { id = labourRequirments.DesignBidID });
         }
 
         //SelectLists for DDLs

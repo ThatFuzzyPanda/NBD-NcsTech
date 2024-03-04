@@ -64,10 +64,10 @@ namespace NBDProjectNcstech.Controllers
             {
                 _context.Add(materialRequirments);
                 await _context.SaveChangesAsync();
-                return RedirectToAction("Details", "DesignBids", new { id = materialRequirments.DesignBidID });
+                return RedirectToAction("Edit", "DesignBids", new { id = materialRequirments.DesignBidID });
             }
             PopulateDropDownLists(materialRequirments);
-            return RedirectToAction("Details", "DesignBids", new { id = materialRequirments.DesignBidID });
+            return RedirectToAction("Edit", "DesignBids", new { id = materialRequirments.DesignBidID });
         }
         
 
@@ -118,10 +118,10 @@ namespace NBDProjectNcstech.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction("Details", "DesignBids", new { id = materialRequirments.DesignBidID });
+                return RedirectToAction("Edit", "DesignBids", new { id = materialRequirments.DesignBidID });
             }
             PopulateDropDownLists(materialRequirments);
-            return RedirectToAction("Details", "DesignBids", new { id = materialRequirments.DesignBidID });
+            return RedirectToAction("Edit", "DesignBids", new { id = materialRequirments.DesignBidID });
         }
 
         // GET: MaterialRequirments/Delete/5
@@ -160,7 +160,7 @@ namespace NBDProjectNcstech.Controllers
             }
             
             await _context.SaveChangesAsync();
-            return RedirectToAction("Details", "DesignBids", new { id = materialRequirments.DesignBidID });
+            return RedirectToAction("Edit", "DesignBids", new { id = materialRequirments.DesignBidID });
         }
 
         //SelectLists for  DDLs

@@ -226,8 +226,13 @@ namespace NBDProjectNcstech.Controllers
             }
 
             var designBid = await _context.DesignBids
-                                  .Include(d => d.DesignBidStaffs).ThenInclude(d => d.Staff)
-                                  .FirstOrDefaultAsync(d => d.ID == id);
+                .Include(d => d.Project)
+                .Include(d => d.Approval)
+                .Include(d => d.LabourRequirments).ThenInclude(d => d.Labour)
+                .Include(d => d.MaterialRequirments).ThenInclude(d => d.Inventory)
+                .Include(d => d.DesignBidStaffs).ThenInclude(d => d.Staff)
+                .AsNoTracking()
+                .FirstOrDefaultAsync(m => m.ID == id);
             if (designBid == null)
             {
                 return NotFound();
