@@ -1,0 +1,64 @@
+﻿@model NBDProjectNcstech.Models.Project
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+
+
+
+            <!-- Main content -->
+            <div class="callout callout-info">
+                <!-- title row -->
+                <div class="row">
+                    <div class="col-12">
+                        <h4><strong>Project Details</strong></h4>
+                        <hr />
+                        <dl class="row" style="font-size: 1.2em;">
+                            <dt class="col-sm-3">
+                                @Html.DisplayNameFor(model => model.BidDate)
+                            </dt>
+                            <dd class="col-sm-9">
+                                @Html.DisplayFor(model => model.BidDate)
+                            </dd>
+                            <dt class="col-sm-3">
+                                @Html.DisplayNameFor(model => model.ProjectSite)
+                            </dt>
+                            <dd class="col-sm-9">
+                                @Html.DisplayFor(model => model.ProjectSite)
+                            </dd>
+                            <dt class="col-sm-3">
+                                @Html.DisplayNameFor(model => model.Est_BeginDate)
+                            </dt>
+                            <dd class="col-sm-9">
+                                @Html.DisplayFor(model => model.Est_BeginDate)
+                            </dd>
+                            <dt class="col-sm-3">
+                                @Html.DisplayNameFor(model => model.Est_CompleteDate)
+                            </dt>
+                            <dd class="col-sm-9">
+                                @Html.DisplayFor(model => model.Est_CompleteDate)
+                            </dd>
+                            <dt class="col-sm-3">
+                                @Html.DisplayNameFor(model => model.BidAmount)
+                            </dt>
+                            <dd class="col-sm-9">
+                                @Html.DisplayFor(model => model.BidAmount)
+                            </dd>
+                            <dt class="col-sm-3">
+                                @Html.DisplayNameFor(model => model.Client)
+                            </dt>
+                            <dd class="col-sm-9">
+                                @Html.DisplayFor(model => model.Client.Name)
+                            </dd>
+                        </dl>
+                    </div>
+                    <!-- /.row -->
+                    <!-- /.row -->
+
+
+                </div>
+                <!-- /.invoice -->
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</section>
+<!-- /.content -->

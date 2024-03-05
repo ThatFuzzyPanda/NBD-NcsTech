@@ -109,7 +109,7 @@ namespace NBDProjectNcstech.Controllers
             {
                 _context.Add(project);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "ProjectsDesignBids", new { ProjectId = project.Id });
             }
 			PopulateDropDownLists(project);
             return View(project);

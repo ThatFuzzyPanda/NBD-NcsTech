@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using CateringManagement.ViewModels;
+﻿using CateringManagement.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -11,39 +7,47 @@ using NBDProjectNcstech.CustomControllers;
 using NBDProjectNcstech.Data;
 using NBDProjectNcstech.Models;
 using NBDProjectNcstech.Utilities;
-using NBDProjectNcstech.ViewModels;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace NBDProjectNcstech.Controllers
 {
-    public class DesignBidsController : CognizantController
+	public class ProjectsDesignBidsController : ElephantController
     {
         private readonly NBDContext _context;
 
-        public DesignBidsController(NBDContext context)
+        public ProjectsDesignBidsController(NBDContext context)
         {
             _context = context;
         }
 
-        // GET: DesignBids
-        public async Task<IActionResult> Index(string SearchString, int? page, int? pageSizeID)
+        // GET: ProjectsDesignBids
+        public async Task<IActionResult> Index(int? ProjectID, int? page, int? pageSizeID)
         {
-            var designBids = _context.DesignBids
-                .Include(d => d.Project)
-                .Include(d=>d.Approval)
+            var designBids = from d in _context.DesignBids
+                .Include(d => d.DesignBidStaffs).ThenInclude(d => d.Staff)
                 .Include(d => d.LabourRequirments)
                 .Include(d => d.MaterialRequirments)
-                .Include(d => d.DesignBidStaffs).ThenInclude(d => d.Staff)
-                .AsNoTracking();
+                .Include(d => d.Approval)
+                .Include(d => d.Project)
+                where d.ProjectID == ProjectID.GetValueOrDefault()
+                select d;
+            // Get the URL with the last filter, sort and page parameters from THE PATIENTS Index View
+            ViewData["returnURL"] = MaintainURL.ReturnURL(HttpContext, "ProjectsDesignBids");
 
-
-            //search and filter
-            if (!System.String.IsNullOrEmpty(SearchString))
+            if (!ProjectID.HasValue)
             {
-                //clients = clients.Where(p => p.Name.ToUpper().Contains(SearchString.ToUpper())
-                //                       || p.ContactPerson.ToUpper().Contains(SearchString.ToUpper()));
-                designBids = designBids.Where(c => c.Project.ProjectSite.ToUpper().Contains(SearchString.ToUpper()));
+                //Go back to the proper return URL for the Patients controller
+                return Redirect(ViewData["returnURL"].ToString());
             }
+
+            //Now get the MASTER record, the client, so it can be displayed at the top of the screen
+            Project project = await _context.Projects
+				.Include(p => p.DesignBids)
+                .Include(p => p.Client)
+				.Where(p => p.Id == ProjectID.GetValueOrDefault())
+				.AsNoTracking()
+				.FirstOrDefaultAsync();
+
+            ViewBag.projects = project;
 
             //Handle Paging
             int pageSize = PageSizeHelper.SetPageSize(HttpContext, pageSizeID, ControllerName());
@@ -52,7 +56,7 @@ namespace NBDProjectNcstech.Controllers
             return View(pagedData);
         }
 
-        // GET: DesignBids/Details/5
+        // GET: ProjectsDesignBids/Details/5
         public async Task<IActionResult> Details(int? ID)
         {
             if (ID == null || _context.DesignBids == null)
@@ -61,12 +65,11 @@ namespace NBDProjectNcstech.Controllers
             }
 
             var designBid = await _context.DesignBids
-                .Include(d => d.Project)
                 .Include(d => d.Approval)
+                .Include(d => d.Project)
                 .Include(d => d.LabourRequirments).ThenInclude(d => d.Labour)
                 .Include(d => d.MaterialRequirments).ThenInclude(d => d.Inventory)
                 .Include(d => d.DesignBidStaffs).ThenInclude(d => d.Staff)
-                .AsNoTracking()
                 .FirstOrDefaultAsync(m => m.ID == ID);
             if (designBid == null)
             {
@@ -74,29 +77,30 @@ namespace NBDProjectNcstech.Controllers
             }
 
             return View(designBid);
-        }
+        } 
 
-        // GET: DesignBids/Create
-        public IActionResult Create()
+        // GET: ProjectsDesignBids/Create
+        public IActionResult Create(int? projectID)
         {
-            var designBid = new DesignBid();
+			ViewData["id"] = projectID;
+			var designBid = new DesignBid();
             PopulateAssignedDesignStaffLists(designBid);
             ViewData["ProjectID"] = new SelectList(_context.Projects, "Id", "ProjectSite");
             return View();
         }
 
-        // POST: DesignBids/Create
+        // POST: ProjectsDesignBids/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,ProjectID")] DesignBid designBid, string[] selectedOptions)
+        public async Task<IActionResult> Create([Bind("ID,ProjectID,ApprovalID")] DesignBid designBid, string[] selectedOptions)
         {
             try
             {
-				designBid.Approval = new Approval();
+                designBid.Approval = new Approval();
 
-				if (selectedOptions != null)
+                if (selectedOptions != null)
                 {
                     foreach (var staff in selectedOptions)
                     {
@@ -109,12 +113,13 @@ namespace NBDProjectNcstech.Controllers
                 //Create new Approval with both its status as pending 
                 designBid.Approval.AdminApprovalStatus = ApprovalStatus.Pending.ToString();
                 designBid.Approval.ClientApprovalStatus = ApprovalStatus.Pending.ToString();
+
                 if (ModelState.IsValid)
-                {
-                    _context.Add(designBid);
-                    await _context.SaveChangesAsync();
-                    return RedirectToAction("Edit", "DesignBids", new { id = designBid.ID });
-                }
+            {
+                _context.Add(designBid);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
             }
             catch (RetryLimitExceededException)
             {
@@ -128,7 +133,6 @@ namespace NBDProjectNcstech.Controllers
             ViewData["ProjectID"] = new SelectList(_context.Projects, "Id", "ProjectSite", designBid.ProjectID);
             return View(designBid);
         }
-        [HttpPost]
         public async Task<IActionResult> Approve(int? id)
         {
             if (id == null || _context.Clients == null)
@@ -137,8 +141,8 @@ namespace NBDProjectNcstech.Controllers
             }
             var designBid = await _context.DesignBids
                             .Include(d => d.Project)
-							.Include(d => d.Approval)
-							.Include(d => d.LabourRequirments)
+                            .Include(d => d.Approval)
+                            .Include(d => d.LabourRequirments)
                             .Include(d => d.MaterialRequirments)
                             .Include(d => d.DesignBidStaffs).ThenInclude(d => d.Staff)
                             .AsNoTracking()
@@ -154,7 +158,7 @@ namespace NBDProjectNcstech.Controllers
                 try
                 {
 
-					designBid.Approval.AdminApprovalStatus = ApprovalStatus.Approved.ToString();
+                    designBid.Approval.AdminApprovalStatus = ApprovalStatus.Approved.ToString();
                     _context.Update(designBid);
                     _context.ApproveEntity();
                     await _context.SaveChangesAsync();
@@ -181,8 +185,8 @@ namespace NBDProjectNcstech.Controllers
         {
             var designBid = await _context.DesignBids
                                         .Include(d => d.Project)
-										.Include(d => d.Approval)
-										.Include(d => d.LabourRequirments)
+                                        .Include(d => d.Approval)
+                                        .Include(d => d.LabourRequirments)
                                         .Include(d => d.MaterialRequirments)
                                         .Include(d => d.DesignBidStaffs).ThenInclude(d => d.Staff)
                                         .AsNoTracking()
@@ -195,7 +199,7 @@ namespace NBDProjectNcstech.Controllers
             {
                 try
                 {
-					designBid.Approval.AdminApprovalStatus = ApprovalStatus.Denied.ToString();
+                    designBid.Approval.AdminApprovalStatus = ApprovalStatus.Denied.ToString();
                     _context.Update(designBid);
                     _context.RejectEntity();
                     await _context.SaveChangesAsync();
@@ -217,10 +221,10 @@ namespace NBDProjectNcstech.Controllers
             return View(designBid);
         }
 
-        // GET: DesignBids/Edit/5
-        public async Task<IActionResult> Edit(int? ID)
+        // GET: ProjectsDesignBids/Edit/5
+        public async Task<IActionResult> Edit(int? id)
         {
-            if (ID == null || _context.DesignBids == null)
+            if (id == null || _context.DesignBids == null)
             {
                 return NotFound();
             }
@@ -232,7 +236,7 @@ namespace NBDProjectNcstech.Controllers
                 .Include(d => d.MaterialRequirments).ThenInclude(d => d.Inventory)
                 .Include(d => d.DesignBidStaffs).ThenInclude(d => d.Staff)
                 .AsNoTracking()
-                .FirstOrDefaultAsync(m => m.ID == ID);
+                .FirstOrDefaultAsync(m => m.ID == id);
             if (designBid == null)
             {
                 return NotFound();
@@ -242,38 +246,28 @@ namespace NBDProjectNcstech.Controllers
             return View(designBid);
         }
 
-        // POST: DesignBids/Edit/5
+        // POST: ProjectsDesignBids/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, string[] selectedOptions)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,ProjectID,ApprovalID")] DesignBid designBid)
         {
-            var designBidToUpdate = await _context.DesignBids
-                                    .Include(d => d.DesignBidStaffs).ThenInclude(d => d.Staff)
-                                    .FirstOrDefaultAsync(d => d.ID == id);
-            if (designBidToUpdate == null)
+            if (id != designBid.ID)
             {
                 return NotFound();
             }
 
-            UpdateStaffListboxes(selectedOptions, designBidToUpdate);
-
-            if (await TryUpdateModelAsync<DesignBid>(designBidToUpdate, "",
-                d => d.ProjectID))
+            if (ModelState.IsValid)
             {
                 try
                 {
+                    _context.Update(designBid);
                     await _context.SaveChangesAsync();
-                    return RedirectToAction(nameof(Index));
-                }
-                catch (RetryLimitExceededException)
-                {
-                    ModelState.AddModelError("", "Unable to save changes");
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!DesignBidExists(designBidToUpdate.ID))
+                    if (!DesignBidExists(designBid.ID))
                     {
                         return NotFound();
                     }
@@ -282,18 +276,14 @@ namespace NBDProjectNcstech.Controllers
                         throw;
                     }
                 }
-                catch (DbUpdateException dex)
-                {
-                    ModelState.AddModelError("", "Unable to save changes");
-                }
+                return RedirectToAction(nameof(Index));
             }
-
-            PopulateAssignedDesignStaffLists(designBidToUpdate);
-            ViewData["ProjectID"] = new SelectList(_context.Projects, "Id", "ProjectSite", designBidToUpdate.ProjectID);
-            return View(designBidToUpdate);
+            ViewData["ApprovalID"] = new SelectList(_context.Approvals, "ID", "ID", designBid.ApprovalID);
+            ViewData["ProjectID"] = new SelectList(_context.Projects, "Id", "ProjectSite", designBid.ProjectID);
+            return View(designBid);
         }
 
-        // GET: DesignBids/Delete/5
+        // GET: ProjectsDesignBids/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.DesignBids == null)
@@ -302,11 +292,8 @@ namespace NBDProjectNcstech.Controllers
             }
 
             var designBid = await _context.DesignBids
+                .Include(d => d.Approval)
                 .Include(d => d.Project)
-				.Include(d => d.Approval)
-				.Include(d => d.DesignBidStaffs)
-                .ThenInclude(d => d.Staff)
-                .AsNoTracking()
                 .FirstOrDefaultAsync(m => m.ID == id);
             if (designBid == null)
             {
@@ -316,28 +303,24 @@ namespace NBDProjectNcstech.Controllers
             return View(designBid);
         }
 
-        // POST: DesignBids/Delete/5
+        // POST: ProjectsDesignBids/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (_context.DesignBids == null)
             {
-                return Problem("Entity set 'NBDContext.DesignBids' is null.");
+                return Problem("Entity set 'NBDContext.DesignBids'  is null.");
             }
-            var designBid = await _context.DesignBids
-                                  .Include(d => d.DesignBidStaffs).ThenInclude(d => d.Staff)
-                                  .FirstOrDefaultAsync(d => d.ID == id);
+            var designBid = await _context.DesignBids.FindAsync(id);
             if (designBid != null)
             {
                 _context.DesignBids.Remove(designBid);
             }
-
+            
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-
-        // GET: DesignBids/Edit/5
         public async Task<IActionResult> ApprovalEdit(int? id)
         {
             if (id == null || _context.Approvals == null)
@@ -390,58 +373,6 @@ namespace NBDProjectNcstech.Controllers
 
             return View(approvalToUpdate);
         }
-
-
-
-        //private void PopulateAssignedStaffData(DesignBid designBid)
-        //      {
-        //          var allOptions = _context.Staffs;
-        //          var currentOptionIDs = new HashSet<int>(designBid.DesignBidStaffs.Select(d => d.StaffID));
-        //          var checkBoxes = new List<CheckOptionVM>();
-        //          foreach (var option in allOptions)
-        //          {
-        //              checkBoxes.Add(new CheckOptionVM
-        //              {
-        //                  ID = option.ID,
-        //                  DisplayText = option.FullName,
-        //                  Assigned = currentOptionIDs.Contains(option.ID)
-        //              });
-        //          }
-        //          ViewData["StaffOptions"] = checkBoxes;
-        //      }
-
-        //      private void UpdateDesignBidStaffs(string[] selectedOptions, DesignBid designBidToUpdate)
-        //      {
-        //          if (selectedOptions == null)
-        //          {
-        //              designBidToUpdate.DesignBidStaffs = new List<DesignBidStaff>();
-        //              return;
-        //          }
-
-        //          var selectedOptionsHS = new HashSet<string>(selectedOptions);
-        //          var designOptionsHS = new HashSet<int>
-        //              (designBidToUpdate.DesignBidStaffs.Select(d => d.StaffID));
-        //          foreach (var option in _context.Staffs)
-        //          {
-        //              if (selectedOptionsHS.Contains(option.ID.ToString())) //It is checked
-        //              {
-        //                  if (!designOptionsHS.Contains(option.ID))
-        //                  {
-        //                      designBidToUpdate.DesignBidStaffs.Add(new DesignBidStaff { DesignBidID = designBidToUpdate.ID, StaffID = option.ID });
-        //                  }
-        //              }
-        //              else
-        //              {
-        //                  //Checkbox not Checked
-        //                  if (designOptionsHS.Contains(option.ID))
-        //                  {
-        //                      DesignBidStaff staffToRemove = designBidToUpdate.DesignBidStaffs.SingleOrDefault(d => d.StaffID == option.ID);
-        //                      _context.Remove(staffToRemove);
-        //                  }
-        //              }
-        //          }
-        //      }
-
         private void PopulateAssignedDesignStaffLists(DesignBid designbid)
         {
             // For this to work, you must have Included the child collection in the parent object
@@ -513,10 +444,9 @@ namespace NBDProjectNcstech.Controllers
                 }
             }
         }
-
         private bool DesignBidExists(int id)
         {
-            return _context.DesignBids.Any(e => e.ID == id);
+          return _context.DesignBids.Any(e => e.ID == id);
         }
     }
 }
