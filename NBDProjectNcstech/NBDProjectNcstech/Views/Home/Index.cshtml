@@ -304,28 +304,27 @@
 										</div>
 									</div>
 									<div class="card-body">
-										<div class="row">
+										<div class="row align-items-end">
 											<div class="col-md-4">
-
 												<label class="control-label">Select by Organization Name:</label>
 												<div class="input-group">
 													@Html.DropDownList("Id", null, "All Organization", htmlAttributes: new { @class = "form-control" })
-
 												</div>
-
+											</div>
+											<div class="col-md-4">
 												<label class="control-label">Search by Contact First Name:</label>
 												<div class="input-group">
 													@Html.TextBox("SearchString", null, new { @class = "form-control" })
 												</div>
-
 											</div>
-											<div class="col-md-4 d-flex align-items-end">
-												<button type="submit" name="actionButton" value="Filter" class="btn btn-outline-primary mr-2">
-													<i class="fas fa-search"></i>
-												</button>
-												<a asp-action="Index" class="btn btn-outline-dark">Clear</a>
+											<div class="col-md-2">
+												<div class="d-flex justify-content-end">
+													<button type="submit" name="actionButton" value="Filter" class="btn btn-outline-primary mr-2">
+														<i class="fas fa-search"></i>
+													</button>
+													<a asp-action="Index" class="btn btn-outline-dark">Clear</a>
+												</div>
 											</div>
-
 										</div>
 									</div>
 
@@ -378,33 +377,36 @@
 											</div>
 										</div>
 									</div>
-
 									<div class="card-body">
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <label class="control-label">Select by Organization Name:</label>
-                                                <div class="input-group">
+										<div class="row">
+											<div class="col-md-4">
+												<label class="control-label">Select by Organization Name:</label>
+												<div class="input-group">
 													@Html.DropDownList("idProject", null, "All Organization", htmlAttributes: new { @class = "form-control" })
-                                               
-                                                </div>
-												<div class="col-md-4">
-													<label class="control-label">Select by Organization Name:</label>
-													<div class="input-group">
-														<span>Start Date:</span> <input type="date" name="Start" />
-														<span>End Date:</span> <input type="date" name="End" />
-													</div>
 												</div>
-                                            </div>
-                                       
-                                            <div class="col-md-4 d-flex align-items-end">
-                                                <button type="submit" name="actionButton" value="Filter" class="btn btn-outline-primary mr-2">
-                                                    <i class="fas fa-search"></i>
-                                                </button>
-                                                <a asp-action="Index" class="btn btn-outline-dark">Reset</a>
-                                            </div>
+											</div>
 
-                                        </div>
-                                    </div>
+											<div class="col-md-4">
+												<label class="control-label">Select by Start and End Date:</label>
+												<div class="input-group">
+													<span class="mr-2">Start Date:</span>
+													<input type="date" name="Start" />
+													<span class="mx-2">End Date:</span>
+													<input type="date" name="End" id="endDateInput" />
+												</div>
+											</div>
+
+											<div class="col-md-4 d-flex align-items-end">
+												<button type="submit" name="actionButton" value="Filter" class="btn btn-outline-primary mr-2">
+													<i class="fas fa-search"></i>
+												</button>
+												<a asp-action="Index" class="btn btn-outline-dark">Reset</a>
+											</div>
+										</div>
+									</div>
+
+
+
 									<div class="card-body table-responsive p-0">
 										<table class="table table-striped table-valign-middle">
 											<thead>

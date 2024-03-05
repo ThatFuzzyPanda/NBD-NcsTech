@@ -229,26 +229,40 @@
                 <div class="container-fluid">
 
                     <!-- /.row -->
-                    <div class="card card-primary">
-                        <div class="card-header" style="background-color:darkcyan">
-                            <div class="row mb-2">
-                                <br />
-                                <div class="col-md-6 offset-md-3" style="margin-top: 20px;">
-                                    <h3 style="color: white;">Design Bid Details</h3>
-
+                    <div class="card">
+                        <div class="card-header" style="background-color:#423535;">
+                            <div class="row align-items-center">
+                                <div class="col">
+                                    <label class="control-label" style="color: white;">Design Bid Details</label>
                                 </div>
+
                             </div>
                         </div>
-                        <hr style="width: 100%" />
+                        <div class="row mb-3"></div>
                         <div class="row mb-3">
-                            <br />
+                            <br /> <br />
                             <div class="col-md-6 offset-md-3">
                                 <dl class="row">
                                     <dt class="col-sm-2">
                                         @Html.DisplayNameFor(model => model.Project)
                                     </dt>
                                     <dd class="col-sm-10">
-                                        @Html.DisplayFor(model => model.Project.ProjectSite)
+                                       @*  @Html.DisplayFor(model => model.Project.ProjectSite) *@
+                                        <div class="d-flex align-items-center">
+                                            <span class="mr-auto">@Html.DisplayFor(model => model.Project.ProjectSite)</span>
+                                            <!-- Buttons in one row -->
+                                            <form asp-action="Edit" asp-route-id="@Model?.ID" method="get">
+                                                <button type="submit" class="btn btn-primary mr-2">Edit</button>
+                                                <button type="button" onclick="window.location.href = '@Url.Action("Index")'" class="btn btn-primary mr-2">Cancel</button>
+                                            </form>
+                                            <form method="post" asp-action="Approve" asp-route-id="@Model?.ID">
+                                                <button type="submit" class="btn btn-success mr-2">Approve</button>
+                                            </form>
+                                            <form method="post" asp-action="Reject" asp-route-id="@Model?.ID">
+                                                <button type="submit" class="btn btn-outline-danger">Reject</button>
+                                            </form>
+                                        </div>
+
                                     </dd>
                                     <dt class="col-sm-2">
                                         @Html.DisplayNameFor(model => model.DesignBidStaffs)
@@ -386,7 +400,8 @@
 
                                 </dl>
 
-                            <div>
+                                @* <div class ="col-md-6 offset-md-3 d-flex justify-content-end">
+                                    <div class="text-right">
                                 <form asp-action="Edit" asp-route-id="@Model?.ID" method="get">
                                     <button type="submit" class="btn btn-primary" >Edit</button>
                                      <button type="button" onclick="window.location.href = '@Url.Action("Index")'" class="btn btn-primary">Cancel</button>
@@ -399,13 +414,15 @@
                                 <form method="post" asp-action="Reject" asp-route-id="@Model?.ID">
                                     <button type="submit" class="btn btn-outline-danger">Reject</button>
                                 </form>
-                            </div>
+                                </div>
+                            </div> *@
                         </div>
+                        
                     </div>
                 </div>
 
             </div>
-            <div>
+            
             </div><!-- /.container-fluid -->
         </div> <!-- /.content -->
         <!-- Control Sidebar -->

@@ -228,18 +228,19 @@
             <!-- /.content-header -->
             <!-- Main content -->
             <div class="content">
-                <divdiv class="container-fluid">
+                <div class="container-fluid">
 
                     <!-- /.row -->
-                    <div class="card card-primary">
-                        <div class="card-header" style="background-color:darkcyan">
-                            <div class="row mb-2">
-                                <div class="col-md-6" style="margin-top: 20px;">
-                                    <h3 style="color: white;">Edit Design Bid</h3>
+                    <div class="card">
+                        <div class="card-header" style="background-color:#423535;">
+                            <div class="row align-items-center">
+                                <div class="col">
+                                    <label class="control-label" style="color: white;">Edit Design Bid</label>
                                 </div>
+
                             </div>
                         </div>
-                        <hr style="width: 100%" />
+
                         <div class="row mb-3">
                             <!-- Left column for edit form -->
                             <div class="col-md-6 px-4 py-4">
@@ -332,8 +333,8 @@
                                 </table>
 
                                 <!-- Material requirement table -->
-                                <h4>Material Requirements</h4>
-                                <a asp-controller="MaterialRequirments" asp-action="Create" asp-route-bidID="@Model.ID" class="btn btn-primary btn-sm rounded-circle" style="margin-right: 10px;">
+                                <h4>Material Requirements</h4> 
+                                <a asp-controller="MaterialRequirments" asp-action="Create" asp-route-bidID="@Model.ID" class="btn btn-primary btn-sm rounded-circle" style="margin-top: 10px;">
                                     <i class="fas fa-plus"></i>
                                 </a>
                                 <table class="table">
@@ -383,13 +384,13 @@
                         </div>
                     </div>
 
-            </div>
-        </div>
+                </div>
+             </div>
 
 
-        <div>
+        
         </div><!-- /.container-fluid -->
-    </div> <!-- /.content -->
+     <!-- /.content -->
     <!-- Control Sidebar -->
     <aside class="control-sidebar control-sidebar-dark">
         <!-- Control sidebar content goes here -->
