@@ -164,11 +164,13 @@ namespace NBDProjectNcstech.Controllers
         }
 
         //SelectLists for  DDLs
-        private SelectList DesignBidSelectList(int? selectedId)
+        private SelectList OneDesignBidSelectList(int? selectedId)
         {
+            int bidID = Convert.ToInt32(Request.Query["bidID"]);
+            //ViewData["bidID"] = bidID;
             return new SelectList(_context
                 .DesignBids
-                .OrderBy(m => m.Project.ProjectSite)
+                .Where(m => m.ID == bidID)
                 .Select(m => new
                 {
                     ID = m.ID,
@@ -185,7 +187,7 @@ namespace NBDProjectNcstech.Controllers
 
         private void PopulateDropDownLists(MaterialRequirments materialRequirments = null)
         {
-            ViewData["DesignBidID"] = DesignBidSelectList(materialRequirments?.DesignBidID);
+            ViewData["DesignBidID"] = OneDesignBidSelectList(materialRequirments?.DesignBidID);
             ViewData["InventoryID"] = InventorySelectList(materialRequirments?.InventoryID);
         }
 
