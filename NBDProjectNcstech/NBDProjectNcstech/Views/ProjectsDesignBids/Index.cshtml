@@ -1,8 +1,10 @@
-﻿@model IEnumerable<NBDProjectNcstech.Models.Project>
+﻿@model IEnumerable<NBDProjectNcstech.Models.DesignBid>
 
 @{
+    NBDProjectNcstech.Models.Project project = (NBDProjectNcstech.Models.Project)ViewBag.projects;
     ViewData["Title"] = "Index";
 }
+
 <!DOCTYPE html>
 
 <html lang="en">
@@ -192,10 +194,10 @@
 
                         <!-- Logout -->
                         @* <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-sign-out-alt"></i>
-                                <p>Logout</p>
-                            </a>
+                        <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-sign-out-alt"></i>
+                        <p>Logout</p>
+                        </a>
                         </li> *@
 
                     </ul>
@@ -224,6 +226,7 @@
             <!-- Main content -->
             <div class="content">
                 <div class="container-fluid">
+                    <partial name="_ProjectDetails" model="project" />
                     <form asp-action="Index" method="get">
                         <!-- /.row -->
                         <div class="row">
@@ -232,69 +235,51 @@
                                     <div class="card-header" style="background-color:#423535;">
                                         <div class="row align-items-center">
                                             <div class="col">
-                                                <label class="control-label" style="color: white;">Project</label>
+                                                <label class="control-label" style="color: white;">Bids</label>
                                             </div>
                                             <div class="col-auto">
-                                                <a asp-controller="Projects" asp-action="Create" class="btn btn-primary btn-sm rounded-circle">
+                                                <a asp-controller="ProjectsDesignBids" asp-action="Create" asp-route-projectID="@project.Id" class="btn btn-primary btn-sm rounded-circle" style="margin-right: 10px;">
                                                     <i class="fas fa-plus"></i>
                                                 </a>
                                             </div>
                                         </div>
                                     </div>
 
+
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-md-4">
-                                                <label class="control-label">Select by Organization Name:</label>
-                                                <div class="input-group">
-                                                    @Html.DropDownList("ClientId", null, "All Organization", htmlAttributes: new { @class = "form-control" })
-                                               
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <label class="control-label">Select by Organization Name:</label>
-                                                <div class="input-group">
-                                                    <span>Start Date:</span> <input type="date" name="Start" />
-                                                    <span>End Date:</span> <input type="date" name="End" />
-                                                </div>
-                                            </div>
-                                       
-                                            <div class="col-md-4 d-flex align-items-end">
-                                                <button type="submit" name="actionButton" value="Filter" class="btn btn-outline-primary mr-2">
-                                                    <i class="fas fa-search"></i>
-                                                </button>
-                                                <a asp-action="Index" class="btn btn-outline-dark">Reset</a>
-                                            </div>
 
+
+
+                                                
+
+
+                                            </div>
+                                            
 
                                         </div>
                                     </div>
 
 
 
+
+
                                     <!-- /.card-header -->
                                     <div class="card-body table-responsive p-0">
-                                        <table class="table table-hover text-nowrap">
+                                        <table class="table">
                                             <thead>
                                                 <tr>
                                                     <th>
-                                                        @Html.ActionLink("Bid Date", "Index",new {sortOrder = ViewBag.DateSortParm})
+                                                        @Html.DisplayNameFor(model => model.Project)
                                                     </th>
                                                     <th>
-                                                        @Html.DisplayNameFor(model => model.ProjectSite)
+                                                        @Html.DisplayNameFor(model => model.DesignBidStaffs)
                                                     </th>
                                                     <th>
-                                                        @Html.DisplayNameFor(model => model.Est_BeginDate)
+                                                        @Html.DisplayNameFor(model => model.Approval)
                                                     </th>
-                                                    <th>
-                                                        @Html.DisplayNameFor(model => model.Est_CompleteDate)
-                                                    </th>
-                                                    @* <th>
-                                                    @Html.DisplayNameFor(model => model.BidAmount)
-                                                    </th> *@
-                                                    <th>
-                                                        @Html.DisplayNameFor(model => model.ClientId)
-                                                    </th>
+                                                    <th></th>
                                                     <th></th>
                                                 </tr>
                                             </thead>
@@ -303,32 +288,51 @@
                                                 {
                                                     <tr>
                                                         <td>
-                                                            @Html.DisplayFor(modelItem => item.BidDate)
+                                                            @Html.DisplayFor(modelItem => item.Project.ProjectSite)
                                                         </td>
                                                         <td>
-                                                            @Html.DisplayFor(modelItem => item.ProjectSite)
+                                                            @foreach (var d in item.DesignBidStaffs)
+                                                            {
+                                                                @d.Staff.FullName <br />
+                                                            }
                                                         </td>
                                                         <td>
-                                                            @Html.DisplayFor(modelItem => item.Est_BeginDate)
+                                                            Admin Approval:
+                                                            @if (item.Approval != null)
+                                                            {
+                                                                @Html.DisplayFor(modelItem => item.Approval.AdminApprovalStatus) <br />
+                                                            }
+                                                            else
+                                                            {
+                                                                <text>N/A</text>
+                                                            }
+
+                                                            Client Approval:
+                                                            @if (item.Approval != null)
+                                                            {
+                                                                @Html.DisplayFor(modelItem => item.Approval.ClientApprovalStatus)
+                                                            }
+                                                            else
+                                                            {
+                                                                <text>N/A</text>
+                                                            }
                                                         </td>
-                                                        <td>
-                                                            @Html.DisplayFor(modelItem => item.Est_CompleteDate)
-                                                        </td>
+
                                                         @* <td>
-                                                    @Html.DisplayFor(modelItem => item.BidAmount)
+                                                    <a asp-controller="DesignBids" asp-action="ApprovalEdit" asp-route-id="@item.ID" asp-route-status="approve" class="btn btn-success btn-sm" role="button">
+                                                    Approve
+                                                    </a>
                                                     </td> *@
                                                         <td>
-                                                            @Html.DisplayFor(modelItem => item.Client.Name)
-                                                        </td>
-                                                        <td>
-                                                            <a href="@Url.Action("Edit", new { id = item.Id })">
-                                                                <i class="fas fa-edit" style="color: #15752d;"></i>
+                                                            <a asp-controller="ProjectsDesignBids" asp-action="Edit" asp-route-id="@item.ID" class="fas fa-edit"
+                                                               role="button" data-bs-toggle="tooltip" style="color: #15752d;" title="@ViewData["ControllerFriendlyName"] Edit">
+
                                                             </a> |
-                                                            <a asp-controller="ProjectsDesignBids" asp-action="Index" asp-route-ProjectID="@item.Id" class="fas fa-info-circle"
+                                                            <a asp-controller="ProjectsDesignBids" asp-action="Details" asp-route-ID="@item.ID" class="fas fa-info-circle"
                                                                role="button" data-bs-toggle="tooltip" title="@ViewData["ControllerFriendlyName"] Details">
 
                                                             </a> |
-                                                            <a href="@Url.Action("Delete", new { id = item.Id })">
+                                                            <a href="@Url.Action("Delete", new { id = item.ID })">
                                                                 <i class="fas fa-trash-alt" style="color: #ff0000;"></i>
                                                             </a>
                                                         </td>
@@ -373,3 +377,12 @@
     <script src="dist/js/adminlte.min.js"></script>
 </body>
 </html>
+
+@section Scripts {
+    <script type="text/javascript">
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        })
+    </script>
+}
