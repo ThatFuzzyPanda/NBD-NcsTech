@@ -49,7 +49,8 @@ namespace NBDProjectNcstech.Controllers
         // GET: LabourRequirments/Create
         public IActionResult Create()
         {
-
+            string from = Request.Query["from"];
+            ViewData["From"] = from;
             PopulateDropDownLists();
             return View();
         }
@@ -59,12 +60,16 @@ namespace NBDProjectNcstech.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,Hours,Description,UnitPrice,LabourID,DesignBidID")] LabourRequirments labourRequirments)
+        public async Task<IActionResult> Create([Bind("ID,Hours,Description,UnitPrice,LabourID,DesignBidID")] LabourRequirments labourRequirments, string from)
         {
             if (ModelState.IsValid)
             {
                 _context.Add(labourRequirments);
                 await _context.SaveChangesAsync();
+                if(from == "AddLandM")
+                {
+                    return RedirectToAction("AddLabourAndMaterialPage", "DesignBids", new { id = labourRequirments.DesignBidID });
+                }
                 return RedirectToAction("Edit", "DesignBids", new { id = labourRequirments.DesignBidID });
             }
             PopulateDropDownLists(labourRequirments);
@@ -166,6 +171,7 @@ namespace NBDProjectNcstech.Controllers
         private SelectList OneDesignBidSelectList(int? selectedId)
         {
             int bidID = Convert.ToInt32(Request.Query["bidID"]);
+
             //ViewData["bidID"] = bidID;
             return new SelectList(_context
                 .DesignBids

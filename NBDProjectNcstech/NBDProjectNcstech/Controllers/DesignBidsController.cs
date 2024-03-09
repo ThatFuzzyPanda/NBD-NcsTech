@@ -113,7 +113,7 @@ namespace NBDProjectNcstech.Controllers
                 {
                     _context.Add(designBid);
                     await _context.SaveChangesAsync();
-                    return RedirectToAction("Edit", "DesignBids", new { id = designBid.ID });
+                    return RedirectToAction("AddLabourAndMaterialPage", "DesignBids", new { id = designBid.ID });
                 }
             }
             catch (RetryLimitExceededException)
@@ -128,6 +128,21 @@ namespace NBDProjectNcstech.Controllers
             ViewData["ProjectID"] = new SelectList(_context.Projects, "Id", "ProjectSite", designBid.ProjectID);
             return View(designBid);
         }
+
+        public async Task<IActionResult> AddLabourAndMaterialPage(int id)
+        {
+            var designBid = await _context.DesignBids
+                            .Include(d => d.Project)
+                            .Include(d => d.Approval)
+                            .Include(d => d.LabourRequirments)
+                            .Include(d => d.MaterialRequirments).ThenInclude(d => d.Inventory)
+                            .Include(d => d.DesignBidStaffs).ThenInclude(d => d.Staff)
+                            .AsNoTracking()
+                            .FirstOrDefaultAsync(m => m.ID == id);
+
+            return View(designBid);
+        }
+
         [HttpPost]
         public async Task<IActionResult> Approve(int? id)
         {
