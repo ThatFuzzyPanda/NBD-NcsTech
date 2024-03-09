@@ -46,6 +46,12 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+// Add a new route pattern to handle the 'from' parameter
+app.MapControllerRoute(
+    name: "fromParameter",
+    pattern: "{controller}/{action}/{id?}");
+
 app.MapRazorPages();
 
 //To seed data

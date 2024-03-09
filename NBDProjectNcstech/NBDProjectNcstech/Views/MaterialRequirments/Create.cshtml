@@ -244,6 +244,7 @@
                             <div class="col-md-6 offset-md-3">
                                 <br />
                                 <form asp-action="Create">
+                                    <input type="hidden" name="from" value="@ViewData["From"]" />
                                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                                     <div class="form-group">
                                         <label asp-for="Quanity" class="control-label"></label>

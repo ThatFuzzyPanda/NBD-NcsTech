@@ -1,8 +1,10 @@
-﻿@model NBDProjectNcstech.Models.LabourRequirments
-
+﻿
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "AddLabourAndMaterialPage";
 }
+@model NBDProjectNcstech.Models.DesignBid
+
+
 <!DOCTYPE html>
 
 <html lang="en">
@@ -229,51 +231,101 @@
                 <div class="container-fluid">
 
                     <!-- /.row -->
-                    <div class="card card-primary">
+                    <div class="card">
                         <div class="card-header" style="background-color:#423535;">
                             <div class="row align-items-center">
                                 <div class="col">
-                                    <label class="control-label" style="color: white;">Create Labour Requirement</label>
+                                    <label class="control-label" style="color: white;">Add Material and Labour Requirements</label>
                                 </div>
 
                             </div>
                         </div>
 
 
-                        <div class="row mb-3">
-                            <div class="col-md-6 offset-md-3">
-                                <br />
-                                <form asp-action="Create">
-                                    <input type="hidden" name="from" value="@ViewData["From"]" />
-                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                                    <div class="form-group">
-                                        <label asp-for="Hours" class="control-label"></label>
-                                        <input asp-for="Hours" class="form-control" />
-                                        <span asp-validation-for="Hours" class="text-danger"></span>
-                                    </div>
-                                    <div class="form-group">
-                                        <label asp-for="Description" class="control-label"></label>
-                                        <input asp-for="Description" class="form-control" />
-                                        <span asp-validation-for="Description" class="text-danger"></span>
-                                    </div>
-                                    <div class="form-group">
-                                        <label asp-for="UnitPrice" class="control-label"></label>
-                                        <input asp-for="UnitPrice" class="form-control" />
-                                        <span asp-validation-for="UnitPrice" class="text-danger"></span>
-                                    </div>
-                                    <div class="form-group">
-                                        <label asp-for="LabourID" class="control-label"></label>
-                                        <select asp-for="LabourID" class="form-control" asp-items="ViewBag.LabourID"></select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label asp-for="DesignBidID" class="control-label"></label>
-                                        <select asp-for="DesignBidID" class="form-control" asp-items="ViewBag.DesignBidID"></select>
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="submit" value="Create" class="btn btn-primary" />
-                                        <button type="button" onclick="window.history.back();" class="btn btn-primary">Cancel</button>
-                                    </div>
-                                </form>
+                        <div class="row mb-3">   
+                            <div class="col-md-6offset-md-3">
+                                <!-- Labour requirement table -->
+                                <h4>Labour Requirements</h4>
+                                <a asp-controller="LabourRequirments" asp-route-bidID="@Model.ID" asp-route-from="AddLandM" asp-action="Create" class="btn btn-primary btn-sm rounded-circle" style="margin-right: 10px;">
+                                    <i class="fas fa-plus"></i>
+                                </a>
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.LabourRequirments.FirstOrDefault().Hours)
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.LabourRequirments.FirstOrDefault().Description)
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.LabourRequirments.FirstOrDefault().UnitPrice)
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.LabourRequirments.FirstOrDefault().ExtendedPrice)
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model.LabourRequirments)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Hours)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Description)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.UnitPrice)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.ExtendedPrice)
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+
+                                <!-- Material requirement table -->
+                                <h4>Material Requirements</h4>
+                                <a asp-controller="MaterialRequirments" asp-action="Create" asp-route-bidID="@Model.ID" asp-route-from="AddLandM" class="btn btn-primary btn-sm rounded-circle" style="margin-top: 10px;">
+                                    <i class="fas fa-plus"></i>
+                                </a>
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.MaterialRequirments.FirstOrDefault().Quanity)
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.MaterialRequirments.FirstOrDefault().Inventory.Name)
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.MaterialRequirments.FirstOrDefault().ExtendedPrice)
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model.MaterialRequirments)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Quanity)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Inventory.Name)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.ExtendedPrice)
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                                <div class="form-group">
+                                    <button type="button" onclick="window.location.href = '/DesignBids/Details/@Model.ID';" class="btn btn-primary">Finish</button>
+                                </div>
                             </div>
                         </div>
                     </div>
