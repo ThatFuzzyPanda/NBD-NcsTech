@@ -429,8 +429,9 @@
 														<td>@project.BidAmount.ToString("C")</td>
 														<td>@project.Client.Name</td>
 														<td>
-															<a asp-controller="Projects" asp-action="Details" asp-route-id="@project.Id" class="text-muted">
-																<i class="fas fa-info-circle" style="color: #005fa8;"></i>
+															<a asp-controller="ProjectsDesignBids" asp-action="Index" asp-route-ProjectID="@project.Id" class="fas fa-info-circle"
+															   role="button" data-bs-toggle="tooltip" title="@ViewData["ControllerFriendlyName"] Details">
+
 															</a>
 														</td>
 													</tr>

@@ -11,7 +11,7 @@ using NBDProjectNcstech.Data;
 namespace NBDProjectNcstech.Data.NBDMigrations
 {
     [DbContext(typeof(NBDContext))]
-    [Migration("20240303214729_Initial")]
+    [Migration("20240309165840_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -84,7 +84,12 @@ namespace NBDProjectNcstech.Data.NBDMigrations
                     b.Property<int?>("CityID")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("ContactPerson")
+                    b.Property<string>("ContactPersonFirst")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ContactPersonLast")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("TEXT");

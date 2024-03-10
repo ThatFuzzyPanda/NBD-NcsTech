@@ -132,7 +132,8 @@ namespace NBDProjectNcstech.Data.NBDMigrations
                     ID = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Name = table.Column<string>(type: "TEXT", maxLength: 50, nullable: false),
-                    ContactPerson = table.Column<string>(type: "TEXT", maxLength: 50, nullable: false),
+                    ContactPersonFirst = table.Column<string>(type: "TEXT", maxLength: 50, nullable: false),
+                    ContactPersonLast = table.Column<string>(type: "TEXT", maxLength: 50, nullable: false),
                     Phone = table.Column<string>(type: "TEXT", maxLength: 10, nullable: false),
                     Street = table.Column<string>(type: "TEXT", maxLength: 50, nullable: true),
                     CityID = table.Column<int>(type: "INTEGER", nullable: true),

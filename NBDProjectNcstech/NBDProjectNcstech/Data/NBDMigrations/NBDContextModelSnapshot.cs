@@ -81,7 +81,12 @@ namespace NBDProjectNcstech.Data.NBDMigrations
                     b.Property<int?>("CityID")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("ContactPerson")
+                    b.Property<string>("ContactPersonFirst")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ContactPersonLast")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("TEXT");

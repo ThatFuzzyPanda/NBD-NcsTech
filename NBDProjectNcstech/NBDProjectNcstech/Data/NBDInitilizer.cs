@@ -193,17 +193,20 @@ namespace NBDProjectNcstech.Data
                             },
                             new Labour
                             {
-                                LabourType = "Equipment operator",
+                                LabourType = "Equipment Operator",
                                 LabourPrice = 65,
                                 LabourCost = 45
-                            }
+                            },
+                            new Labour
+                            {
+                                LabourType = "Sales Associate",
+                                LabourPrice= 50,
+                                LabourCost= 40
+							}
+
                         );
                     context.SaveChanges();
                 }
-
-
-
-
 
                 //Provinces 
                 if (!context.Provinces.Any())
@@ -405,8 +408,9 @@ namespace NBDProjectNcstech.Data
                         new Client
                         {
                             Name = "Toronto Hotel",
-                            ContactPerson = "Gagan Shrestha",
-                            Phone = random.Next(2, 10).ToString() + random.Next(213214131, 989898989).ToString(),
+                            ContactPersonFirst = "Gagan" ,
+                            ContactPersonLast = "Shrestha",
+							Phone = random.Next(2, 10).ToString() + random.Next(213214131, 989898989).ToString(),
                             Street = "123 Lincon street",
                             CityID = context.Cities.FirstOrDefault(c => c.Name == "Toronto").ID,
                             PostalCode = "L2O 1B4"
@@ -415,7 +419,8 @@ namespace NBDProjectNcstech.Data
                         new Client
                         {
                             Name = "Outlet Mall",
-                            ContactPerson = "Josh Rydzpol Adlhaie Binalay",
+                            ContactPersonFirst = "Josh",
+                            ContactPersonLast= "Rydzpol Adlhaie Binalay",
                             Phone = random.Next(2, 10).ToString() + random.Next(213214131, 989898989).ToString(),
                             Street = "124 Great Ave.",
                             CityID = context.Cities.FirstOrDefault(c => c.Name == "Niagara Falls").ID,
@@ -424,7 +429,8 @@ namespace NBDProjectNcstech.Data
                         new Client
                         {
                             Name = "Welland Hospital",
-                            ContactPerson = "Josh Martin",
+                            ContactPersonFirst = "Josh",
+                            ContactPersonLast = "Martin",
                             Phone = random.Next(2, 10).ToString() + random.Next(213214131, 989898989).ToString(),
                             Street = "924 Heavenly Street",
                             CityID = context.Cities.FirstOrDefault(c => c.Name == "Welland").ID,
@@ -433,8 +439,9 @@ namespace NBDProjectNcstech.Data
                         new Client
                         {
                             Name = "Queen's Mall",
-                            ContactPerson = "Femarie Vien Briones",
-                            Phone = random.Next(2, 10).ToString() + random.Next(213214131, 989898989).ToString(),
+                            ContactPersonFirst = "Femarie",
+                            ContactPersonLast = " Vien Briones",
+							Phone = random.Next(2, 10).ToString() + random.Next(213214131, 989898989).ToString(),
                             Street = "24 Fairy Street",
                             CityID = context.Cities.FirstOrDefault(c => c.Name == "Hamilton").ID,
                             PostalCode = "H2O 2C4"
@@ -442,8 +449,9 @@ namespace NBDProjectNcstech.Data
                         new Client
                         {
                             Name = "Welland Hotel",
-                            ContactPerson = "Olubusiyi Olorungbemi Famobiwo",
-                            Phone = random.Next(2, 10).ToString() + random.Next(213214131, 989898989).ToString(),
+                            ContactPersonFirst = "Olubusiyi",
+                            ContactPersonLast= "Olorungbemi Famobiwo",
+							Phone = random.Next(2, 10).ToString() + random.Next(213214131, 989898989).ToString(),
                             Street = "24 Victoria Ave.",
                             CityID = context.Cities.FirstOrDefault(c => c.Name == "Welland").ID,
                             PostalCode = "O2B 2C4"

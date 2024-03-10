@@ -13,6 +13,7 @@ namespace NBDProjectNcstech.Models
                 return Regex.Replace(Phone, @"(\d{3})(\d{3})(\d{4})", "($1) $2-$3");
             }
         }
+        public string ContactPerson { get { return $"{ContactPersonFirst} {ContactPersonLast}";} }
 
         public int ID { get; set; }
 
@@ -21,12 +22,17 @@ namespace NBDProjectNcstech.Models
         [StringLength(50, ErrorMessage = "First name cannot be more than 50 characters long.")]
         public string Name { get; set; }
 
-        [Display(Name = "Contact Person")]
-        [Required(ErrorMessage = "You cannot leave the contact name blank.")]
-        [StringLength(50, ErrorMessage = "Contact name cannot be more than 50 characters long.")]
-        public string ContactPerson { get; set; }
+        [Display(Name = "Contact Person First Name")]
+        [Required(ErrorMessage = "You cannot leave the contact first name blank.")]
+        [StringLength(50, ErrorMessage = "Contact first name cannot be more than 50 characters long.")]
+        public string ContactPersonFirst { get; set; }
 
-        [Display(Name = "Phone Number")]
+		[Display(Name = "Contact Person Last Name")]
+		[Required(ErrorMessage = "You cannot leave the contact last name blank.")]
+		[StringLength(50, ErrorMessage = "Contact last  name cannot be more than 50 characters long.")]
+		public string ContactPersonLast { get; set; }
+
+		[Display(Name = "Phone Number")]
         [Required(ErrorMessage = "You cannot leave the phone number blank.")]
         [RegularExpression("^\\d{10}$", ErrorMessage = "The phone number must be exactly 10 numeric digits.")]
         [DataType(DataType.PhoneNumber)]

@@ -49,6 +49,8 @@ namespace NBDProjectNcstech.Controllers
         // GET: MaterialRequirments/Create
         public IActionResult Create()
         {
+            string from = Request.Query["from"];
+            ViewData["From"] = from;
             PopulateDropDownLists();
             return View();
         }
@@ -58,12 +60,16 @@ namespace NBDProjectNcstech.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,DesignBidID,InventoryID,Quanity")] MaterialRequirments materialRequirments)
+        public async Task<IActionResult> Create([Bind("ID,Quanity,InventoryID,DesignBidID")] MaterialRequirments materialRequirments, string from)
         {
             if (ModelState.IsValid)
             {
                 _context.Add(materialRequirments);
                 await _context.SaveChangesAsync();
+                if (from == "AddLandM")
+                {
+                    return RedirectToAction("AddLabourAndMaterialPage", "DesignBids", new { id = materialRequirments.DesignBidID });
+                }
                 return RedirectToAction("Edit", "DesignBids", new { id = materialRequirments.DesignBidID });
             }
             PopulateDropDownLists(materialRequirments);
