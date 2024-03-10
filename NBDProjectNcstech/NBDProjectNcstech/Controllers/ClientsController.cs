@@ -115,7 +115,7 @@ namespace NBDProjectNcstech.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Name,ContactPerson,Phone,Street,CityID,PostalCode")] Client client)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,Name,ContactPersonFirst,ContactPersonLast,Phone,Street,CityID,PostalCode")] Client client)
         {
             if (id != client.ID)
             {
@@ -229,6 +229,10 @@ namespace NBDProjectNcstech.Controllers
 
             if ((client?.CityID).HasValue)
             {
+                if (client.City == null)
+                {
+                    client.City = _context.Cities.Find(client.CityID);
+                }
                 ViewData["ProvinceID"] = ProvinceSelectList(client.City.ProvinceID);
                 ViewData["CityID"] = CitySelectList(client.City.ProvinceID, client.CityID);
             }
