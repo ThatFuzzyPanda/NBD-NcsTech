@@ -71,6 +71,8 @@ namespace NBDProjectNcstech.Controllers
             //Now get the MASTER record, the client, so it can be displayed at the top of the screen
             Client client = await _context.Clients
                 .Include(p => p.Projects)
+                .Include(p=> p.City)
+                .Include(p=> p.City.Province)
                 .Where(p => p.ID == ClientId.GetValueOrDefault())
                 .AsNoTracking()
                 .FirstOrDefaultAsync();

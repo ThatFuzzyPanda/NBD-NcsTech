@@ -58,7 +58,7 @@ namespace NBDProjectNcstech.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,Quanity,InventoryID,DesignBidID")] MaterialRequirments materialRequirments)
+        public async Task<IActionResult> Create([Bind("ID,DesignBidID,InventoryID,Quanity")] MaterialRequirments materialRequirments)
         {
             if (ModelState.IsValid)
             {
