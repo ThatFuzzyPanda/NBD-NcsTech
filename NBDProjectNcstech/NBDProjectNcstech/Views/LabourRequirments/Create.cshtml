@@ -252,17 +252,19 @@
                                     </div>
                                     <div class="form-group">
                                         <label asp-for="LabourID" class="control-label"></label>
-                                        <select asp-for="LabourID" class="form-control" asp-items="ViewBag.LabourID"></select>
+                                        <select asp-for="LabourID" class="form-control" asp-items="ViewBag.LabourID" id="LabourID">
+                                            <option value="">Select a Labour Type</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="UnitPrice" class="control-label"></label>
+                                        <input asp-for="UnitPrice" class="form-control" id="UnitPrice" />
+                                        <span asp-validation-for="UnitPrice" class="text-danger"></span>
                                     </div>
                                     <div class="form-group">
                                         <label asp-for="Hours" class="control-label"></label>
                                         <input asp-for="Hours" class="form-control" />
                                         <span asp-validation-for="Hours" class="text-danger"></span>
-                                    </div>
-                                    <div class="form-group">
-                                        <label asp-for="UnitPrice" class="control-label"></label>
-                                        <input asp-for="UnitPrice" class="form-control" />
-                                        <span asp-validation-for="UnitPrice" class="text-danger"></span>
                                     </div>
                                     <div class="form-group">
                                         <label asp-for="Description" class="control-label"></label>
@@ -321,4 +323,21 @@
             refreshDDL('CityID', URL, true, 'Select a Province with Cities first', false, null, true);
         });
     </script>
+    <script>
+        // Get the LabourID dropdown element
+        var labourDropdown = document.getElementById("LabourID");
+        // Add change event listener to the dropdown
+        labourDropdown.addEventListener("change", function () {
+            // Get the selected option value (LabourID)
+            var selectedLabourID = this.value;
+            // Retrieve the corresponding LabourCost from ViewBag using AJAX or directly from the page (if it's rendered)
+            // For demonstration purposes, I'll assume you have LabourCost available in a JavaScript object named labourCosts
+            var labourCosts = @Html.Raw(Json.Serialize(ViewBag.LabourCosts));
+            // Find the LabourCost based on selectedLabourID
+            var selectedLabourCost = labourCosts[selectedLabourID];
+            // Set the UnitPrice input field value to the selected LabourCost
+            document.getElementById("UnitPrice").value = selectedLabourCost;
+        });
+    </script>
 }
+

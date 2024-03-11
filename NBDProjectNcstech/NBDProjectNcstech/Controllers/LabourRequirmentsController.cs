@@ -52,6 +52,7 @@ namespace NBDProjectNcstech.Controllers
             string from = Request.Query["from"];
             ViewData["From"] = from;
             PopulateDropDownLists();
+            GetLabourCosts();
             return View();
         }
 
@@ -196,6 +197,19 @@ namespace NBDProjectNcstech.Controllers
             ViewData["LabourID"] = LabourSelectList(labourRequirments?.LabourID);
         }
 
+        private void GetLabourCosts()
+        {
+            var labourCosts = _context.Labours; // Replace _yourRepository with your actual repository or data access method
+
+            // Convert the list to a dictionary where LabourID is the key and LabourCost is the value
+            var labourCostsDictionary = labourCosts.ToDictionary(l => l.ID, l => l.LabourCost);
+
+            // Pass the dictionary to ViewBag.LabourCosts
+            ViewBag.LabourCosts = labourCostsDictionary;
+        }
+
+
+    
 
         private bool LabourRequirmentsExists(int id)
         {
