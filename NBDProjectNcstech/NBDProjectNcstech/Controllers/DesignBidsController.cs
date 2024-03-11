@@ -5,8 +5,10 @@ using System.Threading.Tasks;
 using CateringManagement.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.CodeAnalysis.Elfie.Diagnostics;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
+using Microsoft.Extensions.Options;
 using NBDProjectNcstech.CustomControllers;
 using NBDProjectNcstech.Data;
 using NBDProjectNcstech.Models;
@@ -40,8 +42,6 @@ namespace NBDProjectNcstech.Controllers
             //search and filter
             if (!System.String.IsNullOrEmpty(SearchString))
             {
-                //clients = clients.Where(p => p.Name.ToUpper().Contains(SearchString.ToUpper())
-                //                       || p.ContactPerson.ToUpper().Contains(SearchString.ToUpper()));
                 designBids = designBids.Where(c => c.Project.ProjectSite.ToUpper().Contains(SearchString.ToUpper()));
             }
 
@@ -77,10 +77,13 @@ namespace NBDProjectNcstech.Controllers
         }
 
         // GET: DesignBids/Create
-        public IActionResult Create()
+        public IActionResult Create(int? PositionID)
         {
+            
             var designBid = new DesignBid();
-            PopulateAssignedDesignStaffLists(designBid);
+            PopulateSortingList(PositionID);
+            PopulateDropDownLists();
+            PopulateAssignedDesignStaffLists(designBid, PositionID);
             ViewData["ProjectID"] = new SelectList(_context.Projects, "Id", "ProjectSite");
             return View();
         }
@@ -90,8 +93,9 @@ namespace NBDProjectNcstech.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,ProjectID")] DesignBid designBid, string[] selectedOptions)
+        public async Task<IActionResult> Create([Bind("ID,ProjectID")] DesignBid designBid, string[] selectedOptions, int? PositionID)
         {
+            
             try
             {
 				designBid.Approval = new Approval();
@@ -105,7 +109,7 @@ namespace NBDProjectNcstech.Controllers
 
                     }
                 }
-
+                 
                 //Create new Approval with both its status as pending 
                 designBid.Approval.AdminApprovalStatus = ApprovalStatus.Pending.ToString();
                 designBid.Approval.ClientApprovalStatus = ApprovalStatus.Pending.ToString();
@@ -124,7 +128,8 @@ namespace NBDProjectNcstech.Controllers
             {
                 ModelState.AddModelError("", "Unable to save changes.");
             }
-            PopulateAssignedDesignStaffLists(designBid);
+            PopulateDropDownLists();
+           // PopulateAssignedDesignStaffLists(designBid, PositionID);
             ViewData["ProjectID"] = new SelectList(_context.Projects, "Id", "ProjectSite", designBid.ProjectID);
             return View(designBid);
         }
@@ -233,7 +238,7 @@ namespace NBDProjectNcstech.Controllers
         }
 
         // GET: DesignBids/Edit/5
-        public async Task<IActionResult> Edit(int? ID)
+        public async Task<IActionResult> Edit(int? ID, int? PositionID)
         {
             if (ID == null || _context.DesignBids == null)
             {
@@ -252,7 +257,8 @@ namespace NBDProjectNcstech.Controllers
             {
                 return NotFound();
             }
-            PopulateAssignedDesignStaffLists(designBid);
+            PopulateDropDownLists();
+            PopulateAssignedDesignStaffLists(designBid, PositionID);
             ViewData["ProjectID"] = new SelectList(_context.Projects, "Id", "ProjectSite", designBid.ProjectID);
             return View(designBid);
         }
@@ -262,7 +268,7 @@ namespace NBDProjectNcstech.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, string[] selectedOptions)
+        public async Task<IActionResult> Edit(int id, string[] selectedOptions,int? PositionID)
         {
             var designBidToUpdate = await _context.DesignBids
                                     .Include(d => d.DesignBidStaffs).ThenInclude(d => d.Staff)
@@ -271,8 +277,10 @@ namespace NBDProjectNcstech.Controllers
             {
                 return NotFound();
             }
+            
 
             UpdateStaffListboxes(selectedOptions, designBidToUpdate);
+            PopulateAssignedDesignStaffLists(designBidToUpdate, PositionID);
 
             if (await TryUpdateModelAsync<DesignBid>(designBidToUpdate, "",
                 d => d.ProjectID))
@@ -302,8 +310,8 @@ namespace NBDProjectNcstech.Controllers
                     ModelState.AddModelError("", "Unable to save changes");
                 }
             }
-
-            PopulateAssignedDesignStaffLists(designBidToUpdate);
+            PopulateDropDownLists();
+            PopulateAssignedDesignStaffLists(designBidToUpdate, PositionID);
             ViewData["ProjectID"] = new SelectList(_context.Projects, "Id", "ProjectSite", designBidToUpdate.ProjectID);
             return View(designBidToUpdate);
         }
@@ -457,14 +465,35 @@ namespace NBDProjectNcstech.Controllers
         //          }
         //      }
 
-        private void PopulateAssignedDesignStaffLists(DesignBid designbid)
+        
+
+        private SelectList PopulateSortingList(int? PositionID)
         {
+            return new SelectList(_context.StaffPositions
+                .OrderBy(m => m.PositionName), "ID", "PositionName", PositionID);
+            
+        }
+        private void PopulateDropDownLists(DesignBidStaff sp = null)
+        {
+            ViewData["PositionID"] = PopulateSortingList(sp?.Staff.StaffPositionID);
+            
+        }
+        
+        private void PopulateAssignedDesignStaffLists(DesignBid designbid, int? PositionID)
+        {
+            
             // For this to work, you must have Included the child collection in the parent object
             var allOptions = _context.Staffs
-                                    .Where(s => s.StaffPosition != null &&
-                                                (s.StaffPosition.PositionName == "Designer" || s.StaffPosition.PositionName == "Laborer"))
                                     .Include(s => s.StaffPosition) // Ensure StaffPosition is loaded
                                     .OrderBy(s => s.StaffPosition.PositionName); // Order by position name
+
+            if (PositionID.HasValue)
+            {
+                allOptions = _context.Staffs.Where(s => s.StaffPosition.ID == PositionID)
+                                       .Include(s => s.StaffPosition) // Ensure StaffPosition is loaded
+                                       .OrderBy(s => s.StaffPosition.PositionName); // Order by position name 
+            }
+            
 
             var currentOptionsHS = new HashSet<int>(designbid.DesignBidStaffs.Select(b => b.StaffID));
 

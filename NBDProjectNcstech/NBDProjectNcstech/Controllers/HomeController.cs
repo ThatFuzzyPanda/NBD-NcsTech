@@ -38,7 +38,7 @@ namespace NBDProjectNcstech.Controllers
 
 			if (!System.String.IsNullOrEmpty(SearchString))
             { 
-				clients = clients.Where(c => c.ContactPerson.ToUpper().Contains(SearchString.ToUpper()));
+				clients = clients.Where(c => c.ContactPersonFirst.ToUpper().Contains(SearchString.ToUpper()));
 			}
 			if (Start.HasValue && End! > Start)
 			{

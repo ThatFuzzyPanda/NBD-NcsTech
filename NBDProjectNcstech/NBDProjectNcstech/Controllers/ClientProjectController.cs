@@ -48,7 +48,7 @@ namespace NBDProjectNcstech.Controllers
             }
             if (!System.String.IsNullOrEmpty(SearchString))
             {
-                projects = projects.Where(p => p.Client.Name.ToUpper().Contains(SearchString.ToUpper()));
+                projects = projects.Where(p => p.Client.ContactPersonFirst.ToUpper().Contains(SearchString.ToUpper()));
             }
             //sorting
             ViewBag.NameSortParm = string.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
@@ -177,14 +177,14 @@ namespace NBDProjectNcstech.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Update(int id)
-        {
-            var projectToUpdate = await _context.Projects
-                        .Include(p => p.Client)
-                        .AsNoTracking()
-                        .FirstOrDefaultAsync(p => p.Id == id);
+		public async Task<IActionResult> Update(int id)
+		{
+			var projectToUpdate = await _context.Projects
+						.Include(p => p.Client)
+						.AsNoTracking()
+						.FirstOrDefaultAsync(p => p.Id == id);
 
-            if (projectToUpdate == null)
+			if (projectToUpdate == null)
             {
                 return NotFound();
             }

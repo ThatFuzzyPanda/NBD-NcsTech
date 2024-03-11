@@ -265,6 +265,13 @@
                                                 <label class="control-label"> Available Staff</label> <button type="button" id="btnLeft" class="btn btn-success btn-sm">
                                                     <strong>+</strong>
                                                 </button>
+                                                <div class="input-group">
+                                                    @Html.DropDownList("PositionID", null, htmlAttributes: new { @class = "form-control" })
+                                                </div>
+                                                <button type="submit" name="actionButton" value="Filter" class="btn btn-outline-primary mr-2">
+                                                    <i class="fas fa-search"></i>
+                                                </button>
+                                                
                                                 @Html.ListBox("availOptions", (MultiSelectList)ViewBag.availOpts, new { @size = 10, @class = "form-control" })
                                             </div>
                                         </div>
