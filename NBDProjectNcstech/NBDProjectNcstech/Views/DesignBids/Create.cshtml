@@ -243,7 +243,7 @@
 
 
                         <div class="row mb-3">
-                            <div class="col-md-6 offset-md-3">
+                            <div class="col-lg-8 offset-md-2">
                                 <br />
                                 <form asp-action="Create" style="font-size: 1.3em;">
                                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -263,23 +263,23 @@
                                                         @Html.ListBox("selectedOptions", (MultiSelectList)ViewBag.selOpts, new { id = "selectedOptions", @size = 10, @class = "form-control" })
                                                     </div>
                                                     <div class="form-group col-md-6">
-                                                        <label class="control-label"> Available Staff</label> <button type="button" id="btnLeft" class="btn btn-success btn-sm">
+                                                        <label class="control-label"> Available Staff</label>
+                                                        <button type="button" id="btnLeft" class="btn btn-success btn-sm">
                                                             <strong>+</strong>
                                                         </button>
-                                                        <div class="form-group">
-
-                                                            <div class="input-group">
-                                                                @Html.DropDownList("PositionID", (MultiSelectList)ViewBag.PositionID, htmlAttributes: new { @class = "form-control" })
+                                                        <div class="input-group">
+                                                            @Html.DropDownList("PositionID", (MultiSelectList)ViewBag.PositionID, htmlAttributes: new { @class = "form-control" })
+                                                            &nbsp; 
+                                                            <div class="input-group-append">
+                                                                <button type="button" class="btn btn-success" id="filterButton">Filter</button>
                                                             </div>
-
-                                                            <button type="reset" class="btn btn-success">Filter</button>
                                                         </div>
-                                                        
-
+                                                        <br />
                                                         @Html.ListBox("availOptions", (MultiSelectList)ViewBag.availOpts, new { @size = 10, @class = "form-control" })
                                                     </div>
                                                 </div>
                                             </div>
+                                         
                                             <div class="form-group">
                                                 <input type="submit" value="Next" class="btn btn-success" />
                                                 <button type="button" onclick="window.location.href = '@Url.Action("Index")'" class="btn btn-primary">Cancel</button>
