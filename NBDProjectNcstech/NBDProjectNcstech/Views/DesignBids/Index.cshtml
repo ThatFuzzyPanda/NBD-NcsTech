@@ -303,7 +303,7 @@
 															}
 														</td>
 														<td>
-															Admin Approval:
+															@* Admin Approval: *@
 															@if (item.Approval != null)
 															{
 																@Html.DisplayFor(modelItem => item.Approval.AdminApprovalStatus) <br />
@@ -313,7 +313,7 @@
 																<text>N/A</text>
 															}
 
-															Client Approval:
+															@* Client Approval:
 															@if (item.Approval != null)
 															{
 																@Html.DisplayFor(modelItem => item.Approval.ClientApprovalStatus)
@@ -321,7 +321,7 @@
 															else
 															{
 																<text>N/A</text>
-															}
+															} *@
 														</td>
 
 														@* <td>
