@@ -138,7 +138,7 @@ namespace NBDProjectNcstech.Controllers
                 {
                     _context.Add(project);
                     await _context.SaveChangesAsync();
-                    return RedirectToAction(nameof(Index));
+                    return RedirectToAction("Index", "ProjectsDesignBids", new { ProjectID = project.Id });
                 }
             }
             catch (DbUpdateException)

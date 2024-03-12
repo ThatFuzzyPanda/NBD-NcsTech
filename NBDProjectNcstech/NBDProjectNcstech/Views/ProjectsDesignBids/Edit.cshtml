@@ -228,18 +228,19 @@
             <!-- /.content-header -->
             <!-- Main content -->
             <div class="content">
-                <divdiv class="container-fluid">
+                <div class="container-fluid">
 
                     <!-- /.row -->
-                    <div class="card card-primary">
-                        <div class="card-header" style="background-color:darkcyan">
-                            <div class="row mb-2">
-                                <div class="col-md-6" style="margin-top: 20px;">
-                                    <h3 style="color: white;">Edit Design Bid</h3>
+                    <div class="card">
+                        <div class="card-header" style="background-color:#423535;">
+                            <div class="row align-items-center">
+                                <div class="col">
+                                    <label class="control-label" style="color: white;">Edit Design Bid</label>
                                 </div>
+
                             </div>
                         </div>
-                        <hr style="width: 100%" />
+
                         <div class="row mb-3">
                             <!-- Left column for edit form -->
                             <div class="col-md-6 px-4 py-4">
@@ -264,6 +265,11 @@
                                                 <label class="control-label"> Available Staff</label> <button type="button" id="btnLeft" class="btn btn-success btn-sm">
                                                     <strong>+</strong>
                                                 </button>
+                                                <div class="input-group">
+                                                    @Html.DropDownList("PositionID", (MultiSelectList)ViewBag.PositionID, htmlAttributes: new { id = "positionFilter", @class = "form-control" })
+                                                </div>
+
+
                                                 @Html.ListBox("availOptions", (MultiSelectList)ViewBag.availOpts, new { @size = 10, @class = "form-control" })
                                             </div>
                                         </div>
@@ -278,7 +284,7 @@
                             <div class="col-md-6 px-4 py-4">
                                 <!-- Labour requirement table -->
                                 <h4>Labour Requirements</h4>
-                                <a asp-controller="LabourRequirments" asp-action="Create" class="btn btn-primary btn-sm rounded-circle" style="margin-right: 10px;">
+                                <a asp-controller="LabourRequirments" asp-route-bidID="@Model.ID" asp-action="Create" class="btn btn-primary btn-sm rounded-circle" style="margin-right: 10px;" title="Create @ViewData["ControllerFriendlyName"]">
                                     <i class="fas fa-plus"></i>
                                 </a>
                                 <table class="table">
@@ -316,13 +322,13 @@
                                                     @Html.DisplayFor(modelItem => item.ExtendedPrice)
                                                 </td>
                                                 <td>
-                                                    <a href="@Url.Action("Edit", "LabourRequirments", new { id = item.ID })">
+                                                    <a href="@Url.Action("Edit", "LabourRequirments", new { id = item.ID, bidID = Model.ID })" title="Edit @ViewData["ControllerFriendlyName"]">
                                                         <i class="fas fa-edit" style="color: #15752d;"></i>
                                                     </a> |
-                                                    <a href="@Url.Action("Details", "LabourRequirments", new { id = item.ID })">
+                                                    <a href="@Url.Action("Details", "LabourRequirments", new { id = item.ID })" title="@ViewData["ControllerFriendlyName"] Details">
                                                         <i class="fas fa-info-circle" style="color: #005fa8;"></i>
                                                     </a> |
-                                                    <a href="@Url.Action("Delete", "LabourRequirments", new { id = item.ID })">
+                                                    <a href="@Url.Action("Delete", "LabourRequirments", new { id = item.ID })" title="Delete @ViewData["ControllerFriendlyName"]">
                                                         <i class="fas fa-trash-alt" style="color: #ff0000;"></i>
                                                     </a>
                                                 </td>
@@ -333,7 +339,7 @@
 
                                 <!-- Material requirement table -->
                                 <h4>Material Requirements</h4>
-                                <a asp-controller="MaterialRequirments" asp-action="Create" class="btn btn-primary btn-sm rounded-circle" style="margin-right: 10px;">
+                                <a asp-controller="MaterialRequirments" asp-action="Create" asp-route-bidID="@Model.ID" class="btn btn-primary btn-sm rounded-circle" style="margin-top: 10px;" title="Create @ViewData["ControllerFriendlyName"]">
                                     <i class="fas fa-plus"></i>
                                 </a>
                                 <table class="table">
@@ -365,13 +371,13 @@
                                                     @Html.DisplayFor(modelItem => item.ExtendedPrice)
                                                 </td>
                                                 <td>
-                                                    <a href="@Url.Action("Edit", "MaterialRequirments", new { id = item.ID })">
+                                                    <a href="@Url.Action("Edit", "MaterialRequirments", new { id = item.ID, bidID = Model.ID })" title="Edit @ViewData["ControllerFriendlyName"]">
                                                         <i class="fas fa-edit" style="color: #15752d;"></i>
                                                     </a> |
-                                                    <a href="@Url.Action("Details", "MaterialRequirments", new { id = item.ID })">
+                                                    <a href="@Url.Action("Details", "MaterialRequirments", new { id = item.ID })" title="@ViewData["ControllerFriendlyName"] Details">
                                                         <i class="fas fa-info-circle" style="color: #005fa8;"></i>
                                                     </a> |
-                                                    <a href="@Url.Action("Delete", "MaterialRequirments", new { id = item.ID })">
+                                                    <a href="@Url.Action("Delete", "MaterialRequirments", new { id = item.ID })" title="Delete @ViewData["ControllerFriendlyName"]">
                                                         <i class="fas fa-trash-alt" style="color: #ff0000;"></i>
                                                     </a>
                                                 </td>
@@ -383,28 +389,28 @@
                         </div>
                     </div>
 
+                </div>
             </div>
-        </div>
 
 
-        <div>
+
         </div><!-- /.container-fluid -->
-    </div> <!-- /.content -->
-    <!-- Control Sidebar -->
-    <aside class="control-sidebar control-sidebar-dark">
-        <!-- Control sidebar content goes here -->
-        <div class="p-3">
-            <h5>Title</h5>
-            <p>Sidebar content</p>
-        </div>
-    </aside>
-    <!-- /.control-sidebar -->
-    <!-- Main Footer -->
-    <footer class="main-footer">
+        <!-- /.content -->
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+            <div class="p-3">
+                <h5>Title</h5>
+                <p>Sidebar content</p>
+            </div>
+        </aside>
+        <!-- /.control-sidebar -->
+        <!-- Main Footer -->
+        <footer class="main-footer">
 
-        <!-- Default to the left -->
-        <strong>    &copy; 2024 - NBDProjectNcstech - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a></strong>
-    </footer>
+            <!-- Default to the left -->
+            <strong>    &copy; 2024 - NBDProjectNcstech - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a></strong>
+        </footer>
     </div>
 
     <!-- jQuery -->
@@ -432,6 +438,19 @@
             var URL = "/Clients/GetCities/?ProvinceID=" + selectedProvince;
             refreshDDL('CityID', URL, true, 'Select a Province with Cities first', false, null, true);
         });
+
+        $(document).ready(function () {
+            $('#positionFilter').change(function () {
+                var selectedPositions = $(this).val() || [];
+                $('#availOptions option').each(function () {
+                    var itemPosition = $(this).val();
+                    if (selectedPositions.length === 0 || selectedPositions.includes(itemPosition)) {
+                        $(this).show();
+                    } else {
+                        $(this).hide();
+                    }
+                });
+            });
+        });
     </script>
 }
-
