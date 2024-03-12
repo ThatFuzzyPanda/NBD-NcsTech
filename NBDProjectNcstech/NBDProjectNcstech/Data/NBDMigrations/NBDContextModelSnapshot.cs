@@ -221,9 +221,14 @@ namespace NBDProjectNcstech.Data.NBDMigrations
                     b.Property<int>("TypeID")
                         .HasColumnType("INTEGER");
 
+                    b.Property<int>("UnitID")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("ID");
 
                     b.HasIndex("ItemTypeID");
+
+                    b.HasIndex("UnitID");
 
                     b.ToTable("Inventory");
                 });
@@ -309,11 +314,16 @@ namespace NBDProjectNcstech.Data.NBDMigrations
                     b.Property<int?>("Quanity")
                         .HasColumnType("INTEGER");
 
+                    b.Property<int>("UnitID")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("ID");
 
                     b.HasIndex("DesignBidID");
 
                     b.HasIndex("InventoryID");
+
+                    b.HasIndex("UnitID");
 
                     b.ToTable("MaterialRequirments");
                 });
@@ -411,6 +421,21 @@ namespace NBDProjectNcstech.Data.NBDMigrations
                     b.ToTable("StaffPositions");
                 });
 
+            modelBuilder.Entity("NBDProjectNcstech.Models.Unit", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Units");
+                });
+
             modelBuilder.Entity("NBDProjectNcstech.Models.City", b =>
                 {
                     b.HasOne("NBDProjectNcstech.Models.Province", "Province")
@@ -473,7 +498,15 @@ namespace NBDProjectNcstech.Data.NBDMigrations
                         .WithMany()
                         .HasForeignKey("ItemTypeID");
 
+                    b.HasOne("NBDProjectNcstech.Models.Unit", "Unit")
+                        .WithMany("Inventories")
+                        .HasForeignKey("UnitID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("ItemType");
+
+                    b.Navigation("Unit");
                 });
 
             modelBuilder.Entity("NBDProjectNcstech.Models.LabourRequirments", b =>
@@ -509,9 +542,17 @@ namespace NBDProjectNcstech.Data.NBDMigrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("NBDProjectNcstech.Models.Unit", "Unit")
+                        .WithMany("MaterialRequirments")
+                        .HasForeignKey("UnitID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("DesignBid");
 
                     b.Navigation("Inventory");
+
+                    b.Navigation("Unit");
                 });
 
             modelBuilder.Entity("NBDProjectNcstech.Models.Project", b =>
@@ -584,6 +625,13 @@ namespace NBDProjectNcstech.Data.NBDMigrations
             modelBuilder.Entity("NBDProjectNcstech.Models.Staff", b =>
                 {
                     b.Navigation("DesignBidStaffs");
+                });
+
+            modelBuilder.Entity("NBDProjectNcstech.Models.Unit", b =>
+                {
+                    b.Navigation("Inventories");
+
+                    b.Navigation("MaterialRequirments");
                 });
 #pragma warning restore 612, 618
         }

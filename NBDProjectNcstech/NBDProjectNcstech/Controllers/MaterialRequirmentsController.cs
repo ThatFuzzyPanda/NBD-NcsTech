@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using NBDProjectNcstech.Data;
 using NBDProjectNcstech.Models;
 
@@ -22,7 +23,10 @@ namespace NBDProjectNcstech.Controllers
         // GET: MaterialRequirments
         public async Task<IActionResult> Index()
         {
-            var nBDContext = _context.MaterialRequirments.Include(m => m.DesignBid).Include(m => m.Inventory);
+            var nBDContext = _context.MaterialRequirments
+                .Include(m => m.DesignBid)
+                .Include(m => m.Inventory)
+                .Include(m => m.Unit);
             return View(await nBDContext.ToListAsync());
         }
 
@@ -37,6 +41,7 @@ namespace NBDProjectNcstech.Controllers
             var materialRequirments = await _context.MaterialRequirments
                 .Include(m => m.DesignBid)
                 .Include(m => m.Inventory)
+                .Include(m => m.Unit)
                 .FirstOrDefaultAsync(m => m.ID == id);
             if (materialRequirments == null)
             {
@@ -60,7 +65,7 @@ namespace NBDProjectNcstech.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,Quanity,InventoryID,DesignBidID")] MaterialRequirments materialRequirments, string from)
+        public async Task<IActionResult> Create([Bind("ID,Quanity,InventoryID,DesignBidID,UnitID")] MaterialRequirments materialRequirments, string from)
         {
             if (ModelState.IsValid)
             {
@@ -75,7 +80,7 @@ namespace NBDProjectNcstech.Controllers
             PopulateDropDownLists(materialRequirments);
             return RedirectToAction("Edit", "DesignBids", new { id = materialRequirments.DesignBidID });
         }
-        
+
 
         // GET: MaterialRequirments/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -99,7 +104,7 @@ namespace NBDProjectNcstech.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Quanity,InventoryID,DesignBidID")] MaterialRequirments materialRequirments)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,Quanity,InventoryID,DesignBidID,UnitID")] MaterialRequirments materialRequirments)
         {
             if (id != materialRequirments.ID)
             {
@@ -141,6 +146,7 @@ namespace NBDProjectNcstech.Controllers
             var materialRequirments = await _context.MaterialRequirments
                 .Include(m => m.DesignBid)
                 .Include(m => m.Inventory)
+                .Include(m => m.Unit)
                 .FirstOrDefaultAsync(m => m.ID == id);
             if (materialRequirments == null)
             {
@@ -164,7 +170,7 @@ namespace NBDProjectNcstech.Controllers
             {
                 _context.MaterialRequirments.Remove(materialRequirments);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction("Edit", "DesignBids", new { id = materialRequirments.DesignBidID });
         }
@@ -190,16 +196,50 @@ namespace NBDProjectNcstech.Controllers
                 .Inventory
                 .OrderBy(m => m.Name), "ID", "Name", selectedId);
         }
+        private SelectList UnitSelectList(int? InventoryID, int? selectedId)
+        {
+            
+            var query = from u in _context.Units
+                        select u;
+            if (InventoryID >= 0)
+            {
+                Inventory inv = _context.Inventory.FirstOrDefaultAsync(i => i.ID == InventoryID).Result;
+                var invUnit = inv.Unit.Name;
+                query = query.Where(u => u.Name == invUnit);
+            }
+            return new SelectList(_context
+                .Units
+                .OrderBy(m => m.Name), "ID", "Name", selectedId);
 
+        }
         private void PopulateDropDownLists(MaterialRequirments materialRequirments = null)
         {
             ViewData["DesignBidID"] = OneDesignBidSelectList(materialRequirments?.DesignBidID);
             ViewData["InventoryID"] = InventorySelectList(materialRequirments?.InventoryID);
+            ViewData["UnitID"] = UnitSelectList(materialRequirments?.InventoryID, materialRequirments?.UnitID);
+
+            //if ((materialRequirments?.UnitID).HasValue)
+            //{
+            //    if (materialRequirments.Unit == null)
+            //    {
+            //        materialRequirments.Unit = _context.Units.Find(materialRequirments.UnitID);
+            //    }
+            //    ViewData["UnitID"] = CitySelectList(client.City.ProvinceID, client.CityID);
+            //}
+            //else
+            //{
+            //    ViewData["CityID"] = CitySelectList(null, null);
+            //}
+        }
+        [HttpGet]
+        public JsonResult GetUnits(int InventoryID)
+        {
+            return Json(UnitSelectList(InventoryID, null));
         }
 
         private bool MaterialRequirmentsExists(int id)
         {
-          return _context.MaterialRequirments.Any(e => e.ID == id);
+            return _context.MaterialRequirments.Any(e => e.ID == id);
         }
     }
 }

@@ -5,6 +5,13 @@ namespace NBDProjectNcstech.Models
 {
     public class MaterialRequirments
     {
+        public string SummaryQuantity
+        {
+            get
+            {
+                return Quanity + " " + Unit;
+            }
+        }
         public int ID { get; set; }
 
         [Display(Name = "Quanity")]
@@ -30,6 +37,8 @@ namespace NBDProjectNcstech.Models
         [Display(Name = "Design Bid")]
         public int DesignBidID { get; set; }
         public DesignBid DesignBid { get; set; }
+        public int UnitID { get; set; }
+        public Unit Unit { get; set; }
 
     }
 }

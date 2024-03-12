@@ -25,6 +25,8 @@ namespace NBDProjectNcstech.Models
 		public int TypeID { get; set; }
 
         public ItemType ItemType { get; set; }
+		public int UnitID {  get; set; }
+		public Unit Unit { get; set; }
 
     }
 }

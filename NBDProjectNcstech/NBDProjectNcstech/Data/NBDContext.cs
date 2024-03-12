@@ -58,6 +58,7 @@ namespace NBDProjectNcstech.Data
         public DbSet<Approval> Approvals { get; set; }
         public DbSet<DesignBid> DesignBids { get; set; }
         public DbSet<DesignBidStaff> DesignBidStaff { get; set; }
+        public DbSet<Unit> Units { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
