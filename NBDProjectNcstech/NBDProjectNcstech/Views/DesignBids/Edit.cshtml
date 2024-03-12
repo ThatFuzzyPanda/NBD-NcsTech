@@ -262,7 +262,8 @@
                                                 @Html.ListBox("selectedOptions", (MultiSelectList)ViewBag.selOpts, new { @size = 10, @class = "form-control" })
                                             </div>
                                             <div class="form-group col-md-6">
-                                                <label class="control-label"> Available Staff</label> <button type="button" id="btnLeft" class="btn btn-success btn-sm">
+                                                <label class="control-label"> Available Staff</label>
+                                                <button type="button" id="btnLeft" class="btn btn-success btn-sm">
                                                     <strong>+</strong>
                                                 </button>
                                                 <div class="input-group">
@@ -272,6 +273,7 @@
                                                 
                                                 @Html.ListBox("availOptions", (MultiSelectList)ViewBag.availOpts, new { @size = 10, @class = "form-control" })
                                             </div>
+
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -283,10 +285,12 @@
                             <!-- Right column for tables -->
                             <div class="col-md-6 px-4 py-4">
                                 <!-- Labour requirement table -->
-                                <h4>Labour Requirements</h4>
-                                <a asp-controller="LabourRequirments" asp-route-bidID="@Model.ID" asp-action="Create" class="btn btn-primary btn-sm rounded-circle" style="margin-right: 10px;" title="Create @ViewData["ControllerFriendlyName"]">
-                                    <i class="fas fa-plus"></i>
-                                </a>
+                                <h4 style="display: inline-block;">
+                                    Labour Requirements&nbsp;
+                                    <a asp-controller="LabourRequirments" asp-route-bidID="@Model.ID" asp-action="Create" class="btn btn-primary btn-sm rounded-circle" style="margin-right: 10px;" title="Create @ViewData["ControllerFriendlyName"]">
+                                        <i class="fas fa-plus"></i>
+                                    </a>
+                                </h4> 
                                 <table class="table">
                                     <thead>
                                         <tr>
@@ -338,10 +342,12 @@
                                 </table>
 
                                 <!-- Material requirement table -->
-                                <h4>Material Requirements</h4> 
-                                <a asp-controller="MaterialRequirments" asp-action="Create" asp-route-bidID="@Model.ID" class="btn btn-primary btn-sm rounded-circle" style="margin-top: 10px;" title="Create @ViewData["ControllerFriendlyName"]">
-                                    <i class="fas fa-plus"></i>
-                                </a>
+                                <h4 style="display: inline-block;">
+                                    Material Requirements&nbsp;
+                                    <a asp-controller="MaterialRequirments" asp-action="Create" asp-route-bidID="@Model.ID" class="btn btn-primary btn-sm rounded-circle" style="margin-top: 10px;" title="Create @ViewData["ControllerFriendlyName"]">
+                                        <i class="fas fa-plus"></i>
+                                    </a>
+                                </h4>
                                 <table class="table">
                                     <thead>
                                         <tr>

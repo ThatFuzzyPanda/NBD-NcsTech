@@ -303,17 +303,33 @@
 															}
 														</td>
 														<td>
-															Admin Approval:
+															@* Admin Approval: *@
 															@if (item.Approval != null)
 															{
-																@Html.DisplayFor(modelItem => item.Approval.AdminApprovalStatus) <br />
+																<div class="approval-status">
+																	@if (item.Approval.AdminApprovalStatus == "Denied")
+																	{
+																		<span class="badge bg-danger " style="font-size: 1em">@Html.DisplayFor(modelItem => item.Approval.AdminApprovalStatus)</span>
+																	}
+																	else if (item.Approval.AdminApprovalStatus == "Pending")
+																	{
+																		<span class="badge bg-primary " style="font-size: 1em">@Html.DisplayFor(modelItem => item.Approval.AdminApprovalStatus)</span>
+																	}
+																	else
+																	{
+																		<span class="badge bg-success " style="font-size: 1em">@Html.DisplayFor(modelItem => item.Approval.AdminApprovalStatus)</span>
+																	}
+																</div>
 															}
 															else
 															{
-																<text>N/A</text>
+																<div class="approval-status">
+																	<span class="badge bg-secondary text-lg" style="font-size: 1em">N/A</span>
+																</div>
 															}
 
-															Client Approval:
+
+															@* Client Approval:
 															@if (item.Approval != null)
 															{
 																@Html.DisplayFor(modelItem => item.Approval.ClientApprovalStatus)
@@ -321,7 +337,7 @@
 															else
 															{
 																<text>N/A</text>
-															}
+															} *@
 														</td>
 
 														@* <td>
