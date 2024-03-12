@@ -94,7 +94,7 @@ namespace NBDProjectNcstech.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ID,ProjectID")] DesignBid designBid, string[] selectedOptions)
-        {
+        { 
             
             try
             {

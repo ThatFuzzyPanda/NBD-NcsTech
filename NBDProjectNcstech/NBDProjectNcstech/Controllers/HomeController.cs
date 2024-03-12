@@ -20,7 +20,7 @@ namespace NBDProjectNcstech.Controllers
             _logger = logger;
             _context = nBDContext;
         }
-        public async Task<IActionResult> Index( DateTime? Start, DateTime? End,  string SearchString, int? idProject, int? Id,int? page, int? pageSizeID)
+        public async Task<IActionResult> Index( DateTime? Start, DateTime? End,  string SearchString, string SearchStringORG, string SearchStringORGP, int? idProject, int? Id,int? page, int? pageSizeID)
         {
             var clients = _context.Clients.AsNoTracking();
             var projects =  _context.Projects
@@ -36,8 +36,16 @@ namespace NBDProjectNcstech.Controllers
 				projects = projects.Where(p => p.ClientId == idProject);
 			}
 
-			if (!System.String.IsNullOrEmpty(SearchString))
+			if (!System.String.IsNullOrEmpty(SearchStringORG))
             { 
+				clients = clients.Where(c => c.Name.ToUpper().Contains(SearchStringORG.ToUpper()));
+			}
+			if (!System.String.IsNullOrEmpty(SearchStringORGP))
+			{
+				projects = projects.Where(c => c.Client.Name.ToUpper().Contains(SearchStringORGP.ToUpper()));
+			}
+			if (!System.String.IsNullOrEmpty(SearchString))
+			{
 				clients = clients.Where(c => c.ContactPersonFirst.ToUpper().Contains(SearchString.ToUpper()));
 			}
 			if (Start.HasValue && End! > Start)
