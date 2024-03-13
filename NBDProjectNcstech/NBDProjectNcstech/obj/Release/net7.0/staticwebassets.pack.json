@@ -365,8 +365,16 @@
       "PackagePath": "staticwebassets\\dist\\img\\icons.png"
     },
     {
+      "Id": "C:\\Users\\Owner\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\wwwroot\\dist\\img\\natural.png",
+      "PackagePath": "staticwebassets\\dist\\img\\natural.png"
+    },
+    {
       "Id": "C:\\Users\\Owner\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\wwwroot\\dist\\img\\nbd.png",
       "PackagePath": "staticwebassets\\dist\\img\\nbd.png"
+    },
+    {
+      "Id": "C:\\Users\\Owner\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\wwwroot\\dist\\img\\nbds.png",
+      "PackagePath": "staticwebassets\\dist\\img\\nbds.png"
     },
     {
       "Id": "C:\\Users\\Owner\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\wwwroot\\dist\\img\\photo1.png",
@@ -475,6 +483,14 @@
     {
       "Id": "C:\\Users\\Owner\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "C:\\Users\\Owner\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\wwwroot\\js\\multiselect.js",
+      "PackagePath": "staticwebassets\\js\\multiselect.js"
+    },
+    {
+      "Id": "C:\\Users\\Owner\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\wwwroot\\js\\refreshDDL.js",
+      "PackagePath": "staticwebassets\\js\\refreshDDL.js"
     },
     {
       "Id": "C:\\Users\\Owner\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\wwwroot\\js\\site.js",

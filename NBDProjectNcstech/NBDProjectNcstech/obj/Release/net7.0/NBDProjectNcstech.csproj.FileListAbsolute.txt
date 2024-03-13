@@ -284,9 +284,9 @@ C:\Users\Owner\NBD-NcsTech\NBDProjectNcstech\NBDProjectNcstech\obj\Release\net7.
 C:\Users\Owner\NBD-NcsTech\NBDProjectNcstech\NBDProjectNcstech\obj\Release\net7.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
 C:\Users\Owner\NBD-NcsTech\NBDProjectNcstech\NBDProjectNcstech\obj\Release\net7.0\scopedcss\bundle\NBDProjectNcstech.styles.css
 C:\Users\Owner\NBD-NcsTech\NBDProjectNcstech\NBDProjectNcstech\obj\Release\net7.0\scopedcss\projectbundle\NBDProjectNcstech.bundle.scp.css
-C:\Users\Owner\NBD-NcsTech\NBDProjectNcstech\NBDProjectNcstech\obj\Release\net7.0\NBDProjectNcstech.csproj.CopyComplete
 C:\Users\Owner\NBD-NcsTech\NBDProjectNcstech\NBDProjectNcstech\obj\Release\net7.0\NBDProjectNcstech.dll
 C:\Users\Owner\NBD-NcsTech\NBDProjectNcstech\NBDProjectNcstech\obj\Release\net7.0\refint\NBDProjectNcstech.dll
 C:\Users\Owner\NBD-NcsTech\NBDProjectNcstech\NBDProjectNcstech\obj\Release\net7.0\NBDProjectNcstech.pdb
 C:\Users\Owner\NBD-NcsTech\NBDProjectNcstech\NBDProjectNcstech\obj\Release\net7.0\NBDProjectNcstech.genruntimeconfig.cache
 C:\Users\Owner\NBD-NcsTech\NBDProjectNcstech\NBDProjectNcstech\obj\Release\net7.0\ref\NBDProjectNcstech.dll
+C:\Users\Owner\NBD-NcsTech\NBDProjectNcstech\NBDProjectNcstech\obj\Release\net7.0\NBDProje.629ECDB8.Up2Date
