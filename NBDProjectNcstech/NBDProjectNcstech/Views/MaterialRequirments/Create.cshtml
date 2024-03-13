@@ -252,14 +252,19 @@
                                     </div>
                                     <div class="form-group">
                                         <label asp-for="InventoryID" class="control-label"></label>
-                                        <select asp-for="InventoryID" class="form-control" asp-items="ViewBag.InventoryID"></select>
+                                        <select asp-for="InventoryID" class="form-control" asp-items="ViewBag.InventoryID">
+                                            <option value="0">Select an Inventory item</option>
+                                        </select>
                                     </div>
                                     <div class="form-group">
                                         <label asp-for="Quanity" class="control-label"></label>
                                         <input asp-for="Quanity" class="form-control" />
                                         <span asp-validation-for="Quanity" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="UnitID" class="control-label">Unit of measurement</label>
                                         <select class="form-control" id="UnitID" name="UnitID" asp-items="ViewBag.UnitID" readonly>
-                                            <option value="0">Unit</option>
+                                            <option value="0">Select the inventory first</option>
                                         </select>
                                     </div>
                                     <div class="form-group">

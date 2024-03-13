@@ -260,6 +260,7 @@ namespace NBDProjectNcstech.Controllers
                 .Include(d => d.DesignBidStaffs).ThenInclude(d => d.Staff)
                 .AsNoTracking()
                 .FirstOrDefaultAsync(m => m.ID == ID);
+            var designBidStaff = await _context.DesignBidStaff.FirstOrDefaultAsync(d => d.DesignBidID == ID);
             if (designBid == null)
             {
                 return NotFound();
@@ -497,17 +498,17 @@ namespace NBDProjectNcstech.Controllers
       
         private void PopulateAssignedDesignStaffLists(DesignBid designbid)
         {
-            
-            // For this to work, you must have Included the child collection in the parent object
-            var allOptions = _context.Staffs.
-                                    Where(s => s.StaffPosition != null &&
-                                                (s.StaffPosition.PositionName == "Designer" || s.StaffPosition.PositionName == "Laborer"
-                                               || s.StaffPosition.PositionName =="Driver" || s.StaffPosition.PositionName == "Sales Associate"))
-                                    .Include(s => s.StaffPosition) // Ensure StaffPosition is loaded
-                                    .OrderBy(s => s.StaffPosition.PositionName); // Order by position name
 
-       
-            
+            // For this to work, you must have Included the child collection in the parent object
+            //var allOptions = _context.Staffs.
+            //                        Where(s => s.StaffPosition != null &&
+            //                                    (s.StaffPosition.PositionName == "Designer" || s.StaffPosition.PositionName == "Laborer"
+            //                                   || s.StaffPosition.PositionName =="Driver" || s.StaffPosition.PositionName == "Sales Associate"))
+            //                        .Include(s => s.StaffPosition) // Ensure StaffPosition is loaded
+            //                        .OrderBy(s => s.StaffPosition.PositionName); // Order by position name
+
+
+            var allOptions = _context.Staffs.Include(s => s.StaffPosition);
 
             var currentOptionsHS = new HashSet<int>(designbid.DesignBidStaffs.Select(b => b.StaffID));
 

@@ -3,24 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\Owner\\NBD-NcsTech\\NBDProjectNcstech\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{BE9069B5-31A1-4858-945C-933A79B4B045}|NBDProjectNcstech\\NBDProjectNcstech.csproj|c:\\users\\owner\\nbd-ncstech\\nbdprojectncstech\\nbdprojectncstech\\data\\nbdinitilizer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BE9069B5-31A1-4858-945C-933A79B4B045}|NBDProjectNcstech\\NBDProjectNcstech.csproj|solutionrelative:nbdprojectncstech\\data\\nbdinitilizer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{BE9069B5-31A1-4858-945C-933A79B4B045}|NBDProjectNcstech\\NBDProjectNcstech.csproj|c:\\users\\owner\\nbd-ncstech\\nbdprojectncstech\\nbdprojectncstech\\views\\materialrequirments\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BE9069B5-31A1-4858-945C-933A79B4B045}|NBDProjectNcstech\\NBDProjectNcstech.csproj|solutionrelative:nbdprojectncstech\\views\\materialrequirments\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BE9069B5-31A1-4858-945C-933A79B4B045}|NBDProjectNcstech\\NBDProjectNcstech.csproj|c:\\users\\owner\\nbd-ncstech\\nbdprojectncstech\\nbdprojectncstech\\controllers\\materialrequirmentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BE9069B5-31A1-4858-945C-933A79B4B045}|NBDProjectNcstech\\NBDProjectNcstech.csproj|solutionrelative:nbdprojectncstech\\controllers\\materialrequirmentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{BE9069B5-31A1-4858-945C-933A79B4B045}|NBDProjectNcstech\\NBDProjectNcstech.csproj|c:\\users\\owner\\nbd-ncstech\\nbdprojectncstech\\nbdprojectncstech\\views\\materialrequirments\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BE9069B5-31A1-4858-945C-933A79B4B045}|NBDProjectNcstech\\NBDProjectNcstech.csproj|solutionrelative:nbdprojectncstech\\views\\materialrequirments\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BE9069B5-31A1-4858-945C-933A79B4B045}|NBDProjectNcstech\\NBDProjectNcstech.csproj|c:\\users\\owner\\nbd-ncstech\\nbdprojectncstech\\nbdprojectncstech\\controllers\\designbidscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BE9069B5-31A1-4858-945C-933A79B4B045}|NBDProjectNcstech\\NBDProjectNcstech.csproj|solutionrelative:nbdprojectncstech\\controllers\\designbidscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{BE9069B5-31A1-4858-945C-933A79B4B045}|NBDProjectNcstech\\NBDProjectNcstech.csproj|c:\\users\\owner\\nbd-ncstech\\nbdprojectncstech\\nbdprojectncstech\\views\\labourrequirments\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BE9069B5-31A1-4858-945C-933A79B4B045}|NBDProjectNcstech\\NBDProjectNcstech.csproj|solutionrelative:nbdprojectncstech\\views\\labourrequirments\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BE9069B5-31A1-4858-945C-933A79B4B045}|NBDProjectNcstech\\NBDProjectNcstech.csproj|c:\\users\\owner\\nbd-ncstech\\nbdprojectncstech\\nbdprojectncstech\\models\\unit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BE9069B5-31A1-4858-945C-933A79B4B045}|NBDProjectNcstech\\NBDProjectNcstech.csproj|solutionrelative:nbdprojectncstech\\models\\unit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BE9069B5-31A1-4858-945C-933A79B4B045}|NBDProjectNcstech\\NBDProjectNcstech.csproj|c:\\users\\owner\\nbd-ncstech\\nbdprojectncstech\\nbdprojectncstech\\models\\inventory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BE9069B5-31A1-4858-945C-933A79B4B045}|NBDProjectNcstech\\NBDProjectNcstech.csproj|solutionrelative:nbdprojectncstech\\models\\inventory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{BE9069B5-31A1-4858-945C-933A79B4B045}|NBDProjectNcstech\\NBDProjectNcstech.csproj|c:\\users\\owner\\nbd-ncstech\\nbdprojectncstech\\nbdprojectncstech\\views\\labourrequirments\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BE9069B5-31A1-4858-945C-933A79B4B045}|NBDProjectNcstech\\NBDProjectNcstech.csproj|solutionrelative:nbdprojectncstech\\views\\labourrequirments\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,7 +26,7 @@
       "DocumentGroups": [
         {
           "DockedHeight": 346,
-          "SelectedChildIndex": 104,
+          "SelectedChildIndex": 101,
           "Children": [
             {
               "$type": "Bookmark",
@@ -433,68 +429,59 @@
               "Name": "ST:1458598283:0:{bf84ea66-d821-4dba-b1b1-2777d8574775}"
             },
             {
+              "$type": "Bookmark",
+              "Name": "ST:631678562:0:{bf84ea66-d821-4dba-b1b1-2777d8574775}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Edit.cshtml",
+              "DocumentMoniker": "C:\\Users\\Owner\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\Views\\MaterialRequirments\\Edit.cshtml",
+              "RelativeDocumentMoniker": "NBDProjectNcstech\\Views\\MaterialRequirments\\Edit.cshtml",
+              "ToolTip": "C:\\Users\\Owner\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\Views\\MaterialRequirments\\Edit.cshtml",
+              "RelativeToolTip": "NBDProjectNcstech\\Views\\MaterialRequirments\\Edit.cshtml",
+              "ViewState": "AQIAAPgAAAAAAAAAAAAnwAYBAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-03-13T07:20:39.122Z",
+              "EditorCaption": ""
+            },
+            {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "MaterialRequirmentsController.cs",
-              "DocumentMoniker": "C:\\Users\\Owner\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\Controllers\\MaterialRequirmentsController.cs",
-              "RelativeDocumentMoniker": "NBDProjectNcstech\\Controllers\\MaterialRequirmentsController.cs",
-              "ToolTip": "C:\\Users\\Owner\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\Controllers\\MaterialRequirmentsController.cs",
-              "RelativeToolTip": "NBDProjectNcstech\\Controllers\\MaterialRequirmentsController.cs",
-              "ViewState": "AQIAANAAAAAAAAAAAAAjwM4AAAAsAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-12T19:03:06.95Z",
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "C:\\Users\\Owner\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\Views\\MaterialRequirments\\Create.cshtml",
+              "RelativeDocumentMoniker": "NBDProjectNcstech\\Views\\MaterialRequirments\\Create.cshtml",
+              "ToolTip": "C:\\Users\\Owner\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\Views\\MaterialRequirments\\Create.cshtml",
+              "RelativeToolTip": "NBDProjectNcstech\\Views\\MaterialRequirments\\Create.cshtml",
+              "ViewState": "AQIAAPkAAAAAAAAAAAAnwAcBAAAkAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-03-13T07:20:20.707Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "DesignBidsController.cs",
-              "DocumentMoniker": "C:\\Users\\Owner\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\Controllers\\DesignBidsController.cs",
-              "RelativeDocumentMoniker": "NBDProjectNcstech\\Controllers\\DesignBidsController.cs",
-              "ToolTip": "C:\\Users\\Owner\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\Controllers\\DesignBidsController.cs",
-              "RelativeToolTip": "NBDProjectNcstech\\Controllers\\DesignBidsController.cs",
-              "ViewState": "AQIAAFwAAAAAAAAAAAAewGAAAAAIAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-12T18:53:05.823Z",
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\Owner\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\Views\\LabourRequirments\\Index.cshtml",
+              "RelativeDocumentMoniker": "NBDProjectNcstech\\Views\\LabourRequirments\\Index.cshtml",
+              "ToolTip": "C:\\Users\\Owner\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\Views\\LabourRequirments\\Index.cshtml",
+              "RelativeToolTip": "NBDProjectNcstech\\Views\\LabourRequirments\\Index.cshtml",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAACcAAABEAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-03-13T07:19:25.373Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "Unit.cs",
-              "DocumentMoniker": "C:\\Users\\Owner\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\Models\\Unit.cs",
-              "RelativeDocumentMoniker": "NBDProjectNcstech\\Models\\Unit.cs",
-              "ToolTip": "C:\\Users\\Owner\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\Models\\Unit.cs",
-              "RelativeToolTip": "NBDProjectNcstech\\Models\\Unit.cs",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAcwA0AAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-12T18:52:15.999Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Inventory.cs",
-              "DocumentMoniker": "C:\\Users\\Owner\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\Models\\Inventory.cs",
-              "RelativeDocumentMoniker": "NBDProjectNcstech\\Models\\Inventory.cs",
-              "ToolTip": "C:\\Users\\Owner\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\Models\\Inventory.cs",
-              "RelativeToolTip": "NBDProjectNcstech\\Models\\Inventory.cs",
-              "ViewState": "AQIAAA8AAAAAAAAAAAAYwAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-12T18:51:37.918Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "NBDInitilizer.cs",
-              "DocumentMoniker": "C:\\Users\\Owner\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\Data\\NBDInitilizer.cs",
-              "RelativeDocumentMoniker": "NBDProjectNcstech\\Data\\NBDInitilizer.cs",
-              "ToolTip": "C:\\Users\\Owner\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\Data\\NBDInitilizer.cs",
-              "RelativeToolTip": "NBDProjectNcstech\\Data\\NBDInitilizer.cs",
-              "ViewState": "AQIAAGYCAAAAAAAAAADwv24CAAAMAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-12T18:37:33.123Z",
+              "Title": "Edit.cshtml",
+              "DocumentMoniker": "C:\\Users\\Owner\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\Views\\LabourRequirments\\Edit.cshtml",
+              "RelativeDocumentMoniker": "NBDProjectNcstech\\Views\\LabourRequirments\\Edit.cshtml",
+              "ToolTip": "C:\\Users\\Owner\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\Views\\LabourRequirments\\Edit.cshtml",
+              "RelativeToolTip": "NBDProjectNcstech\\Views\\LabourRequirments\\Edit.cshtml",
+              "ViewState": "AQIAAPgAAAAAAAAAAAAnwAQBAABgAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-03-13T07:18:28.506Z",
               "EditorCaption": ""
             }
           ]

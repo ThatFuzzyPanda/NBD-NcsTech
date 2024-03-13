@@ -95,7 +95,7 @@ namespace NBDProjectNcstech.Controllers
             {
                 return NotFound();
             }
-            PopulateDropDownLists();
+            PopulateDropDownLists(materialRequirments);
             return View(materialRequirments);
         }
 
@@ -213,8 +213,22 @@ namespace NBDProjectNcstech.Controllers
         private void PopulateDropDownLists(MaterialRequirments materialRequirments = null)
         {
             ViewData["DesignBidID"] = OneDesignBidSelectList(materialRequirments?.DesignBidID);
-            ViewData["InventoryID"] = InventorySelectList(materialRequirments?.InventoryID);
-            ViewData["UnitID"] = UnitSelectList(materialRequirments?.InventoryID, materialRequirments?.UnitID);
+            //ViewData["InventoryID"] = InventorySelectList(materialRequirments?.InventoryID);
+            //ViewData["UnitID"] = UnitSelectList(materialRequirments?.InventoryID, materialRequirments?.UnitID);
+            if ((materialRequirments?.UnitID).HasValue)
+            {
+                if (materialRequirments.Unit == null)
+                {
+                    materialRequirments.Unit = _context.Units.Find(materialRequirments.UnitID);
+                }
+                ViewData["InventoryID"] = InventorySelectList(materialRequirments.InventoryID);
+                ViewData["UnitID"] = UnitSelectList(materialRequirments.InventoryID, materialRequirments.UnitID);
+            }
+            else
+            {
+                ViewData["InventoryID"] = InventorySelectList(null);
+                ViewData["UnitID"] = UnitSelectList(null, null);
+            }
         }
         [HttpGet]
         public JsonResult GetUnits(int InventoryID)

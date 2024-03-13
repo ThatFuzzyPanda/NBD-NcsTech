@@ -285,7 +285,7 @@
                                                         @Html.DisplayNameFor(model => model.LabourRequirments.FirstOrDefault().Hours)
                                                     </th>
                                                     <th>
-                                                        @Html.DisplayNameFor(model => model.LabourRequirments.FirstOrDefault().Description)
+                                                        @Html.DisplayNameFor(model => model.LabourRequirments.FirstOrDefault().Labour.LabourType)
                                                     </th>
                                                     <th>
                                                         @Html.DisplayNameFor(model => model.LabourRequirments.FirstOrDefault().UnitPrice)
@@ -304,7 +304,7 @@
                                                             @Html.DisplayFor(modelItem => item.Hours)
                                                         </td>
                                                         <td>
-                                                            @Html.DisplayFor(modelItem => item.Description)
+                                                            @Html.DisplayFor(modelItem => item.Labour.LabourType)
                                                         </td>
                                                         <td>
                                                             @Html.DisplayFor(modelItem => item.UnitPrice)
@@ -342,7 +342,7 @@
                                                 {
                                                     <tr>
                                                         <td>
-                                                            @Html.DisplayFor(modelItem => item.Quanity)
+                                                            @Html.DisplayFor(modelItem => item.SummaryQuantity)
                                                         </td>
                                                         <td>
                                                             @Html.DisplayFor(modelItem => item.Inventory.Name)
@@ -365,6 +365,8 @@
 
                                             // Calculate total material cost
                                             decimal totalMaterialCost = Model.MaterialRequirments.Sum(m => m.ExtendedPrice);
+                                            double bidBudget = Model.Project.BidAmount;
+
 
                                             // Total bid cost is the sum of total labour cost and total material cost
                                             decimal totalBidCost = totalLabourCost + totalMaterialCost;
@@ -381,6 +383,9 @@
                                                     <th>
                                                         Total Bid Cost
                                                     </th>
+                                                    <th>
+                                                        Bid Budget
+                                                    </th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -393,6 +398,9 @@
                                                     </td>
                                                     <td>
                                                         @totalBidCost.ToString("C")
+                                                    </td>
+                                                    <td>
+                                                        @bidBudget.ToString("C")
                                                     </td>
                                                 </tr>
                                             </tbody>
