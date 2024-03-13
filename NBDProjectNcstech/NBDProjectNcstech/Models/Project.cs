@@ -29,9 +29,9 @@ namespace NBDProjectNcstech.Models
 		[DataType(DataType.Date)]
 
 		[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-		public DateTime Est_CompleteDate { get; set; }
+		public DateTime Est_CompleteDate { get; set; } = DateTime.Today.Date.AddDays(14); //Setting the Complete date to 2 week after
 
-		[Display(Name = "Bid Amount")]
+        [Display(Name = "Bid Amount")]
 		[DisplayFormat(DataFormatString = "{0:C}")]
 		[DataType(DataType.Currency)]
 		public double BidAmount { get; set; }

@@ -267,14 +267,10 @@
                                                     <strong>+</strong>
                                                 </button>
                                                 <div class="input-group">
-                                                    @Html.DropDownList("PositionID", null, htmlAttributes: new { @class = "form-control" })
-                                                    <div class="input-group-append">
-                                                        <button type="submit" name="actionButton" value="Filter" class="btn btn-outline-primary">
-                                                            <i class="fas fa-search"></i>
-                                                        </button>
-                                                    </div>
+                                                    @Html.DropDownList("PositionID", (MultiSelectList)ViewBag.PositionID, htmlAttributes: new { id = "positionFilter", @class = "form-control" })
                                                 </div>
-                                                <br/>
+                                                
+                                                
                                                 @Html.ListBox("availOptions", (MultiSelectList)ViewBag.availOpts, new { @size = 10, @class = "form-control" })
                                             </div>
 
@@ -447,6 +443,20 @@
             var selectedProvince = $("#ProvinceID").val();
             var URL = "/Clients/GetCities/?ProvinceID=" + selectedProvince;
             refreshDDL('CityID', URL, true, 'Select a Province with Cities first', false, null, true);
+        });
+
+        $(document).ready(function () {
+            $('#positionFilter').change(function () {
+                var selectedPositions = $(this).val() || [];
+                $('#availOptions option').each(function () {
+                    var itemPosition = $(this).val();
+                    if (selectedPositions.length === 0 || selectedPositions.includes(itemPosition)) {
+                        $(this).show();
+                    } else {
+                        $(this).hide();
+                    }
+                });
+            });
         });
     </script>
 }

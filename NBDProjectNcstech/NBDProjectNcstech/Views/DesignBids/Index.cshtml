@@ -247,14 +247,14 @@
 									<div class="card-body">
 										<div class="row">
 											<div class="col-md-4">
-
-
-
 												<label class="control-label">Search by project Name:</label>
 												<div class="input-group">
 													@Html.TextBox("SearchString", null, new { @class = "form-control" })
 												</div>
-
+												<label class="control-label">Select by Organization Name:</label>
+												<div class="input-group">
+													@Html.DropDownList("ApprovalStatus", null, "All ", htmlAttributes: new { @class = "form-control" })
+												</div>
 
 											</div>
 											<div class="col-md-4 d-flex align-items-end">
@@ -306,12 +306,28 @@
 															@* Admin Approval: *@
 															@if (item.Approval != null)
 															{
-																@Html.DisplayFor(modelItem => item.Approval.AdminApprovalStatus) <br />
+																<div class="approval-status">
+																	@if (item.Approval.AdminApprovalStatus == "Denied")
+																	{
+																		<span class="badge bg-danger " style="font-size: 1em">@Html.DisplayFor(modelItem => item.Approval.AdminApprovalStatus)</span>
+																	}
+																	else if (item.Approval.AdminApprovalStatus == "Pending")
+																	{
+																		<span class="badge bg-primary " style="font-size: 1em">@Html.DisplayFor(modelItem => item.Approval.AdminApprovalStatus)</span>
+																	}
+																	else
+																	{
+																		<span class="badge bg-success " style="font-size: 1em">@Html.DisplayFor(modelItem => item.Approval.AdminApprovalStatus)</span>
+																	}
+																</div>
 															}
 															else
 															{
-																<text>N/A</text>
+																<div class="approval-status">
+																	<span class="badge bg-secondary text-lg" style="font-size: 1em">N/A</span>
+																</div>
 															}
+
 
 															@* Client Approval:
 															@if (item.Approval != null)

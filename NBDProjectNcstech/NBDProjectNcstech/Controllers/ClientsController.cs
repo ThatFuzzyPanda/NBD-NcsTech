@@ -24,7 +24,7 @@ namespace NBDProjectNcstech.Controllers
         }
 
         // GET: Clients
-        public async Task<IActionResult> Index(string SearchString, int? Id, int? page, int? pageSizeID)
+        public async Task<IActionResult> Index(string SearchString, string SearchStringORG, int? Id, int? page, int? pageSizeID)
         {
             var clients = _context.Clients
                           .AsNoTracking();
@@ -38,7 +38,12 @@ namespace NBDProjectNcstech.Controllers
                
                 clients = clients.Where(c => c.ContactPersonFirst.ToUpper().Contains(SearchString.ToUpper()));
             }
-            
+            if (!System.String.IsNullOrEmpty(SearchStringORG))
+            {
+
+                clients = clients.Where(c => c.Name.ToUpper().Contains(SearchStringORG.ToUpper()));
+            }
+
             //Handle Paging
             int pageSize = PageSizeHelper.SetPageSize(HttpContext, pageSizeID, ControllerName());
             ViewData["pageSizeID"] = PageSizeHelper.PageSizeList(pageSize);
@@ -79,7 +84,7 @@ namespace NBDProjectNcstech.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,Name,ContactPerson,Phone,Street,CityID,PostalCode")] Client client)
+        public async Task<IActionResult> Create([Bind("ID,Name,ContactPersonFirst,ContactPersonLast,Phone,Street,CityID,PostalCode")] Client client)
         {
             if (ModelState.IsValid)
             {

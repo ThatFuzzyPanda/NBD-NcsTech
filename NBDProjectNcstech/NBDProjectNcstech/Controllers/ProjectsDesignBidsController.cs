@@ -80,10 +80,12 @@ namespace NBDProjectNcstech.Controllers
         } 
 
         // GET: ProjectsDesignBids/Create
-        public IActionResult Create(int? projectID)
+        public IActionResult Create(int? projectID, int? PositionID)
         {
 			ViewData["id"] = projectID;
 			var designBid = new DesignBid();
+            PopulateSortingList(PositionID);
+            PopulateDropDownLists();
             PopulateAssignedDesignStaffLists(designBid);
             ViewData["ProjectID"] = new SelectList(_context.Projects, "Id", "ProjectSite");
             return View();
@@ -118,8 +120,8 @@ namespace NBDProjectNcstech.Controllers
             {
                 _context.Add(designBid);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
+                return RedirectToAction("AddLabourAndMaterialPage", "DesignBids", new { id = designBid.ID });
+                }
             }
             catch (RetryLimitExceededException)
             {
@@ -222,7 +224,7 @@ namespace NBDProjectNcstech.Controllers
         }
 
         // GET: ProjectsDesignBids/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(int? id, int? PositionID)
         {
             if (id == null || _context.DesignBids == null)
             {
@@ -241,6 +243,7 @@ namespace NBDProjectNcstech.Controllers
             {
                 return NotFound();
             }
+            PopulateDropDownLists();
             PopulateAssignedDesignStaffLists(designBid);
             ViewData["ProjectID"] = new SelectList(_context.Projects, "Id", "ProjectSite", designBid.ProjectID);
             return View(designBid);
@@ -251,7 +254,7 @@ namespace NBDProjectNcstech.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,ProjectID,ApprovalID")] DesignBid designBid)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,ProjectID,ApprovalID")] DesignBid designBid, int? PositionID)
         {
             if (id != designBid.ID)
             {
@@ -373,14 +376,31 @@ namespace NBDProjectNcstech.Controllers
 
             return View(approvalToUpdate);
         }
+        private SelectList PopulateSortingList(int? PositionID)
+        {
+            return new SelectList(_context.StaffPositions.Where(s => s.PositionName == "Designer" || s.PositionName == "Laborer" ||
+            s.PositionName == "Driver" || s.PositionName == "Sales Associate")
+                .OrderBy(m => m.PositionName), "ID", "PositionName", PositionID);
+
+        }
+        private void PopulateDropDownLists(DesignBidStaff sp = null)
+        {
+            ViewData["PositionID"] = PopulateSortingList(sp?.Staff.StaffPositionID);
+
+        }
         private void PopulateAssignedDesignStaffLists(DesignBid designbid)
         {
+
             // For this to work, you must have Included the child collection in the parent object
-            var allOptions = _context.Staffs
-                                    .Where(s => s.StaffPosition != null &&
-                                                (s.StaffPosition.PositionName == "Designer" || s.StaffPosition.PositionName == "Laborer"))
+            var allOptions = _context.Staffs.Where(s => s.StaffPosition != null &&
+                                                (s.StaffPosition.PositionName == "Designer" || s.StaffPosition.PositionName == "Laborer"
+                                               || s.StaffPosition.PositionName == "Driver" || s.StaffPosition.PositionName == "Sales Associate"))
+
                                     .Include(s => s.StaffPosition) // Ensure StaffPosition is loaded
                                     .OrderBy(s => s.StaffPosition.PositionName); // Order by position name
+
+
+
 
             var currentOptionsHS = new HashSet<int>(designbid.DesignBidStaffs.Select(b => b.StaffID));
 
@@ -395,6 +415,7 @@ namespace NBDProjectNcstech.Controllers
                     selected.Add(new ListOptionVM
                     {
                         ID = r.ID,
+                        STAFF = r.StaffPositionID,
                         DisplayText = $"{r.FullName} {r.StaffPosition.PositionName}"
                     });
                 }
@@ -403,13 +424,14 @@ namespace NBDProjectNcstech.Controllers
                     available.Add(new ListOptionVM
                     {
                         ID = r.ID,
+                        STAFF = r.StaffPositionID,
                         DisplayText = $"{r.FullName} {r.StaffPosition.PositionName}"
                     });
                 }
             }
 
-            ViewData["selOpts"] = new MultiSelectList(selected, "ID", "DisplayText");
-            ViewData["availOpts"] = new MultiSelectList(available, "ID", "DisplayText");
+            ViewData["selOpts"] = new MultiSelectList(selected, "STAFF", "DisplayText");
+            ViewData["availOpts"] = new MultiSelectList(available, "STAFF", "DisplayText");
         }
         private void UpdateStaffListboxes(string[] selectedOptions, DesignBid designBidToUpdate)
         {

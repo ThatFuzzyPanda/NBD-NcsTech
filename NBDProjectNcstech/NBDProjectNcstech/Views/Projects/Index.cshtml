@@ -245,10 +245,9 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-md-4">
-                                                <label class="control-label">Select by Organization Name:</label>
+                                                <label class="control-label">Search by Organization Name:</label>
                                                 <div class="input-group">
-                                                    @Html.DropDownList("ClientId", null, "All Organization", htmlAttributes: new { @class = "form-control" })
-                                               
+                                                    @Html.TextBox("SearchStringORG", null, new { @class = "form-control" })
                                                 </div>
                                             </div>
                                             <div class="col-md-4" >
