@@ -12,7 +12,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Natural By Design |Home</title>
-
+    
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="~/https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome Icons -->
@@ -272,11 +272,11 @@
                                 </div>
                                 <div class="form-group">
                                     <label asp-for="ClientId" class="control-label"></label>
-                                    <select asp-for="ClientId" class="form-control" asp-items="ViewBag.ClientId"></select>
+                                        <select asp-for="ClientId" id="ClientDropDown" class="form-control" asp-items="ViewBag.ClientId"></select>
                                 </div>
                                 <div class="form-group">
                                     <input type="submit" value="Create" class="btn btn-success" />
-                                        <button type="button" onclick="history.go(-1)" class="btn btn-primary">Cancel</button>
+                                        <button type="button"  onclick="history.go(-1)" class="btn btn-primary">Cancel</button>
                                 </div>
                             </form>
                                 </div>
@@ -313,13 +313,23 @@
     <!-- Bootstrap 4 -->
     <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="dist/js/adminlte.min.js"></script>
+    
 </body>
 </html>
 
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $('#ClientDropDown').select2();
+            });
+
+        </script>
     }
+       
 }
 
 
