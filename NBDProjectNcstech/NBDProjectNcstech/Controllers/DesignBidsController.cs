@@ -9,6 +9,7 @@ using Microsoft.CodeAnalysis.Elfie.Diagnostics;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 using NBDProjectNcstech.CustomControllers;
 using NBDProjectNcstech.Data;
 using NBDProjectNcstech.Models;
@@ -28,7 +29,7 @@ namespace NBDProjectNcstech.Controllers
         }
 
         // GET: DesignBids
-        public async Task<IActionResult> Index(string SearchString, int? page, int? pageSizeID)
+        public async Task<IActionResult> Index(string SearchString, string ApprovalStatus, int? page, int? pageSizeID)
         {
             var designBids = _context.DesignBids
                 .Include(d => d.Project)
@@ -44,9 +45,13 @@ namespace NBDProjectNcstech.Controllers
             {
                 designBids = designBids.Where(c => c.Project.ProjectSite.ToUpper().Contains(SearchString.ToUpper()));
             }
-
-            //Handle Paging
-            int pageSize = PageSizeHelper.SetPageSize(HttpContext, pageSizeID, ControllerName());
+            if (!System.String.IsNullOrEmpty(ApprovalStatus))
+            {
+				designBids = designBids.Where(c => c.Approval.AdminApprovalStatus.ToUpper().Contains(ApprovalStatus.ToUpper()));
+			}
+            PopulateDropDownLists();
+			//Handle Paging
+			int pageSize = PageSizeHelper.SetPageSize(HttpContext, pageSizeID, ControllerName());
             ViewData["pageSizeID"] = PageSizeHelper.PageSizeList(pageSize);
             var pagedData = await PaginatedList<DesignBid>.CreateAsync(designBids.AsNoTracking(), page ?? 1, pageSize);
             return View(pagedData);
@@ -476,10 +481,18 @@ namespace NBDProjectNcstech.Controllers
                 .OrderBy(m => m.PositionName), "ID", "PositionName", PositionID);
             
         }
-        private void PopulateDropDownLists(DesignBidStaff sp = null)
+        private SelectList PopulateApprovelList(string ApprovalStatus)
+        {
+            List<string> Options = new List<string>();
+            Options.Add("Approved");
+			Options.Add("Pending");
+			Options.Add("Denied");
+			return new SelectList(Options);
+		}
+        private void PopulateDropDownLists(DesignBidStaff sp = null,DesignBid db = null)
         {
             ViewData["PositionID"] = PopulateSortingList(sp?.Staff.StaffPositionID);
-            
+            ViewData["ApprovalStatus"] = PopulateApprovelList(db?.Approval.AdminApprovalStatus);
         }
       
         private void PopulateAssignedDesignStaffLists(DesignBid designbid)
