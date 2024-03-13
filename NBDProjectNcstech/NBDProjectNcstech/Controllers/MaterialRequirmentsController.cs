@@ -90,7 +90,7 @@ namespace NBDProjectNcstech.Controllers
                 return NotFound();
             }
 
-            var materialRequirments = await _context.MaterialRequirments.FindAsync(id);
+            var materialRequirments = await _context.MaterialRequirments.Include(m=>m.Unit).FirstOrDefaultAsync(m=>m.ID==id);
             if (materialRequirments == null)
             {
                 return NotFound();
@@ -204,12 +204,10 @@ namespace NBDProjectNcstech.Controllers
             if (InventoryID >= 0)
             {
                 Inventory inv = _context.Inventory.FirstOrDefaultAsync(i => i.ID == InventoryID).Result;
-                var invUnit = inv.Unit.Name;
-                query = query.Where(u => u.Name == invUnit);
+                var invUnit = inv.UnitID;
+                query = query.Where(u => u.ID == invUnit);
             }
-            return new SelectList(_context
-                .Units
-                .OrderBy(m => m.Name), "ID", "Name", selectedId);
+            return new SelectList(query.OrderBy(m => m.Name), "ID", "Name", selectedId);
 
         }
         private void PopulateDropDownLists(MaterialRequirments materialRequirments = null)
@@ -217,19 +215,6 @@ namespace NBDProjectNcstech.Controllers
             ViewData["DesignBidID"] = OneDesignBidSelectList(materialRequirments?.DesignBidID);
             ViewData["InventoryID"] = InventorySelectList(materialRequirments?.InventoryID);
             ViewData["UnitID"] = UnitSelectList(materialRequirments?.InventoryID, materialRequirments?.UnitID);
-
-            //if ((materialRequirments?.UnitID).HasValue)
-            //{
-            //    if (materialRequirments.Unit == null)
-            //    {
-            //        materialRequirments.Unit = _context.Units.Find(materialRequirments.UnitID);
-            //    }
-            //    ViewData["UnitID"] = CitySelectList(client.City.ProvinceID, client.CityID);
-            //}
-            //else
-            //{
-            //    ViewData["CityID"] = CitySelectList(null, null);
-            //}
         }
         [HttpGet]
         public JsonResult GetUnits(int InventoryID)

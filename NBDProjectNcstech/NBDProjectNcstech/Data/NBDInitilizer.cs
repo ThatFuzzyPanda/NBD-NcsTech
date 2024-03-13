@@ -13,7 +13,7 @@ namespace NBDProjectNcstech.Data
             try
             {
                 //Delete and recreate the Database with every restart
-                context.Database.EnsureDeleted();
+                //context.Database.EnsureDeleted();
                 //context.Database.EnsureCreated();
                 context.Database.Migrate();
 
@@ -604,21 +604,21 @@ namespace NBDProjectNcstech.Data
                     context.SaveChanges();
                 }
 
-                //Material Requriments
-                if (!context.MaterialRequirments.Any())
-                {
-                    var materialRequirments = new List<MaterialRequirments>()
-                    {
-                      new MaterialRequirments
-                      {
-                          InventoryID = context.Inventory.FirstOrDefault(c => c.Name=="Screenings").ID,
-                          //Quanity 
+                ////Material Requriments
+                //if (!context.MaterialRequirments.Any())
+                //{
+                //    var materialRequirments = new List<MaterialRequirments>()
+                //    {
+                //      new MaterialRequirments
+                //      {
+                //          InventoryID = context.Inventory.FirstOrDefault(c => c.Name=="Screenings").ID,
+                //          //Quanity 
                           
-                      }
-                    };
-                    context.MaterialRequirments.AddRange(materialRequirments);
-                    context.SaveChanges();
-                }
+                //      }
+                //    };
+                //    context.MaterialRequirments.AddRange(materialRequirments);
+                //    context.SaveChanges();
+                //}
             }
             catch (Exception ex)
             {
