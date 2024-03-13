@@ -86,12 +86,14 @@ namespace NBDProjectNcstech.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ID,Name,ContactPersonFirst,ContactPersonLast,Phone,Street,CityID,PostalCode")] Client client)
         {
+
             if (ModelState.IsValid)
             {
                 _context.Add(client);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index", "ClientProject", new { ClientId = client.ID });
             }
+           
             PopulateDropDownLists(client);
             return View(client);
         }
