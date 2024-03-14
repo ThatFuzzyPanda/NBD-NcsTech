@@ -302,6 +302,9 @@
                                                 @Html.DisplayNameFor(model => model.MaterialRequirments.FirstOrDefault().Inventory.Name)
                                             </th>
                                             <th>
+                                                @Html.DisplayNameFor(model => model.MaterialRequirments.FirstOrDefault().Inventory.CostPrice)
+                                            </th>
+                                            <th>
                                                 @Html.DisplayNameFor(model => model.MaterialRequirments.FirstOrDefault().ExtendedPrice)
                                             </th>
                                         </tr>
@@ -315,6 +318,9 @@
                                                 </td>
                                                 <td>
                                                     @Html.DisplayFor(modelItem => item.Inventory.Name)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Inventory.CostPrice)
                                                 </td>
                                                 <td>
                                                     @Html.DisplayFor(modelItem => item.ExtendedPrice)

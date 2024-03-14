@@ -332,6 +332,9 @@
                                                         @Html.DisplayNameFor(model => model.MaterialRequirments.FirstOrDefault().Inventory.Name)
                                                     </th>
                                                     <th>
+                                                        @Html.DisplayNameFor(model => model.MaterialRequirments.FirstOrDefault().Inventory.CostPrice)
+                                                    </th>
+                                                    <th>
                                                         @Html.DisplayNameFor(model => model.MaterialRequirments.FirstOrDefault().ExtendedPrice)
                                                     </th>
                                                     <th></th>
@@ -346,6 +349,9 @@
                                                         </td>
                                                         <td>
                                                             @Html.DisplayFor(modelItem => item.Inventory.Name)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Inventory.CostPrice)
                                                         </td>
                                                         <td>
                                                             @Html.DisplayFor(modelItem => item.ExtendedPrice)
@@ -365,11 +371,16 @@
 
                                             // Calculate total material cost
                                             decimal totalMaterialCost = Model.MaterialRequirments.Sum(m => m.ExtendedPrice);
+
+                                            //Original Bid Budget
                                             double bidBudget = Model.Project.BidAmount;
 
 
                                             // Total bid cost is the sum of total labour cost and total material cost
                                             decimal totalBidCost = totalLabourCost + totalMaterialCost;
+
+                                            //Calculate remaining budget
+                                            decimal remainingBudget = (decimal)bidBudget - totalBidCost;
                                         }
                                         <table class="table">
                                             <thead>
@@ -386,6 +397,9 @@
                                                     <th>
                                                         Bid Budget
                                                     </th>
+                                                    <th>
+                                                        Remaining Budget
+                                                    </th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -401,6 +415,9 @@
                                                     </td>
                                                     <td>
                                                         @bidBudget.ToString("C")
+                                                    </td>
+                                                    <td>
+                                                        @remainingBudget.ToString("C")
                                                     </td>
                                                 </tr>
                                             </tbody>
