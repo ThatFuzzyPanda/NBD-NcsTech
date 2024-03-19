@@ -266,9 +266,7 @@
                                                 <button type="button" id="btnLeft" class="btn btn-success btn-sm">
                                                     <strong>+</strong>
                                                 </button>
-                                                <div class="input-group">
-                                                    @Html.DropDownList("PositionID", (MultiSelectList)ViewBag.PositionID, htmlAttributes: new { id = "positionFilter", @class = "form-control" })
-                                                </div>
+                                                
                                                 
                                                 
                                                 @Html.ListBox("availOptions", (MultiSelectList)ViewBag.availOpts, new { @size = 9, @class = "form-control", style = "overflow-x: auto;" })

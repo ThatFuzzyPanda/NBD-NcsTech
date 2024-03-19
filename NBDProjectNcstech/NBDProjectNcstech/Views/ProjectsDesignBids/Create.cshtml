@@ -231,11 +231,11 @@
                 <div class="container-fluid">
 
                     <!-- /.row -->
-                    <div class="card ">
+                    <div class="card">
                         <div class="card-header" style="background-color:#423535;">
                             <div class="row align-items-center">
                                 <div class="col">
-                                    <label class="control-label" style="color: white;">Create Design Bid</label>
+                                    <label class="control-label" style="color: white;">Create New Design Bid</label>
                                 </div>
 
                             </div>
@@ -243,15 +243,16 @@
 
 
                         <div class="row mb-3">
-                            <div class="col-md-6 offset-md-3">
+                            <div class="col-lg-8 offset-md-2">
                                 <br />
-                                <form asp-action="Create" style="font-size: 1em;">
+
+                                <form asp-action="Create" style="font-size: 1.3em;">
                                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                                     <div class="row">
                                         <div>
                                             <div class="form-group">
                                                 <label asp-for="ProjectID" class="control-label"></label>
-                                                <select asp-for="ProjectID" class="form-control" asp-items="ViewBag.ProjectID"></select>
+                                                <select asp-for="ProjectID" id="ProjectList" class="form-control" asp-items="ViewBag.ProjectID"></select>
                                             </div>
 
 
@@ -267,13 +268,12 @@
                                                         @Html.ListBox("selectedOptions", (MultiSelectList)ViewBag.selOpts, new { @size = 10, @class = "form-control" })
                                                     </div>
                                                     <div class="form-group col-md-6">
-                                                        <label class="control-label"> Available Staff</label> <button type="button" id="btnLeft" class="btn btn-success btn-sm">
+                                                        <label class="control-label"> Available Staff</label>
+                                                        <button type="button" id="btnLeft" class="btn btn-success btn-sm">
                                                             <strong>+</strong>
                                                         </button>
 
-                                                        <div class="input-group">
-                                                            @Html.DropDownList("PositionID", (MultiSelectList)ViewBag.PositionID, htmlAttributes: new { id = "positionFilter", @class = "form-control" })
-                                                        </div>
+
 
 
 
@@ -327,6 +327,8 @@
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="~/js/refreshDDL.js"></script>
     <script src="~/js/multiselect.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5qz82FIv5P1e3A6rzqOx18OW1l1z+6b0t4=" crossorigin="anonymous"></script>
@@ -335,6 +337,9 @@
             var selectedProvince = $("#ProvinceID").val();
             var URL = "/Clients/GetCities/?ProvinceID=" + selectedProvince;
             refreshDDL('CityID', URL, true, 'Select a Province with Cities first', false, null, true);
+        });
+        $(document).ready(function () {
+            $('#ProjectList').select2();
         });
 
         $(document).ready(function () {

@@ -28,6 +28,7 @@ namespace NBDProjectNcstech.Models
                 return 0;
             }
         }
+        
 
         //Foregin Keys
         [Display(Name = "Inventory")]

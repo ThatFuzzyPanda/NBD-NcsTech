@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -32,6 +32,7 @@ namespace NBDProjectNcstech.Controllers
                             .Include(p => p.Client)                 
                             .AsNoTracking();
 
+            
             //Add as many filters as needed
             if (ClientId.HasValue)
             {
@@ -95,8 +96,12 @@ namespace NBDProjectNcstech.Controllers
         // GET: Projects/Create
         public IActionResult Create()
         {
-			PopulateDropDownLists();
-			return View();
+            Project p = new Project()
+            {
+                BidDate = DateTime.Today,
+            };
+            PopulateDropDownLists();
+			return View(p);
         }
 
         // POST: Projects/Create
@@ -106,13 +111,16 @@ namespace NBDProjectNcstech.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,BidDate,ProjectSite,Est_BeginDate,Est_CompleteDate,BidAmount,ClientId")] Project project)
         {
+            
             if (ModelState.IsValid)
             {
                 _context.Add(project);
+                
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index", "ProjectsDesignBids", new { ProjectId = project.Id });
             }
-			PopulateDropDownLists(project);
+            
+            PopulateDropDownLists(project);
             return View(project);
         }
 

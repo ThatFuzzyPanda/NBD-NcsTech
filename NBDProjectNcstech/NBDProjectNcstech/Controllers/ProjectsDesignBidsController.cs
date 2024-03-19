@@ -378,29 +378,36 @@ namespace NBDProjectNcstech.Controllers
         }
         private SelectList PopulateSortingList(int? PositionID)
         {
-            return new SelectList(_context.StaffPositions.Where(s => s.PositionName == "Designer" || s.PositionName == "Laborer" ||
-            s.PositionName == "Driver" || s.PositionName == "Sales Associate")
+            return new SelectList(_context.StaffPositions.Where(s => s.PositionName == "Designer" || s.PositionName == "Sales Associate")
                 .OrderBy(m => m.PositionName), "ID", "PositionName", PositionID);
 
         }
-        private void PopulateDropDownLists(DesignBidStaff sp = null)
+        private SelectList PopulateApprovelList(string ApprovalStatus)
+        {
+            List<string> Options = new List<string>();
+            Options.Add("Approved");
+            Options.Add("Pending");
+            Options.Add("Denied");
+            return new SelectList(Options);
+        }
+        private void PopulateDropDownLists(DesignBidStaff sp = null, DesignBid db = null)
         {
             ViewData["PositionID"] = PopulateSortingList(sp?.Staff.StaffPositionID);
-
+            ViewData["ApprovalStatus"] = PopulateApprovelList(db?.Approval.AdminApprovalStatus);
         }
+
         private void PopulateAssignedDesignStaffLists(DesignBid designbid)
         {
 
             // For this to work, you must have Included the child collection in the parent object
-            var allOptions = _context.Staffs.Where(s => s.StaffPosition != null &&
-                                                (s.StaffPosition.PositionName == "Designer" || s.StaffPosition.PositionName == "Laborer"
-                                               || s.StaffPosition.PositionName == "Driver" || s.StaffPosition.PositionName == "Sales Associate"))
-
+            var allOptions = _context.Staffs.
+                                    Where(s => s.StaffPosition != null &&
+                                                (s.StaffPosition.PositionName == "Designer" || s.StaffPosition.PositionName == "Sales Associate"))
                                     .Include(s => s.StaffPosition) // Ensure StaffPosition is loaded
                                     .OrderBy(s => s.StaffPosition.PositionName); // Order by position name
 
 
-
+            //var allOptions = _context.Staffs.Include(s => s.StaffPosition);
 
             var currentOptionsHS = new HashSet<int>(designbid.DesignBidStaffs.Select(b => b.StaffID));
 
@@ -415,7 +422,7 @@ namespace NBDProjectNcstech.Controllers
                     selected.Add(new ListOptionVM
                     {
                         ID = r.ID,
-                        STAFF = r.StaffPositionID,
+                        Staff = r.StaffPosition.PositionName,
                         DisplayText = $"{r.FullName} {r.StaffPosition.PositionName}"
                     });
                 }
@@ -424,14 +431,14 @@ namespace NBDProjectNcstech.Controllers
                     available.Add(new ListOptionVM
                     {
                         ID = r.ID,
-                        STAFF = r.StaffPositionID,
+                        Staff = r.StaffPosition.PositionName,
                         DisplayText = $"{r.FullName} {r.StaffPosition.PositionName}"
                     });
                 }
             }
 
-            ViewData["selOpts"] = new MultiSelectList(selected, "STAFF", "DisplayText");
-            ViewData["availOpts"] = new MultiSelectList(available, "STAFF", "DisplayText");
+            ViewData["selOpts"] = new MultiSelectList(selected, "ID", "DisplayText", "", "Staff");
+            ViewData["availOpts"] = new MultiSelectList(available, "ID", "DisplayText", "", "Staff");
         }
         private void UpdateStaffListboxes(string[] selectedOptions, DesignBid designBidToUpdate)
         {
@@ -466,6 +473,7 @@ namespace NBDProjectNcstech.Controllers
                 }
             }
         }
+
         private bool DesignBidExists(int id)
         {
           return _context.DesignBids.Any(e => e.ID == id);
