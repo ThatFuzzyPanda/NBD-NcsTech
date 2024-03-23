@@ -27,7 +27,15 @@ namespace NBDProjectNcstech.Controllers
                             .Include(p => p.Client)
                             .AsNoTracking();
 
-			if (Id.HasValue)
+            var designBids = _context.DesignBids
+                .Include(d => d.Project)
+                .Include(d => d.Approval)
+                .Include(d => d.LabourRequirments)
+                .Include(d => d.MaterialRequirments)
+                .Include(d => d.DesignBidStaffs).ThenInclude(d => d.Staff)
+                .AsNoTracking();
+
+            if (Id.HasValue)
 			{
 				clients = clients.Where(p => p.ID == Id);
 			}
@@ -67,8 +75,41 @@ namespace NBDProjectNcstech.Controllers
                 PagedProjects = pagedDataProject
             };
 
-            return View(combinedLists);
+            PopulateSmallBoxes();
+
+
+			return View(combinedLists);
         }
+
+        //----Functions get number of projects,clients,Denied DesignBids and 
+        private int GetNumberOfDeniedBids()
+        {
+            return _context.DesignBids.Where(d => d.Approval.AdminApprovalStatus == "Denied").Count();
+        }
+        
+        private int GetNumberOfProjects()
+        {
+            return _context.Projects.Count();
+        }
+
+        private int GetNumberOfClients()
+        {
+            return _context.Clients.Count();
+        }
+
+        private int GetNumberOfPendingClientApproval()
+        {
+            return _context.DesignBids.Where(d => d.Approval.ClientApprovalStatus == "Pending").Count();
+		}
+
+        private void PopulateSmallBoxes()
+        {
+            ViewData["NumberOfProjects"] = GetNumberOfProjects();
+            ViewData["NumberOfClients"] = GetNumberOfClients();
+            ViewData["NumberOfDeniedBids"] = GetNumberOfDeniedBids();
+            ViewData["NumberOfPendingClientBids"] = GetNumberOfPendingClientApproval();
+        }
+
 		private SelectList ClientSelectList(int? selectedId)
 		{
 			return new SelectList(_context

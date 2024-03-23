@@ -39,6 +39,13 @@ namespace NBDProjectNcstech.Controllers
                 .Include(d => d.DesignBidStaffs).ThenInclude(d => d.Staff)
                 .AsNoTracking();
 
+			//string smallBox gets url parameter "from" that was passed in the home page
+			string fromPage = Request.Query["smallBox"];
+            
+            if (!System.String.IsNullOrEmpty(fromPage) && fromPage == "Denied Bids")
+            {
+                ApprovalStatus = "Denied";
+            }
 
             //search and filter
             if (!System.String.IsNullOrEmpty(SearchString))

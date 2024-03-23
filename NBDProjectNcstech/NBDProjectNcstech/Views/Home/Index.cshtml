@@ -1,5 +1,9 @@
 ﻿@{
 	ViewData["Title"] = "Home Page";
+	int numberOfProjects = Convert.ToInt32(ViewData["NumberOfProjects"]);
+	int numberOfClients = Convert.ToInt32(ViewData["NumberOfClients"]);
+	int numberOfDeniedBids = Convert.ToInt32(ViewData["NumberOfDeniedBids"]);
+	int numberOfPendingClientBids = Convert.ToInt32(ViewData["NumberOfPendingClientBids"]);
 }
 @model NBDProjectNcstech.Utilities.PaginatedHomeLists
 
@@ -221,19 +225,19 @@
 			<div class="content">
 				<div class="container-fluid">
 					<!-- Small boxes (Stat box) Add later -->
-					@* <div class="row">
+					<div class="row">
 					<div class="col-lg-3 col-6">
 					<!-- small box -->
 					<div class="small-box bg-info">
 					<div class="inner">
-					<h3>150</h3>
+					<h3>@numberOfProjects</h3>
 
 					<p>Projects</p>
 					</div>
 					<div class="icon">
 					<i class="ion ion-bag"></i>
 					</div>
-					<a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+					<a asp-controller="Projects" asp-action="Index" class="small-box-footer">Go See <i class="fas fa-arrow-circle-right"></i></a>
 					</div>
 					</div>
 					<!-- ./col -->
@@ -241,14 +245,15 @@
 					<!-- small box -->
 					<div class="small-box bg-success">
 					<div class="inner">
-					<h3>53<sup style="font-size: 20px">%</sup></h3>
+
+					<h3>@numberOfClients</h3>
 
 					<p>Clients</p>
 					</div>
 					<div class="icon">
 					<i class="ion ion-person-add"></i>
 					</div>
-					<a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+					<a asp-controller="Clients" asp-action="Index" class="small-box-footer">Go See <i class="fas fa-arrow-circle-right"></i></a>
 					</div>
 					</div>
 					<!-- ./col -->
@@ -256,14 +261,19 @@
 					<!-- small box -->
 					<div class="small-box bg-warning">
 					<div class="inner">
-					<h3>44</h3>
+					<h3>@numberOfDeniedBids</h3>
 
-					<p>NBD Staff</p>
+					@if (numberOfDeniedBids == 1){
+						<p>Denied Bid</p>
+					}
+					else{
+						<p>Denied Bids</p>
+					}
 					</div>
 					<div class="icon">
 					<i class="ion ion-person-add"></i>
 					</div>
-					<a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+					<a asp-controller="DesignBids" asp-action="Index" asp-route-smallBox="Denied Bids" class="small-box-footer">Go See <i class="fas fa-arrow-circle-right"></i></a>
 					</div>
 					</div>
 					<!-- ./col -->
@@ -271,18 +281,23 @@
 					<!-- small box -->
 					<div class="small-box bg-danger">
 					<div class="inner">
-					<h3>65</h3>
+					<h3>@numberOfPendingClientBids</h3>
 
-					<p>Reports</p>
+					@if (numberOfPendingClientBids == 1){
+						<p>Pending Client Approval</p>
+					}
+					else{
+						<p>Pending Client Approvals</p>
+					}
 					</div>
 					<div class="icon">
 
 					<i class="ion ion-stats-bars"></i>
 					</div>
-					<a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+					<a asp-controller="DesignBids" asp-action="Index" class="small-box-footer">Go See <i class="fas fa-arrow-circle-right"></i></a>
 					</div>
 					</div>
-					</div> *@<!-- /.statbox -->
+					</div><!-- /.statbox -->
 
 					<form asp-action="Index" method="get">
 						<div class="row">
