@@ -13,8 +13,8 @@ namespace NBDProjectNcstech.Models
         public int ProjectID { get; set; }
         public Project Project { get; set; }
 
-        //[Display(Name = "Approvals")]
-        //public ICollection<Approval> Approvals { get; set; } = new HashSet<Approval>();
+        
+        
         [Display(Name = "Design Bid")]
         public int? ApprovalID { get; set; }
         public Approval Approval { get; set; }

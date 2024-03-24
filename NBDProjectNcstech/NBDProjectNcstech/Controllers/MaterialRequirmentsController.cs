@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
 using NBDProjectNcstech.Data;
 using NBDProjectNcstech.Models;
 
@@ -213,8 +208,6 @@ namespace NBDProjectNcstech.Controllers
         private void PopulateDropDownLists(MaterialRequirments materialRequirments = null)
         {
             ViewData["DesignBidID"] = OneDesignBidSelectList(materialRequirments?.DesignBidID);
-            //ViewData["InventoryID"] = InventorySelectList(materialRequirments?.InventoryID);
-            //ViewData["UnitID"] = UnitSelectList(materialRequirments?.InventoryID, materialRequirments?.UnitID);
             if ((materialRequirments?.UnitID).HasValue)
             {
                 if (materialRequirments.Unit == null)

@@ -4,7 +4,6 @@ using NBDProjectNcstech.Data;
 using NBDProjectNcstech.Utilities;
 using NBDProjectNcstech.Models;
 using System.Diagnostics;
-using System.Dynamic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Rendering;
 

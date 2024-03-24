@@ -1,21 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿
 using CateringManagement.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.CodeAnalysis.Elfie.Diagnostics;
+
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
-using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Tokens;
+
 using NBDProjectNcstech.CustomControllers;
 using NBDProjectNcstech.Data;
 using NBDProjectNcstech.Models;
 using NBDProjectNcstech.Utilities;
-using NBDProjectNcstech.ViewModels;
-using static System.Runtime.InteropServices.JavaScript.JSType;
+
 
 namespace NBDProjectNcstech.Controllers
 {
@@ -429,59 +424,6 @@ namespace NBDProjectNcstech.Controllers
             return View(approvalToUpdate);
         }
 
-
-
-        //private void PopulateAssignedStaffData(DesignBid designBid)
-        //      {
-        //          var allOptions = _context.Staffs;
-        //          var currentOptionIDs = new HashSet<int>(designBid.DesignBidStaffs.Select(d => d.StaffID));
-        //          var checkBoxes = new List<CheckOptionVM>();
-        //          foreach (var option in allOptions)
-        //          {
-        //              checkBoxes.Add(new CheckOptionVM
-        //              {
-        //                  ID = option.ID,
-        //                  DisplayText = option.FullName,
-        //                  Assigned = currentOptionIDs.Contains(option.ID)
-        //              });
-        //          }
-        //          ViewData["StaffOptions"] = checkBoxes;
-        //      }
-
-        //      private void UpdateDesignBidStaffs(string[] selectedOptions, DesignBid designBidToUpdate)
-        //      {
-        //          if (selectedOptions == null)
-        //          {
-        //              designBidToUpdate.DesignBidStaffs = new List<DesignBidStaff>();
-        //              return;
-        //          }
-
-        //          var selectedOptionsHS = new HashSet<string>(selectedOptions);
-        //          var designOptionsHS = new HashSet<int>
-        //              (designBidToUpdate.DesignBidStaffs.Select(d => d.StaffID));
-        //          foreach (var option in _context.Staffs)
-        //          {
-        //              if (selectedOptionsHS.Contains(option.ID.ToString())) //It is checked
-        //              {
-        //                  if (!designOptionsHS.Contains(option.ID))
-        //                  {
-        //                      designBidToUpdate.DesignBidStaffs.Add(new DesignBidStaff { DesignBidID = designBidToUpdate.ID, StaffID = option.ID });
-        //                  }
-        //              }
-        //              else
-        //              {
-        //                  //Checkbox not Checked
-        //                  if (designOptionsHS.Contains(option.ID))
-        //                  {
-        //                      DesignBidStaff staffToRemove = designBidToUpdate.DesignBidStaffs.SingleOrDefault(d => d.StaffID == option.ID);
-        //                      _context.Remove(staffToRemove);
-        //                  }
-        //              }
-        //          }
-        //      }
-
-       // 
-       //
         private SelectList PopulateSortingList(int? PositionID)
         {
             return new SelectList(_context.StaffPositions.Where(s => s.PositionName == "Designer" || s.PositionName == "Sales Associate")
