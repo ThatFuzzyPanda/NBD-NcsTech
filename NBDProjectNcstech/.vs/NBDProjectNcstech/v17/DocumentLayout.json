@@ -7,8 +7,28 @@
       "RelativeMoniker": "D:0:0:{BE9069B5-31A1-4858-945C-933A79B4B045}|NBDProjectNcstech\\NBDProjectNcstech.csproj|solutionrelative:nbdprojectncstech\\controllers\\designbidscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BE9069B5-31A1-4858-945C-933A79B4B045}|NBDProjectNcstech\\NBDProjectNcstech.csproj|c:\\users\\owner\\nbd-ncstech\\nbdprojectncstech\\nbdprojectncstech\\views\\designbids\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{BE9069B5-31A1-4858-945C-933A79B4B045}|NBDProjectNcstech\\NBDProjectNcstech.csproj|solutionrelative:nbdprojectncstech\\views\\designbids\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{BE9069B5-31A1-4858-945C-933A79B4B045}|NBDProjectNcstech\\NBDProjectNcstech.csproj|c:\\users\\owner\\nbd-ncstech\\nbdprojectncstech\\nbdprojectncstech\\views\\designbids\\_approve.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BE9069B5-31A1-4858-945C-933A79B4B045}|NBDProjectNcstech\\NBDProjectNcstech.csproj|solutionrelative:nbdprojectncstech\\views\\designbids\\_approve.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE9069B5-31A1-4858-945C-933A79B4B045}|NBDProjectNcstech\\NBDProjectNcstech.csproj|c:\\users\\owner\\nbd-ncstech\\nbdprojectncstech\\nbdprojectncstech\\views\\designbids\\_approvalmodal.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BE9069B5-31A1-4858-945C-933A79B4B045}|NBDProjectNcstech\\NBDProjectNcstech.csproj|solutionrelative:nbdprojectncstech\\views\\designbids\\_approvalmodal.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE9069B5-31A1-4858-945C-933A79B4B045}|NBDProjectNcstech\\NBDProjectNcstech.csproj|c:\\users\\owner\\nbd-ncstech\\nbdprojectncstech\\nbdprojectncstech\\views\\designbids\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BE9069B5-31A1-4858-945C-933A79B4B045}|NBDProjectNcstech\\NBDProjectNcstech.csproj|solutionrelative:nbdprojectncstech\\views\\designbids\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE9069B5-31A1-4858-945C-933A79B4B045}|NBDProjectNcstech\\NBDProjectNcstech.csproj|c:\\users\\owner\\nbd-ncstech\\nbdprojectncstech\\nbdprojectncstech\\views\\designbids\\_reject.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BE9069B5-31A1-4858-945C-933A79B4B045}|NBDProjectNcstech\\NBDProjectNcstech.csproj|solutionrelative:nbdprojectncstech\\views\\designbids\\_reject.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE9069B5-31A1-4858-945C-933A79B4B045}|NBDProjectNcstech\\NBDProjectNcstech.csproj|c:\\users\\owner\\nbd-ncstech\\nbdprojectncstech\\nbdprojectncstech\\views\\designbids\\_rejectionmodal.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BE9069B5-31A1-4858-945C-933A79B4B045}|NBDProjectNcstech\\NBDProjectNcstech.csproj|solutionrelative:nbdprojectncstech\\views\\designbids\\_rejectionmodal.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE9069B5-31A1-4858-945C-933A79B4B045}|NBDProjectNcstech\\NBDProjectNcstech.csproj|c:\\users\\owner\\nbd-ncstech\\nbdprojectncstech\\nbdprojectncstech\\models\\approval.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BE9069B5-31A1-4858-945C-933A79B4B045}|NBDProjectNcstech\\NBDProjectNcstech.csproj|solutionrelative:nbdprojectncstech\\models\\approval.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,7 +38,7 @@
       "DocumentGroups": [
         {
           "DockedHeight": 346,
-          "SelectedChildIndex": 101,
+          "SelectedChildIndex": 105,
           "Children": [
             {
               "$type": "Bookmark",
@@ -425,6 +445,40 @@
               "Name": "ST:631678562:0:{bf84ea66-d821-4dba-b1b1-2777d8574775}"
             },
             {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{e1b7d1f8-9b3c-49b1-8f4f-bfc63a88835d}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1637791481:0:{bf84ea66-d821-4dba-b1b1-2777d8574775}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Approval.cs",
+              "DocumentMoniker": "C:\\Users\\Owner\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\Models\\Approval.cs",
+              "RelativeDocumentMoniker": "NBDProjectNcstech\\Models\\Approval.cs",
+              "ToolTip": "C:\\Users\\Owner\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\Models\\Approval.cs",
+              "RelativeToolTip": "NBDProjectNcstech\\Models\\Approval.cs",
+              "ViewState": "AQIAAAsAAAAAAAAAAAAwwAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-26T00:28:26.251Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "_Reject.cshtml",
+              "DocumentMoniker": "C:\\Users\\Owner\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\Views\\DesignBids\\_Reject.cshtml",
+              "RelativeDocumentMoniker": "NBDProjectNcstech\\Views\\DesignBids\\_Reject.cshtml",
+              "ToolTip": "C:\\Users\\Owner\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\Views\\DesignBids\\_Reject.cshtml",
+              "RelativeToolTip": "NBDProjectNcstech\\Views\\DesignBids\\_Reject.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAABGAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-03-26T00:21:39.749Z",
+              "EditorCaption": ""
+            },
+            {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "DesignBidsController.cs",
@@ -432,22 +486,61 @@
               "RelativeDocumentMoniker": "NBDProjectNcstech\\Controllers\\DesignBidsController.cs",
               "ToolTip": "C:\\Users\\Owner\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\Controllers\\DesignBidsController.cs",
               "RelativeToolTip": "NBDProjectNcstech\\Controllers\\DesignBidsController.cs",
-              "ViewState": "AQIAACEAAAAAAAAAAAAYwAAAAAAAAAAA",
+              "ViewState": "AQIAAJgAAAAAAAAAAAAWwKEAAAAIAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-13T08:38:38.798Z",
+              "WhenOpened": "2024-03-26T00:24:47.813Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\Owner\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\Views\\DesignBids\\Index.cshtml",
-              "RelativeDocumentMoniker": "NBDProjectNcstech\\Views\\DesignBids\\Index.cshtml",
-              "ToolTip": "C:\\Users\\Owner\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\Views\\DesignBids\\Index.cshtml",
-              "RelativeToolTip": "NBDProjectNcstech\\Views\\DesignBids\\Index.cshtml",
-              "ViewState": "AQIAAPIAAAAAAAAAAAAmwP0AAABCAAAA",
+              "Title": "_Approve.cshtml",
+              "DocumentMoniker": "C:\\Users\\Owner\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\Views\\DesignBids\\_Approve.cshtml",
+              "RelativeDocumentMoniker": "NBDProjectNcstech\\Views\\DesignBids\\_Approve.cshtml",
+              "ToolTip": "C:\\Users\\Owner\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\Views\\DesignBids\\_Approve.cshtml",
+              "RelativeToolTip": "NBDProjectNcstech\\Views\\DesignBids\\_Approve.cshtml",
+              "ViewState": "AQIAAA8AAAAAAAAAAAAAABQAAAApAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-03-13T08:34:16.518Z",
+              "WhenOpened": "2024-03-26T00:21:44.297Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Details.cshtml",
+              "DocumentMoniker": "C:\\Users\\Owner\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\Views\\DesignBids\\Details.cshtml",
+              "RelativeDocumentMoniker": "NBDProjectNcstech\\Views\\DesignBids\\Details.cshtml",
+              "ToolTip": "C:\\Users\\Owner\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\Views\\DesignBids\\Details.cshtml",
+              "RelativeToolTip": "NBDProjectNcstech\\Views\\DesignBids\\Details.cshtml",
+              "ViewState": "AQIAANoBAAAAAAAAAAAAAAoBAAAUAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-03-26T00:19:16.821Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "_ApprovalModal.cshtml",
+              "DocumentMoniker": "C:\\Users\\Owner\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\Views\\DesignBids\\_ApprovalModal.cshtml",
+              "RelativeDocumentMoniker": "NBDProjectNcstech\\Views\\DesignBids\\_ApprovalModal.cshtml",
+              "ToolTip": "C:\\Users\\Owner\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\Views\\DesignBids\\_ApprovalModal.cshtml",
+              "RelativeToolTip": "NBDProjectNcstech\\Views\\DesignBids\\_ApprovalModal.cshtml",
+              "ViewState": "AQIAAB4AAAAAAAAAAAAmwCUAAAAGAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-03-26T00:14:30.84Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "_RejectionModal.cshtml",
+              "DocumentMoniker": "C:\\Users\\Owner\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\Views\\DesignBids\\_RejectionModal.cshtml",
+              "RelativeDocumentMoniker": "NBDProjectNcstech\\Views\\DesignBids\\_RejectionModal.cshtml",
+              "ToolTip": "C:\\Users\\Owner\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\Views\\DesignBids\\_RejectionModal.cshtml",
+              "RelativeToolTip": "NBDProjectNcstech\\Views\\DesignBids\\_RejectionModal.cshtml",
+              "ViewState": "AQIAAA8AAAAAAAAAAAAAAAkAAAAdAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-03-26T00:14:17.148Z",
               "EditorCaption": ""
             }
           ]

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "EIYCTEat9P2CJI+jNDJkD92i3yvvT2i92y7bR0XZlr8=",
+  "Hash": "lTYamXcTjKLGZ48VqykRDlJFVo4MpLUao3KEOQxAU8g=",
   "Source": "NBDProjectNcstech",
   "BasePath": "_content/NBDProjectNcstech",
   "Mode": "Default",
@@ -2903,6 +2903,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\dist\\img\\icons.png"
+    },
+    {
+      "Identity": "C:\\Users\\Owner\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\wwwroot\\dist\\img\\natural.ico",
+      "SourceId": "NBDProjectNcstech",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Owner\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\wwwroot\\",
+      "BasePath": "_content/NBDProjectNcstech",
+      "RelativePath": "dist/img/natural.ico",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\dist\\img\\natural.ico"
     },
     {
       "Identity": "C:\\Users\\Owner\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\wwwroot\\dist\\img\\natural.png",

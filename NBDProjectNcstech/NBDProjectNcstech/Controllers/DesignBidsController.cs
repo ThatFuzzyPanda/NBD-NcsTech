@@ -158,9 +158,9 @@ namespace NBDProjectNcstech.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Approve(int? id)
+        public async Task<IActionResult> Approve(int id, string ddlApproveBy, string txtDesc)
         {
-            if (id == null || _context.Clients == null)
+            if (_context.DesignBids == null)
             {
                 return NotFound();
             }
@@ -180,11 +180,28 @@ namespace NBDProjectNcstech.Controllers
 
             if (ModelState.IsValid)
             {
-                try
+                if(ddlApproveBy == "1")
                 {
-
 					designBid.Approval.AdminApprovalStatus = ApprovalStatus.Approved.ToString();
-                    _context.Update(designBid);
+					designBid.Approval.AdminApprovalNotes = txtDesc;
+                    designBid.Approval.AdminApprovalDate = DateTime.Now;
+				}
+                else if(ddlApproveBy == "2")
+                {
+					designBid.Approval.ClientApprovalStatus = ApprovalStatus.Approved.ToString();
+					designBid.Approval.ClientApprovalNotes = txtDesc;
+					designBid.Approval.AdminApprovalDate = DateTime.Now;
+
+				}
+				else
+                {
+                    //the ddp is set required but still
+                    //just in case
+					return Problem("Must select as who are you approving.");
+				}
+				try
+                {
+					_context.Update(designBid);
                     _context.ApproveEntity();
                     await _context.SaveChangesAsync();
                     return RedirectToAction(nameof(Index));
@@ -206,9 +223,13 @@ namespace NBDProjectNcstech.Controllers
 
         }
         [HttpPost]
-        public async Task<IActionResult> Reject(int id)
+        public async Task<IActionResult> Reject(int id, string ddlRejectBy, string txtDesc)
         {
-            var designBid = await _context.DesignBids
+			if (_context.DesignBids == null)
+			{
+				return NotFound();
+			}
+			var designBid = await _context.DesignBids
                                         .Include(d => d.Project)
 										.Include(d => d.Approval)
 										.Include(d => d.LabourRequirments)
@@ -222,9 +243,27 @@ namespace NBDProjectNcstech.Controllers
             }
             if (ModelState.IsValid)
             {
-                try
-                {
+				if (ddlRejectBy == "1")
+				{
 					designBid.Approval.AdminApprovalStatus = ApprovalStatus.Denied.ToString();
+					designBid.Approval.AdminApprovalNotes = txtDesc;
+					designBid.Approval.AdminApprovalDate = DateTime.Now;
+				}
+				else if (ddlRejectBy == "2")
+				{
+					designBid.Approval.ClientApprovalStatus = ApprovalStatus.Denied.ToString();
+					designBid.Approval.ClientApprovalNotes = txtDesc;
+					designBid.Approval.AdminApprovalDate = DateTime.Now;
+
+				}
+				else
+				{
+					//the ddp is set required but still
+					//just in case
+					return Problem("Must select as who are you approving.");
+				}
+				try
+                {
                     _context.Update(designBid);
                     _context.RejectEntity();
                     await _context.SaveChangesAsync();

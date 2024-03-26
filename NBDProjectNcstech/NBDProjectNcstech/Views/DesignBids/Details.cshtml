@@ -1,480 +1,497 @@
 ﻿@model NBDProjectNcstech.Models.DesignBid
 
 @{
-    ViewData["Title"] = "Design bid Details";
+	ViewData["Title"] = "Design bid Details";
 }
 <!DOCTYPE html>
 
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Natural By Design |Home</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Natural By Design |Home</title>
 
-    <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet" href="~/https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="~/plugins/fontawesome-free/css/all.min.css">
-    <!-- Theme style -->
-    <link rel="stylesheet" href="~/dist/css/adminlte.min.css">
-    <link rel="stylesheet" href="~/css/TableStyle.css">
+	<!-- Google Font: Source Sans Pro -->
+	<link rel="stylesheet" href="~/https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+	<!-- Font Awesome Icons -->
+	<link rel="stylesheet" href="~/plugins/fontawesome-free/css/all.min.css">
+	<!-- Theme style -->
+	<link rel="stylesheet" href="~/dist/css/adminlte.min.css">
+	<link rel="stylesheet" href="~/css/TableStyle.css">
 </head>
 <body class="hold-transition sidebar-mini">
-    <div class="wrapper">
+	<div class="wrapper">
 
-        <!-- Navbar -->
-        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-            <!-- Left navbar links -->
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-                </li>
-                <li class="nav-item">
-                    <h3>Hello, Admin!</h3>
-                </li>
-
-
-            </ul>
-
-            <!-- Right navbar links -->
-            @* <ul class="navbar-nav ml-auto">
-
-            <li class="nav-item">
-            <a class="nav-link" data-widget="fullscreen" href="#" role="button">
-            <i class="fas fa-expand-arrows-alt"></i>
-            </a>
-            </li>
-            </ul>*@
-        </nav>
-        <!-- /.navbar -->
-        <!-- Main Sidebar Container -->
-        <aside class="main-sidebar sidebar-dark-primary elevation-4">
-            <!-- Brand Logo -->
-            <a asp-controller="Home" asp-action="Index" class="brand-link">
-                <img src="~/dist/img/natural.png" alt="nbd Logo" class="brand-image img-circle elevation-3">
-
-                @* <img src="dist/img/nbd.png" alt="nbd Logo" class="brand-image img-circle elevation-3"> *@
-                <span class="brand-text font-weight-bold" style="font-family: 'Times New Roman', Times, serif;">Natural By Design</span>
-
-            </a>
-
-            <!-- Sidebar -->
-            <div class="sidebar">
-                <!-- Sidebar user panel (optional) -->
-                @*  <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                <div class="image">
-                <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
-                </div>
-                <div class="info">
-                <a href="#" class="d-block">Alexander Pierce</a>
-                </div>
-                </div> *@
-
-                @*  <!-- SidebarSearch Form -->
-                <div class="form-inline">
-                <div class="input-group" data-widget="sidebar-search">
-                <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
-                <div class="input-group-append">
-                <button class="btn btn-sidebar">
-                <i class="fas fa-search fa-fw"></i>
-                </button>
-                </div>
-                </div>
-                </div> *@
-
-                <!-- Sidebar Menu -->
-                <nav class="mt-2">
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-
-                        <!-- Home -->
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">
-                                <i class="nav-icon fas fa-home"></i>
-                                <p>Home</p>
-                            </a>
-                        </li>
-
-                        <!-- Client -->
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Clients" asp-action="Index">
-                                <i class="nav-icon fas fa-users"></i>
-                                <p>Client</p>
-                            </a>
-                        </li>
-
-                        <!-- Project -->
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Projects" asp-action="Index">
-                                <i class="nav-icon fas fa-newspaper"></i>
-                                <p>Project</p>
-                            </a>
-                        </li>
-
-                        <!-- Bid -->
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="DesignBids" asp-action="Index">
-                                <i class="nav-icon fas fa-handshake"></i>
-                                <p>Bids</p>
-                            </a>
-                            @* <a href="#" class="nav-link">
-                            <i class="nav-icon fas fa-handshake"></i>
-                            <p>
-                            Bid
-                            <i class="fas fa-angle-left right"></i>
-                            </p>
-                            </a>
-
-                            <ul class="nav nav-treeview">
-                            <!-- Design Budget -->
-                            <li class="nav-item">
-                            <a href="#" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Design Budget</p>
-                            </a>
-                            </li>
-
-                            <!-- Production Plan -->
-                            <li class="nav-item">
-                            <a href="#" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Production Plan</p>
-                            </a>
-                            </li>
-                            </ul> *@
-                        </li>
+		<!-- Navbar -->
+		<nav class="main-header navbar navbar-expand navbar-white navbar-light">
+			<!-- Left navbar links -->
+			<ul class="navbar-nav">
+				<li class="nav-item">
+					<a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+				</li>
+				<li class="nav-item">
+					<h3>Hello, Admin!</h3>
+				</li>
 
 
+			</ul>
 
-                        <!-- Reports -->
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-file-invoice"></i>
-                                <p>
-                                    Reports
-                                    <i class="fas fa-angle-left right"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
+			<!-- Right navbar links -->
+			@* <ul class="navbar-nav ml-auto">
 
-                                <!-- PDW -->
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>PDW</p>
-                                    </a>
-                                </li>
+			<li class="nav-item">
+			<a class="nav-link" data-widget="fullscreen" href="#" role="button">
+			<i class="fas fa-expand-arrows-alt"></i>
+			</a>
+			</li>
+			</ul>*@
+		</nav>
+		<!-- /.navbar -->
+		<!-- Main Sidebar Container -->
+		<aside class="main-sidebar sidebar-dark-primary elevation-4">
+			<!-- Brand Logo -->
+			<a asp-controller="Home" asp-action="Index" class="brand-link">
+				<img src="~/dist/img/natural.png" alt="nbd Logo" class="brand-image img-circle elevation-3">
 
-                                <!-- DDW -->
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>DDW</p>
-                                    </a>
-                                </li>
+				@* <img src="dist/img/nbd.png" alt="nbd Logo" class="brand-image img-circle elevation-3"> *@
+				<span class="brand-text font-weight-bold" style="font-family: 'Times New Roman', Times, serif;">Natural By Design</span>
 
-                                <!-- Project Administration Report -->
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Project Administration Report</p>
-                                    </a>
-                                </li>
+			</a>
 
-                                <!-- Inventory Report -->
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Inventory Report</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
+			<!-- Sidebar -->
+			<div class="sidebar">
+				<!-- Sidebar user panel (optional) -->
+				@*  <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+				<div class="image">
+				<img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+				</div>
+				<div class="info">
+				<a href="#" class="d-block">Alexander Pierce</a>
+				</div>
+				</div> *@
+
+				@*  <!-- SidebarSearch Form -->
+				<div class="form-inline">
+				<div class="input-group" data-widget="sidebar-search">
+				<input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+				<div class="input-group-append">
+				<button class="btn btn-sidebar">
+				<i class="fas fa-search fa-fw"></i>
+				</button>
+				</div>
+				</div>
+				</div> *@
+
+				<!-- Sidebar Menu -->
+				<nav class="mt-2">
+					<ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+
+						<!-- Home -->
+						<li class="nav-item">
+							<a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">
+								<i class="nav-icon fas fa-home"></i>
+								<p>Home</p>
+							</a>
+						</li>
+
+						<!-- Client -->
+						<li class="nav-item">
+							<a class="nav-link" asp-area="" asp-controller="Clients" asp-action="Index">
+								<i class="nav-icon fas fa-users"></i>
+								<p>Client</p>
+							</a>
+						</li>
+
+						<!-- Project -->
+						<li class="nav-item">
+							<a class="nav-link" asp-area="" asp-controller="Projects" asp-action="Index">
+								<i class="nav-icon fas fa-newspaper"></i>
+								<p>Project</p>
+							</a>
+						</li>
+
+						<!-- Bid -->
+						<li class="nav-item">
+							<a class="nav-link" asp-area="" asp-controller="DesignBids" asp-action="Index">
+								<i class="nav-icon fas fa-handshake"></i>
+								<p>Bids</p>
+							</a>
+							@* <a href="#" class="nav-link">
+							<i class="nav-icon fas fa-handshake"></i>
+							<p>
+							Bid
+							<i class="fas fa-angle-left right"></i>
+							</p>
+							</a>
+
+							<ul class="nav nav-treeview">
+							<!-- Design Budget -->
+							<li class="nav-item">
+							<a href="#" class="nav-link">
+							<i class="far fa-circle nav-icon"></i>
+							<p>Design Budget</p>
+							</a>
+							</li>
+
+							<!-- Production Plan -->
+							<li class="nav-item">
+							<a href="#" class="nav-link">
+							<i class="far fa-circle nav-icon"></i>
+							<p>Production Plan</p>
+							</a>
+							</li>
+							</ul> *@
+						</li>
 
 
 
-                        <!-- Logout -->
-                        @* <li class="nav-item">
-                        <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-sign-out-alt"></i>
-                        <p>Logout</p>
-                        </a>
-                        </li> *@
+						<!-- Reports -->
+						<li class="nav-item">
+							<a href="#" class="nav-link">
+								<i class="nav-icon fas fa-file-invoice"></i>
+								<p>
+									Reports
+									<i class="fas fa-angle-left right"></i>
+								</p>
+							</a>
+							<ul class="nav nav-treeview">
 
-                    </ul>
-                </nav>
-                <!-- /.sidebar-menu -->
+								<!-- PDW -->
+								<li class="nav-item">
+									<a href="#" class="nav-link">
+										<i class="far fa-circle nav-icon"></i>
+										<p>PDW</p>
+									</a>
+								</li>
 
-            </div>
-            <!-- /.sidebar -->
-        </aside>
+								<!-- DDW -->
+								<li class="nav-item">
+									<a href="#" class="nav-link">
+										<i class="far fa-circle nav-icon"></i>
+										<p>DDW</p>
+									</a>
+								</li>
 
+								<!-- Project Administration Report -->
+								<li class="nav-item">
+									<a href="#" class="nav-link">
+										<i class="far fa-circle nav-icon"></i>
+										<p>Project Administration Report</p>
+									</a>
+								</li>
 
-
-        <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper">
-            <!-- Content Header (Page header) -->
-            <div class="content-header">
-                <div class="container-fluid">
-                    <div class="row mb-2">
-                        <div class="col-sm-6">
-                        </div><!-- /.col -->
-                    </div><!-- /.row -->
-                </div><!-- /.container-fluid -->
-            </div>
-            <!-- /.content-header -->
-            <!-- Main content -->
-            <!-- /.content-header -->
-            <!-- Main content -->
-            <div class="content">
-                <div class="container-fluid">
-
-                    <!-- /.row -->
-                    <div class="card">
-                        <div class="card-header" style="background-color:#423535;">
-                            <div class="row align-items-center">
-                                <div class="col">
-                                    <label class="control-label" style="color: white;">Design Bid Details</label>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="row mb-3"></div>
-                        <div class="row mb-3">
-                            <br /> <br />
-                            <div class="col-lg-8 offset-md-1">
-                                <dl class="row">
-                                    <dt class="col-sm-2">
-                                        @Html.DisplayNameFor(model => model.Project)
-                                    </dt>
-                                    <dd class="col-sm-10">
-                                       @*  @Html.DisplayFor(model => model.Project.ProjectSite) *@
-                                        <div class="d-flex align-items-center">
-                                            <span class="mr-auto">@Html.DisplayFor(model => model.Project.ProjectSite)</span>
-                                            <!-- Buttons in one row -->
-                                            <form asp-action="Edit" asp-route-id="@Model?.ID" method="get">
-                                                <button type="submit" class="btn btn-primary mr-2">Edit</button>
-                                                <button type="button" onclick="window.location.href = '@Url.Action("Index")'" class="btn btn-primary mr-2">Cancel</button>
-                                            </form>
-                                            <form method="post" asp-action="Approve" asp-route-id="@Model?.ID">
-                                                <button type="submit" class="btn btn-success mr-2">Approve</button>
-                                            </form>
-                                            <form method="post" asp-action="Reject" asp-route-id="@Model?.ID">
-                                                <button type="submit" class="btn btn-outline-danger">Reject</button>
-                                            </form>
-                                        </div>
+								<!-- Inventory Report -->
+								<li class="nav-item">
+									<a href="#" class="nav-link">
+										<i class="far fa-circle nav-icon"></i>
+										<p>Inventory Report</p>
+									</a>
+								</li>
+							</ul>
+						</li>
 
 
-                                    </dd>
-                                    <dt class="col-sm-2">
-                                        @Html.DisplayNameFor(model => model.DesignBidStaffs)
-                                    </dt>
-                                    <dd class="col-sm-10">
-                                        @foreach (var d in Model.DesignBidStaffs)
-                                        {
-                                            @d.Staff.FullName <br />
-                                        }
-                                    </dd>
-                                    <dt class="col-sm-2">
-                                        @Html.DisplayNameFor(model => model.LabourRequirments)
-                                    </dt>
-                                    <dd class="col-sm-10">
-                                        <table class="table">
-                                            <thead>
-                                                <tr>
-                                                    <th>
-                                                        @Html.DisplayNameFor(model => model.LabourRequirments.FirstOrDefault().Hours)
-                                                    </th>
-                                                    <th>
-                                                        @Html.DisplayNameFor(model => model.LabourRequirments.FirstOrDefault().Labour.LabourType)
-                                                    </th>
-                                                    <th>
-                                                        @Html.DisplayNameFor(model => model.LabourRequirments.FirstOrDefault().UnitPrice)
-                                                    </th>
-                                                    <th>
-                                                        @Html.DisplayNameFor(model => model.LabourRequirments.FirstOrDefault().ExtendedPrice)
-                                                    </th>
-                                                    <th></th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @foreach (var item in Model.LabourRequirments)
-                                                {
-                                                    <tr>
-                                                        <td>
-                                                            @Html.DisplayFor(modelItem => item.Hours)
-                                                        </td>
-                                                        <td>
-                                                            @Html.DisplayFor(modelItem => item.Labour.LabourType)
-                                                        </td>
-                                                        <td>
-                                                            @Html.DisplayFor(modelItem => item.UnitPrice)
-                                                        </td>
-                                                        <td>
-                                                            @Html.DisplayFor(modelItem => item.ExtendedPrice)
-                                                        </td>
-                                                    </tr>
-                                                }
-                                            </tbody>
-                                        </table>
 
-                                    </dd>
-                                    <dt class="col-sm-2">
-                                        @Html.DisplayNameFor(model => model.MaterialRequirments)
-                                    </dt>
-                                    <dd class="col-sm-10">
-                                        <table class="table">
-                                            <thead>
-                                                <tr>
-                                                    <th>
-                                                        @Html.DisplayNameFor(model => model.MaterialRequirments.FirstOrDefault().Quanity)
-                                                    </th>
-                                                    <th>
-                                                        @Html.DisplayNameFor(model => model.MaterialRequirments.FirstOrDefault().Inventory.Name)
-                                                    </th>
-                                                    <th>
-                                                        @Html.DisplayNameFor(model => model.MaterialRequirments.FirstOrDefault().Inventory.CostPrice)
-                                                    </th>
-                                                    <th>
-                                                        @Html.DisplayNameFor(model => model.MaterialRequirments.FirstOrDefault().ExtendedPrice)
-                                                    </th>
-                                                    <th></th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @foreach (var item in Model.MaterialRequirments)
-                                                {
-                                                    <tr>
-                                                        <td>
-                                                            @Html.DisplayFor(modelItem => item.SummaryQuantity)
-                                                        </td>
-                                                        <td>
-                                                            @Html.DisplayFor(modelItem => item.Inventory.Name)
-                                                        </td>
-                                                        <td>
-                                                            @Html.DisplayFor(modelItem => item.Inventory.CostPrice)
-                                                        </td>
-                                                        <td>
-                                                            @Html.DisplayFor(modelItem => item.ExtendedPrice)
-                                                        </td>
-                                                    </tr>
-                                                }
-                                            </tbody>
-                                        </table>
-                                    </dd>
-                                    <dt class="col-sm-2">
-                                        Total Bid Cost
-                                    </dt>
-                                    <dd>
-                                        @{
-                                            // Calculate total labour cost
-                                            decimal totalLabourCost = Model.LabourRequirments.Sum(l => l.ExtendedPrice);
+						<!-- Logout -->
+						@* <li class="nav-item">
+						<a href="#" class="nav-link">
+						<i class="nav-icon fas fa-sign-out-alt"></i>
+						<p>Logout</p>
+						</a>
+						</li> *@
 
-                                            // Calculate total material cost
-                                            decimal totalMaterialCost = Model.MaterialRequirments.Sum(m => m.ExtendedPrice);
+					</ul>
+				</nav>
+				<!-- /.sidebar-menu -->
 
-                                            //Original Bid Budget
-                                            double bidBudget = Model.Project.BidAmount;
+			</div>
+			<!-- /.sidebar -->
+		</aside>
 
 
-                                            // Total bid cost is the sum of total labour cost and total material cost
-                                            decimal totalBidCost = totalLabourCost + totalMaterialCost;
 
-                                            //Calculate remaining budget
-                                            decimal remainingBudget = (decimal)bidBudget - totalBidCost;
-                                        }
-                                        <table class="table">
-                                            <thead>
-                                                <tr>
-                                                    <th>
-                                                        Total Labour Cost
-                                                    </th>
-                                                    <th>
-                                                        Total Material Cost
-                                                    </th>
-                                                    <th>
-                                                        Total Bid Cost
-                                                    </th>
-                                                    <th>
-                                                        Bid Budget
-                                                    </th>
-                                                    <th>
-                                                        Remaining Budget
-                                                    </th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>
-                                                        @totalLabourCost.ToString("C")
-                                                    </td>
-                                                    <td>
-                                                        @totalMaterialCost.ToString("C")
-                                                    </td>
-                                                    <td>
-                                                        @totalBidCost.ToString("C")
-                                                    </td>
-                                                    <td>
-                                                        @bidBudget.ToString("C")
-                                                    </td>
-                                                    <td>
-                                                        @remainingBudget.ToString("C")
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </dd>
+		<!-- Content Wrapper. Contains page content -->
+		<div class="content-wrapper">
+			<!-- Content Header (Page header) -->
+			<div class="content-header">
+				<div class="container-fluid">
+					<div class="row mb-2">
+						<div class="col-sm-6">
+							<partial name="_ApprovalModal" />
+							<partial name="_RejectionModal" />
+						</div><!-- /.col -->
+					</div><!-- /.row -->
+				</div><!-- /.container-fluid -->
+			</div>
+			<!-- /.content-header -->
+			<!-- Main content -->
+			<!-- /.content-header -->
+			<!-- Main content -->
+			<div class="content">
+				<div class="container-fluid">
 
-                                </dl>
+					<!-- /.row -->
+					<div class="card">
+						<div class="card-header" style="background-color:#423535;">
+							<div class="row align-items-center">
+								<div class="col">
+									<label class="control-label" style="color: white;">Design Bid Details</label>
+								</div>
 
-                                @* <div class ="col-md-6 offset-md-3 d-flex justify-content-end">
-                                    <div class="text-right">
-                                <form asp-action="Edit" asp-route-id="@Model?.ID" method="get">
-                                    <button type="submit" class="btn btn-primary" >Edit</button>
-                                     <button type="button" onclick="window.location.href = '@Url.Action("Index")'" class="btn btn-primary">Cancel</button>
-                                </form> 
-                                <br />
-                                <form method="post" asp-action="Approve" asp-route-id="@Model?.ID">
-                                    <button type="submit" class="btn btn-success">Approve</button>
-                                </form>
-                                <br />
-                                <form method="post" asp-action="Reject" asp-route-id="@Model?.ID">
-                                    <button type="submit" class="btn btn-outline-danger">Reject</button>
-                                </form>
-                                </div>
-                            </div> *@
-                        </div>
-                        
-                    </div>
-                </div>
+							</div>
+						</div>
+						<div class="row mb-3"></div>
+						<div class="row mb-3">
+							<br /> <br />
+							<div class="col-lg-8 offset-md-1">
+								<dl class="row">
+									<dt class="col-sm-2">
+										@Html.DisplayNameFor(model => model.Project)
+									</dt>
+									<dd class="col-sm-10">
+										@*  @Html.DisplayFor(model => model.Project.ProjectSite) *@
+										<div class="d-flex align-items-center">
+											<span class="mr-auto">@Html.DisplayFor(model => model.Project.ProjectSite)</span>
+											<!-- Buttons in one row -->
+											<form asp-action="Edit" asp-route-id="@Model?.ID" method="get">
+												<button type="submit" class="btn btn-primary mr-2">Edit</button>
+												<button type="button" onclick="window.location.href = '@Url.Action("Index")'" class="btn btn-primary mr-2">Cancel</button>
+											</form>
+											<button class="btn btn-success mr-2" id="nowApprove"
+													data-bs-toggle="modal" data-bs-target="#approvalModal" @* data-id="@Model?.ID" *@ type="button">
+												<strong>Approve</strong>
+											</button>
+											<button class="btn btn-outline-danger" id="nowReject"
+													data-bs-toggle="modal" data-bs-target="#rejectionModal" data-id="@Model?.ID" type="button">
+												<strong>Reject</strong>
+											</button>
+										</div>
 
-            </div>
-            
-            </div><!-- /.container-fluid -->
-        </div> <!-- /.content -->
-        <!-- Control Sidebar -->
-        <aside class="control-sidebar control-sidebar-dark">
-            <!-- Control sidebar content goes here -->
-            <div class="p-3">
-                <h5>Title</h5>
-                <p>Sidebar content</p>
-            </div>
-        </aside>
-        <!-- /.control-sidebar -->
-        <!-- Main Footer -->
-        <footer class="main-footer">
 
-            <!-- Default to the left -->
-            <strong>    &copy; 2024 - NBDProjectNcstech - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a></strong>
-        </footer>
-    </div>
+									</dd>
+									<dt class="col-sm-2">
+										@Html.DisplayNameFor(model => model.DesignBidStaffs)
+									</dt>
+									<dd class="col-sm-10">
+										@foreach (var d in Model.DesignBidStaffs)
+										{
+											@d.Staff.FullName <br />
+										}
+									</dd>
+									<dt class="col-sm-2">
+										@Html.DisplayNameFor(model => model.LabourRequirments)
+									</dt>
+									<dd class="col-sm-10">
+										<table class="table">
+											<thead>
+												<tr>
+													<th>
+														@Html.DisplayNameFor(model => model.LabourRequirments.FirstOrDefault().Hours)
+													</th>
+													<th>
+														@Html.DisplayNameFor(model => model.LabourRequirments.FirstOrDefault().Labour.LabourType)
+													</th>
+													<th>
+														@Html.DisplayNameFor(model => model.LabourRequirments.FirstOrDefault().UnitPrice)
+													</th>
+													<th>
+														@Html.DisplayNameFor(model => model.LabourRequirments.FirstOrDefault().ExtendedPrice)
+													</th>
+													<th></th>
+												</tr>
+											</thead>
+											<tbody>
+												@foreach (var item in Model.LabourRequirments)
+												{
+													<tr>
+														<td>
+															@Html.DisplayFor(modelItem => item.Hours)
+														</td>
+														<td>
+															@Html.DisplayFor(modelItem => item.Labour.LabourType)
+														</td>
+														<td>
+															@Html.DisplayFor(modelItem => item.UnitPrice)
+														</td>
+														<td>
+															@Html.DisplayFor(modelItem => item.ExtendedPrice)
+														</td>
+													</tr>
+												}
+											</tbody>
+										</table>
 
-    <!-- jQuery -->
-    <script src="plugins/jquery/jquery.min.js"></script>
-    <!-- Bootstrap 4 -->
-    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="dist/js/adminlte.min.js"></script>
+									</dd>
+									<dt class="col-sm-2">
+										@Html.DisplayNameFor(model => model.MaterialRequirments)
+									</dt>
+									<dd class="col-sm-10">
+										<table class="table">
+											<thead>
+												<tr>
+													<th>
+														@Html.DisplayNameFor(model => model.MaterialRequirments.FirstOrDefault().Quanity)
+													</th>
+													<th>
+														@Html.DisplayNameFor(model => model.MaterialRequirments.FirstOrDefault().Inventory.Name)
+													</th>
+													<th>
+														@Html.DisplayNameFor(model => model.MaterialRequirments.FirstOrDefault().Inventory.CostPrice)
+													</th>
+													<th>
+														@Html.DisplayNameFor(model => model.MaterialRequirments.FirstOrDefault().ExtendedPrice)
+													</th>
+													<th></th>
+												</tr>
+											</thead>
+											<tbody>
+												@foreach (var item in Model.MaterialRequirments)
+												{
+													<tr>
+														<td>
+															@Html.DisplayFor(modelItem => item.SummaryQuantity)
+														</td>
+														<td>
+															@Html.DisplayFor(modelItem => item.Inventory.Name)
+														</td>
+														<td>
+															@Html.DisplayFor(modelItem => item.Inventory.CostPrice)
+														</td>
+														<td>
+															@Html.DisplayFor(modelItem => item.ExtendedPrice)
+														</td>
+													</tr>
+												}
+											</tbody>
+										</table>
+									</dd>
+									<dt class="col-sm-2">
+										Total Bid Cost
+									</dt>
+									<dd>
+										@{
+											// Calculate total labour cost
+											decimal totalLabourCost = Model.LabourRequirments.Sum(l => l.ExtendedPrice);
+
+											// Calculate total material cost
+											decimal totalMaterialCost = Model.MaterialRequirments.Sum(m => m.ExtendedPrice);
+
+											//Original Bid Budget
+											double bidBudget = Model.Project.BidAmount;
+
+
+											// Total bid cost is the sum of total labour cost and total material cost
+											decimal totalBidCost = totalLabourCost + totalMaterialCost;
+
+											//Calculate remaining budget
+											decimal remainingBudget = (decimal)bidBudget - totalBidCost;
+										}
+										<table class="table">
+											<thead>
+												<tr>
+													<th>
+														Total Labour Cost
+													</th>
+													<th>
+														Total Material Cost
+													</th>
+													<th>
+														Total Bid Cost
+													</th>
+													<th>
+														Bid Budget
+													</th>
+													<th>
+														Remaining Budget
+													</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td>
+														@totalLabourCost.ToString("C")
+													</td>
+													<td>
+														@totalMaterialCost.ToString("C")
+													</td>
+													<td>
+														@totalBidCost.ToString("C")
+													</td>
+													<td>
+														@bidBudget.ToString("C")
+													</td>
+													<td>
+														@remainingBudget.ToString("C")
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</dd>
+
+								</dl>
+
+								@* <div class ="col-md-6 offset-md-3 d-flex justify-content-end">
+								<div class="text-right">
+								<form asp-action="Edit" asp-route-id="@Model?.ID" method="get">
+								<button type="submit" class="btn btn-primary" >Edit</button>
+								<button type="button" onclick="window.location.href = '@Url.Action("Index")'" class="btn btn-primary">Cancel</button>
+								</form>
+								<br />
+								<form method="post" asp-action="Approve" asp-route-id="@Model?.ID">
+								<button type="submit" class="btn btn-success">Approve</button>
+								</form>
+								<br />
+								<form method="post" asp-action="Reject" asp-route-id="@Model?.ID">
+								<button type="submit" class="btn btn-outline-danger">Reject</button>
+								</form>
+								</div>
+								</div> *@
+							</div>
+
+						</div>
+					</div>
+
+				</div>
+
+			</div><!-- /.container-fluid -->
+		</div> <!-- /.content -->
+		<!-- Control Sidebar -->
+		<aside class="control-sidebar control-sidebar-dark">
+			<!-- Control sidebar content goes here -->
+			<div class="p-3">
+				<h5>Title</h5>
+				<p>Sidebar content</p>
+			</div>
+		</aside>
+		<!-- /.control-sidebar -->
+		<!-- Main Footer -->
+		<footer class="main-footer">
+
+			<!-- Default to the left -->
+			<strong>    &copy; 2024 - NBDProjectNcstech - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a></strong>
+		</footer>
+	</div>
+
+	<!-- jQuery -->
+	<script src="plugins/jquery/jquery.min.js"></script>
+	<!-- Bootstrap 4 -->
+	<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="dist/js/adminlte.min.js"></script>
+
 </body>
 </html>
+@section Scripts {
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
+	<script>
+		//storing the id in sessionStorage
+		document.addEventListener('DOMContentLoaded', function () {
+			let id = @Model?.ID;
+			sessionStorage.setItem('approvalId', id);
+		});
+	</script>
+}
 
 
 

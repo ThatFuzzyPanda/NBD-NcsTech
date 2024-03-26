@@ -1,0 +1,49 @@
+﻿<!-- Modal-->
+<div class="modal fade" id="rejectionModal" tabindex="-1" role="dialog" aria-labelledby="RejectionmyModalLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title" id="RejectionmyModalLabel">Rejection form</h4>
+				<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			</div>
+			<div class="modal-body">
+				<input type="hidden" id="rejectionId" value="@Model?.ID" />
+				@{
+					var a = new NBDProjectNcstech.Models.DesignBid();
+					<partial name="_Reject" model="a" />
+				}
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+	document.addEventListener('DOMContentLoaded', function () {
+		var rejectionModal = document.getElementById('rejectionModal');
+		if (rejectionModal) {
+			rejectionModal.addEventListener('show.bs.modal', function () {
+				// Retrieve the ID from sessionStorage
+				var id = sessionStorage.getItem('approvalId');
+				console.log("Retrieved ID from sessionStorage:", id);
+
+				// Check if id is not NaN
+				if (!isNaN(id) && id !== null && id !== undefined) {
+
+					var hiddenIdField = document.getElementById('hiddenIdFieldForRejection');
+					if (hiddenIdField) {
+						hiddenIdField.value = id;
+
+					} else {
+						console.error("Hidden ID field not found.");// just to test if it works or not
+					}
+				} else {
+					console.error("Invalid ID retrieved from sessionStorage:", id);// just to test if it works or not
+				}
+			});
+		} else {
+			console.error("Rejection modal not found.");// just to test if it works or not
+		}
+	});
+</script>
+
+
