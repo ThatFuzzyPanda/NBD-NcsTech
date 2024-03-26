@@ -162,11 +162,10 @@ namespace NBDProjectNcstech.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Approve(int id, string ddlApproveBy, string txtDesc)
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Approve(int? id)
-        {
-            if (_context.DesignBids == null)
+		public async Task<IActionResult> Approve(int id, string ddlApproveBy, string txtDesc)
+		{
+			if (_context.DesignBids == null)
             {
                 return NotFound();
             }
@@ -230,7 +229,6 @@ namespace NBDProjectNcstech.Controllers
         }
         [HttpPost]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Reject(int id)
         public async Task<IActionResult> Reject(int id, string ddlRejectBy, string txtDesc)
         {
 			if (_context.DesignBids == null)
