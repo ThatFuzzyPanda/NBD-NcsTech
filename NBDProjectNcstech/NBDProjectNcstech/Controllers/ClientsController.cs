@@ -49,9 +49,9 @@ namespace NBDProjectNcstech.Controllers
             return View(pagedData);
         }
 
-        // GET: Clients/Details/5
-        [Authorize(Roles = "Admin,Staff")]
-        public async Task<IActionResult> Details(int? id)
+		// GET: Clients/Details/5
+		[Authorize(Roles = "Admin,Management,Designer,Sales")]
+		public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Clients == null)
             {
@@ -70,9 +70,9 @@ namespace NBDProjectNcstech.Controllers
             return View(client);
         }
 
-        // GET: Clients/Create
-        [Authorize(Roles = "Admin,Staff")]
-        public IActionResult Create()
+		// GET: Clients/Create
+		[Authorize(Roles = "Admin,Management,Designer,Sales")]
+		public IActionResult Create()
         {
             PopulateDropDownLists();
             return View();
@@ -83,8 +83,8 @@ namespace NBDProjectNcstech.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin,Staff")]
-        public async Task<IActionResult> Create([Bind("ID,Name,ContactPersonFirst,ContactPersonLast,Phone,Street,CityID,PostalCode")] Client client)
+		[Authorize(Roles = "Admin,Management,Designer,Sales")]
+		public async Task<IActionResult> Create([Bind("ID,Name,ContactPersonFirst,ContactPersonLast,Phone,Street,CityID,PostalCode")] Client client)
         {
 
             if (ModelState.IsValid)
@@ -98,9 +98,9 @@ namespace NBDProjectNcstech.Controllers
             return View(client);
         }
 
-        // GET: Clients/Edit/5
-        [Authorize(Roles = "Admin,Staff")]
-        public async Task<IActionResult> Edit(int? id)
+		// GET: Clients/Edit/5
+		[Authorize(Roles = "Admin,Management,Designer,Sales")]
+		public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Clients == null)
             {
@@ -123,8 +123,8 @@ namespace NBDProjectNcstech.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin,Staff")]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Name,ContactPersonFirst,ContactPersonLast,Phone,Street,CityID,PostalCode")] Client client)
+		[Authorize(Roles = "Admin,Management,Designer,Sales")]
+		public async Task<IActionResult> Edit(int id, [Bind("ID,Name,ContactPersonFirst,ContactPersonLast,Phone,Street,CityID,PostalCode")] Client client)
         {
             if (id != client.ID)
             {
@@ -155,9 +155,9 @@ namespace NBDProjectNcstech.Controllers
             return View(client);
         }
 
-        // GET: Clients/Delete/5
-        [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Delete(int? id)
+		// GET: Clients/Delete/5
+		[Authorize(Roles = "Admin,Management")]
+		public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Clients == null)
             {
@@ -180,7 +180,7 @@ namespace NBDProjectNcstech.Controllers
         // POST: Clients/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin,Management")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (_context.Clients == null)

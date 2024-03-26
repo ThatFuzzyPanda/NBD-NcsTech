@@ -26,9 +26,9 @@ namespace NBDProjectNcstech.Controllers
             return View(await nBDContext.ToListAsync());
         }
 
-        // GET: MaterialRequirments/Details/5
-        [Authorize(Roles = "Admin,Staff")]
-        public async Task<IActionResult> Details(int? id)
+		// GET: MaterialRequirments/Details/5
+		[Authorize(Roles = "Admin,Management,Designer,Sales")]
+		public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.MaterialRequirments == null)
             {
@@ -48,9 +48,9 @@ namespace NBDProjectNcstech.Controllers
             return View(materialRequirments);
         }
 
-        // GET: MaterialRequirments/Create
-        [Authorize(Roles = "Admin,Staff")]
-        public IActionResult Create()
+		// GET: MaterialRequirments/Create
+		[Authorize(Roles = "Admin,Management,Designer,Sales")]
+		public IActionResult Create()
         {
             string from = Request.Query["from"];
             ViewData["From"] = from;
@@ -63,8 +63,8 @@ namespace NBDProjectNcstech.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin,Staff")]
-        public async Task<IActionResult> Create([Bind("ID,Quanity,InventoryID,DesignBidID,UnitID")] MaterialRequirments materialRequirments, string from)
+		[Authorize(Roles = "Admin,Management,Designer,Sales")]
+		public async Task<IActionResult> Create([Bind("ID,Quanity,InventoryID,DesignBidID,UnitID")] MaterialRequirments materialRequirments, string from)
         {
             if (ModelState.IsValid)
             {
@@ -81,9 +81,9 @@ namespace NBDProjectNcstech.Controllers
         }
 
 
-        // GET: MaterialRequirments/Edit/5
-        [Authorize(Roles = "Admin,Staff")]
-        public async Task<IActionResult> Edit(int? id)
+		// GET: MaterialRequirments/Edit/5
+		[Authorize(Roles = "Admin,Management,Designer,Sales")]
+		public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.MaterialRequirments == null)
             {
@@ -104,8 +104,8 @@ namespace NBDProjectNcstech.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin,Staff")]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Quanity,InventoryID,DesignBidID,UnitID")] MaterialRequirments materialRequirments)
+		[Authorize(Roles = "Admin,Management,Designer,Sales")]
+		public async Task<IActionResult> Edit(int id, [Bind("ID,Quanity,InventoryID,DesignBidID,UnitID")] MaterialRequirments materialRequirments)
         {
             if (id != materialRequirments.ID)
             {
@@ -137,7 +137,7 @@ namespace NBDProjectNcstech.Controllers
         }
 
         // GET: MaterialRequirments/Delete/5
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin,Management")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.MaterialRequirments == null)
@@ -161,7 +161,7 @@ namespace NBDProjectNcstech.Controllers
         // POST: MaterialRequirments/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin,Management")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (_context.MaterialRequirments == null)

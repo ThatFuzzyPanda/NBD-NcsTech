@@ -19,7 +19,7 @@ namespace NBDProjectNcstech.Data
                 //Create Roles
                 var RoleManager = applicationBuilder.ApplicationServices.CreateScope()
                     .ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-                string[] roleNames = { "Admin", "Staff" };
+                string[] roleNames = { "Admin", "Management" , "Designer" ,"Sales"};
                 IdentityResult roleResult;
                 foreach (var roleName in roleNames)
                 {
@@ -48,12 +48,45 @@ namespace NBDProjectNcstech.Data
                         userManager.AddToRoleAsync(user, "Admin").Wait();
                     }
                 }
-                if (userManager.FindByEmailAsync("staff@outlook.com").Result == null)
+				if (userManager.FindByEmailAsync("management@outlook.com").Result == null)
+				{
+					IdentityUser user = new IdentityUser
+					{
+						UserName = "management@outlook.com",
+						Email = "management@outlook.com",
+						EmailConfirmed = true
+					};
+
+					IdentityResult result = userManager.CreateAsync(user, "Pa55w@rd").Result;
+
+					if (result.Succeeded)
+					{
+						userManager.AddToRoleAsync(user, "Management").Wait();
+					}
+				}
+				if (userManager.FindByEmailAsync("designer@outlook.com").Result == null)
+				{
+					IdentityUser user = new IdentityUser
+					{
+						UserName = "designer@outlook.com",
+						Email = "designer@outlook.com",
+						EmailConfirmed = true,
+					};
+
+					IdentityResult result = userManager.CreateAsync(user, "Pa55w@rd").Result;
+
+					if (result.Succeeded)
+					{
+						userManager.AddToRoleAsync(user, "Designer").Wait();
+					}
+				}
+
+				if (userManager.FindByEmailAsync("sales@outlook.com").Result == null)
                 {
                     IdentityUser user = new IdentityUser
                     {
-                        UserName = "staff@outlook.com",
-                        Email = "staff@outlook.com",
+                        UserName = "sales@outlook.com",
+                        Email = "sales@outlook.com",
                         EmailConfirmed = true,
                     };
 
@@ -61,7 +94,7 @@ namespace NBDProjectNcstech.Data
 
                     if (result.Succeeded)
                     {
-                        userManager.AddToRoleAsync(user, "Staff").Wait();
+                        userManager.AddToRoleAsync(user, "Sales").Wait();
                     }
                 }
                 if (userManager.FindByEmailAsync("user@outlook.com").Result == null)

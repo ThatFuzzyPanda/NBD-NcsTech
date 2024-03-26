@@ -106,7 +106,7 @@ namespace NBDProjectNcstech.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin,Staff")]
+		[Authorize(Roles = "Admin,Management,Designer,Sales")]
         public async Task<IActionResult> Add([Bind("BidDate,ProjectSite," +
             "Est_BeginDate,Est_CompleteDate,BidAmount,ClientId")] Project project, string ClientName)
         {
@@ -129,9 +129,9 @@ namespace NBDProjectNcstech.Controllers
             return View(project);
         }
 
-        // GET: ClientProject/Update/5
-        [Authorize(Roles = "Admin,Staff")]
-        public async Task<IActionResult> Update(int? id)
+		// GET: ClientProject/Update/5
+		[Authorize(Roles = "Admin,Management,Designer,Sales")]
+		public async Task<IActionResult> Update(int? id)
         {
             if (id == null || _context.Projects == null)
             {
@@ -156,8 +156,8 @@ namespace NBDProjectNcstech.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin,Staff")]
-        public async Task<IActionResult> Update(int id)
+		[Authorize(Roles = "Admin,Management,Designer,Sales")]
+		public async Task<IActionResult> Update(int id)
 		{
 			var projectToUpdate = await _context.Projects
 						.Include(p => p.Client)
@@ -198,7 +198,7 @@ namespace NBDProjectNcstech.Controllers
         }
 
         // GET: ClientProject/Remove/5
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin,Management")]
         public async Task<IActionResult> Remove(int? id)
         {
             if (id == null || _context.Projects == null)
@@ -221,7 +221,7 @@ namespace NBDProjectNcstech.Controllers
         // POST: ClientProject/Remove/5
         [HttpPost, ActionName("Remove")]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin,Management")]
         public async Task<IActionResult> RemoveConfirmed(int id)
         {
             if (_context.Projects == null)

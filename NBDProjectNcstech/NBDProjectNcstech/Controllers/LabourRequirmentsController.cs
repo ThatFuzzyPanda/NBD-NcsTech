@@ -23,9 +23,9 @@ namespace NBDProjectNcstech.Controllers
             return View(await nBDContext.ToListAsync());
         }
 
-        // GET: LabourRequirments/Details/5
-        [Authorize(Roles = "Admin,Staff")]
-        public async Task<IActionResult> Details(int? id)
+		// GET: LabourRequirments/Details/5
+		[Authorize(Roles = "Admin,Management,Designer,Sales")]
+		public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.LabourRequirments == null)
             {
@@ -44,9 +44,9 @@ namespace NBDProjectNcstech.Controllers
             return View(labourRequirments);
         }
 
-        // GET: LabourRequirments/Create
-        [Authorize(Roles = "Admin,Staff")]
-        public IActionResult Create()
+		// GET: LabourRequirments/Create
+		[Authorize(Roles = "Admin,Management,Designer,Sales")]
+		public IActionResult Create()
         {
             string from = Request.Query["from"];
             ViewData["From"] = from;
@@ -60,8 +60,8 @@ namespace NBDProjectNcstech.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin,Staff")]
-        public async Task<IActionResult> Create([Bind("ID,Hours,Description,UnitPrice,LabourID,DesignBidID")] LabourRequirments labourRequirments, string from)
+		[Authorize(Roles = "Admin,Management,Designer,Sales")]
+		public async Task<IActionResult> Create([Bind("ID,Hours,Description,UnitPrice,LabourID,DesignBidID")] LabourRequirments labourRequirments, string from)
         {
             if (ModelState.IsValid)
             {
@@ -77,9 +77,9 @@ namespace NBDProjectNcstech.Controllers
             return RedirectToAction("Edit", "DesignBids", new { id = labourRequirments.DesignBidID });
         }
 
-        // GET: LabourRequirments/Edit/5
-        [Authorize(Roles = "Admin,Staff")]
-        public async Task<IActionResult> Edit(int? id)
+		// GET: LabourRequirments/Edit/5
+		[Authorize(Roles = "Admin,Management,Designer,Sales")]
+		public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.LabourRequirments == null)
             {
@@ -100,8 +100,8 @@ namespace NBDProjectNcstech.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin,Staff")]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Hours,Description,UnitPrice,LabourID,DesignBidID")] LabourRequirments labourRequirments)
+		[Authorize(Roles = "Admin,Management,Designer,Sales")]
+		public async Task<IActionResult> Edit(int id, [Bind("ID,Hours,Description,UnitPrice,LabourID,DesignBidID")] LabourRequirments labourRequirments)
         {
             if (id != labourRequirments.ID)
             {
@@ -133,7 +133,7 @@ namespace NBDProjectNcstech.Controllers
         }
 
         // GET: LabourRequirments/Delete/5
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin,Management")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.LabourRequirments == null)
@@ -156,7 +156,7 @@ namespace NBDProjectNcstech.Controllers
         // POST: LabourRequirments/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin,Management")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (_context.LabourRequirments == null)

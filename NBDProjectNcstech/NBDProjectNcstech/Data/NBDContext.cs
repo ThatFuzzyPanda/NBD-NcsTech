@@ -122,18 +122,18 @@ namespace NBDProjectNcstech.Data
                 }
                 if (entry.Entity is IApproval Atrackable)
                 {
-                    var now = DateTime.UtcNow;
+                    var anow = DateTime.UtcNow;
                     switch (entry.State)
                     {
                         case EntityState.Modified:
-                            Atrackable.UpdatedOn = now;
+                            Atrackable.UpdatedOn = anow;
                             Atrackable.UpdatedBy = UserName;
                             break;
 
                         case EntityState.Added:
-                            Atrackable.CreatedOn = now;
+                            Atrackable.CreatedOn = anow;
                             Atrackable.CreatedBy = UserName;
-                            Atrackable.UpdatedOn = now;
+                            Atrackable.UpdatedOn = anow;
                             Atrackable.UpdatedBy = UserName;
                             break;
                     }
