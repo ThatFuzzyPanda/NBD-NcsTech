@@ -90,6 +90,22 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGVzaWduQmlkc1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Owner/NBD-NcsTech/NBDProjectNcstech/NBDProjectNcstech/Views/DesignBids/_ApprovalModal.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGVzaWduQmlkc1xfQXBwcm92YWxNb2RhbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Owner/NBD-NcsTech/NBDProjectNcstech/NBDProjectNcstech/Views/DesignBids/_Approve.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGVzaWduQmlkc1xfQXBwcm92ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Owner/NBD-NcsTech/NBDProjectNcstech/NBDProjectNcstech/Views/DesignBids/_Reject.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGVzaWduQmlkc1xfUmVqZWN0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Owner/NBD-NcsTech/NBDProjectNcstech/NBDProjectNcstech/Views/DesignBids/_RejectionModal.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGVzaWduQmlkc1xfUmVqZWN0aW9uTW9kYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Owner/NBD-NcsTech/NBDProjectNcstech/NBDProjectNcstech/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
