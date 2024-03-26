@@ -1,4 +1,5 @@
 ﻿using CateringManagement.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -57,6 +58,7 @@ namespace NBDProjectNcstech.Controllers
         }
 
         // GET: ProjectsDesignBids/Details/5
+        [Authorize(Roles = "Admin,Staff")]
         public async Task<IActionResult> Details(int? ID)
         {
             if (ID == null || _context.DesignBids == null)
@@ -77,9 +79,10 @@ namespace NBDProjectNcstech.Controllers
             }
 
             return View(designBid);
-        } 
+        }
 
         // GET: ProjectsDesignBids/Create
+        [Authorize(Roles = "Admin,Staff")]
         public IActionResult Create(int? projectID, int? PositionID)
         {
 			ViewData["id"] = projectID;
@@ -96,6 +99,7 @@ namespace NBDProjectNcstech.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin,Staff")]
         public async Task<IActionResult> Create([Bind("ID,ProjectID,ApprovalID")] DesignBid designBid, string[] selectedOptions)
         {
             try
@@ -135,6 +139,9 @@ namespace NBDProjectNcstech.Controllers
             ViewData["ProjectID"] = new SelectList(_context.Projects, "Id", "ProjectSite", designBid.ProjectID);
             return View(designBid);
         }
+
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Approve(int? id)
         {
             if (id == null || _context.Clients == null)
@@ -183,6 +190,7 @@ namespace NBDProjectNcstech.Controllers
 
         }
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Reject(int id)
         {
             var designBid = await _context.DesignBids
@@ -224,6 +232,7 @@ namespace NBDProjectNcstech.Controllers
         }
 
         // GET: ProjectsDesignBids/Edit/5
+        [Authorize(Roles = "Admin,Staff")]
         public async Task<IActionResult> Edit(int? id, int? PositionID)
         {
             if (id == null || _context.DesignBids == null)
@@ -254,6 +263,7 @@ namespace NBDProjectNcstech.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin,Staff")]
         public async Task<IActionResult> Edit(int id, [Bind("ID,ProjectID,ApprovalID")] DesignBid designBid, int? PositionID)
         {
             if (id != designBid.ID)
@@ -287,6 +297,7 @@ namespace NBDProjectNcstech.Controllers
         }
 
         // GET: ProjectsDesignBids/Delete/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.DesignBids == null)
@@ -309,6 +320,7 @@ namespace NBDProjectNcstech.Controllers
         // POST: ProjectsDesignBids/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (_context.DesignBids == null)
@@ -324,6 +336,10 @@ namespace NBDProjectNcstech.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> ApprovalEdit(int? id)
         {
             if (id == null || _context.Approvals == null)
@@ -342,6 +358,7 @@ namespace NBDProjectNcstech.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> AdminApproval(int id, string adminApprovalStatus, string adminApprovalNotes)
         {
             var approvalToUpdate = await _context.Approvals

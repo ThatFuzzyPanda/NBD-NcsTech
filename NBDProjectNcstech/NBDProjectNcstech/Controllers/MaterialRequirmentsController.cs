@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using NBDProjectNcstech.Data;
@@ -26,6 +27,7 @@ namespace NBDProjectNcstech.Controllers
         }
 
         // GET: MaterialRequirments/Details/5
+        [Authorize(Roles = "Admin,Staff")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.MaterialRequirments == null)
@@ -47,6 +49,7 @@ namespace NBDProjectNcstech.Controllers
         }
 
         // GET: MaterialRequirments/Create
+        [Authorize(Roles = "Admin,Staff")]
         public IActionResult Create()
         {
             string from = Request.Query["from"];
@@ -60,6 +63,7 @@ namespace NBDProjectNcstech.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin,Staff")]
         public async Task<IActionResult> Create([Bind("ID,Quanity,InventoryID,DesignBidID,UnitID")] MaterialRequirments materialRequirments, string from)
         {
             if (ModelState.IsValid)
@@ -78,6 +82,7 @@ namespace NBDProjectNcstech.Controllers
 
 
         // GET: MaterialRequirments/Edit/5
+        [Authorize(Roles = "Admin,Staff")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.MaterialRequirments == null)
@@ -99,6 +104,7 @@ namespace NBDProjectNcstech.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin,Staff")]
         public async Task<IActionResult> Edit(int id, [Bind("ID,Quanity,InventoryID,DesignBidID,UnitID")] MaterialRequirments materialRequirments)
         {
             if (id != materialRequirments.ID)
@@ -131,6 +137,7 @@ namespace NBDProjectNcstech.Controllers
         }
 
         // GET: MaterialRequirments/Delete/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.MaterialRequirments == null)
@@ -154,6 +161,7 @@ namespace NBDProjectNcstech.Controllers
         // POST: MaterialRequirments/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (_context.MaterialRequirments == null)

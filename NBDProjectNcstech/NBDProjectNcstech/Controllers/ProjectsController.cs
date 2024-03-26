@@ -1,4 +1,5 @@
 ﻿
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -71,6 +72,7 @@ namespace NBDProjectNcstech.Controllers
         }
 
         // GET: Projects/Details/5
+        [Authorize(Roles = "Admin,Staff")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Projects == null)
@@ -90,6 +92,7 @@ namespace NBDProjectNcstech.Controllers
         }
 
         // GET: Projects/Create
+        [Authorize(Roles = "Admin,Staff")]
         public IActionResult Create()
         {
             Project p = new Project()
@@ -105,6 +108,7 @@ namespace NBDProjectNcstech.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin,Staff")]
         public async Task<IActionResult> Create([Bind("Id,BidDate,ProjectSite,Est_BeginDate,Est_CompleteDate,BidAmount,ClientId")] Project project)
         {
             
@@ -121,6 +125,7 @@ namespace NBDProjectNcstech.Controllers
         }
 
         // GET: Projects/Edit/5
+        [Authorize(Roles = "Admin,Staff")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Projects == null)
@@ -142,6 +147,7 @@ namespace NBDProjectNcstech.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin,Staff")]
         public async Task<IActionResult> Edit(int id, [Bind("Id,BidDate,ProjectSite,Est_BeginDate,Est_CompleteDate,BidAmount,ClientId")] Project project)
         {
             if (id != project.Id)
@@ -174,6 +180,7 @@ namespace NBDProjectNcstech.Controllers
         }
 
         // GET: Projects/Delete/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Projects == null)
@@ -196,6 +203,7 @@ namespace NBDProjectNcstech.Controllers
         // POST: Projects/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (_context.Projects == null)
