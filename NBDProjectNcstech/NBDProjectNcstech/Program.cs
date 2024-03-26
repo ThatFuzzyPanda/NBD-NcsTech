@@ -81,7 +81,7 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Login}/{action=Index}/{id?}");
 
 // Add a new route pattern to handle the 'from' parameter
 app.MapControllerRoute(
