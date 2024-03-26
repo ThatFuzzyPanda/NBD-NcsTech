@@ -87,6 +87,9 @@
 				<nav class="mt-2">
 					<ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
+
+						
+
 						<!-- Home -->
 						<li class="nav-item">
 							<a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">
@@ -142,7 +145,7 @@
 							</li>
 							</ul> *@
 						</li>
-
+						
 
 
 						<!-- Reports -->
@@ -189,16 +192,16 @@
 								</li>
 							</ul>
 						</li>
-
-
-
-						<!-- Logout -->
-						@* <li class="nav-item">
-						<a href="#" class="nav-link">
-						<i class="nav-icon fas fa-sign-out-alt"></i>
-						<p>Logout</p>
-						</a>
-						</li> *@
+						<li class="nav-item">
+							
+						</li>
+						<l1 class ="nav-item">
+							<form class="nav-link" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+								<i class="nav-icon fas fa-sign-out-alt"></i>
+								<button type="submit" class="">Logout</button>
+							</form>
+						</l1>
+		
 
 					</ul>
 				</nav>
