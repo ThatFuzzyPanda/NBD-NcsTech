@@ -183,12 +183,18 @@
                             </div>
                         </div>
 
-<form asp-action="Edit">
-    <hr />
+
+  
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <input type="hidden" asp-for="ID" />
-    <div class="row">
+ 
+<form asp-action="Edit">
+  
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="ID" />
+    <div class="row justify-content-center">
         <div class="col-md-4">
+            <br />
             <div class="form-group">
                 <label asp-for="UserName" class="control-label"></label>
                 <input asp-for="UserName" class="form-control" readonly="readonly"/>
@@ -222,25 +228,25 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="form-group">
-                    <input type="submit" id="btnSubmit" value="Save" class="btn btn-primary" />
-                </div>
-            </div>
-        </div>
-    </form>
+      <div class="row justify-content-center"> 
+                        <div class="col-md-4">
+                            <div class="form-group text-center">
+                                
+                                <input type="submit" id="btnSubmit" value="Save" class="btn btn-primary float-right" />
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+        </form>
       </div>
                     </div>
                 </div>
             </div>
 
-            </div>
-            <div>
-            </div><!-- /.container-fluid -->
-        </div> <!-- /.content -->
-
-    
+                    
+           <div>
+      </div><!-- /.container-fluid -->
+         <!-- /.content -->
         <!-- Control Sidebar -->
         <aside class="control-sidebar control-sidebar-dark">
             <!-- Control sidebar content goes here -->
@@ -256,7 +262,7 @@
             <!-- Default to the left -->
             <strong>    &copy; 2024 - NBDProjectNcstech - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a></strong>
         </footer>
-    </div>
+  </div>
 
     <!-- jQuery -->
     <script src="plugins/jquery/jquery.min.js"></script>
@@ -265,7 +271,3 @@
     <script src="dist/js/adminlte.min.js"></script>
 </body>
 </html>
-
-    <div>
-        <partial name="_BackToList" />
-    </div>
