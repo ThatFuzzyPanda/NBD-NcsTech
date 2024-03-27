@@ -97,7 +97,7 @@
 								<p>Home</p>
 							</a>
 						</li>
-						@if (User.IsInRole("Sales") || User.IsInRole("Admin"))
+						@if (User.IsInRole("Sales") || User.IsInRole("Admin") || User.IsInRole("Management"))
 						{
 
 
@@ -117,7 +117,7 @@
 								</a>
 							</li>
 						}
-						@if (User.IsInRole("Sales") || User.IsInRole("Admin") || User.IsInRole("Designer"))
+						@if (User.IsInRole("Sales") || User.IsInRole("Admin") || User.IsInRole("Designer") || User.IsInRole("Management"))
 						{
 							<!-- Bid -->
 							<li class="nav-item">
@@ -182,7 +182,7 @@
 					<div class="icon">
 					<i class="ion ion-bag"></i>
 					</div>
-					@if (User.IsInRole("Sales") || User.IsInRole("Admin"))
+								@if (User.IsInRole("Sales") || User.IsInRole("Admin") || User.IsInRole("Management"))
 			       {
 					<a asp-controller="Projects" asp-action="Index" class="small-box-footer">Go See <i class="fas fa-arrow-circle-right"></i></a>
 					}
@@ -201,7 +201,7 @@
 					<div class="icon">
 					<i class="ion ion-person-add"></i>
 					</div>
-					@if (User.IsInRole("Sales") || User.IsInRole("Admin"))
+								@if (User.IsInRole("Sales") || User.IsInRole("Admin") || User.IsInRole("Management"))
 								{
 									<a asp-controller="Clients" asp-action="Index" class="small-box-footer">Go See <i class="fas fa-arrow-circle-right"></i></a>
 								}
@@ -224,7 +224,7 @@
 					<div class="icon">
 					<i class="ion ion-person-add"></i>
 					</div>
-					@if (User.IsInRole("Sales") || User.IsInRole("Admin"))
+								@if (User.IsInRole("Sales") || User.IsInRole("Admin") || User.IsInRole("Management"))
 												   {
 					<a asp-controller="DesignBids" asp-action="Index" asp-route-smallBox="Denied Bids" class="small-box-footer">Go See <i class="fas fa-arrow-circle-right"></i></a>
 												   }
@@ -248,7 +248,7 @@
 
 					<i class="ion ion-stats-bars"></i>
 					</div>
-					@if (User.IsInRole("Sales") || User.IsInRole("Admin"))
+								@if (User.IsInRole("Sales") || User.IsInRole("Admin") || User.IsInRole("Management"))
 												   {
 					<a asp-controller="DesignBids" asp-action="Index" class="small-box-footer">Go See <i class="fas fa-arrow-circle-right"></i></a>
 												   }
@@ -266,7 +266,7 @@
 												<label class="control-label" style="color: white;">Clients</label>
 											</div>
 											<div class="col-auto">
-												@if (User.IsInRole("Sales") || User.IsInRole("Admin"))
+												@if (User.IsInRole("Sales") || User.IsInRole("Admin") || User.IsInRole("Management"))
 												   {
 												<a asp-controller="Clients" asp-action="Create" class="btn btn-primary btn-sm rounded-circle" style="margin-right: 10px;">
 													<i class="fas fa-plus"></i>
@@ -321,7 +321,7 @@
 														<td>@client.ContactPerson</td>
 														<td>@client.FormatedPhoneNumber</td>
 														<td>
-															@if (User.IsInRole("Sales") || User.IsInRole("Admin"))
+															@if (User.IsInRole("Sales") || User.IsInRole("Admin") || User.IsInRole("Management"))
 															{
 																<a asp-controller="ClientProject" asp-action="Index" asp-route-ClientId="@client.ID" class="text-muted"
 																role="button" data-bs-toggle="tooltip" title="@ViewData["ControllerFriendlyName"] Details">
@@ -346,7 +346,7 @@
 												<label class="control-label" style="color: white;">Project</label>
 											</div>
 											<div class="col-auto">
-												@if (User.IsInRole("Sales") || User.IsInRole("Admin"))
+												@if (User.IsInRole("Sales") || User.IsInRole("Admin") || User.IsInRole("Management"))
 												   {
 												<a asp-controller="Projects" asp-action="Create" class="btn btn-primary btn-sm rounded-circle">
 													<i class="fas fa-plus"></i>
@@ -410,7 +410,7 @@
 														<td>@project.BidAmount.ToString("C")</td>
 														<td>@project.Client.Name</td>
 														<td>
-															@if (User.IsInRole("Sales") || User.IsInRole("Admin"))
+															@if (User.IsInRole("Sales") || User.IsInRole("Admin") || User.IsInRole("Management"))
 															{
 																<a asp-controller="ProjectsDesignBids" asp-action="Index" asp-route-ProjectID="@project.Id" class="fas fa-info-circle"
 																role="button" data-bs-toggle="tooltip" title="@ViewData["ControllerFriendlyName"] Details">

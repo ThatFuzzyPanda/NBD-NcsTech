@@ -94,7 +94,7 @@
                                 <p>Home</p>
                             </a>
                         </li>
-                        @if (User.IsInRole("Sales") || User.IsInRole("Admin"))
+                        @if (User.IsInRole("Sales") || User.IsInRole("Admin") || User.IsInRole("Management"))
                         {
 
 
@@ -114,7 +114,7 @@
                                 </a>
                             </li>
                         }
-                        @if (User.IsInRole("Sales") || User.IsInRole("Admin") || User.IsInRole("Designer"))
+                        @if (User.IsInRole("Sales") || User.IsInRole("Admin") || User.IsInRole("Designer") || User.IsInRole("Management"))
                         {
                             <!-- Bid -->
                             <li class="nav-item">

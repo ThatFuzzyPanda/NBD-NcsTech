@@ -96,7 +96,7 @@
 								<p>Home</p>
 							</a>
 						</li>
-						@if (User.IsInRole("Sales") || User.IsInRole("Admin"))
+						@if (User.IsInRole("Sales") || User.IsInRole("Admin") || User.IsInRole("Management"))
 						{
 
 
@@ -116,7 +116,7 @@
 								</a>
 							</li>
 						}
-						@if (User.IsInRole("Sales") || User.IsInRole("Admin") || User.IsInRole("Designer"))
+						@if (User.IsInRole("Sales") || User.IsInRole("Admin") || User.IsInRole("Designer") || User.IsInRole("Management"))
 						{
 							<!-- Bid -->
 							<li class="nav-item">
@@ -199,13 +199,13 @@
 											<!-- Buttons in one row -->
 											
 											<form asp-action="Edit" asp-route-id="@Model?.ID" method="get">
-												@if (User.IsInRole("Admin"))
+												@if (User.IsInRole("Admin") || User.IsInRole("Management"))
 												{
 												<button type="submit" class="btn btn-primary mr-2">Edit</button>
 												}
 												<button type="button" onclick="window.location.href = '@Url.Action("Index")'" class="btn btn-primary mr-2">Cancel</button>
 											</form>
-											@if (User.IsInRole("Admin"))
+											@if (User.IsInRole("Admin") || User.IsInRole("Management"))
 											{
 												<button class="btn btn-success mr-2" id="nowApprove"
 												data-bs-toggle="modal" data-bs-target="#approvalModal" @* data-id="@Model?.ID" *@ type="button">
