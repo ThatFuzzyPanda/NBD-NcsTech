@@ -424,7 +424,7 @@
 											</div>
 										}
 									</dd>
-									@if (Model.Approval.AdminApprovalNotes != null)
+									@if (Model.Approval.AdminApprovalNotes != null && Model.Approval.AdminApprovalStatus != "Pending")
 									{
 										<dt class="col-sm-2">
 											Manager notes:
@@ -448,7 +448,7 @@
 													<span> , @Html.DisplayFor(model => model.Approval.ClientApprovalDate)</span>
 
 												}
-												else if (Model.Approval.AdminApprovalStatus == "Pending")
+												else if (Model.Approval.ClientApprovalStatus == "Pending")
 												{
 													<span class="badge bg-primary " style="font-size: 1em">@Html.DisplayFor(model => model.Approval.ClientApprovalStatus)</span>
 												}
@@ -468,7 +468,7 @@
 											</div>
 										}
 									</dd>
-									@if (Model.Approval.ClientApprovalNotes != null)
+									@if (Model.Approval.ClientApprovalNotes != null && Model.Approval.ClientApprovalStatus != "Pending")
 									{
 										<dt class="col-sm-2">
 											Client notes:

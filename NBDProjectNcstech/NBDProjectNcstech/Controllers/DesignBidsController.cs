@@ -329,6 +329,7 @@ namespace NBDProjectNcstech.Controllers
 		{
 			var designBidToUpdate = await _context.DesignBids
 									.Include(d => d.DesignBidStaffs).ThenInclude(d => d.Staff)
+									.Include(d => d.Approval)
 									.FirstOrDefaultAsync(d => d.ID == id);
 			if (designBidToUpdate == null)
 			{
@@ -342,6 +343,8 @@ namespace NBDProjectNcstech.Controllers
 			if (await TryUpdateModelAsync<DesignBid>(designBidToUpdate, "",
 				d => d.ProjectID))
 			{
+				designBidToUpdate.Approval.AdminApprovalStatus = ApprovalStatus.Pending.ToString();
+				designBidToUpdate.Approval.ClientApprovalStatus = ApprovalStatus.Pending.ToString();
 				try
 				{
 					await _context.SaveChangesAsync();

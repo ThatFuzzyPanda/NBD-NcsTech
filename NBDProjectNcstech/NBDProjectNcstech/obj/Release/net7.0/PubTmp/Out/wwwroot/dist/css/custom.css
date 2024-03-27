@@ -1,0 +1,43 @@
+﻿body {
+    background-color: #293F11;
+    color: #FFFFFF;
+}
+
+.center-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.auth-box {
+    border: 2px solid transparent; 
+    padding: 20px;
+    text-align: center;
+    max-width: 800px;
+    border-radius: 15px;
+    width: 100%;
+    height: 700px;
+    box-sizing: border-box;
+    box-shadow: 5px 8px 16px rgba(0.3, 0.2, 0, 0.5);
+    transition: border-color 0.8s ease-in-out;
+  
+}
+
+.logo {
+    width: 500px; 
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.auth-buttons {
+    text-align: center;
+    margin-top: 20px;
+}
+
+    .auth-buttons a.btn {
+        width: 200px; 
+        margin-bottom: 10px;
+    }
+
+ 

@@ -301,6 +301,14 @@
       "PackagePath": "staticwebassets\\dist\\css\\alt\\adminlte.plugins.min.css.map"
     },
     {
+      "Id": "C:\\Users\\Owner\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\wwwroot\\dist\\css\\custom.css",
+      "PackagePath": "staticwebassets\\dist\\css\\custom.css"
+    },
+    {
+      "Id": "C:\\Users\\Owner\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\wwwroot\\dist\\css\\login.css",
+      "PackagePath": "staticwebassets\\dist\\css\\login.css"
+    },
+    {
       "Id": "C:\\Users\\Owner\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\wwwroot\\dist\\img\\AdminLTELogo.png",
       "PackagePath": "staticwebassets\\dist\\img\\AdminLTELogo.png"
     },
@@ -365,8 +373,16 @@
       "PackagePath": "staticwebassets\\dist\\img\\icons.png"
     },
     {
+      "Id": "C:\\Users\\Owner\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\wwwroot\\dist\\img\\natural.ico",
+      "PackagePath": "staticwebassets\\dist\\img\\natural.ico"
+    },
+    {
       "Id": "C:\\Users\\Owner\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\wwwroot\\dist\\img\\natural.png",
       "PackagePath": "staticwebassets\\dist\\img\\natural.png"
+    },
+    {
+      "Id": "C:\\Users\\Owner\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\wwwroot\\dist\\img\\natural_1x1.png",
+      "PackagePath": "staticwebassets\\dist\\img\\natural_1x1.png"
     },
     {
       "Id": "C:\\Users\\Owner\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\wwwroot\\dist\\img\\nbd.png",
@@ -379,70 +395,6 @@
     {
       "Id": "C:\\Users\\Owner\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\wwwroot\\dist\\img\\photo1.png",
       "PackagePath": "staticwebassets\\dist\\img\\photo1.png"
-    },
-    {
-      "Id": "C:\\Users\\Owner\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\wwwroot\\dist\\img\\photo2.png",
-      "PackagePath": "staticwebassets\\dist\\img\\photo2.png"
-    },
-    {
-      "Id": "C:\\Users\\Owner\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\wwwroot\\dist\\img\\photo3.jpg",
-      "PackagePath": "staticwebassets\\dist\\img\\photo3.jpg"
-    },
-    {
-      "Id": "C:\\Users\\Owner\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\wwwroot\\dist\\img\\photo4.jpg",
-      "PackagePath": "staticwebassets\\dist\\img\\photo4.jpg"
-    },
-    {
-      "Id": "C:\\Users\\Owner\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\wwwroot\\dist\\img\\prod-1.jpg",
-      "PackagePath": "staticwebassets\\dist\\img\\prod-1.jpg"
-    },
-    {
-      "Id": "C:\\Users\\Owner\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\wwwroot\\dist\\img\\prod-2.jpg",
-      "PackagePath": "staticwebassets\\dist\\img\\prod-2.jpg"
-    },
-    {
-      "Id": "C:\\Users\\Owner\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\wwwroot\\dist\\img\\prod-3.jpg",
-      "PackagePath": "staticwebassets\\dist\\img\\prod-3.jpg"
-    },
-    {
-      "Id": "C:\\Users\\Owner\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\wwwroot\\dist\\img\\prod-4.jpg",
-      "PackagePath": "staticwebassets\\dist\\img\\prod-4.jpg"
-    },
-    {
-      "Id": "C:\\Users\\Owner\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\wwwroot\\dist\\img\\prod-5.jpg",
-      "PackagePath": "staticwebassets\\dist\\img\\prod-5.jpg"
-    },
-    {
-      "Id": "C:\\Users\\Owner\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\wwwroot\\dist\\img\\user1-128x128.jpg",
-      "PackagePath": "staticwebassets\\dist\\img\\user1-128x128.jpg"
-    },
-    {
-      "Id": "C:\\Users\\Owner\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\wwwroot\\dist\\img\\user2-160x160.jpg",
-      "PackagePath": "staticwebassets\\dist\\img\\user2-160x160.jpg"
-    },
-    {
-      "Id": "C:\\Users\\Owner\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\wwwroot\\dist\\img\\user3-128x128.jpg",
-      "PackagePath": "staticwebassets\\dist\\img\\user3-128x128.jpg"
-    },
-    {
-      "Id": "C:\\Users\\Owner\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\wwwroot\\dist\\img\\user4-128x128.jpg",
-      "PackagePath": "staticwebassets\\dist\\img\\user4-128x128.jpg"
-    },
-    {
-      "Id": "C:\\Users\\Owner\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\wwwroot\\dist\\img\\user5-128x128.jpg",
-      "PackagePath": "staticwebassets\\dist\\img\\user5-128x128.jpg"
-    },
-    {
-      "Id": "C:\\Users\\Owner\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\wwwroot\\dist\\img\\user6-128x128.jpg",
-      "PackagePath": "staticwebassets\\dist\\img\\user6-128x128.jpg"
-    },
-    {
-      "Id": "C:\\Users\\Owner\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\wwwroot\\dist\\img\\user7-128x128.jpg",
-      "PackagePath": "staticwebassets\\dist\\img\\user7-128x128.jpg"
-    },
-    {
-      "Id": "C:\\Users\\Owner\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\wwwroot\\dist\\img\\user8-128x128.jpg",
-      "PackagePath": "staticwebassets\\dist\\img\\user8-128x128.jpg"
     },
     {
       "Id": "C:\\Users\\Owner\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\wwwroot\\dist\\js\\.eslintrc.json",
