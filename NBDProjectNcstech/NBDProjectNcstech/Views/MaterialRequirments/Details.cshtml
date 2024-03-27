@@ -31,7 +31,7 @@
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item">
-                    <h3>Hello, Admin!</h3>
+                    <h3>Hello, @User.Identity.Name!</h3>
                 </li>
 
 
@@ -87,6 +87,9 @@
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
+
+
+
                         <!-- Home -->
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">
@@ -94,117 +97,53 @@
                                 <p>Home</p>
                             </a>
                         </li>
+                        @if (User.IsInRole("Sales") || User.IsInRole("Admin") || User.IsInRole("Management"))
+                        {
 
-                        <!-- Client -->
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Clients" asp-action="Index">
-                                <i class="nav-icon fas fa-users"></i>
-                                <p>Client</p>
-                            </a>
-                        </li>
 
-                        <!-- Project -->
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Projects" asp-action="Index">
-                                <i class="nav-icon fas fa-newspaper"></i>
-                                <p>Project</p>
-                            </a>
-                        </li>
-
-                        <!-- Bid -->
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="DesignBids" asp-action="Index">
-                                <i class="nav-icon fas fa-handshake"></i>
-                                <p>Bids</p>
-                            </a>
-                            @* <a href="#" class="nav-link">
-                            <i class="nav-icon fas fa-handshake"></i>
-                            <p>
-                            Bid
-                            <i class="fas fa-angle-left right"></i>
-                            </p>
-                            </a>
-
-                            <ul class="nav nav-treeview">
-                            <!-- Design Budget -->
+                            <!-- Client -->
                             <li class="nav-item">
-                            <a href="#" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Design Budget</p>
-                            </a>
+                                <a class="nav-link" asp-area="" asp-controller="Clients" asp-action="Index">
+                                    <i class="nav-icon fas fa-users"></i>
+                                    <p>Client</p>
+                                </a>
                             </li>
 
-                            <!-- Production Plan -->
+                            <!-- Project -->
                             <li class="nav-item">
-                            <a href="#" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Production Plan</p>
-                            </a>
+                                <a class="nav-link" asp-area="" asp-controller="Projects" asp-action="Index">
+                                    <i class="nav-icon fas fa-newspaper"></i>
+                                    <p>Project</p>
+                                </a>
                             </li>
-                            </ul> *@
-                        </li>
+                        }
+                        @if (User.IsInRole("Sales") || User.IsInRole("Admin") || User.IsInRole("Designer") || User.IsInRole("Management"))
+                        {
+                            <!-- Bid -->
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="DesignBids" asp-action="Index">
+                                    <i class="nav-icon fas fa-handshake"></i>
+                                    <p>Bids</p>
+                                </a>
+                            </li>
+                        }
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="UserRole" asp-action="Index">
+                                    <i class="nav-icon fas fa-users"></i>
+                                    <p>Maintain User Roles</p>
+                                </a>
+                            </li>
 
+                        }
+                        <l1 class="nav-item">
+                            <form class="nav-link" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                                <i class="nav-icon fas fa-sign-out-alt"></i>
+                                <span> </span><button type="submit" class="btn btn-light">Logout</button>
+                            </form>
+                        </l1>
 
-
-                        <!-- Reports -->
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-file-invoice"></i>
-                                <p>
-                                    Reports
-                                    <i class="fas fa-angle-left right"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-
-                                <!-- PDW -->
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>PDW</p>
-                                    </a>
-                                </li>
-
-                                <!-- DDW -->
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>DDW</p>
-                                    </a>
-                                </li>
-
-                                <!-- Project Administration Report -->
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Project Administration Report</p>
-                                    </a>
-                                </li>
-
-                                <!-- Inventory Report -->
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Inventory Report</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <l1 class ="nav-item">
-							<form class="nav-link" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-								<i class="nav-icon fas fa-sign-out-alt"></i>
-								<button type="submit" class="">Logout</button>
-							</form>
-						</l1>
-
-
-                        <!-- Logout -->
-                        @* <li class="nav-item">
-                        <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-sign-out-alt"></i>
-                        <p>Logout</p>
-                        </a>
-                        </li> *@
 
                     </ul>
                 </nav>
@@ -235,37 +174,35 @@
                 <div class="container-fluid">
 
                     <!-- /.row -->
-                    <div class="card card-primary">
-                        <div class="card-header" style="background-color:darkcyan">
-                            <div class="row mb-2">
-                                <br />
-                                <div class="col-md-6 offset-md-3" style="margin-top: 20px;">
-                                    <h3 style="color: white;">Material Requirement Details</h3>
-
+                    <div class="card">
+                        <div class="card-header" style="background-color:#423535;">
+                            <div class="row align-items-center">
+                                <div class="col">
+                                    <label class="control-label" style="color: white;">Material Requirements Details</label>
                                 </div>
+
                             </div>
                         </div>
-                        <hr style="width: 100%" />
                         <div class="row mb-3">
-                            <br />
                             <div class="col-md-6 offset-md-3">
-                                <dl class="row">
-                                    <dt class="col-sm-2">
+                                <br />
+                                <dl class="row" style="font-size: 1em;">
+                                    <dt class="col-sm-3">
                                         @Html.DisplayNameFor(model => model.DesignBid)
                                     </dt>
-                                    <dd class="col-sm-10">
+                                    <dd class="col-sm-9">
                                         @Html.DisplayFor(model => model.DesignBid.ID)
                                     </dd>
-                                    <dt class="col-sm-2">
+                                    <dt class="col-sm-3">
                                         @Html.DisplayNameFor(model => model.Inventory)
                                     </dt>
-                                    <dd class="col-sm-10">
+                                    <dd class="col-sm-9">
                                         @Html.DisplayFor(model => model.Inventory.Name)
                                     </dd>
-                                    <dt class="col-sm-2">
+                                    <dt class="col-sm-3">
                                         @Html.DisplayNameFor(model => model.Quanity)
                                     </dt>
-                                    <dd class="col-sm-10">
+                                    <dd class="col-sm-9">
                                         @Html.DisplayFor(model => model.Quanity)
                                     </dd>                                    
                                 </dl>

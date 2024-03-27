@@ -62,6 +62,7 @@
 <body>
     <div class="container">
         <img src="~/dist/img/natural_1x1.png" alt="Logo" class="logo" />
+        
         <h1>Login</h1>
         <form id="account" method="post">
             <h2>Use a local account to log in.</h2>
@@ -87,15 +88,9 @@
                 <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary">Log in</button>
             </div>
             <div>
-                <p>
-                    <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
-                </p>
-                <p>
-                    <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
-                </p>
-                <p>
-                    <a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Resend email confirmation</a>
-                </p>
+              
+                
+                
             </div>
         </form>
     </div>
