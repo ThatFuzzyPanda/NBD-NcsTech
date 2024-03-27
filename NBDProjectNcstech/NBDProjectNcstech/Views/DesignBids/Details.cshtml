@@ -197,18 +197,25 @@
 										<div class="d-flex align-items-center">
 											<span class="mr-auto">@Html.DisplayFor(model => model.Project.ProjectSite)</span>
 											<!-- Buttons in one row -->
+											
 											<form asp-action="Edit" asp-route-id="@Model?.ID" method="get">
+												@if (User.IsInRole("Admin"))
+												{
 												<button type="submit" class="btn btn-primary mr-2">Edit</button>
+												}
 												<button type="button" onclick="window.location.href = '@Url.Action("Index")'" class="btn btn-primary mr-2">Cancel</button>
 											</form>
-											<button class="btn btn-success mr-2" id="nowApprove"
-													data-bs-toggle="modal" data-bs-target="#approvalModal" @* data-id="@Model?.ID" *@ type="button">
-												<strong>Approve</strong>
-											</button>
-											<button class="btn btn-outline-danger" id="nowReject"
-													data-bs-toggle="modal" data-bs-target="#rejectionModal" data-id="@Model?.ID" type="button">
-												<strong>Reject</strong>
-											</button>
+											@if (User.IsInRole("Admin"))
+											{
+												<button class="btn btn-success mr-2" id="nowApprove"
+												data-bs-toggle="modal" data-bs-target="#approvalModal" @* data-id="@Model?.ID" *@ type="button">
+													<strong>Approve</strong>
+												</button>
+												<button class="btn btn-outline-danger" id="nowReject"
+												data-bs-toggle="modal" data-bs-target="#rejectionModal" data-id="@Model?.ID" type="button">
+													<strong>Reject</strong>
+												</button>
+											}
 										</div>
 
 

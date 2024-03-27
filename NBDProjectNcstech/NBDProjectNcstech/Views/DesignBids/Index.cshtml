@@ -180,10 +180,13 @@
                                                 <label class="control-label" style="color: white;">Bids</label>
                                             </div>
                                             <div class="col-auto">
-                                                <a asp-controller="DesignBids" asp-action="Create" class="btn btn-primary btn-sm rounded-circle" style="margin-right: 10px;">
-                                                    <i class="fas fa-plus"></i>
-                                                </a>
-                                            </div>
+												@if (User.IsInRole("Sales") || User.IsInRole("Admin"))
+												{
+													<a asp-controller="DesignBids" asp-action="Create" class="btn btn-primary btn-sm rounded-circle" style="margin-right: 10px;">
+														<i class="fas fa-plus"></i>
+													</a>
+												}
+											</div>
                                         </div>
                                     </div>
 
@@ -290,15 +293,21 @@
 													</a>
 													</td> *@
 														<td>
-															<a href="@Url.Action("Edit", new { id = item.ID })">
-																<i class="fas fa-edit" style="color: #15752d;"></i>
-															</a> |
+															@if (User.IsInRole("Admin"))
+															{
+																<a href="@Url.Action("Edit", new { id = item.ID })">
+																	<i class="fas fa-edit" style="color: #15752d;"></i>
+															</a>} |
+															
 															<a href="@Url.Action("Details", new { id = item.ID })">
 																<i class="fas fa-info-circle" style="color: #005fa8;"></i>
 															</a> |
-															<a href="@Url.Action("Delete", new { id = item.ID })">
-																<i class="fas fa-trash-alt" style="color: #ff0000;"></i>
-															</a>
+															@if (User.IsInRole("Admin"))
+															{
+																<a href="@Url.Action("Delete", new { id = item.ID })">
+																	<i class="fas fa-trash-alt" style="color: #ff0000;"></i>
+																</a>
+															}
 														</td>
 													</tr>
 												}
