@@ -253,13 +253,13 @@ namespace NBDProjectNcstech.Controllers
 				{
 					designBid.Approval.AdminApprovalStatus = ApprovalStatus.Denied.ToString();
 					designBid.Approval.AdminApprovalNotes = txtDesc;
-					designBid.Approval.AdminApprovalDate = DateTime.Now;
+					designBid.Approval.ClientApprovalDate = DateTime.Now;
 				}
 				else if (ddlRejectBy == "2")
 				{
 					designBid.Approval.ClientApprovalStatus = ApprovalStatus.Denied.ToString();
 					designBid.Approval.ClientApprovalNotes = txtDesc;
-					designBid.Approval.AdminApprovalDate = DateTime.Now;
+					designBid.Approval.ClientApprovalDate = DateTime.Now;
 
 				}
 				else

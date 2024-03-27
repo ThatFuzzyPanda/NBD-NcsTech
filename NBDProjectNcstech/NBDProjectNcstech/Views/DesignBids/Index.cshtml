@@ -219,40 +219,40 @@
 		</aside>
 
 
-        <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper">
-            <!-- Content Header (Page header) -->
-            <div class="content-header">
-                <div class="container-fluid">
-                    <div class="row mb-2">
-                        <div class="col-sm-6">
-                        </div><!-- /.col -->
-                    </div><!-- /.row -->
-                </div><!-- /.container-fluid -->
-            </div>
-            <!-- /.content-header -->
-            <!-- Main content -->
-            <!-- /.content-header -->
-            <!-- Main content -->
-            <div class="content">
-                <div class="container-fluid">
-                    <form asp-action="Index" method="get">
-                        <!-- /.row -->
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="card">
-                                    <div class="card-header" style="background-color:#423535;">
-                                        <div class="row align-items-center">
-                                            <div class="col">
-                                                <label class="control-label" style="color: white;">Bids</label>
-                                            </div>
-                                            <div class="col-auto">
-                                                <a asp-controller="DesignBids" asp-action="Create" class="btn btn-primary btn-sm rounded-circle" style="margin-right: 10px;">
-                                                    <i class="fas fa-plus"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
+		<!-- Content Wrapper. Contains page content -->
+		<div class="content-wrapper">
+			<!-- Content Header (Page header) -->
+			<div class="content-header">
+				<div class="container-fluid">
+					<div class="row mb-2">
+						<div class="col-sm-6">
+						</div><!-- /.col -->
+					</div><!-- /.row -->
+				</div><!-- /.container-fluid -->
+			</div>
+			<!-- /.content-header -->
+			<!-- Main content -->
+			<!-- /.content-header -->
+			<!-- Main content -->
+			<div class="content">
+				<div class="container-fluid">
+					<form asp-action="Index" method="get">
+						<!-- /.row -->
+						<div class="row">
+							<div class="col-12">
+								<div class="card">
+									<div class="card-header" style="background-color:#423535;">
+										<div class="row align-items-center">
+											<div class="col">
+												<label class="control-label" style="color: white;">Bids</label>
+											</div>
+											<div class="col-auto">
+												<a asp-controller="DesignBids" asp-action="Create" class="btn btn-primary btn-sm rounded-circle" style="margin-right: 10px;">
+													<i class="fas fa-plus"></i>
+												</a>
+											</div>
+										</div>
+									</div>
 
 
 									<div class="card-body">
@@ -294,9 +294,11 @@
 														@Html.DisplayNameFor(model => model.DesignBidStaffs)
 													</th>
 													<th>
-														@Html.DisplayNameFor(model => model.Approval)
+														@Html.DisplayNameFor(model => model.Approval.AdminApprovalStatus)
 													</th>
-													<th></th>
+													<th>
+														@Html.DisplayNameFor(model => model.Approval.ClientApprovalStatus)
+													</th>
 													<th></th>
 												</tr>
 											</thead>
@@ -338,24 +340,33 @@
 																	<span class="badge bg-secondary text-lg" style="font-size: 1em">N/A</span>
 																</div>
 															}
-
-
-															@* Client Approval:
+														</td>
+														<td>
+															@* Client Approval: *@
 															@if (item.Approval != null)
 															{
-																@Html.DisplayFor(modelItem => item.Approval.ClientApprovalStatus)
+																<div class="approval-status">
+																	@if (item.Approval.ClientApprovalStatus == "Denied")
+																	{
+																		<span class="badge bg-danger " style="font-size: 1em">@Html.DisplayFor(modelItem => item.Approval.ClientApprovalStatus)</span>
+																	}
+																	else if (item.Approval.ClientApprovalStatus == "Pending")
+																	{
+																		<span class="badge bg-primary " style="font-size: 1em">@Html.DisplayFor(modelItem => item.Approval.ClientApprovalStatus)</span>
+																	}
+																	else
+																	{
+																		<span class="badge bg-success " style="font-size: 1em">@Html.DisplayFor(modelItem => item.Approval.ClientApprovalStatus)</span>
+																	}
+																</div>
 															}
 															else
 															{
-																<text>N/A</text>
-															} *@
+																<div class="approval-status">
+																	<span class="badge bg-secondary text-lg" style="font-size: 1em">N/A</span>
+																</div>
+															}
 														</td>
-
-														@* <td>
-													<a asp-controller="DesignBids" asp-action="ApprovalEdit" asp-route-id="@item.ID" asp-route-status="approve" class="btn btn-success btn-sm" role="button">
-													Approve
-													</a>
-													</td> *@
 														<td>
 															<a href="@Url.Action("Edit", new { id = item.ID })">
 																<i class="fas fa-edit" style="color: #15752d;"></i>

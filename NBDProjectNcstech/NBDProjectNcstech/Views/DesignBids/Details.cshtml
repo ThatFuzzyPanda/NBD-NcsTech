@@ -18,6 +18,11 @@
 	<!-- Theme style -->
 	<link rel="stylesheet" href="~/dist/css/adminlte.min.css">
 	<link rel="stylesheet" href="~/css/TableStyle.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
 </head>
 <body class="hold-transition sidebar-mini">
 	<div class="wrapper">
@@ -180,27 +185,27 @@
 									</a>
 								</li>
 
-                                <!-- Inventory Report -->
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Inventory Report</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
+								<!-- Inventory Report -->
+								<li class="nav-item">
+									<a href="#" class="nav-link">
+										<i class="far fa-circle nav-icon"></i>
+										<p>Inventory Report</p>
+									</a>
+								</li>
+							</ul>
+						</li>
 						<li class="nav-item">
 							<a class="nav-link" asp-area="" asp-controller="UserRole" asp-action="Index">
 								<i class="nav-icon fas fa-users"></i>
 								<p>Maintain User Roles</p>
 							</a>
 						</li>
-                        <l1 class="nav-item">
-                            <form class="nav-link" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                                <i class="nav-icon fas fa-sign-out-alt"></i>
-                                <button type="submit" class="">Logout</button>
-                            </form>
-                        </l1>
+						<l1 class="nav-item">
+							<form class="nav-link" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+								<i class="nav-icon fas fa-sign-out-alt"></i>
+								<button type="submit" class="">Logout</button>
+							</form>
+						</l1>
 
 
 						<!-- Logout -->
@@ -438,8 +443,97 @@
 											</tbody>
 										</table>
 									</dd>
+									<dt class="col-sm-2">
+										By Manager:
+									</dt>
+									<dd class="col-sm-10">
+										@if (Model.Approval != null)
+										{
+											<div class="approval-status">
+												@if (Model.Approval.AdminApprovalStatus == "Denied")
+												{
+													<span class="badge bg-danger " style="font-size: 1em">@Html.DisplayFor(model => model.Approval.AdminApprovalStatus)</span>
+													<span> , @Html.DisplayFor(model => model.Approval.AdminApprovalDate)</span>
 
+												}
+												else if (Model.Approval.AdminApprovalStatus == "Pending")
+												{
+													<span class="badge bg-primary " style="font-size: 1em">@Html.DisplayFor(model => model.Approval.AdminApprovalStatus)</span>
+
+												}
+												else
+												{
+													<span class="badge bg-success " style="font-size: 1em">@Html.DisplayFor(model => model.Approval.AdminApprovalStatus)</span>
+													<span> , @Html.DisplayFor(model => model.Approval.AdminApprovalDate)</span>
+
+												}
+
+											</div>
+										}
+										else
+										{
+											<div class="approval-status">
+												<span class="badge bg-secondary text-lg" style="font-size: 1em">N/A</span>
+											</div>
+										}
+									</dd>
+									@if (Model.Approval.AdminApprovalNotes != null)
+									{
+										<dt class="col-sm-2">
+											Manager notes:
+										</dt>
+										<dd class="col-sm-10">
+											@Html.DisplayFor(model => model.Approval.AdminApprovalNotes)
+										</dd>
+
+
+									}
+									<dt class="col-sm-2">
+										By Client:
+									</dt>
+									<dd class="col-sm-10">
+										@if (Model.Approval != null)
+										{
+											<div class="approval-status">
+												@if (Model.Approval.ClientApprovalStatus == "Denied")
+												{
+													<span class="badge bg-danger " style="font-size: 1em">@Html.DisplayFor(model => model.Approval.ClientApprovalStatus)</span>
+													<span> , @Html.DisplayFor(model => model.Approval.ClientApprovalDate)</span>
+
+												}
+												else if (Model.Approval.AdminApprovalStatus == "Pending")
+												{
+													<span class="badge bg-primary " style="font-size: 1em">@Html.DisplayFor(model => model.Approval.ClientApprovalStatus)</span>
+												}
+												else
+												{
+													<span class="badge bg-success " style="font-size: 1em">@Html.DisplayFor(model => model.Approval.ClientApprovalStatus)</span>
+													<span> , @Html.DisplayFor(model => model.Approval.ClientApprovalDate)</span>
+
+												}
+
+											</div>
+										}
+										else
+										{
+											<div class="approval-status">
+												<span class="badge bg-secondary text-lg" style="font-size: 1em">N/A</span>
+											</div>
+										}
+									</dd>
+									@if (Model.Approval.ClientApprovalNotes != null)
+									{
+										<dt class="col-sm-2">
+											Client notes:
+										</dt>
+										<dd class="col-sm-10">
+											@Html.DisplayFor(model => model.Approval.ClientApprovalNotes)
+										</dd>
+
+
+									}
 								</dl>
+								
 
 								@* <div class ="col-md-6 offset-md-3 d-flex justify-content-end">
 								<div class="text-right">
@@ -488,6 +582,7 @@
 	<!-- Bootstrap 4 -->
 	<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 	<script src="dist/js/adminlte.min.js"></script>
+	<!-- Include jQuery and Bootstrap JS -->
 
 </body>
 </html>
@@ -502,6 +597,7 @@
 			sessionStorage.setItem('approvalId', id);
 		});
 	</script>
+
 }
 
 
