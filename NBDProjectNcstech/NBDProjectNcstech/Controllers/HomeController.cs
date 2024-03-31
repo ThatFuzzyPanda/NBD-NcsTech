@@ -80,7 +80,7 @@ namespace NBDProjectNcstech.Controllers
 			return View(combinedLists);
         }
 
-        //----Functions get number of projects,clients,Denied DesignBids and 
+        #region Getting Numbers for Home Btns
         private int GetNumberOfDeniedBids()
         {
             return _context.DesignBids.Where(d => d.Approval.AdminApprovalStatus == "Denied").Count();
@@ -96,20 +96,40 @@ namespace NBDProjectNcstech.Controllers
             return _context.Clients.Count();
         }
 
-        private int GetNumberOfPendingClientApproval()
+        private int GetNumberOfBids()
+        {
+            return _context.DesignBids.Count();
+        }
+
+        private int GetNumberOfPendingClientApprovals()
         {
             return _context.DesignBids.Where(d => d.Approval.ClientApprovalStatus == "Pending").Count();
 		}
+
+        private int GetNumberOfPendingAdminApprovals()
+        {
+            return _context.DesignBids.Where(d => d.Approval.AdminApprovalStatus == "Pending").Count();
+        }
+
+        private int GetNumberOfNewBids()
+        {
+            return _context.DesignBids.Where(d => d.CreatedOn.Value.Date == DateTime.Now.Date).Count();
+        }
 
         private void PopulateSmallBoxes()
         {
             ViewData["NumberOfProjects"] = GetNumberOfProjects();
             ViewData["NumberOfClients"] = GetNumberOfClients();
+            ViewData["NumberOfBids"] = GetNumberOfBids();
             ViewData["NumberOfDeniedBids"] = GetNumberOfDeniedBids();
-            ViewData["NumberOfPendingClientBids"] = GetNumberOfPendingClientApproval();
+            ViewData["NumberOfPendingClientApprovals"] = GetNumberOfPendingClientApprovals();
+            ViewData["NumberOfPendingAdminApprovals"] = GetNumberOfPendingAdminApprovals();
+            ViewData["NumberOfNewBids"] = GetNumberOfNewBids();
         }
 
-		private SelectList ClientSelectList(int? selectedId)
+        #endregion
+
+        private SelectList ClientSelectList(int? selectedId)
 		{
 			return new SelectList(_context
 				.Clients

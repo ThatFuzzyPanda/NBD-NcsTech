@@ -1,9 +1,12 @@
 ﻿@{
-	ViewData["Title"] = "Home Page";
-	int numberOfProjects = Convert.ToInt32(ViewData["NumberOfProjects"]);
-	int numberOfClients = Convert.ToInt32(ViewData["NumberOfClients"]);
-	int numberOfDeniedBids = Convert.ToInt32(ViewData["NumberOfDeniedBids"]);
-	int numberOfPendingClientBids = Convert.ToInt32(ViewData["NumberOfPendingClientBids"]);
+    ViewData["Title"] = "Home Page";
+    int numberOfProjects = Convert.ToInt32(ViewData["NumberOfProjects"]);
+    int numberOfClients = Convert.ToInt32(ViewData["NumberOfClients"]);
+    int numberOfBids = Convert.ToInt32(ViewData["NumberOfBids"]);
+    int numberOfDeniedBids = Convert.ToInt32(ViewData["NumberOfDeniedBids"]);
+    int numberOfPendingClientApprovals = Convert.ToInt32(ViewData["NumberOfPendingClientApprovals"]);
+    int numberOfPendingAdminApprovals = Convert.ToInt32(ViewData["NumberOfPendingAdminApprovals"]);
+    int numberofNewBids = Convert.ToInt32(ViewData["NumberOfNewBids"]);
 }
 @model NBDProjectNcstech.Utilities.PaginatedHomeLists
 
@@ -11,449 +14,573 @@
 
 <html lang="en">
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Natural By Design |Home</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Natural By Design |Home</title>
 
-	<!-- Google Font: Source Sans Pro -->
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-	<!-- Font Awesome Icons -->
-	<link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
-	<!-- Theme style -->
-	<link rel="stylesheet" href="dist/css/adminlte.min.css">
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="dist/css/adminlte.min.css">
 </head>
 <body class="hold-transition sidebar-mini">
-	<div class="wrapper">
+    <div class="wrapper">
 
-		<!-- Navbar -->
-		<nav class="main-header navbar navbar-expand navbar-white navbar-light">
-			<!-- Left navbar links -->
-			<ul class="navbar-nav">
-				<li class="nav-item">
-					<a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-				</li>
-				<li class="nav-item">
-					  
-				</li>
+        <!-- Navbar -->
+        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+            <!-- Left navbar links -->
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+                </li>
+                <li class="nav-item">
 
-
-			</ul>
-
-			<!-- Right navbar links -->
-			<ul class="navbar-nav ml-auto">
-
-				<li class="nav-item">
-					<a class="nav-link" data-widget="fullscreen" href="#" role="button">
-						<i class="fas fa-expand-arrows-alt"></i>
-					</a>
-				</li>
-			</ul>
-		</nav>
-		<!-- /.navbar -->
-		<!-- Main Sidebar Container -->
-		<aside class="main-sidebar sidebar-dark-primary elevation-4">
-			<!-- Brand Logo -->
-			<a asp-controller="Home" asp-action="Index" class="brand-link">
-				<img src="dist/img/natural.png" alt="nbd Logo" class="brand-image img-circle elevation-3">
-				<span class="brand-text font-weight-bold" style="font-family: 'Times New Roman', Times, serif;">Natural By Design</span>
-
-			</a>
-
-			<!-- Sidebar -->
-			<div class="sidebar">
-				<!-- Sidebar user panel (optional) -->
-				@*  <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-				<div class="image">
-				<img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
-				</div>
-				<div class="info">
-				<a href="#" class="d-block">Alexander Pierce</a>
-				</div>
-				</div> *@
-
-				@*  <!-- SidebarSearch Form -->
-				<div class="form-inline">
-				<div class="input-group" data-widget="sidebar-search">
-				<input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
-				<div class="input-group-append">
-				<button class="btn btn-sidebar">
-				<i class="fas fa-search fa-fw"></i>
-				</button>
-				</div>
-				</div>
-				</div> *@
-
-				<!-- Sidebar Menu -->
-				<nav class="mt-2">
-					<ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                </li>
 
 
-						
+            </ul>
 
-						<!-- Home -->
-						<li class="nav-item">
-							<a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">
-								<i class="nav-icon fas fa-home"></i>
-								<p>Home</p>
-							</a>
-						</li>
-						@if (User.IsInRole("Sales") || User.IsInRole("Admin") || User.IsInRole("Management"))
-						{
+            <!-- Right navbar links -->
+            <ul class="navbar-nav ml-auto">
 
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+                        <i class="fas fa-expand-arrows-alt"></i>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <!-- /.navbar -->
+        <!-- Main Sidebar Container -->
+        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+            <!-- Brand Logo -->
+            <a asp-controller="Home" asp-action="Index" class="brand-link">
+                <img src="dist/img/natural.png" alt="nbd Logo" class="brand-image img-circle elevation-3">
+                <span class="brand-text font-weight-bold" style="font-family: 'Times New Roman', Times, serif;">Natural By Design</span>
 
-							<!-- Client -->
-							<li class="nav-item">
-								<a class="nav-link" asp-area="" asp-controller="Clients" asp-action="Index">
-									<i class="nav-icon fas fa-users"></i>
-									<p>Client</p>
-								</a>
-							</li>
+            </a>
 
-							<!-- Project -->
-							<li class="nav-item">
-								<a class="nav-link" asp-area="" asp-controller="Projects" asp-action="Index">
-									<i class="nav-icon fas fa-newspaper"></i>
-									<p>Project</p>
-								</a>
-							</li>
-						}
-						@if (User.IsInRole("Sales") || User.IsInRole("Admin") || User.IsInRole("Designer") || User.IsInRole("Management"))
-						{
-							<!-- Bid -->
-							<li class="nav-item">
-								<a class="nav-link" asp-area="" asp-controller="DesignBids" asp-action="Index">
-									<i class="nav-icon fas fa-handshake"></i>
-									<p>Bids</p>
-								</a>
-							</li>
-						}
-						@if(User.IsInRole("Admin"))
-						{
-							<li class="nav-item">
-								<a class="nav-link" asp-area="" asp-controller="UserRole" asp-action="Index">
-									<i class="nav-icon fas fa-users"></i>
-									<p>Maintain User Roles</p>
-								</a>
-							</li>
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <!-- Sidebar user panel (optional) -->
+                @*  <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                <div class="image">
+                <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+                </div>
+                <div class="info">
+                <a href="#" class="d-block">Alexander Pierce</a>
+                </div>
+                </div> *@
 
-						}
-							<l1 class ="nav-item">
-								<form class="nav-link" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-									<i class="nav-icon fas fa-sign-out-alt"></i>
-									<span> </span><button type="submit" class="btn btn-light">Logout</button>
-								</form>
-							</l1>
+                @*  <!-- SidebarSearch Form -->
+                <div class="form-inline">
+                <div class="input-group" data-widget="sidebar-search">
+                <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+                <div class="input-group-append">
+                <button class="btn btn-sidebar">
+                <i class="fas fa-search fa-fw"></i>
+                </button>
+                </div>
+                </div>
+                </div> *@
 
-						
-					</ul>
-				</nav>
-				<!-- /.sidebar-menu -->
-
-			</div>
-			<!-- /.sidebar -->
-		</aside>
-
-
-		<!-- Content Wrapper. Contains page content -->
-		<div class="content-wrapper">
-			<!-- Content Header (Page header) -->
-			<div class="content-header">
-				<div class="container-fluid">
-					<div class="row mb-2">
-						<div class="col-sm-6">
-						</div><!-- /.col -->
-					</div><!-- /.row -->
-				</div><!-- /.container-fluid -->
-			</div>
-			<!-- /.content-header -->
-			<!-- Main content -->
-			<div class="content">
-				<div class="container-fluid">
-					<!-- Small boxes (Stat box) Add later -->
-					<div class="row">
-					<div class="col-lg-3 col-6">
-					<!-- small box -->
-					<div class="small-box bg-info">
-					<div class="inner">
-					<h3>@numberOfProjects</h3>
-
-					<p>Projects</p>
-					</div>
-					<div class="icon">
-					<i class="ion ion-bag"></i>
-					</div>
-								@if (User.IsInRole("Sales") || User.IsInRole("Admin") || User.IsInRole("Management"))
-			       {
-					<a asp-controller="Projects" asp-action="Index" class="small-box-footer">Go See <i class="fas fa-arrow-circle-right"></i></a>
-					}
-					</div>
-					</div>
-					<!-- ./col -->
-					<div class="col-lg-3 col-6">
-					<!-- small box -->
-					<div class="small-box bg-success">
-					<div class="inner">
-
-					<h3>@numberOfClients</h3>
-
-					<p>Clients</p>
-					</div>
-					<div class="icon">
-					<i class="ion ion-person-add"></i>
-					</div>
-								@if (User.IsInRole("Sales") || User.IsInRole("Admin") || User.IsInRole("Management"))
-								{
-									<a asp-controller="Clients" asp-action="Index" class="small-box-footer">Go See <i class="fas fa-arrow-circle-right"></i></a>
-								}
-							</div>
-					</div>
-					<!-- ./col -->
-					<div class="col-lg-3 col-6">
-					<!-- small box -->
-					<div class="small-box bg-danger">
-					<div class="inner">
-					<h3>@numberOfDeniedBids</h3>
-
-					@if (numberOfDeniedBids == 1){
-						<p>Denied Bid</p>
-					}
-					else{
-						<p>Denied Bids</p>
-					}
-					</div>
-					<div class="icon">
-					<i class="ion ion-person-add"></i>
-					</div>
-								@if (User.IsInRole("Sales") || User.IsInRole("Admin") || User.IsInRole("Management"))
-												   {
-					<a asp-controller="DesignBids" asp-action="Index" asp-route-smallBox="Denied Bids" class="small-box-footer">Go See <i class="fas fa-arrow-circle-right"></i></a>
-												   }
-					</div>
-					</div>
-					<!-- ./col -->
-					<div class="col-lg-3 col-6">
-					<!-- small box -->
-					<div class="small-box bg-warning">
-					<div class="inner">
-					<h3>@numberOfPendingClientBids</h3>
-
-					@if (numberOfPendingClientBids == 1){
-						<p>Pending Client Approval</p>
-					}
-					else{
-						<p>Pending Client Approvals</p>
-					}
-					</div>
-					<div class="icon">
-
-					<i class="ion ion-stats-bars"></i>
-					</div>
-								@if (User.IsInRole("Sales") || User.IsInRole("Admin") || User.IsInRole("Management"))
-												   {
-					<a asp-controller="DesignBids" asp-action="Index" class="small-box-footer">Go See <i class="fas fa-arrow-circle-right"></i></a>
-												   }
-					</div>
-					</div>
-					</div><!-- /.statbox -->
-
-					<form asp-action="Index" method="get">
-						<div class="row">
-							<div class="col-lg-12">
-								<div class="card">
-									<div class="card-header" style="background-color:#423535;">
-										<div class="row align-items-center">
-											<div class="col">
-												<label class="control-label" style="color: white;">Clients</label>
-											</div>
-											<div class="col-auto">
-												@if (User.IsInRole("Sales") || User.IsInRole("Admin") || User.IsInRole("Management"))
-												   {
-												<a asp-controller="Clients" asp-action="Create" class="btn btn-primary btn-sm rounded-circle" style="margin-right: 10px;">
-													<i class="fas fa-plus"></i>
-												</a>
-												   }
-												<button type="button" class="btn btn-tool" data-card-widget="collapse">
-													<i class="fas fa-minus"></i>
-												</button>
-											</div>
-										</div>
-									</div>
-									<div class="card-body">
-										<div class="row align-items-end">
-											<div class="col-md-4">
-												<label class="control-label">Search by Organization Name:</label>
-												<div class="input-group">
-													@Html.TextBox("SearchStringORG", null, new { @class = "form-control" })
-												</div>
-											</div>
-											<div class="col-md-4">
-												<label class="control-label">Search by Contact First Name:</label>
-												<div class="input-group">
-													@Html.TextBox("SearchString", null, new { @class = "form-control" })
-												</div>
-											</div>
-											<div class="col-md-2">
-												<div class="d-flex justify-content-end">
-													<button type="submit" name="actionButton" value="Filter" class="btn btn-outline-primary mr-2">
-														<i class="fas fa-search"></i>
-													</button>
-													<a asp-action="Index" class="btn btn-outline-dark">Clear</a>
-												</div>
-											</div>
-										</div>
-									</div>
-
-									<div class="card-body table-responsive p-0">
-										<table class="table table-striped table-valign-middle">
-											<thead>
-												<tr>
-													<th style="width: 30%;">Organization Name</th>
-													<th style="width: 30%;">Contact Person</th>
-													<th style="width: 20%;">Phone Number</th>
-													<th style="width: 20%;">More</th>
-												</tr>
-											</thead>
-											<tbody>
-												@foreach (var client in Model.PagedClients)
-												{
-													<tr>
-														<td>@client.Name</td>
-														<td>@client.ContactPerson</td>
-														<td>@client.FormatedPhoneNumber</td>
-														<td>
-															@if (User.IsInRole("Sales") || User.IsInRole("Admin") || User.IsInRole("Management"))
-															{
-																<a asp-controller="ClientProject" asp-action="Index" asp-route-ClientId="@client.ID" class="text-muted"
-																role="button" data-bs-toggle="tooltip" title="@ViewData["ControllerFriendlyName"] Details">
-																	<i class="fas fa-info-circle" style="color: #005fa8;"></i>
-																</a>
-															} 
-														</td>
-													</tr>
-												}
-											</tbody>
-										</table>
-										<partial name="_ClientPagingNavBar" />
-									</div>
-								</div>
-							</div>
-
-							<div class="col-lg-12">
-								<div class="card">
-									<div class="card-header" style="background-color:#423535;">
-										<div class="row align-items-center">
-											<div class="col">
-												<label class="control-label" style="color: white;">Project</label>
-											</div>
-											<div class="col-auto">
-												@if (User.IsInRole("Sales") || User.IsInRole("Admin") || User.IsInRole("Management"))
-												   {
-												<a asp-controller="Projects" asp-action="Create" class="btn btn-primary btn-sm rounded-circle">
-													<i class="fas fa-plus"></i>
-												</a>
-												   }
-												<button type="button" class="btn btn-tool" data-card-widget="collapse">
-													<i class="fas fa-minus"></i>
-												</button>
-											</div>
-										</div>
-									</div>
-									<div class="card-body">
-										<div class="row">
-											<div class="col-md-4">
-												<label class="control-label">Search by Organization Name:</label>
-												<div class="input-group">
-													@Html.TextBox("SearchStringORGP", null, new { @class = "form-control" })
-												</div>
-											</div>
-
-											<div class="col-md-4">
-												<label class="control-label">Select by Start and End Date:</label>
-												<div class="input-group">
-													<span class="mr-2">Start Date:</span>
-													<input type="date" class="form-control" name="Start" />
-												</div>
-												<div class="input-group">
-													<span class="mx-2">End Date:</span>
-													<input type="date" class="form-control" name="End" id="endDateInput" />
-												</div>
-											</div>
-
-											<div class="col-md-4 d-flex align-items-end">
-												<button type="submit" name="actionButton" value="Filter" class="btn btn-outline-primary mr-2">
-													<i class="fas fa-search"></i>
-												</button>
-												<a asp-action="Index" class="btn btn-outline-dark">Reset</a>
-											</div>
-										</div>
-									</div>
+                <!-- Sidebar Menu -->
+                <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
 
 
-									<div class="card-body table-responsive p-0">
-										<table class="table table-striped table-valign-middle">
-											<thead>
-												<tr>
-													<th style="width: 15%;">Bid Date</th>
-													<th style="width: 35%;">Project Site</th>
-													<th style="width: 15%;">Bid Amount</th>
-													<th style="width: 25%;">Client</th>
-													<th style="width: 10%;">More</th>
-												</tr>
-											</thead>
-											<tbody>
-												@foreach (var project in Model.PagedProjects)
-												{
-													<tr>
-														<td>@project.BidDate.ToString("yyyy-MM-dd")</td>
-														<td>@project.ProjectSite</td>
-														<td>@project.BidAmount.ToString("C")</td>
-														<td>@project.Client.Name</td>
-														<td>
-															@if (User.IsInRole("Sales") || User.IsInRole("Admin") || User.IsInRole("Management"))
-															{
-																<a asp-controller="ProjectsDesignBids" asp-action="Index" asp-route-ProjectID="@project.Id" class="fas fa-info-circle"
-																role="button" data-bs-toggle="tooltip" title="@ViewData["ControllerFriendlyName"] Details">
 
-																</a>
-															}
-														</td>
-													</tr>
-												}
-											</tbody>
-										</table>
-										<partial name="_ProjectPagingNavBar" />
-									</div>
-								</div>
-							</div>
-						</div><!-- /.row -->
-					</form>
+                        <!-- Home -->
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">
+                                <i class="nav-icon fas fa-home"></i>
+                                <p>Home</p>
+                            </a>
+                        </li>
+                        @if (User.IsInRole("Sales") || User.IsInRole("Admin") || User.IsInRole("Management"))
+                        {
 
-				</div><!-- /.container-fluid -->
-			</div> <!-- /.content -->
 
-		</div> <!-- /.content-wrapper -->
-		<!-- Control Sidebar -->
-		<aside class="control-sidebar control-sidebar-dark">
-			<!-- Control sidebar content goes here -->
-			<div class="p-3">
-				<h5>Title</h5>
-				<p>Sidebar content</p>
-			</div>
-		</aside>
-		<!-- /.control-sidebar -->
-		<!-- Main Footer -->
-		<footer class="main-footer">
+                            <!-- Client -->
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="Clients" asp-action="Index">
+                                    <i class="nav-icon fas fa-users"></i>
+                                    <p>Client</p>
+                                </a>
+                            </li>
 
-			<!-- Default to the left -->
-			<strong>    &copy; 2024 - NBDProjectNcstech - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a></strong>
-		</footer>
-	</div>
+                            <!-- Project -->
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="Projects" asp-action="Index">
+                                    <i class="nav-icon fas fa-newspaper"></i>
+                                    <p>Project</p>
+                                </a>
+                            </li>
+                        }
+                        @if (User.IsInRole("Sales") || User.IsInRole("Admin") || User.IsInRole("Designer") || User.IsInRole("Management"))
+                        {
+                            <!-- Bid -->
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="DesignBids" asp-action="Index">
+                                    <i class="nav-icon fas fa-handshake"></i>
+                                    <p>Bids</p>
+                                </a>
+                            </li>
+                        }
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="UserRole" asp-action="Index">
+                                    <i class="nav-icon fas fa-users"></i>
+                                    <p>Maintain User Roles</p>
+                                </a>
+                            </li>
 
-	<!-- jQuery -->
-	<script src="plugins/jquery/jquery.min.js"></script>
-	<!-- Bootstrap 4 -->
-	<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-	<script src="dist/js/adminlte.min.js"></script>
+                        }
+                        <l1 class="nav-item">
+                            <form class="nav-link" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                                <i class="nav-icon fas fa-sign-out-alt"></i>
+                                <span> </span><button type="submit" class="btn btn-light">Logout</button>
+                            </form>
+                        </l1>
+
+
+                    </ul>
+                </nav>
+                <!-- /.sidebar-menu -->
+
+            </div>
+            <!-- /.sidebar -->
+        </aside>
+
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                        </div><!-- /.col -->
+                    </div><!-- /.row -->
+                </div><!-- /.container-fluid -->
+            </div>
+            <!-- /.content-header -->
+            <!-- Main content -->
+            <div class="content">
+                <div class="container-fluid">
+                    <!-- Small boxes (Stat box) Add later -->
+                    @if (User.IsInRole("Admin") || User.IsInRole("Management"))
+                    {
+                        <div class="row">
+                            <div class="col-lg-3 col-6">
+                                <!-- small box -->
+                                <div class="small-box bg-info">
+                                    <div class="inner">
+                                        <h3>@numberOfProjects</h3>
+
+                                        <p>Projects</p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="ion ion-bag"></i>
+                                    </div>
+                                    <a asp-controller="Projects" asp-action="Index" class="small-box-footer">Go See <i class="fas fa-arrow-circle-right"></i></a>
+                                </div>
+                            </div>
+                            <!-- ./col -->
+                            <div class="col-lg-3 col-6">
+                                <!-- small box -->
+                                <div class="small-box bg-success">
+                                    <div class="inner">
+
+                                        <h3>@numberofNewBids</h3>
+
+                                        @if (numberofNewBids == 1)
+                                        {
+                                            <p>New Bid</p>
+                                        }
+                                        else
+                                        {
+                                            <p>New Bids</p>
+                                        }
+                                    </div>
+                                    <div class="icon">
+                                        <i class="ion ion-person-add"></i>
+                                    </div>
+                                    <a asp-controller="DesignBids" asp-action="Index" class="small-box-footer">Go See <i class="fas fa-arrow-circle-right"></i></a>
+                                </div>
+                            </div>
+                            <!-- ./col -->
+                            <div class="col-lg-3 col-6">
+                                <!-- small box -->
+                                <div class="small-box bg-danger">
+                                    <div class="inner">
+                                        <h3>@numberOfPendingAdminApprovals</h3>
+
+                                        @if (numberOfPendingAdminApprovals == 1)
+                                        {
+                                            <p>Pending Admin Approvals</p>
+                                        }
+                                        else
+                                        {
+                                            <p>Pending Admin Approvals</p>
+                                        }
+                                    </div>
+                                    <div class="icon">
+                                        <i class="ion ion-person-add"></i>
+                                    </div>
+                                    @if (User.IsInRole("Sales") || User.IsInRole("Admin") || User.IsInRole("Management"))
+                                    {
+                                        <a asp-controller="DesignBids" asp-action="Index" class="small-box-footer">Go See <i class="fas fa-arrow-circle-right"></i></a>
+                                    }
+                                </div>
+                            </div>
+                            <!-- ./col -->
+                            <div class="col-lg-3 col-6">
+                                <!-- small box -->
+                                <div class="small-box bg-warning">
+                                    <div class="inner">
+                                        <h3>@numberOfPendingClientApprovals</h3>
+
+                                        @if (numberOfPendingClientApprovals == 1)
+                                        {
+                                            <p>Pending Client Approval</p>
+                                        }
+                                        else
+                                        {
+                                            <p>Pending Client Approvals</p>
+                                        }
+                                    </div>
+                                    <div class="icon">
+
+                                        <i class="ion ion-stats-bars"></i>
+                                    </div>
+                                    @if (User.IsInRole("Sales") || User.IsInRole("Admin") || User.IsInRole("Management"))
+                                    {
+                                        <a asp-controller="DesignBids" asp-action="Index" class="small-box-footer">Go See <i class="fas fa-arrow-circle-right"></i></a>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    @if (User.IsInRole("Sales"))
+                    {
+                        <div class="row">
+                            <div class="col-lg-3 col-6">
+                                <!-- small box -->
+                                <div class="small-box bg-info">
+                                    <div class="inner">
+                                        <h3>@numberOfProjects</h3>
+
+                                        <p>Projects</p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="ion ion-bag"></i>
+                                    </div>
+                                    <a asp-controller="Projects" asp-action="Index" class="small-box-footer">Go See <i class="fas fa-arrow-circle-right"></i></a>
+                                </div>
+                            </div>
+                            <!-- ./col -->
+                            <div class="col-lg-3 col-6">
+                                <!-- small box -->
+                                <div class="small-box bg-success">
+                                    <div class="inner">
+
+                                        <h3>@numberOfBids</h3>
+
+                                        @if (numberOfBids == 1)
+                                        {
+                                            <p>Bid</p>
+                                        }
+                                        else
+                                        {
+                                            <p>Bids</p>
+                                        }
+                                    </div>
+                                    <div class="icon">
+                                        <i class="ion ion-person-add"></i>
+                                    </div>
+                                    <a asp-controller="DesignBids" asp-action="Index" class="small-box-footer">Go See <i class="fas fa-arrow-circle-right"></i></a>
+                                </div>
+                            </div>
+                            <!-- ./col -->
+                            <div class="col-lg-3 col-6">
+                                <!-- small box -->
+                                <div class="small-box bg-danger">
+                                    <div class="inner">
+                                        <h3>@numberOfClients</h3>
+
+                                        @if (numberOfClients == 1)
+                                        {
+                                            <p>Client</p>
+                                        }
+                                        else
+                                        {
+                                            <p>Clients</p>
+                                        }
+                                    </div>
+                                    <div class="icon">
+                                        <i class="ion ion-person-add"></i>
+                                    </div>
+                                    <a asp-controller="Clients" asp-action="Index" class="small-box-footer">Go See <i class="fas fa-arrow-circle-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    @if (User.IsInRole("Designer"))
+                    {
+                        <div class="row">
+                            <!-- ./col -->
+                            <div class="col-lg-3 col-6">
+                                <!-- small box -->
+                                <div class="small-box bg-success">
+                                    <div class="inner">
+
+                                        <h3>@numberOfBids</h3>
+
+                                        @if (numberOfBids == 1)
+                                        {
+                                            <p>Bid</p>
+                                        }
+                                        else
+                                        {
+                                            <p>Bids</p>
+                                        }
+                                    </div>
+                                    <div class="icon">
+                                        <i class="ion ion-person-add"></i>
+                                    </div>
+                                    <a asp-controller="DesignBids" asp-action="Index" class="small-box-footer">Go See <i class="fas fa-arrow-circle-right"></i></a>
+                                </div>
+                            </div>
+                            <!-- ./col -->
+                            <div class="col-lg-3 col-6">
+                                <!-- small box -->
+                                <div class="small-box bg-danger">
+                                    <div class="inner">
+                                        <h3>@numberOfDeniedBids</h3>
+
+                                        @if (numberOfDeniedBids == 1)
+                                        {
+                                            <p>Denied Bid</p>
+                                        }
+                                        else
+                                        {
+                                            <p>Denied Bids</p>
+                                        }
+                                    </div>
+                                    <div class="icon">
+                                        <i class="ion ion-person-add"></i>
+                                    </div>
+                                    <a asp-controller="DesignBids" asp-action="Index" class="small-box-footer">Go See <i class="fas fa-arrow-circle-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                    <!-- /.statbox -->
+
+                    <form asp-action="Index" method="get">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-header" style="background-color:#423535;">
+                                        <div class="row align-items-center">
+                                            <div class="col">
+                                                <label class="control-label" style="color: white;">Clients</label>
+                                            </div>
+                                            <div class="col-auto">
+                                                @if (User.IsInRole("Sales") || User.IsInRole("Admin") || User.IsInRole("Management"))
+                                                {
+                                                    <a asp-controller="Clients" asp-action="Create" class="btn btn-primary btn-sm rounded-circle" style="margin-right: 10px;">
+                                                        <i class="fas fa-plus"></i>
+                                                    </a>
+                                                }
+                                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                                    <i class="fas fa-minus"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row align-items-end">
+                                            <div class="col-md-4">
+                                                <label class="control-label">Search by Organization Name:</label>
+                                                <div class="input-group">
+                                                    @Html.TextBox("SearchStringORG", null, new { @class = "form-control" })
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label class="control-label">Search by Contact First Name:</label>
+                                                <div class="input-group">
+                                                    @Html.TextBox("SearchString", null, new { @class = "form-control" })
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="d-flex justify-content-end">
+                                                    <button type="submit" name="actionButton" value="Filter" class="btn btn-outline-primary mr-2">
+                                                        <i class="fas fa-search"></i>
+                                                    </button>
+                                                    <a asp-action="Index" class="btn btn-outline-dark">Clear</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="card-body table-responsive p-0">
+                                        <table class="table table-striped table-valign-middle">
+                                            <thead>
+                                                <tr>
+                                                    <th style="width: 30%;">Organization Name</th>
+                                                    <th style="width: 30%;">Contact Person</th>
+                                                    <th style="width: 20%;">Phone Number</th>
+                                                    <th style="width: 20%;">More</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var client in Model.PagedClients)
+                                                {
+                                                    <tr>
+                                                        <td>@client.Name</td>
+                                                        <td>@client.ContactPerson</td>
+                                                        <td>@client.FormatedPhoneNumber</td>
+                                                        <td>
+                                                            @if (User.IsInRole("Sales") || User.IsInRole("Admin") || User.IsInRole("Management"))
+                                                            {
+                                                                <a asp-controller="ClientProject" asp-action="Index" asp-route-ClientId="@client.ID" class="text-muted"
+                                                                   role="button" data-bs-toggle="tooltip" title="@ViewData["ControllerFriendlyName"] Details">
+                                                                    <i class="fas fa-info-circle" style="color: #005fa8;"></i>
+                                                                </a>
+                                                            }
+                                                        </td>
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                        <partial name="_ClientPagingNavBar" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-header" style="background-color:#423535;">
+                                        <div class="row align-items-center">
+                                            <div class="col">
+                                                <label class="control-label" style="color: white;">Project</label>
+                                            </div>
+                                            <div class="col-auto">
+                                                @if (User.IsInRole("Sales") || User.IsInRole("Admin") || User.IsInRole("Management"))
+                                                {
+                                                    <a asp-controller="Projects" asp-action="Create" class="btn btn-primary btn-sm rounded-circle">
+                                                        <i class="fas fa-plus"></i>
+                                                    </a>
+                                                }
+                                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                                    <i class="fas fa-minus"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <label class="control-label">Search by Organization Name:</label>
+                                                <div class="input-group">
+                                                    @Html.TextBox("SearchStringORGP", null, new { @class = "form-control" })
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <label class="control-label">Select by Start and End Date:</label>
+                                                <div class="input-group">
+                                                    <span class="mr-2">Start Date:</span>
+                                                    <input type="date" class="form-control" name="Start" />
+                                                </div>
+                                                <div class="input-group">
+                                                    <span class="mx-2">End Date:</span>
+                                                    <input type="date" class="form-control" name="End" id="endDateInput" />
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-4 d-flex align-items-end">
+                                                <button type="submit" name="actionButton" value="Filter" class="btn btn-outline-primary mr-2">
+                                                    <i class="fas fa-search"></i>
+                                                </button>
+                                                <a asp-action="Index" class="btn btn-outline-dark">Reset</a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="card-body table-responsive p-0">
+                                        <table class="table table-striped table-valign-middle">
+                                            <thead>
+                                                <tr>
+                                                    <th style="width: 15%;">Bid Date</th>
+                                                    <th style="width: 35%;">Project Site</th>
+                                                    <th style="width: 15%;">Bid Amount</th>
+                                                    <th style="width: 25%;">Client</th>
+                                                    <th style="width: 10%;">More</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var project in Model.PagedProjects)
+                                                {
+                                                    <tr>
+                                                        <td>@project.BidDate.ToString("yyyy-MM-dd")</td>
+                                                        <td>@project.ProjectSite</td>
+                                                        <td>@project.BidAmount.ToString("C")</td>
+                                                        <td>@project.Client.Name</td>
+                                                        <td>
+                                                            @if (User.IsInRole("Sales") || User.IsInRole("Admin") || User.IsInRole("Management"))
+                                                            {
+                                                                <a asp-controller="ProjectsDesignBids" asp-action="Index" asp-route-ProjectID="@project.Id" class="fas fa-info-circle"
+                                                                   role="button" data-bs-toggle="tooltip" title="@ViewData["ControllerFriendlyName"] Details">
+
+                                                                </a>
+                                                            }
+                                                        </td>
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                        <partial name="_ProjectPagingNavBar" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- /.row -->
+                    </form>
+
+                </div><!-- /.container-fluid -->
+            </div> <!-- /.content -->
+
+        </div> <!-- /.content-wrapper -->
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+            <div class="p-3">
+                <h5>Title</h5>
+                <p>Sidebar content</p>
+            </div>
+        </aside>
+        <!-- /.control-sidebar -->
+        <!-- Main Footer -->
+        <footer class="main-footer">
+
+            <!-- Default to the left -->
+            <strong>    &copy; 2024 - NBDProjectNcstech - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a></strong>
+        </footer>
+    </div>
+
+    <!-- jQuery -->
+    <script src="plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="dist/js/adminlte.min.js"></script>
 </body>
 </html>
