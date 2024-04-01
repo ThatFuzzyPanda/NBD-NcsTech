@@ -19,9 +19,10 @@
 	<link rel="stylesheet" href="~/dist/css/adminlte.min.css">
 	<link rel="stylesheet" href="~/css/TableStyle.css">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+	<!-- for popover-->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 </head>
 <body class="hold-transition sidebar-mini">
@@ -209,22 +210,35 @@
 										<div class="d-flex align-items-center">
 											<span class="mr-auto">@Html.DisplayFor(model => model.Project.ProjectSite)</span>
 											<!-- Buttons in one row -->
-											
-											<form asp-action="Edit" asp-route-id="@Model?.ID" method="get">
-												@if (User.IsInRole("Admin") || User.IsInRole("Management"))
-												{
-												<button type="submit" class="btn btn-primary mr-2">Edit</button>
-												}
-												<button type="button" onclick="window.location.href = '@Url.Action("Index")'" class="btn btn-primary mr-2">Cancel</button>
-											</form>
+											@if (Model.Approval.AdminApprovalStatus == "Approved" && Model.Approval.ClientApprovalStatus == "Approved")
+											{
+												<a class="btn btn-secondary mr-2" href="#" data-toggle="popover">
+													Edit<span class="badge">
+														<i class="fas fa-lock"></i>
+													</span>
+												</a>
+											}
+											else
+											{
+												<form asp-action="Edit" asp-route-id="@Model?.ID" method="get">
+													@if (User.IsInRole("Admin") || User.IsInRole("Management"))
+													{
+														<button type="submit" class="btn btn-primary mr-2">
+															Edit
+														</button>
+													}
+												</form>
+											}
+											<button type="button" onclick="window.location.href = '@Url.Action("Index")'" class="btn btn-primary mr-2">Cancel</button>
+
 											@if (User.IsInRole("Admin") || User.IsInRole("Management"))
 											{
 												<button class="btn btn-success mr-2" id="nowApprove"
-												data-bs-toggle="modal" data-bs-target="#approvalModal" @* data-id="@Model?.ID" *@ type="button">
+														data-bs-toggle="modal" data-bs-target="#approvalModal" type="button">
 													<strong>Approve</strong>
 												</button>
 												<button class="btn btn-outline-danger" id="nowReject"
-												data-bs-toggle="modal" data-bs-target="#rejectionModal" data-id="@Model?.ID" type="button">
+														data-bs-toggle="modal" data-bs-target="#rejectionModal" data-id="@Model?.ID" type="button">
 													<strong>Reject</strong>
 												</button>
 											}
@@ -480,7 +494,7 @@
 
 									}
 								</dl>
-								
+
 
 								@* <div class ="col-md-6 offset-md-3 d-flex justify-content-end">
 								<div class="text-right">
@@ -525,11 +539,10 @@
 	</div>
 
 	<!-- jQuery -->
-	<script src="plugins/jquery/jquery.min.js"></script>
+	<script src="~/plugins/jquery/jquery.min.js"></script>
 	<!-- Bootstrap 4 -->
-	<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-	<script src="dist/js/adminlte.min.js"></script>
-	<!-- Include jQuery and Bootstrap JS -->
+	<script src="~/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="~/dist/js/adminlte.min.js"></script>
 
 </body>
 </html>
@@ -545,6 +558,15 @@
 		});
 	</script>
 
+	<script>
+		$(document).ready(function () {
+			$('[data-toggle="popover"]').popover({
+				title: "Bid is locked.",
+				content: "If the bid has been approved by Manager and client, it will be locked disabling editing.",
+				trigger: "hover"
+			});
+		});
+	</script>
 }
 
 

@@ -17,8 +17,13 @@
 	<!-- Font Awesome Icons -->
 	<link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
 	<!-- Theme style -->
-	<link rel="stylesheet" href="dist/css/adminlte.min.css">
+	<link rel="stylesheet" href="~/dist/css/adminlte.min.css">
 	<link rel="stylesheet" href="~/css/TableStyle.css">
+
+	<!-- for popover-->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body class="hold-transition sidebar-mini">
 	<div class="wrapper">
@@ -152,34 +157,34 @@
 		</aside>
 
 
-        <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper">
-            <!-- Content Header (Page header) -->
-            <div class="content-header">
-                <div class="container-fluid">
-                    <div class="row mb-2">
-                        <div class="col-sm-6">
-                        </div><!-- /.col -->
-                    </div><!-- /.row -->
-                </div><!-- /.container-fluid -->
-            </div>
-            <!-- /.content-header -->
-            <!-- Main content -->
-            <!-- /.content-header -->
-            <!-- Main content -->
-            <div class="content">
-                <div class="container-fluid">
-                    <form asp-action="Index" method="get">
-                        <!-- /.row -->
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="card">
-                                    <div class="card-header" style="background-color:#423535;">
-                                        <div class="row align-items-center">
-                                            <div class="col">
-                                                <label class="control-label" style="color: white;">Bids</label>
-                                            </div>
-                                            <div class="col-auto">
+		<!-- Content Wrapper. Contains page content -->
+		<div class="content-wrapper">
+			<!-- Content Header (Page header) -->
+			<div class="content-header">
+				<div class="container-fluid">
+					<div class="row mb-2">
+						<div class="col-sm-6">
+						</div><!-- /.col -->
+					</div><!-- /.row -->
+				</div><!-- /.container-fluid -->
+			</div>
+			<!-- /.content-header -->
+			<!-- Main content -->
+			<!-- /.content-header -->
+			<!-- Main content -->
+			<div class="content">
+				<div class="container-fluid">
+					<form asp-action="Index" method="get">
+						<!-- /.row -->
+						<div class="row">
+							<div class="col-12">
+								<div class="card">
+									<div class="card-header" style="background-color:#423535;">
+										<div class="row align-items-center">
+											<div class="col">
+												<label class="control-label" style="color: white;">Bids</label>
+											</div>
+											<div class="col-auto">
 												@if (User.IsInRole("Sales") || User.IsInRole("Admin") || User.IsInRole("Management"))
 												{
 													<a asp-controller="DesignBids" asp-action="Create" class="btn btn-primary btn-sm rounded-circle" style="margin-right: 10px;">
@@ -187,8 +192,8 @@
 													</a>
 												}
 											</div>
-                                        </div>
-                                    </div>
+										</div>
+									</div>
 
 
 									<div class="card-body">
@@ -306,10 +311,25 @@
 														<td>
 															@if (User.IsInRole("Admin") || User.IsInRole("Management"))
 															{
-																<a href="@Url.Action("Edit", new { id = item.ID })">
-																	<i class="fas fa-edit" style="color: #15752d;"></i>
-															</a>} |
-															
+																if (item.Approval.AdminApprovalStatus == "Approved" && item.Approval.ClientApprovalStatus == "Approved")
+																{
+																	<a href="#" data-toggle="popover">
+																		<i class="fas fa-edit" style="color:dimgray"></i>
+																		<span class="badge badge-dark ">
+																			<i class="fas fa-lock"></i>
+																		</span>
+
+
+																	</a>
+																}
+																else
+																{
+																	<a href="@Url.Action("Edit", new { id = item.ID })">
+																		<i class="fas fa-edit" style="color: #15752d;"></i>
+																	</a>
+																}
+															} |
+
 															<a href="@Url.Action("Details", new { id = item.ID })">
 																<i class="fas fa-info-circle" style="color: #005fa8;"></i>
 															</a> |
@@ -358,6 +378,15 @@
 	<script src="plugins/jquery/jquery.min.js"></script>
 	<!-- Bootstrap 4 -->
 	<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-	<script src="dist/js/adminlte.min.js"></script>
+	<script src="~/dist/js/adminlte.min.js"></script>
+	<script>
+		$(document).ready(function () {
+			$('[data-toggle="popover"]').popover({
+				title: "Bid is locked.",
+				content: "If the bid has been approved by Manager and client, it will be locked disabling editing.",
+				trigger: "hover"
+			});
+		});
+	</script>
 </body>
 </html>
