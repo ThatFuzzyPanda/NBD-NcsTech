@@ -22,7 +22,7 @@ namespace NBDProjectNcstech.Models
 		[Required(ErrorMessage = "You cannot leave the cost price Blank")]
 		public decimal CostPrice { get; set; }
 		
-		public int TypeID { get; set; }
+		public int ItemTypeID { get; set; }
 
         public ItemType ItemType { get; set; }
 		public int UnitID {  get; set; }

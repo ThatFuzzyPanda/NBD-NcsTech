@@ -449,7 +449,7 @@ namespace NBDProjectNcstech.Data
                         new Inventory
                         {
                             Name = "granite Fountain",
-                            TypeID = context.ItemTypes.FirstOrDefault(c => c.Name == "Pottery").ID,
+                            ItemTypeID = context.ItemTypes.FirstOrDefault(c => c.Name == "Pottery").ID,
                             Description = "granite Fountain",
                             Size = "48",
                             UnitID = context.Units.FirstOrDefault(c => c.Name == "inch").ID,
@@ -458,7 +458,7 @@ namespace NBDProjectNcstech.Data
                         new Inventory
                         {
                             Name = "Concret Ern",
-                            TypeID = context.ItemTypes.FirstOrDefault(c => c.Name == "Pottery").ID,
+                            ItemTypeID = context.ItemTypes.FirstOrDefault(c => c.Name == "Pottery").ID,
                             Description = "Concret Ern",
                             Size = "73",
                             UnitID = context.Units.FirstOrDefault(c => c.Name == "inch").ID,
@@ -468,7 +468,7 @@ namespace NBDProjectNcstech.Data
                         new Inventory
                         {
                             Name = "granite Pots",
-                            TypeID = context.ItemTypes.FirstOrDefault(c => c.Name == "Pottery").ID,
+                            ItemTypeID = context.ItemTypes.FirstOrDefault(c => c.Name == "Pottery").ID,
                             Description = "granite Pots",
                             Size = "50",
                             UnitID = context.Units.FirstOrDefault(c => c.Name == "gal").ID,
@@ -478,7 +478,7 @@ namespace NBDProjectNcstech.Data
                         new Inventory
                         {
                             Name = "Wooden pots",
-                            TypeID = context.ItemTypes.FirstOrDefault(c => c.Name == "Pottery").ID,
+                            ItemTypeID = context.ItemTypes.FirstOrDefault(c => c.Name == "Pottery").ID,
                             Description = "Wooden pots",
                             Size = "48",
                             UnitID = context.Units.FirstOrDefault(c => c.Name == "gal").ID,
@@ -489,7 +489,7 @@ namespace NBDProjectNcstech.Data
                         new Inventory
                         {
                             Name = "caryota mitis",
-                            TypeID = context.ItemTypes.FirstOrDefault(c => c.Name == "Plants").ID,
+                            ItemTypeID = context.ItemTypes.FirstOrDefault(c => c.Name == "Plants").ID,
                             Description = "caryota mitis",
                             Size = "7",
                             UnitID = context.Units.FirstOrDefault(c => c.Name == "gal").ID,
@@ -499,7 +499,7 @@ namespace NBDProjectNcstech.Data
                         new Inventory
                         {
                             Name = "marginata",
-                            TypeID = context.ItemTypes.FirstOrDefault(c => c.Name == "Plants").ID,
+                            ItemTypeID = context.ItemTypes.FirstOrDefault(c => c.Name == "Plants").ID,
                             Description = "marginata",
                             Size = "15",
                             UnitID = context.Units.FirstOrDefault(c => c.Name == "gal").ID,
@@ -509,7 +509,7 @@ namespace NBDProjectNcstech.Data
                         new Inventory
                         {
                             Name = "laccospadix australasica palm",
-                            TypeID = context.ItemTypes.FirstOrDefault(c => c.Name == "Plants").ID,
+                            ItemTypeID = context.ItemTypes.FirstOrDefault(c => c.Name == "Plants").ID,
                             Description = "laccospadix australasica palm",
                             Size = "7",
                             UnitID = context.Units.FirstOrDefault(c => c.Name == "gal").ID,
@@ -520,7 +520,7 @@ namespace NBDProjectNcstech.Data
                         new Inventory
                         {
                             Name = "Blue Fescue",
-                            TypeID = context.ItemTypes.FirstOrDefault(c => c.Name == "Plants").ID,
+                            ItemTypeID = context.ItemTypes.FirstOrDefault(c => c.Name == "Plants").ID,
                             Description = "Blue Fescue",
                             Size = "2",
                             UnitID = context.Units.FirstOrDefault(c => c.Name == "gal").ID,
@@ -531,7 +531,7 @@ namespace NBDProjectNcstech.Data
                         new Inventory
                         {
                             Name = "Top Soil",
-                            TypeID = context.ItemTypes.FirstOrDefault(c => c.Name == "Materials").ID,
+                            ItemTypeID = context.ItemTypes.FirstOrDefault(c => c.Name == "Materials").ID,
                             Description = "Top Soil",
                             Size = "15",
                             UnitID = context.Units.FirstOrDefault(c => c.Name == "yard").ID,
@@ -541,7 +541,7 @@ namespace NBDProjectNcstech.Data
                         new Inventory
                         {
                             Name = "Mulch",
-                            TypeID = context.ItemTypes.FirstOrDefault(c => c.Name == "Materials").ID,
+                            ItemTypeID = context.ItemTypes.FirstOrDefault(c => c.Name == "Materials").ID,
                             Description = "Mulch",
                             Size = "10",
                             UnitID = context.Units.FirstOrDefault(c => c.Name == "yard").ID,
@@ -551,7 +551,7 @@ namespace NBDProjectNcstech.Data
                         new Inventory
                         {
                             Name = "decorative cedar bark (CBRK5)",
-                            TypeID = context.ItemTypes.FirstOrDefault(c => c.Name == "Materials").ID,
+                            ItemTypeID = context.ItemTypes.FirstOrDefault(c => c.Name == "Materials").ID,
                             Description = "decorative cedar bark (CBRK5)",
                             Size = "5",
                             UnitID = context.Units.FirstOrDefault(c => c.Name == "Bag").ID,
@@ -561,7 +561,7 @@ namespace NBDProjectNcstech.Data
                         new Inventory
                         {
                             Name = "Screenings",
-                            TypeID = context.ItemTypes.FirstOrDefault(c => c.Name == "Materials").ID,
+                            ItemTypeID = context.ItemTypes.FirstOrDefault(c => c.Name == "Materials").ID,
                             Description = "Screenings",
                             Size = "5",
                             UnitID = context.Units.FirstOrDefault(c => c.Name == "Bag").ID,

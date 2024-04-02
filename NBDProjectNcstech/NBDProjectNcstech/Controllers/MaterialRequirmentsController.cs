@@ -55,6 +55,7 @@ namespace NBDProjectNcstech.Controllers
             string from = Request.Query["from"];
             ViewData["From"] = from;
             PopulateDropDownLists();
+            PopulateMaterialRequirementDropDownLists();
             return View();
         }
 
@@ -77,6 +78,7 @@ namespace NBDProjectNcstech.Controllers
                 return RedirectToAction("Edit", "DesignBids", new { id = materialRequirments.DesignBidID });
             }
             PopulateDropDownLists(materialRequirments);
+            PopulateMaterialRequirementDropDownLists();
             return RedirectToAction("Edit", "DesignBids", new { id = materialRequirments.DesignBidID });
         }
 
@@ -96,6 +98,7 @@ namespace NBDProjectNcstech.Controllers
                 return NotFound();
             }
             PopulateDropDownLists(materialRequirments);
+            PopulateMaterialRequirementDropDownLists();
             return View(materialRequirments);
         }
 
@@ -133,6 +136,7 @@ namespace NBDProjectNcstech.Controllers
                 return RedirectToAction("Edit", "DesignBids", new { id = materialRequirments.DesignBidID });
             }
             PopulateDropDownLists(materialRequirments);
+            PopulateMaterialRequirementDropDownLists();
             return RedirectToAction("Edit", "DesignBids", new { id = materialRequirments.DesignBidID });
         }
 
@@ -231,6 +235,32 @@ namespace NBDProjectNcstech.Controllers
                 ViewData["UnitID"] = UnitSelectList(null, null);
             }
         }
+
+        private SelectList PlantsSelectList(int? SelectedId)
+        {
+            return new SelectList(_context.Inventory
+                .Where(d => d.ItemType.Name == "Pottery"), "ID", "Name", SelectedId);
+        }
+
+        private SelectList PotterySelectList(int? SelectedId)
+        {
+            return new SelectList(_context.Inventory
+                .Where(d => d.ItemType.Name == "Pottery"), "ID", "Name", SelectedId);
+        }
+
+        private SelectList MaterialsSelectList(int? SelectedId)
+        {
+            return new SelectList(_context.Inventory
+                .Where(d => d.ItemType.Name == "Materials"), "ID", "Name", SelectedId);
+        }
+
+        private void PopulateMaterialRequirementDropDownLists(Inventory inventory = null)
+        {
+            ViewData["Plants"] = PlantsSelectList(inventory?.ID);
+            ViewData["Pottery"] = PotterySelectList(inventory?.ID);
+            ViewData["Materials"] = MaterialsSelectList(inventory?.ID);
+        }
+
         [HttpGet]
         public JsonResult GetUnits(int InventoryID)
         {

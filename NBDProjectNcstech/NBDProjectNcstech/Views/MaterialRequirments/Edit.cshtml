@@ -2,6 +2,9 @@
 
 @{
     ViewData["Title"] = "Edit";
+    SelectList plantsList = (SelectList)ViewData["Plants"];
+    SelectList potteryList = (SelectList)ViewData["Pottery"];
+    SelectList materialsList = (SelectList)ViewData["Materials"];
 }
 
 <!DOCTYPE html>
@@ -197,7 +200,27 @@
                                     </div>
                                     <div class="form-group">
                                         <label asp-for="InventoryID" class="control-label"></label>
-                                        <select asp-for="InventoryID" class="form-control" asp-items="ViewBag.InventoryID"></select>
+                                        <select asp-for="InventoryID" class="form-control">
+                                            <option value="0" disabled selected>Select an Inventory item</option>
+                                            <optgroup label="Plants">
+                                                @foreach (var item in plantsList)
+                                                {
+                                                    <option value="@item.Value">@item.Text</option>
+                                                }
+                                            </optgroup>
+                                            <optgroup label="Pottery">
+                                                @foreach (var item in potteryList)
+                                                {
+                                                    <option value="@item.Value">@item.Text</option>
+                                                }
+                                            </optgroup>
+                                            <optgroup label="Materials">
+                                                @foreach (var item in materialsList)
+                                                {
+                                                    <option value="@item.Value">@item.Text</option>
+                                                }
+                                            </optgroup>
+                                        </select>
                                         <span asp-validation-for="InventoryID" class="text-danger"></span>
                                     </div>
                                     <div class="form-group">

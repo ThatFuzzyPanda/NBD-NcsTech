@@ -207,7 +207,7 @@ namespace NBDProjectNcstech.Data.NBDMigrations
                         .HasMaxLength(50)
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("ItemTypeID")
+                    b.Property<int>("ItemTypeID")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Name")
@@ -217,9 +217,6 @@ namespace NBDProjectNcstech.Data.NBDMigrations
 
                     b.Property<string>("Size")
                         .HasColumnType("TEXT");
-
-                    b.Property<int>("TypeID")
-                        .HasColumnType("INTEGER");
 
                     b.Property<int>("UnitID")
                         .HasColumnType("INTEGER");
@@ -496,7 +493,9 @@ namespace NBDProjectNcstech.Data.NBDMigrations
                 {
                     b.HasOne("NBDProjectNcstech.Models.ItemType", "ItemType")
                         .WithMany()
-                        .HasForeignKey("ItemTypeID");
+                        .HasForeignKey("ItemTypeID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("NBDProjectNcstech.Models.Unit", "Unit")
                         .WithMany("Inventories")
