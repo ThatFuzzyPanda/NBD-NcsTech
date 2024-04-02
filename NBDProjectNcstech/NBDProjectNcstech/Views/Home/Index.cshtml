@@ -100,7 +100,7 @@
                                 <p>Home</p>
                             </a>
                         </li>
-                        @if (User.IsInRole("Sales") || User.IsInRole("Admin") || User.IsInRole("Management"))
+                        @if (User.IsInRole("Sales") || User.IsInRole("Admin") || User.IsInRole("Management") || User.IsInRole("Designer"))
                         {
 
 
@@ -120,7 +120,7 @@
                                 </a>
                             </li>
                         }
-                        @if (User.IsInRole("Sales") || User.IsInRole("Admin") || User.IsInRole("Designer") || User.IsInRole("Management"))
+                        @if ( User.IsInRole("Admin") || User.IsInRole("Designer") || User.IsInRole("Management"))
                         {
                             <!-- Bid -->
                             <li class="nav-item">
@@ -386,7 +386,7 @@
                     <form asp-action="Index" method="get">
                         <div class="row">
                             <div class="col-lg-12">
-                                <div class="card">
+                                <div class="card collapsed-card">
                                     <div class="card-header" style="background-color:#423535;">
                                         <div class="row align-items-center">
                                             <div class="col">
@@ -400,7 +400,7 @@
                                                     </a>
                                                 }
                                                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                                                    <i class="fas fa-minus"></i>
+                                                    <i class="fas fa-plus"></i>
                                                 </button>
                                             </div>
                                         </div>
@@ -466,7 +466,7 @@
                             </div>
 
                             <div class="col-lg-12">
-                                <div class="card">
+                                <div class="card collapsed-card">
                                     <div class="card-header" style="background-color:#423535;">
                                         <div class="row align-items-center">
                                             <div class="col">
@@ -480,7 +480,7 @@
                                                     </a>
                                                 }
                                                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                                                    <i class="fas fa-minus"></i>
+                                                    <i class="fas fa-plus"></i>
                                                 </button>
                                             </div>
                                         </div>
@@ -517,7 +517,7 @@
 
 
 
-                                    <div class="card-body table-responsive p-0">
+                                    <div class="card-body table-responsive p-0 " >
                                         <table class="table table-striped table-valign-middle">
                                             <thead>
                                                 <tr>
@@ -582,5 +582,6 @@
     <!-- Bootstrap 4 -->
     <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="dist/js/adminlte.min.js"></script>
+   
 </body>
 </html>
