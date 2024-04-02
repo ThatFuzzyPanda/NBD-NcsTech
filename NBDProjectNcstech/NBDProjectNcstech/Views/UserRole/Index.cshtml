@@ -192,9 +192,12 @@
 
 									 @foreach (var item in Model)
 										{
-										 <tr>
-											<td>
-												@Html.DisplayFor(modelItem => item.UserName)
+											<tr>
+												<td>
+													
+														@Html.DisplayFor(modelItem => item.UserName)
+													
+													
 											</td>
 											<td>
 												@{
@@ -205,10 +208,14 @@
 													}
 												</td>
 												<td>
+													@if (!item.UserRoles.Contains("Admin"))
+													{
 													<a asp-action="Edit" asp-route-id="@item.ID" class="btn btn-sm btn-outline-primary"
 												   role="button" data-bs-toggle="tooltip" title="Edit @ViewData["ControllerFriendlyName"]">
 													&#x270E;
+												
 												</a>
+													}
 											</td>
 										</tr>
 										}
