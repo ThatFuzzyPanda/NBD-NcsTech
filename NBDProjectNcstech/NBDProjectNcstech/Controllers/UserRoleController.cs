@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NBDProjectNcstech.CustomControllers;
 using NBDProjectNcstech.Data;
+using NBDProjectNcstech.Models;
 using NBDProjectNcstech.ViewModels;
 
 namespace NBDProjectNcstech.Controllers
@@ -37,6 +38,46 @@ namespace NBDProjectNcstech.Controllers
             };
             return View(users);
         }
+
+        // GET: Users/Create
+        [Authorize(Roles = "Admin")]
+        public IActionResult Create()
+        {
+            PopulateAssignedRoleData(null);
+            return View();
+        }
+
+        // POST: Users/Create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> Create([Bind("ID,UserName,UserRoles,Password")]UserVM model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = new IdentityUser 
+                {
+                    UserName = model.UserName,
+                    Email = model.UserName,
+                    EmailConfirmed = true
+                };
+                var result = await _userManager.CreateAsync(user, model.Password);
+
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("Index");
+                }
+
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError("", error.Description);
+                }
+            }
+
+            PopulateAssignedRoleData(model);
+            return View(model);
+        }
+
         // GET: Users/Edit/5
         public async Task<IActionResult> Edit(string id)
         {
@@ -53,7 +94,8 @@ namespace NBDProjectNcstech.Controllers
             {
                 ID = _user.Id,
                 UserName = _user.UserName,
-                UserRoles = (List<string>)await _userManager.GetRolesAsync(_user)
+                UserRoles = (List<string>)await _userManager.GetRolesAsync(_user),
+                Password = _user.PasswordHash
             };
             PopulateAssignedRoleData(user);
             return View(user);
@@ -69,7 +111,8 @@ namespace NBDProjectNcstech.Controllers
             {
                 ID = _user.Id,
                 UserName = _user.UserName,
-                UserRoles = (List<string>)await _userManager.GetRolesAsync(_user)
+                UserRoles = (List<string>)await _userManager.GetRolesAsync(_user),
+                Password = _user.PasswordHash
             };
             try
             {
@@ -85,10 +128,10 @@ namespace NBDProjectNcstech.Controllers
             return View(user);
         }
 
-        private void PopulateAssignedRoleData(UserVM user)
+        private void PopulateAssignedRoleData(UserVM user = null)
         {//Prepare checkboxes for all Roles
             var allRoles = _context.Roles;
-            var currentRoles = user.UserRoles;
+            var currentRoles = user?.UserRoles;
             var viewModel = new List<RoleVM>();
             foreach (var r in allRoles)
             {
@@ -146,7 +189,28 @@ namespace NBDProjectNcstech.Controllers
             }
         }
 
-        protected override void Dispose(bool disposing)
+		// GET: Users/Deactivate/5
+		public async Task<IActionResult> Deactivate(string id)
+		{
+			if (id == null)
+			{
+				return new BadRequestResult();
+			}
+
+			var user = await _userManager.FindByIdAsync(id);
+
+			if (user == null)
+			{
+				return NotFound();
+			}
+
+			user.LockoutEnabled = true; // Set Lockout property to true to deactivate user
+			await _userManager.UpdateAsync(user);
+
+			return RedirectToAction("Index");
+		}
+
+		protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
