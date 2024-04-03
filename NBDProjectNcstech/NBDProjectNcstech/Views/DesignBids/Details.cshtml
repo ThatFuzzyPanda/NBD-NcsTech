@@ -230,7 +230,16 @@
 												</form>
 											}
 											<button type="button" onclick="window.location.href = '@Url.Action("Index")'" class="btn btn-primary mr-2">Cancel</button>
-
+											@if (Model.Approval.AdminApprovalStatus == "Approved" && Model.Approval.ClientApprovalStatus == "Approved")
+											{
+												<a class="btn btn-secondary mr-2" href="#" data-toggle="popover">
+													Approvel/Deny<span class="badge">
+														<i class="fas fa-lock"></i>
+													</span>
+												</a>
+											}
+											else
+											{
 											@if (User.IsInRole("Admin") || User.IsInRole("Management"))
 											{
 												<button class="btn btn-success mr-2" id="nowApprove"
@@ -241,6 +250,7 @@
 														data-bs-toggle="modal" data-bs-target="#rejectionModal" data-id="@Model?.ID" type="button">
 													<strong>Reject</strong>
 												</button>
+											}
 											}
 										</div>
 
