@@ -23,12 +23,11 @@
                 @if (SignInManager.IsSignedIn(User))
                 {
                     <li>
-                        <a asp-area="Identity" asp-page="/Account/Manage/Index" class="btn btn-primary">Hello @User.Identity?.Name!</a>
+                        <p style="font-size:larger">Account created successfully<span class="badge badge-sucess "><i class="fas fa-check"></i></span>. Please log in with your credentials.</p>
                     </li>
                     <li>
-                        <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                            <button type="submit" class="btn btn-outline-light">Logout</button>
-                        </form>
+                        <a asp-area="Identity" asp-page="/Account/Login" class="btn btn-primary">Login</a>
+                        <a asp-area="Identity" asp-page="/Account/Manage/Index">   Manage</a>
                     </li>
                 }
                 else

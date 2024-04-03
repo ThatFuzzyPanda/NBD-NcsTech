@@ -16,7 +16,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("NBDProjectNcstech")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d6d0aa6a73eab0409ede938c0c6cacbcfc8e5dca")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0a223faca74a29934b6be987297788729ddfd921")]
 [assembly: System.Reflection.AssemblyProductAttribute("NBDProjectNcstech")]
 [assembly: System.Reflection.AssemblyTitleAttribute("NBDProjectNcstech")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
