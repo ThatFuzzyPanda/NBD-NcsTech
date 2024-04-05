@@ -224,14 +224,20 @@
 
 									</table>
 								 </div>
-
+								
                                     <!-- /.card-body -->
                                 </div>
                                 <!-- /.card -->
                             </div>
                             <!-- /.row -->
                         </div><!-- /.container-fluid -->
-                    
+					
+						<form class="nav-link" asp-area="Identity" asp-page="/Account/Register" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+						<span> </span><button type="submit" class="btn btn-success">Register A new Employee</button>
+						</form>
+					
+
+					
                 </div> <!-- /.content -->
 
             </div> <!-- /.content-wrapper -->

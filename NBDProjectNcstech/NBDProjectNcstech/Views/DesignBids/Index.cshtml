@@ -309,7 +309,7 @@
 															}
 														</td>
 														<td>
-															@if (User.IsInRole("Admin") || User.IsInRole("Management"))
+															 @if (User.IsInRole("Admin") || User.IsInRole("Designer") || User.IsInRole("Management"))
 															{
 																if (item.Approval.AdminApprovalStatus == "Approved" && item.Approval.ClientApprovalStatus == "Approved")
 																{

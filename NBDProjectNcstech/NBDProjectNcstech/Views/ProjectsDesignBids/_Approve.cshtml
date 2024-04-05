@@ -1,0 +1,25 @@
+﻿@model NBDProjectNcstech.Models.DesignBid
+<form asp-action="Approve" method="post" id="approveForm">
+	<input type="hidden" name="id" id="hiddenIdField" value="" />
+	<div class="row">
+		<div class="col-md-12">
+			<div class="form-group">
+				<label class="form-check-label" for="ddlApproveBy">
+					<strong>Approving as:</strong>
+				</label>
+				<select class="form-control" id="ddlApproveBy" name="ddlApproveBy" required>
+					<option value="">Select an option</option>
+					<option value="1">Admin</option>
+					<option value="2">Client</option>
+				</select>
+				<label class="form-check-label" for="txtDesc">
+					<strong>Description</strong>
+				</label>
+				<textarea class="form-control" id="txtDesc" name="txtDesc" placeholder="Enter ..."></textarea>
+			</div>
+			<div class="form-group">
+				<input type="submit" id="submitReject" value="Approve" class="btn btn-success mr-2" />
+			</div>
+		</div>
+	</div>
+</form>

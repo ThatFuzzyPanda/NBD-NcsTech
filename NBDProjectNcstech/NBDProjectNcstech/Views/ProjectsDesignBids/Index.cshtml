@@ -182,9 +182,12 @@
                                                 <label class="control-label" style="color: white;">Bids</label>
                                             </div>
                                             <div class="col-auto">
+                                                 @if (User.IsInRole("Admin") || User.IsInRole("Designer") || User.IsInRole("Management"))
+												{
                                                 <a asp-controller="ProjectsDesignBids" asp-action="Create" asp-route-projectID="@project.Id" class="btn btn-primary btn-sm rounded-circle" style="margin-right: 10px;">
                                                     <i class="fas fa-plus"></i>
                                                 </a>
+                                                 }
                                             </div>
                                         </div>
                                     </div>
