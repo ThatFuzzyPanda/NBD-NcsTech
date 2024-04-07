@@ -195,7 +195,7 @@ namespace NBDProjectNcstech.Controllers
 				{
 					designBid.Approval.ClientApprovalStatus = ApprovalStatus.Approved.ToString();
 					designBid.Approval.ClientApprovalNotes = txtDesc;
-					designBid.Approval.AdminApprovalDate = DateTime.Now;
+					designBid.Approval.ClientApprovalDate = DateTime.Now;
 
 				}
 				else
