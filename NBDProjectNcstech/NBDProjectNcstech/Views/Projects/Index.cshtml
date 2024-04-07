@@ -135,6 +135,11 @@
 
                         }
                         <l1 class="nav-item">
+                            <form class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                                <span> </span><button type="submit" class="">Manage Your Account</button>
+                            </form>
+                        </l1>
+                        <l1 class="nav-item">
                             <form class="nav-link" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
                                 <i class="nav-icon fas fa-sign-out-alt"></i>
                                 <span> </span><button type="submit" class="btn btn-light">Logout</button>
@@ -178,11 +183,16 @@
                                             <div class="col">
                                                 <label class="control-label" style="color: white;">Projects</label>
                                             </div>
+                                            
                                             <div class="col-auto">
+                                                @if (User.IsInRole("Admin") || User.IsInRole("Designer") || User.IsInRole("Management"))
+                                                {
                                                 <a asp-controller="Projects" asp-action="Create" class="btn btn-primary btn-sm rounded-circle">
                                                     <i class="fas fa-plus"></i>
                                                 </a>
+                                                }
                                             </div>
+                       
                                         </div>
                                     </div>
 
@@ -268,16 +278,24 @@
                                                             @Html.DisplayFor(modelItem => item.Client.Name)
                                                         </td>
                                                         <td>
-                                                            <a href="@Url.Action("Edit", new { id = item.Id })">
-                                                                <i class="fas fa-edit" style="color: #15752d;"></i>
-                                                            </a> |
+                                                            @if (User.IsInRole("Admin") || User.IsInRole("Designer") || User.IsInRole("Management"))
+                                                            {
+                                                                <a href="@Url.Action("Edit", new { id = item.Id })">
+                                                                    <i class="fas fa-edit" style="color: #15752d;"></i>
+                                                                </a>
+                                                            }
+                                                            |
                                                             <a asp-controller="ProjectsDesignBids" asp-action="Index" asp-route-ProjectID="@item.Id" class="fas fa-info-circle"
                                                                role="button" data-bs-toggle="tooltip" title="@ViewData["ControllerFriendlyName"] Details">
 
                                                             </a> |
-                                                            <a href="@Url.Action("Delete", new { id = item.Id })">
-                                                                <i class="fas fa-trash-alt" style="color: #ff0000;"></i>
-                                                            </a>
+                                                            @if (User.IsInRole("Admin") || User.IsInRole("Management"))
+                                                            {
+
+                                                                <a href="@Url.Action("Delete", new { id = item.Id })">
+                                                                    <i class="fas fa-trash-alt" style="color: #ff0000;"></i>
+                                                                </a>
+                                                            }
                                                         </td>
                                                     </tr>
                                                 }

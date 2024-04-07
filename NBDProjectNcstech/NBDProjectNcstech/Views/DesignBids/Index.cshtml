@@ -141,6 +141,11 @@
 
 						}
 						<l1 class="nav-item">
+							<form class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+								<span> </span><button type="submit" class="">Manage Your Account</button>
+							</form>
+						</l1>
+						<l1 class="nav-item">
 							<form class="nav-link" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
 								<i class="nav-icon fas fa-sign-out-alt"></i>
 								<span> </span><button type="submit" class="btn btn-light">Logout</button>
@@ -309,7 +314,7 @@
 															}
 														</td>
 														<td>
-															@if (User.IsInRole("Admin") || User.IsInRole("Management"))
+															 @if (User.IsInRole("Admin") || User.IsInRole("Designer") || User.IsInRole("Management"))
 															{
 																if (item.Approval.AdminApprovalStatus == "Approved" && item.Approval.ClientApprovalStatus == "Approved")
 																{
