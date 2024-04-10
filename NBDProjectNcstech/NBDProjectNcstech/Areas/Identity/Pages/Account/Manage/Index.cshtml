@@ -1,4 +1,4 @@
-﻿@page
+﻿@* @page
 @model IndexModel
 @{
     ViewData["Title"] = "Profile";
@@ -31,6 +31,62 @@
         </form>
     </div>
 </div>
+<div class="row mb-3 justify-content-end">
+    <div class="col-md-9 offset-md-3">
+        <div class="cancel-button-container">
+            <button type="button" onclick="window.location.href = '@Url.Action("Index", "Home")'" class="btn btn-primary">Cancel</button>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+ *@
+
+
+            @page
+@model IndexModel
+@{
+    ViewData["Title"] = "Profile";
+    ViewData["ActivePage"] = ManageNavPages.Index;
+}
+
+<div class="row mb-3">
+    <!-- Main content area -->
+    <div class="col-md-9 offset-md-3">
+        <h3>@ViewData["Title"]</h3>
+        <partial name="_StatusMessage" for="StatusMessage" />
+    
+
+        <br />
+
+        <form id="profile-form" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+            <div class="form-floating mb-3">
+                <input asp-for="Username" class="form-control" placeholder="Please choose your username." disabled />
+                <label asp-for="Username" class="form-label" style="width: 700px;"></label>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="Input.PhoneNumber" class="form-control" placeholder="Please enter your phone number." />
+                <label asp-for="Input.PhoneNumber" class="form-label" style="width: 700px;"></label>
+                <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+            </div>
+            <br/>
+            <div class="row mb-3 justify-content-end">
+                <div class="col-md-9 offset-md-3">
+                    <div class="cancel-button-container">
+                        <button id="update-profile-button" type="submit" class="btn btn-success">Save</button>
+                        <button type="button" onclick="window.location.href = '@Url.Action("Index", "Home")'" class="btn btn-primary" style="margin-left: 10px;">Cancel</button>
+            </div>
+                </div>
+            </div>
+             
+        </form>
+    </div>
+</div>
+
+
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

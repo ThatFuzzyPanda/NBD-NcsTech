@@ -25,7 +25,17 @@
                 <span asp-validation-for="Input.Password" class="text-danger"></span>
             </div>
         }
-        <button class="w-100 btn btn-lg btn-danger" type="submit">Delete data and close my account</button>
+            <br />
+            <div class="row mb-3 justify-content-end">
+                <div class="col-md-9 offset-md-3">
+                    <div class="cancel-button-container">
+
+                        <button class="w-100 btn btn-lg btn-danger" type="submit">Delete data and close my account</button>
+                        <button type="button" onclick="window.location.href = '@Url.Action("Index", "Home")'" class="btn btn-primary" style="margin-left: 10px;">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        
     </form>
 </div>
 </div>
