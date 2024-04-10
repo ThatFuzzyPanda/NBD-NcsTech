@@ -74,11 +74,11 @@
 			</a>
 
             <!-- Sidebar -->
-            <div class="sidebar">
+			<div class="sidebar d-flex flex-column">
                 
 
 				<!-- Sidebar Menu -->
-				<nav class="mt-2">
+				<nav class="mt-2 flex-grow-1">
 					<ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
 
@@ -125,31 +125,32 @@
 						{
 							<li class="nav-item">
 								<a class="nav-link" asp-area="" asp-controller="UserRole" asp-action="Index">
-									<i class="nav-icon fas fa-users"></i>
+									<i class="fas fa-user"></i>
+
 									<p>Maintain User Roles</p>
 								</a>
 							</li>
 
                         }
                         <l1 class="nav-item">
-                            <form class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                                    <span> </span><button type="submit" class="">Manage Your Account</button>
-                            </form>
+                            <a class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+								<i class="nav-icon fas fa-id-card"></i>
+								<p>Manage Your Account</p>
+                            </a>
                         </l1>
-                        <l1 class="nav-item">
-                            <form class="nav-link" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                                <i class="nav-icon fas fa-sign-out-alt"></i>
-                                <span> </span><button type="submit" class="btn btn-light">Logout</button>
-                            </form>
-                        </l1>
-
+						
 
 					</ul>
 				</nav>
 				<!-- /.sidebar-menu -->
-
+				<div class="sidebar-footer mt-auto">
+					<form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+						<button type="submit" class="btn btn-block btn-outline-light">Logout</button>
+					</form>
+				</div>
 			</div>
 			<!-- /.sidebar -->
+			
 		</aside>
 
 
@@ -570,27 +571,30 @@
 							</div><!-- /.row -->
 						</form>
 					}
-					else
-					{
-						<div class="row">
-							<div class="col-12">
-								<div class="card">
-									<div class="row align-items-center">
-										<div class="col">
-											<h1 style="margin-left:100px">Please see manager for more access.</h1>
-										</div>
-										<div class="col-auto">
-											<img src="~/dist/img/meetManager.png" class="image-circle" alt="meetManager" style="margin-right:100px" />
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					}
+										else
+										{
+											<div class="row">
+												<div class="col-12">
+													<div class="card">
+														<div class="row align-items-center">
+															<div class="col">
+																<h1 style="margin-left:100px">Please see manager for more access.</h1>
+															</div>
+															<div class="col-auto">
+																<img src="~/dist/img/meetManager.png" class="image-circle" alt="meetManager" style="margin-right:100px" />
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										}
 				</div><!-- /.container-fluid -->
 			</div> <!-- /.content -->
-
-		</div> <!-- /.content-wrapper -->
+		</div>
+	</div>	</div>
+	</div>	</div>
+	
+	 <!-- /.content-wrapper -->
 		<!-- Control Sidebar -->
 		<aside class="control-sidebar control-sidebar-dark">
 			<!-- Control sidebar content goes here -->

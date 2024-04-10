@@ -1,5 +1,5 @@
 ﻿@{
-    if (ViewData.TryGetValue("ParentLayout", out var parentLayout) && parentLayout !=  null)
+    if (ViewData.TryGetValue("ParentLayout", out var parentLayout) && parentLayout != null)
     {
         Layout = parentLayout.ToString();
     }
@@ -9,20 +9,147 @@
     }
 }
 
-<h1>Manage your account</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Natural By Design | Home</title>
 
-<div>
-    <h2>Change your account settings</h2>
-    <hr />
-    <div class="row">
-        <div class="col-md-3">
-            <partial name="_ManageNav" />
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="~/plugins/fontawesome-free/css/all.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/dist/css/adminlte.min.css">
+    <link rel="stylesheet" href="~/css/TableStyle.css">
+    <style>
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-color: #f4f6f9;
+        }
+
+        .wrapper {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .main-sidebar {
+            background-color: #343a40;
+            color: #fff;
+        }
+
+            .main-sidebar .nav-sidebar .nav-link {
+                color: #adb5bd;
+            }
+
+                .main-sidebar .nav-sidebar .nav-link.active {
+                    background-color: #495057;
+                }
+
+        .content-wrapper {
+            background-color: #fff;
+            flex: 1;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .main-footer {
+            background-color: #343a40;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+        }
+
+        .account-settings {
+            padding: 20px;
+        }
+
+            .account-settings h2 {
+                margin-bottom: 10px;
+            }
+
+            .account-settings hr {
+                margin-bottom: 20px;
+            }
+                                
+        
+        .title-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+    
+    </style>
+</head>
+<body class="hold-transition sidebar-mini">
+    <div class="wrapper">
+
+        <!-- Main Sidebar Container -->
+        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+            <!-- Sidebar content -->
+            <div class="sidebar">
+                <nav class="mt-2">
+                    <!-- Your account settings -->
+                    <div class="account-settings">
+                        <h2>Manage Your Account</h2>
+                        <hr />
+                        <!-- Your ManageNav partial -->
+                        <div class="col-md-3">
+                            <partial name="_ManageNav" />
+                        </div>
+                        <hr />
+                    </div>
+                </nav>
+            </div>
+        </aside>
+
+        <!-- Content Wrapper. Contains page content -->
+        <!-- Content Header (Page header) -->
+        <!-- Main content -->
+        <div class="content">
+            <div class="container-fluid">
+                <br />
+                <!-- Account settings form -->
+                <div class="card ">
+                    <div class="card-header" style="background-color:#423535;">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <label class="control-label" style="color: white;">Change Your Account Setting</label>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6 offset-md-3">
+                            <br />
+                         
+                            @RenderBody()
+
+                            <br /><br />
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="col-md-9">
-            @RenderBody()
-        </div>
+       
     </div>
-</div>
+
+    <!-- jQuery -->
+    <script src="plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="dist/js/adminlte.min.js"></script>
+</body>
+</html>
 
 @section Scripts {
     @RenderSection("Scripts", required: false)

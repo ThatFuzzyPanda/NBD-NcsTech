@@ -13,8 +13,9 @@
     </p>
 </div>
 
-<div>
-    <form id="delete-user" method="post">
+<div class="row mb-3">
+    <div class="col-md-6 offset-md-3">
+        <form id="delete-user" method="post" style="font-size: 1em;">
         <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
         @if (Model.RequirePassword)
         {
@@ -27,6 +28,8 @@
         <button class="w-100 btn btn-lg btn-danger" type="submit">Delete data and close my account</button>
     </form>
 </div>
+</div>
+
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

@@ -178,131 +178,131 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="card">
-                                    <div class="card-header" style="background-color:#423535;">
-                                        <div class="row align-items-center">
-                                            <div class="col">
-                                                <label class="control-label" style="color: white;">Projects</label>
-                                            </div>
+                                                                <div class="card-header" style="background-color:#423535;">
+                                                                    <div class="row align-items-center">
+                                                                        <div class="col">
+                                                                            <label class="control-label" style="color: white;">Projects</label>
+                                                                        </div>
                                             
-                                            <div class="col-auto">
-                                                @if (User.IsInRole("Admin") || User.IsInRole("Designer") || User.IsInRole("Management"))
-                                                {
-                                                <a asp-controller="Projects" asp-action="Create" class="btn btn-primary btn-sm rounded-circle">
-                                                    <i class="fas fa-plus"></i>
-                                                </a>
-                                                }
-                                            </div>
+                                                                        <div class="col-auto">
+                                                                            @if (User.IsInRole("Admin") || User.IsInRole("Designer") || User.IsInRole("Management"))
+                                                                            {
+                                                                            <a asp-controller="Projects" asp-action="Create" class="btn btn-primary btn-sm rounded-circle">
+                                                                                <i class="fas fa-plus"></i>
+                                                                            </a>
+                                                                            }
+                                                                        </div>
                        
-                                        </div>
-                                    </div>
+                                                                    </div>
+                                                                </div>
 
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <label class="control-label">Search by Organization Name:</label>
-                                                <div class="input-group">
-                                                    @Html.TextBox("SearchStringORG", null, new { @class = "form-control" })
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4" >
-                                                <label class="control-label">Select by Start and End Date:</label>
-                                                <div class="input-group">
-                                                    <span class="mr-2">Start Date:</span>
-                                                    <input type="date" class="form-control" name="Start" />
-                                                </div>
-                                                <div class="input-group">
-                                                    <span class="mx-2">End Date:</span>
-                                                    <input type="date" class="form-control" name="End" id="endDateInput" />
-                                                </div>
-                                            </div>
+                                                                <div class="card-body">
+                                                                    <div class="row">
+                                                                        <div class="col-md-4">
+                                                                            <label class="control-label">Search by Organization Name:</label>
+                                                                            <div class="input-group">
+                                                                                @Html.TextBox("SearchStringORG", null, new { @class = "form-control" })
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-4" >
+                                                                            <label class="control-label">Select by Start and End Date:</label>
+                                                                            <div class="input-group">
+                                                                                <span class="mr-2">Start Date:</span>
+                                                                                <input type="date" class="form-control" name="Start" />
+                                                                            </div>
+                                                                            <div class="input-group">
+                                                                                <span class="mx-2">End Date:</span>
+                                                                                <input type="date" class="form-control" name="End" id="endDateInput" />
+                                                                            </div>
+                                                                        </div>
                                        
-                                            <div class="col-md-4 align-items-end">
-                                                <button type="submit" name="actionButton" value="Filter" class="btn btn-outline-primary mr-2">
-                                                    <i class="fas fa-search"></i>
-                                                </button>
-                                                <a asp-action="Index" class="btn btn-outline-dark">Reset</a>
-                                            </div>
+                                                                        <div class="col-md-4 align-items-end">
+                                                                            <button type="submit" name="actionButton" value="Filter" class="btn btn-outline-primary mr-2">
+                                                                                <i class="fas fa-search"></i>
+                                                                            </button>
+                                                                            <a asp-action="Index" class="btn btn-outline-dark">Reset</a>
+                                                                        </div>
 
 
-                                        </div>
-                                    </div>
+                                                                    </div>
+                                                                </div>
 
 
 
-                                    <!-- /.card-header -->
-                                    <div class="card-body table-responsive p-0">
-                                        <table class="table table-hover text-nowrap">
-                                            <thead>
-                                                <tr>
-                                                    <th>
-                                                        @Html.ActionLink("Bid Date", "Index",new {sortOrder = ViewBag.DateSortParm})
-                                                    </th>
-                                                    <th>
-                                                        @Html.DisplayNameFor(model => model.ProjectSite)
-                                                    </th>
-                                                    <th>
-                                                        @Html.DisplayNameFor(model => model.Est_BeginDate)
-                                                    </th>
-                                                    <th>
-                                                        @Html.DisplayNameFor(model => model.Est_CompleteDate)
-                                                    </th>
-                                                    @* <th>
-                                                    @Html.DisplayNameFor(model => model.BidAmount)
-                                                    </th> *@
-                                                    <th>
-                                                        @Html.DisplayNameFor(model => model.ClientId)
-                                                    </th>
-                                                    <th></th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @foreach (var item in Model)
-                                                {
-                                                    <tr>
-                                                        <td>
-                                                            @Html.DisplayFor(modelItem => item.BidDate)
-                                                        </td>
-                                                        <td>
-                                                            @Html.DisplayFor(modelItem => item.ProjectSite)
-                                                        </td>
-                                                        <td>
-                                                            @Html.DisplayFor(modelItem => item.Est_BeginDate)
-                                                        </td>
-                                                        <td>
-                                                            @Html.DisplayFor(modelItem => item.Est_CompleteDate)
-                                                        </td>
-                                                        @* <td>
-                                                    @Html.DisplayFor(modelItem => item.BidAmount)
-                                                    </td> *@
-                                                        <td>
-                                                            @Html.DisplayFor(modelItem => item.Client.Name)
-                                                        </td>
-                                                        <td>
-                                                            @if (User.IsInRole("Admin") || User.IsInRole("Designer") || User.IsInRole("Management"))
-                                                            {
-                                                                <a href="@Url.Action("Edit", new { id = item.Id })">
-                                                                    <i class="fas fa-edit" style="color: #15752d;"></i>
-                                                                </a>
-                                                            }
-                                                            |
-                                                            <a asp-controller="ProjectsDesignBids" asp-action="Index" asp-route-ProjectID="@item.Id" class="fas fa-info-circle"
-                                                               role="button" data-bs-toggle="tooltip" title="@ViewData["ControllerFriendlyName"] Details">
+                                                                <!-- /.card-header -->
+                                                                <div class="card-body table-responsive p-0">
+                                                                    <table class="table table-hover text-nowrap">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th>
+                                                                                    @Html.ActionLink("Bid Date", "Index",new {sortOrder = ViewBag.DateSortParm})
+                                                                                </th>
+                                                                                <th>
+                                                                                    @Html.DisplayNameFor(model => model.ProjectSite)
+                                                                                </th>
+                                                                                <th>
+                                                                                    @Html.DisplayNameFor(model => model.Est_BeginDate)
+                                                                                </th>
+                                                                                <th>
+                                                                                    @Html.DisplayNameFor(model => model.Est_CompleteDate)
+                                                                                </th>
+                                                                                @* <th>
+                                                                                @Html.DisplayNameFor(model => model.BidAmount)
+                                                                                </th> *@
+                                                                                <th>
+                                                                                    @Html.DisplayNameFor(model => model.ClientId)
+                                                                                </th>
+                                                                                <th></th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            @foreach (var item in Model)
+                                                                            {
+                                                                                <tr>
+                                                                                    <td>
+                                                                                        @Html.DisplayFor(modelItem => item.BidDate)
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        @Html.DisplayFor(modelItem => item.ProjectSite)
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        @Html.DisplayFor(modelItem => item.Est_BeginDate)
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        @Html.DisplayFor(modelItem => item.Est_CompleteDate)
+                                                                                    </td>
+                                                                                    @* <td>
+                                                                                @Html.DisplayFor(modelItem => item.BidAmount)
+                                                                                </td> *@
+                                                                                    <td>
+                                                                                        @Html.DisplayFor(modelItem => item.Client.Name)
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        @if (User.IsInRole("Admin") || User.IsInRole("Designer") || User.IsInRole("Management"))
+                                                                                        {
+                                                                                            <a href="@Url.Action("Edit", new { id = item.Id })">
+                                                                                                <i class="fas fa-edit" style="color: #15752d;"></i>
+                                                                                            </a>
+                                                                                        }
+                                                                                        |
+                                                                                        <a asp-controller="ProjectsDesignBids" asp-action="Index" asp-route-ProjectID="@item.Id" class="fas fa-info-circle"
+                                                                                           role="button" data-bs-toggle="tooltip" title="@ViewData["ControllerFriendlyName"] Details">
 
-                                                            </a> |
-                                                            @if (User.IsInRole("Admin") || User.IsInRole("Management"))
-                                                            {
+                                                                                        </a> |
+                                                                                        @if (User.IsInRole("Admin") || User.IsInRole("Management"))
+                                                                                        {
 
-                                                                <a href="@Url.Action("Delete", new { id = item.Id })">
-                                                                    <i class="fas fa-trash-alt" style="color: #ff0000;"></i>
-                                                                </a>
-                                                            }
-                                                        </td>
-                                                    </tr>
-                                                }
-                                            </tbody>
-                                        </table>
-                                        <partial name="_PagingNavBar" />
-                                    </div>
+                                                                                            <a href="@Url.Action("Delete", new { id = item.Id })">
+                                                                                                <i class="fas fa-trash-alt" style="color: #ff0000;"></i>
+                                                                                            </a>
+                                                                                        }
+                                                                                    </td>
+                                                                                </tr>
+                                                                            }
+                                                                        </tbody>
+                                                                    </table>
+                                                                    <partial name="_PagingNavBar" />
+                                                                </div>
                                     <!-- /.card-body -->
                                 </div>
                                 <!-- /.card -->
@@ -313,7 +313,7 @@
                 </div> <!-- /.content -->
 
             </div> <!-- /.content-wrapper -->
-        </div> <!-- /.content-wrapper -->
+     </div>
         <!-- Control Sidebar -->
         <aside class="control-sidebar control-sidebar-dark">
             <!-- Control sidebar content goes here -->
