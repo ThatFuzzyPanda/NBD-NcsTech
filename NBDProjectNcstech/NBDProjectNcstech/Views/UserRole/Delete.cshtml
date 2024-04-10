@@ -1,8 +1,9 @@
-﻿@model IEnumerable<NBDProjectNcstech.ViewModels.UserVM>
+﻿@model NBDProjectNcstech.ViewModels.UserVM
 
 @{
-    ViewBag.Title = "User Roles";
+	ViewBag.Title = "Edit Roles";
 }
+
 <!DOCTYPE html>
 
 <html lang="en">
@@ -12,11 +13,13 @@
 	<title>Natural By Design |Home</title>
 
 	<!-- Google Font: Source Sans Pro -->
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-	<!-- Font Awesome Icons -->
-	<link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+	<link rel="stylesheet" href="~/https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome Icons -->
+    <a href="c:\users\fevie\onedrive\desktop\community\nbd-ncstech\nbdprojectncstech\nbdprojectncstech\views\clients\delete.cshtml"></a>
+	<link rel="stylesheet" href="~/plugins/fontawesome-free/css/all.min.css">
 	<!-- Theme style -->
-	<link rel="stylesheet" href="dist/css/adminlte.min.css">
+	<link rel="stylesheet" href="~/dist/css/adminlte.min.css">
+	<link rel="stylesheet" href="~/css/TableStyle.css">
 </head>
 <body class="hold-transition sidebar-mini">
 	<div class="wrapper">
@@ -36,21 +39,23 @@
 			</ul>
 
 			<!-- Right navbar links -->
-			<ul class="navbar-nav ml-auto">
+			@* <ul class="navbar-nav ml-auto">
 
 				<li class="nav-item">
 					<a class="nav-link" data-widget="fullscreen" href="#" role="button">
 						<i class="fas fa-expand-arrows-alt"></i>
 					</a>
 				</li>
-			</ul>
-		</nav>
+			</ul>*@
+		</nav> 
 		<!-- /.navbar -->
 		<!-- Main Sidebar Container -->
 		<aside class="main-sidebar sidebar-dark-primary elevation-4">
 			<!-- Brand Logo -->
 			<a asp-controller="Home" asp-action="Index" class="brand-link">
-				<img src="dist/img/natural.png" alt="nbd Logo" class="brand-image img-circle elevation-3">
+				<img src="~/dist/img/natural.png" alt="nbd Logo" class="brand-image img-circle elevation-3">
+
+				@* <img src="dist/img/nbd.png" alt="nbd Logo" class="brand-image img-circle elevation-3"> *@
 				<span class="brand-text font-weight-bold" style="font-family: 'Times New Roman', Times, serif;">Natural By Design</span>
 
 			</a>
@@ -93,7 +98,7 @@
 								<p>Home</p>
 							</a>
 						</li>
-						@if (User.IsInRole("Sales") || User.IsInRole("Admin"))
+						@if (User.IsInRole("Sales") || User.IsInRole("Admin") || User.IsInRole("Management") || User.IsInRole("Designer"))
 						{
 
 
@@ -113,7 +118,7 @@
 								</a>
 							</li>
 						}
-						@if (User.IsInRole("Sales") || User.IsInRole("Admin") || User.IsInRole("Designer"))
+						@if (User.IsInRole("Admin") || User.IsInRole("Designer") || User.IsInRole("Management"))
 						{
 							<!-- Bid -->
 							<li class="nav-item">
@@ -153,121 +158,84 @@
 			</div>
 			<!-- /.sidebar -->
 		</aside>
+
+
+
 		<!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper">
-            <!-- Content Header (Page header) -->
-            <div class="content-header">
-                <div class="container-fluid">
-                    <div class="row mb-2">
-                        <div class="col-sm-6">
-                        </div><!-- /.col -->
-                    </div><!-- /.row -->
-                </div><!-- /.container-fluid -->
-            </div>
-            <!-- /.content-header -->
-            <!-- Main content -->
-            <!-- /.content-header -->
-            <!-- Main content -->
-            <div class="content">
-                <div class="container-fluid">
-					<div class="row">
-						<div class="col-12">
-							<div class="card">
-								<div class="card-header" style="background-color:#423535;">
-									<div class="row align-items-center">
-										<div class="col">
-											<label class="control-label" style="color: white;">User Roles</label>
-										</div>
-									</div>
-								</div>
-								<div class="col-auto">
-									
-								</div>
+		<div class="content-wrapper">
+			<!-- Content Header (Page header) -->
+			<div class="content-header">
+				<div class="container-fluid">
+					<div class="row mb-2">
+						<div class="col-sm-6">
+						</div><!-- /.col -->
+					</div><!-- /.row -->
+				</div><!-- /.container-fluid -->
+			</div>
+			<!-- /.content-header -->
+			<!-- Main content -->
+			<!-- /.content-header -->
+			<!-- Main content -->
+			<div class="content">
+				
 
-										
-									<div class="card-body table-responsive p-0">
-									<table class="table table-hover text-nowrap">
-										<tr>
-											<th>
-												 @Html.DisplayNameFor(model => model.UserName)
-											</th>
-												<th>
-												 @Html.DisplayNameFor(model => model.UserRoles)
-											</th>
-											 <th></th>
-										 </tr>
+					<div class="card">
+					<div class="card-header" style="background-color:#423535;">
+						<div class="row align-items-center">
+							<div class="col">
+								<label class="control-label" style="color: white;">Delete Design Bid: Are you sure you want to delete this?</label>
+							</div>
 
-									 @foreach (var item in Model)
-										{
-											<tr>
-												<td>
-													
-														@Html.DisplayFor(modelItem => item.UserName)
-													
-													
-											</td>
-											<td>
-												@{
-													foreach (var r in item.UserRoles)
-													{
-														@:  @r <br />
-													}
-													}
-												</td>
-												<td>
-													@if (!item.UserRoles.Contains("Admin"))
-													{
-													<a asp-action="Edit" asp-route-id="@item.ID" class="btn btn-sm btn-outline-primary"
-												   role="button" data-bs-toggle="tooltip" title="Edit @ViewData["ControllerFriendlyName"]">
-													&#x270E;
-												
-												</a>
-														<a asp-action="Delete" asp-route-id="@item.ID" class="fas fa-trash-alt"
-														   role="button" data-bs-toggle="tooltip" title="Deactivate @ViewData["ControllerFriendlyName"]">
-															
+						</div>
+					</div>
 
-														</a>
-													}
-											</td>
-										</tr>
-										}
 
-									</table>
-								 </div>
+					<div class="row mb-3">
+							<div class="col-md-9 offset-md-4">
+							<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+								<br />
+								<dl class="row" style="font-size: 1em;">
+								<dt class="col-sm-2">
+									@Html.DisplayNameFor(model => model.UserName)
+								</dt>
 								
-                                    <!-- /.card-body -->
-                                </div>
-                                <!-- /.card -->
-                            </div>
-                            <!-- /.row -->
-                        </div><!-- /.container-fluid -->
-					
-						<form class="nav-link" asp-area="Identity" asp-page="/Account/Register" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-						<span> </span><button type="submit" class="btn btn-success">Register A new Employee</button>
-						</form>
-					
+							</dl>
+							<div>
 
-					
-                </div> <!-- /.content -->
+								<form asp-action="Delete">
+									<input type="hidden" asp-for="ID" />
+									<input type="submit" value="Delete" class="btn btn-danger" />
+									<button type="button" onclick="window.location.href = '@Url.Action("Index")'" class="btn btn-primary">Cancel</button>
+								</form>
 
-            </div> <!-- /.content-wrapper -->
-        </div> <!-- /.content-wrapper -->
-        <!-- Control Sidebar -->
 
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+			</div>
+			</div><!-- /.container-fluid -->
+		</div> <!-- /.content -->
+
+	
 		<!-- Control Sidebar -->
 		<aside class="control-sidebar control-sidebar-dark">
-			<!-- Control sidebar content goes here -->
-			<div class="p-3">
-				<h5>Title</h5>
-				<p>Sidebar content</p>
-			</div>
+		<!-- Control sidebar content goes here -->
+		<div class="p-3">
+			<h5>Title</h5>
+			<p>Sidebar content</p>
+		</div>
 		</aside>
 		<!-- /.control-sidebar -->
 		<!-- Main Footer -->
 		<footer class="main-footer">
 
-			<!-- Default to the left -->
-			<strong>    &copy; 2024 - NBDProjectNcstech - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a></strong>
+		<!-- Default to the left -->
+		<strong>    &copy; 2024 - NBDProjectNcstech - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a></strong>
 		</footer>
 	</div>
 
@@ -278,12 +246,7 @@
 	<script src="dist/js/adminlte.min.js"></script>
 </body>
 </html>
-@section Scripts {
-    <script type="text/javascript">
-        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-            return new bootstrap.Tooltip(tooltipTriggerEl)
-        })
-    </script>
-}
+
+
+
 

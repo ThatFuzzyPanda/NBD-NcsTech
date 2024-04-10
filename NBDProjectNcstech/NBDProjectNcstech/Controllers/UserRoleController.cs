@@ -190,24 +190,71 @@ namespace NBDProjectNcstech.Controllers
         }
 
 		// GET: Users/Deactivate/5
-		public async Task<IActionResult> Deactivate(string id)
+		public async Task<IActionResult> Delete(string id)
 		{
 			if (id == null)
 			{
 				return new BadRequestResult();
 			}
 
-			var user = await _userManager.FindByIdAsync(id);
+			var _user = await _userManager.FindByIdAsync(id);
 
-			if (user == null)
+			if (_user == null)
 			{
 				return NotFound();
 			}
+			UserVM user = new UserVM
+			{
+				ID = _user.Id,
+				UserName = _user.UserName,
+				UserRoles = (List<string>)await _userManager.GetRolesAsync(_user),
+				Password = _user.PasswordHash
+			};
+			_user.LockoutEnabled = true; // Set Lockout property to true to deactivate user
+			await _userManager.UpdateAsync(_user);
 
-			user.LockoutEnabled = true; // Set Lockout property to true to deactivate user
-			await _userManager.UpdateAsync(user);
+            return View(user);
+		}
+		// POST: Clients/Delete/5
+		[HttpPost, ActionName("Delete")]
+		[ValidateAntiForgeryToken]
+		[Authorize(Roles = "Admin,Management")]
+		public async Task<IActionResult> DeleteConfirmed(string id)
+		{
+			if (_userManager == null)
+			{
+				return Problem("There are no users to delete.");
+			}
 
-			return RedirectToAction("Index");
+			var _user = await _userManager.FindByIdAsync(id);
+			try
+			{
+				if (_user != null)
+				{
+					await _userManager.DeleteAsync(_user);
+				}
+				await _context.SaveChangesAsync();
+				return RedirectToAction(nameof(Index));
+			}
+			catch (DbUpdateException dex)
+			{
+				if (dex.GetBaseException().Message.Contains("FOREIGN KEY constraint failed"))
+				{
+					ModelState.AddModelError("", "Unable to Delete User. You cannot delete a User that has a Project in the system.");
+				}
+				else
+				{
+					ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
+				}
+			}
+			UserVM user = new UserVM
+			{
+				ID = _user.Id,
+				UserName = _user.UserName,
+				UserRoles = (List<string>)await _userManager.GetRolesAsync(_user),
+				Password = _user.PasswordHash
+			};
+			return View(user);
 		}
 
 		protected override void Dispose(bool disposing)
