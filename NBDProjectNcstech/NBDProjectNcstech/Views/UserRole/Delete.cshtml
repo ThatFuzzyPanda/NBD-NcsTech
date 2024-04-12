@@ -183,7 +183,7 @@
 					<div class="card-header" style="background-color:#423535;">
 						<div class="row align-items-center">
 							<div class="col">
-								<label class="control-label" style="color: white;">Delete Design Bid: Are you sure you want to delete this?</label>
+								<label class="control-label" style="color: white;">Delete User</label>
 							</div>
 
 						</div>
@@ -195,8 +195,8 @@
 							<div asp-validation-summary="ModelOnly" class="text-danger"></div>
 								<br />
 								<dl class="row" style="font-size: 1em;">
-								<dt class="col-sm-2">
-									@Html.DisplayNameFor(model => model.UserName)
+								<dt class="col-sm-6">
+									Are you sure you want to delete @Html.DisplayFor(model => model.UserName) ?
 								</dt>
 								
 							</dl>

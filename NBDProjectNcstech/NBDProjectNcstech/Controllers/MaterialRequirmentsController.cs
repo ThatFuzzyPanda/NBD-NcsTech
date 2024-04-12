@@ -239,7 +239,7 @@ namespace NBDProjectNcstech.Controllers
         private SelectList PlantsSelectList(int? SelectedId)
         {
             return new SelectList(_context.Inventory
-                .Where(d => d.ItemType.Name == "Pottery"), "ID", "Name", SelectedId);
+                .Where(d => d.ItemType.Name == "Plants"), "ID", "Name", SelectedId);
         }
 
         private SelectList PotterySelectList(int? SelectedId)

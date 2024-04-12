@@ -202,6 +202,9 @@
                                     <thead>
                                         <tr>
                                             <th>
+                                                @Html.DisplayNameFor(model => model.LabourRequirments.FirstOrDefault().Labour.LabourType)
+                                            </th>
+                                            <th>
                                                 @Html.DisplayNameFor(model => model.LabourRequirments.FirstOrDefault().Hours)
                                             </th>
                                             <th>
@@ -219,6 +222,9 @@
                                         @foreach (var item in Model.LabourRequirments)
                                         {
                                             <tr>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Labour.LabourType)
+                                                </td>
                                                 <td>
                                                     @Html.DisplayFor(modelItem => item.Hours)
                                                 </td>

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "C8xZHEz/LZyCkOW0l/Ij734orgrK/uAKpLyoWapSpMw=",
+  "Hash": "vmZgSTsh3OhjjW2QrOPydzvydJUm9crxSMJO6J8s4zk=",
   "Source": "NBDProjectNcstech",
   "BasePath": "_content/NBDProjectNcstech",
   "Mode": "Default",
@@ -2941,6 +2941,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\dist\\img\\icons.png"
+    },
+    {
+      "Identity": "C:\\Users\\Owner\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\wwwroot\\dist\\img\\meetManager.png",
+      "SourceId": "NBDProjectNcstech",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Owner\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\wwwroot\\",
+      "BasePath": "_content/NBDProjectNcstech",
+      "RelativePath": "dist/img/meetManager.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\dist\\img\\meetManager.png"
     },
     {
       "Identity": "C:\\Users\\Owner\\NBD-NcsTech\\NBDProjectNcstech\\NBDProjectNcstech\\wwwroot\\dist\\img\\natural.ico",
