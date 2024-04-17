@@ -19,7 +19,7 @@ namespace NBDProjectNcstech.Controllers
         // GET: LabourRequirments
         public async Task<IActionResult> Index()
         {
-            var nBDContext = _context.LabourRequirments.Include(l => l.DesignBid).Include(l => l.Labour);
+            var nBDContext = _context.LabourRequirments.Include(l => l.DesignBid).Include(l => l.Labour).Include(l=>l.Labour.LabourType);
             return View(await nBDContext.ToListAsync());
         }
 

@@ -205,7 +205,7 @@
                                                 @Html.DisplayNameFor(model => model.LabourRequirments.FirstOrDefault().Hours)
                                             </th>
                                             <th>
-                                                @Html.DisplayNameFor(model => model.LabourRequirments.FirstOrDefault().Description)
+                                                @Html.DisplayNameFor(model => model.LabourRequirments.FirstOrDefault().Labour.LabourType)
                                             </th>
                                             <th>
                                                 @Html.DisplayNameFor(model => model.LabourRequirments.FirstOrDefault().UnitPrice)
@@ -223,7 +223,7 @@
                                                     @Html.DisplayFor(modelItem => item.Hours)
                                                 </td>
                                                 <td>
-                                                    @Html.DisplayFor(modelItem => item.Description)
+                                                    @Html.DisplayFor(modelItem => item.Labour.LabourType)
                                                 </td>
                                                 <td>
                                                     @Html.DisplayFor(modelItem => item.UnitPrice)
